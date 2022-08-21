@@ -36,8 +36,7 @@ export class dcUIManager {
 	}
 
 	private buildUI(): void {
-		//const homeView = dcHome.getInstance(this.parentElement);
-		//homeView.init();
+		//dcHome.getInstance(this.parentElement).init();
 		dcVirtualStudio.getInstance(this.parentElement).init();
 	}
 
