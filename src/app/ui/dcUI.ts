@@ -1,4 +1,4 @@
-export abstract class dcAbstractUI  {
+export abstract class dcUI {
 
 	private parentElement: HTMLElement;
 	private mainElement: HTMLElement;

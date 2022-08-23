@@ -1,4 +1,4 @@
-import "./dcVirtualStudio.css";
+import "./dcStudio.css";
 import { dcView } from "../dcView";
 import * as SPECTOR from "spectorjs";
 import { GUI } from "lil-gui";
@@ -6,18 +6,18 @@ import { _UDom } from "../../dcUtils/_UDom";
 import { Scene, TextureLoader, WebGLRenderer } from "three";
 import * as THREE from "three";
 import { DRACOLoader } from "three/examples/jsm/loaders/DRACOLoader";
-import { GLOBAL_VARS } from "../../../../main";
+import { dcGlobalVars } from "../../../dcGlobalVars";
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader";
-import { dcDimension } from "../../dcUIGlobalTypes";
+import { dcDimension } from "../../../dcGlobalTypes";
 import { OrbitControls } from "three/examples/jsm/controls/OrbitControls";
 
 enum VIRTUAL_STUDIO_CSS_CLASSNAMES {
-	CONTAINER = "virtual-studio-container"
+	CONTAINER = "studio-container"
 }
 
-export class dcVirtualStudio extends dcView {
+export class dcStudio extends dcView {
 
-	private static INSTANCE: dcVirtualStudio;
+	private static INSTANCE: dcStudio;
 
 	private readonly canvas: HTMLCanvasElement;
 
@@ -50,7 +50,7 @@ export class dcVirtualStudio extends dcView {
 
 		this.textureLoader = new THREE.TextureLoader();
 		this.dracoLoader = new DRACOLoader();
-		this.dracoLoader.setDecoderPath(GLOBAL_VARS.DRACO_LOADER_PATH);
+		this.dracoLoader.setDecoderPath(dcGlobalVars.DRACO_LOADER_PATH);
 		this.gltfLoader = new GLTFLoader();
 		this.gltfLoader.setDRACOLoader(this.dracoLoader);
 
@@ -65,17 +65,17 @@ export class dcVirtualStudio extends dcView {
 		});
 	}
 
-	public static getInstance(parentElement: HTMLElement): dcVirtualStudio {
-		if (!dcVirtualStudio.INSTANCE) {
-			dcVirtualStudio.INSTANCE = new dcVirtualStudio(parentElement, _UDom.CCE("virtual-studio"));
+	public static getInstance(parentElement: HTMLElement): dcStudio {
+		if (!dcStudio.INSTANCE) {
+			dcStudio.INSTANCE = new dcStudio(parentElement, _UDom.CCE("studio"));
 		}
 
-		return dcVirtualStudio.INSTANCE;
+		return dcStudio.INSTANCE;
 	}
 
 	public autoSetDimension(): void {
-		this.dimension.w = window.innerWidth;
-		this.dimension.h = window.innerHeight;
+		this.dimension.w = globalThis.innerWidth;
+		this.dimension.h = globalThis.innerHeight;
 	}
 
 	public autoSetCameraProperties(): void {
@@ -88,7 +88,7 @@ export class dcVirtualStudio extends dcView {
 
 	public autoSetRendererProperties(): void {
 		this.renderer.setSize(this.dimension.w, this.dimension.h);
-		this.renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+		this.renderer.setPixelRatio(Math.min(globalThis.devicePixelRatio, 2));
 		this.renderer.outputEncoding = THREE.sRGBEncoding;
 	}
 
@@ -113,17 +113,18 @@ export class dcVirtualStudio extends dcView {
 		this.autoSetCameraProperties();
 		this.autoSetRendererProperties();
 
-		const bakedTexture = this.textureLoader.load(GLOBAL_VARS.VIRTUAL_STUDIO_TEXTURE_PATH);
+		const bakedTexture = this.textureLoader.load(dcGlobalVars.VIRTUAL_STUDIO_TEXTURE_PATH);
 		bakedTexture.flipY = false;
 		bakedTexture.encoding = THREE.sRGBEncoding;
 
-		const bakedMaterial = new THREE.MeshBasicMaterial({ map: bakedTexture });
+		const bakedMaterial = new THREE.MeshBasicMaterial({ map: bakedTexture /*, color: 0xff0000 */ });
 
-		this.gltfLoader.load(GLOBAL_VARS.VIRTUAL_STUDIO_GLB_PATH, (gltf) => {
+		this.gltfLoader.load(dcGlobalVars.VIRTUAL_STUDIO_GLB_PATH, (gltf) => {
 			gltf.scene.traverse((child) => {
 				// @ts-ignore
 				child.material = bakedMaterial;
 			});
+			console.log(gltf.scene);
 			this.scene.add(gltf.scene);
 		});
 
@@ -135,11 +136,11 @@ export class dcVirtualStudio extends dcView {
 	private animate(): void {
 		this.controls.update();
 		this.renderer.render(this.scene, this.camera);
-		window.requestAnimationFrame(() => this.animate());
+		globalThis.requestAnimationFrame(() => this.animate());
 	}
 
 	private subscribeToEventListeners(): void {
-		window.addEventListener("resize", () => this.onResize());
+		globalThis.addEventListener("resize", () => this.onResize());
 	}
 
 	private onResize(): void {
@@ -149,7 +150,7 @@ export class dcVirtualStudio extends dcView {
 	}
 
 	private unSubscribeToEventListeners(): void {
-		window.removeEventListener("resize", this.onResize);
+		globalThis.removeEventListener("resize", this.onResize);
 	}
 
 }

@@ -1,5 +1,5 @@
 import { dcHome } from "./dcViews/dcHome/dcHome";
-import { dcVirtualStudio } from "./dcViews/dcVirtualStudio/dcVirtualStudio";
+import { dcStudio } from "./dcViews/dcStudio/dcStudio";
 
 export class dcUIManager {
 
@@ -37,7 +37,7 @@ export class dcUIManager {
 
 	private buildUI(): void {
 		//dcHome.getInstance(this.parentElement).init();
-		dcVirtualStudio.getInstance(this.parentElement).init();
+		dcStudio.getInstance(this.parentElement).init();
 	}
 
 }
