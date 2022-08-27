@@ -3,13 +3,14 @@ import { dcView } from "../dcView";
 import * as SPECTOR from "spectorjs";
 import { GUI } from "lil-gui";
 import { _UDom } from "../../dcUtils/_UDom";
-import { Scene, TextureLoader, WebGLRenderer } from "three";
+import { Scene, TextureLoader, Vector3, WebGLRenderer } from "three";
 import * as THREE from "three";
 import { DRACOLoader } from "three/examples/jsm/loaders/DRACOLoader";
 import { dcGlobalVars } from "../../../dcGlobalVars";
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader";
 import { dcDimension } from "../../../dcGlobalTypes";
 import { OrbitControls } from "three/examples/jsm/controls/OrbitControls";
+import { PointerLockControls } from "three/examples/jsm/controls/PointerLockControls";
 
 enum VIRTUAL_STUDIO_CSS_CLASSNAMES {
 	CONTAINER = "studio-container"
@@ -33,8 +34,17 @@ export class dcStudio extends dcView {
 	private readonly gltfLoader: GLTFLoader;
 
 	private readonly camera: THREE.PerspectiveCamera;
-	private readonly controls: OrbitControls;
+	private readonly controls: PointerLockControls;
 	private readonly renderer: WebGLRenderer;
+
+	private moveForward: boolean;
+	private moveBackward: boolean;
+	private moveLeft: boolean;
+	private moveRight: boolean;
+
+	private prevTime: number;
+	private velocity: Vector3;
+	private direction: Vector3;
 
 	private constructor(parentElement: HTMLElement, mainElement: HTMLElement) {
 		super(parentElement, mainElement);
@@ -56,13 +66,21 @@ export class dcStudio extends dcView {
 
 		this.camera = new THREE.PerspectiveCamera(45, 0, 0.1, 100);
 
-		this.controls = new OrbitControls(this.camera, this.canvas);
-		this.controls.enableDamping = true;
+		this.controls = new PointerLockControls(this.camera, this.canvas);
 
 		this.renderer = new THREE.WebGLRenderer({
 			canvas: this.canvas,
 			antialias: true
 		});
+
+		this.moveForward = false;
+		this.moveBackward = false;
+		this.moveLeft = false;
+		this.moveRight = false;
+
+		this.prevTime = performance.now();
+		this.velocity = new THREE.Vector3();
+		this.direction = new THREE.Vector3();
 	}
 
 	public static getInstance(parentElement: HTMLElement): dcStudio {
@@ -81,9 +99,9 @@ export class dcStudio extends dcView {
 	public autoSetCameraProperties(): void {
 		this.camera.aspect = this.dimension.w / this.dimension.h;
 		this.camera.updateProjectionMatrix();
-		this.camera.position.x = 4;
-		this.camera.position.y = 2;
-		this.camera.position.z = 4;
+		//this.camera.position.x = 4;
+		//this.camera.position.y = 2;
+		//this.camera.position.z = 4;
 	}
 
 	public autoSetRendererProperties(): void {
@@ -113,6 +131,16 @@ export class dcStudio extends dcView {
 		this.autoSetCameraProperties();
 		this.autoSetRendererProperties();
 
+		this.loadRessources();
+
+		//https://github.com/mrdoob/three.js/blob/master/examples/misc_controls_pointerlock.html
+
+		this.scene.add(this.camera);
+
+		this.getMainElement().appendChild(this.canvas);
+	}
+
+	private loadRessources(): void {
 		const bakedTexture = this.textureLoader.load(dcGlobalVars.VIRTUAL_STUDIO_TEXTURE_PATH);
 		bakedTexture.flipY = false;
 		bakedTexture.encoding = THREE.sRGBEncoding;
@@ -127,20 +155,59 @@ export class dcStudio extends dcView {
 			console.log(gltf.scene);
 			this.scene.add(gltf.scene);
 		});
-
-		this.scene.add(this.camera);
-
-		this.getMainElement().appendChild(this.canvas);
 	}
 
 	private animate(): void {
-		this.controls.update();
+		//this.controls.update();
+
+		const time = performance.now();
+
+		if (this.controls.isLocked) {
+
+			const delta = ( time - this.prevTime ) / 1000;
+
+			this.velocity.x -= this.velocity.x * 10.0 * delta;
+			this.velocity.z -= this.velocity.z * 10.0 * delta;
+
+			this.velocity.y -= 9.8 * 100.0 * delta; // 100.0 = mass
+
+			this.direction.z = Number(this.moveForward) - Number(this.moveBackward);
+			this.direction.x = Number(this.moveRight) - Number(this.moveLeft);
+			this.direction.normalize(); // this ensures consistent movements in all directions
+
+			if (this.moveForward || this.moveBackward) {
+				this.velocity.z -= this.direction.z * 400.0 * delta;
+			}
+
+			if (this.moveLeft || this.moveRight) {
+				this.velocity.x -= this.direction.x * 400.0 * delta;
+			}
+
+			this.controls.moveRight(-this.velocity.x * delta);
+			this.controls.moveForward(-this.velocity.z * delta);
+
+
+		}
+
+		this.prevTime = time;
+
 		this.renderer.render(this.scene, this.camera);
+
 		globalThis.requestAnimationFrame(() => this.animate());
 	}
 
 	private subscribeToEventListeners(): void {
 		globalThis.addEventListener("resize", () => this.onResize());
+		globalThis.addEventListener("keydown", (e) => this.onKeyDown(e));
+		globalThis.addEventListener("keyup", (e) => this.onKeyUp(e));
+
+		this.canvas.addEventListener("click", () => this.controls.lock());
+	}
+
+	private unSubscribeToEventListeners(): void {
+		globalThis.removeEventListener("resize", this.onResize);
+		globalThis.removeEventListener("keydown", this.onKeyDown);
+		globalThis.removeEventListener("keyup", this.onKeyUp);
 	}
 
 	private onResize(): void {
@@ -149,8 +216,46 @@ export class dcStudio extends dcView {
 		this.autoSetRendererProperties();
 	}
 
-	private unSubscribeToEventListeners(): void {
-		globalThis.removeEventListener("resize", this.onResize);
+	private onKeyDown(event: KeyboardEvent): void {
+		switch ( event.code ) {
+			case "ArrowUp":
+			case "KeyW":
+				this.moveForward = true;
+				break;
+			case "ArrowLeft":
+			case "KeyA":
+				this.moveLeft = true;
+				break;
+			case "ArrowDown":
+			case "KeyS":
+				this.moveBackward = true;
+				break;
+			case "ArrowRight":
+			case "KeyD":
+				this.moveRight = true;
+				break;
+		}
+	}
+
+	private onKeyUp(event: KeyboardEvent): void {
+		switch ( event.code ) {
+			case 'ArrowUp':
+			case 'KeyW':
+				this.moveForward = false;
+				break;
+			case 'ArrowLeft':
+			case 'KeyA':
+				this.moveLeft = false;
+				break;
+			case 'ArrowDown':
+			case 'KeyS':
+				this.moveBackward = false;
+				break;
+			case 'ArrowRight':
+			case 'KeyD':
+				this.moveRight = false;
+				break;
+		}
 	}
 
 }

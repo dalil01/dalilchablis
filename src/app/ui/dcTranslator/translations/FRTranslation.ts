@@ -1,0 +1,3 @@
+enum FR_TRANSLATION {
+
+}
