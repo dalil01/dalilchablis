@@ -3,15 +3,16 @@ import "./dcOffice.css";
 import {dcView} from "../dcView";
 import {_UDom} from "../../dcUtils/_UDom";
 import * as THREE from "three";
-import {Scene, TextureLoader, Vector3, WebGLRenderer} from "three";
+import {Euler, Scene, TextureLoader, Vector3, WebGLRenderer} from "three";
 import {DRACOLoader} from "three/examples/jsm/loaders/DRACOLoader";
 import {dcGlobalVars} from "../../../dcGlobalVars";
 import {GLTFLoader} from "three/examples/jsm/loaders/GLTFLoader";
 import {dcDimension} from "../../../dcGlobalTypes";
-import {PointerLockControls} from "three/examples/jsm/controls/PointerLockControls";
 import {_UIcon} from "../../dcUtils/_UIcon";
 import {DcIcons} from "../../dcIcons/dcIcons";
 import {DOM_CSS_CLASSNAMES} from "../../../dcGlobalEnums";
+import {OrbitControls} from "three/examples/jsm/controls/OrbitControls";
+import gsap from "gsap";
 
 enum OFFICE_CSS_CLASSNAMES {
 	CONTAINER = "office-container",
@@ -44,26 +45,18 @@ export class dcOffice extends dcView {
 	private readonly gltfLoader: GLTFLoader;
 
 	private readonly camera: THREE.PerspectiveCamera;
-	private readonly controls: PointerLockControls;
+	private readonly controls: OrbitControls;
 	private readonly renderer: WebGLRenderer;
-
-	private moveForward: boolean;
-	private moveBackward: boolean;
-	private moveLeft: boolean;
-	private moveRight: boolean;
-
-	private prevTime: number;
-	private velocity: Vector3;
-	private direction: Vector3;
 
 	private constructor(parentElement: HTMLElement, mainElement: HTMLElement, autoInit: boolean = false) {
 		super(parentElement, mainElement);
 
-		this.HTMLContainer = _UDom.CE("div", { className: OFFICE_CSS_CLASSNAMES.HTML_CONTAINER });
+		this.HTMLContainer = _UDom.CE("div", {className: OFFICE_CSS_CLASSNAMES.HTML_CONTAINER});
 		this.canvas = _UDom.CE("canvas");
+		this.canvas.style.cursor = "grab";
 
 		this.resourcesLoaded = false;
-		this.loading = _UIcon.getIcon(DcIcons.DcIconLoading, { className: OFFICE_CSS_CLASSNAMES.LOADING });
+		this.loading = _UIcon.getIcon(DcIcons.DcIconLoading, {className: OFFICE_CSS_CLASSNAMES.LOADING});
 
 		//this.spector = new SPECTOR.Spector();
 		//this.gui = new GUI({
@@ -71,7 +64,7 @@ export class dcOffice extends dcView {
 		//});
 
 		this.scene = new THREE.Scene();
-		this.dimension = { w: 0, h: 0 };
+		this.dimension = {w: 0, h: 0};
 
 		this.textureLoader = new THREE.TextureLoader();
 		this.dracoLoader = new DRACOLoader();
@@ -79,27 +72,16 @@ export class dcOffice extends dcView {
 		this.gltfLoader = new GLTFLoader();
 		this.gltfLoader.setDRACOLoader(this.dracoLoader);
 
-		this.camera = new THREE.PerspectiveCamera(45, 0, 0.01, 100);
-		this.camera.position.x = -1.5;
-		this.camera.position.y = 1.5;
-		this.camera.position.z = -1.5;
-		this.camera.lookAt(new THREE.Vector3(-1.2, 1.2, 0));
+		this.camera = new THREE.PerspectiveCamera(45, 0, 0.01, 80);
+		this.camera.position.set(-2.5, 1.25, -3.6);
 
-		this.controls = new PointerLockControls(this.camera, this.canvas);
+		this.controls = new OrbitControls(this.camera, this.canvas);
+		this.controls.target.set(-0.3, 1.25, 0);
 
 		this.renderer = new THREE.WebGLRenderer({
 			canvas: this.canvas,
 			antialias: true
 		});
-
-		this.moveForward = false;
-		this.moveBackward = false;
-		this.moveLeft = false;
-		this.moveRight = false;
-
-		this.prevTime = performance.now();
-		this.velocity = new THREE.Vector3();
-		this.direction = new THREE.Vector3();
 
 		if (autoInit)
 			this.init();
@@ -107,7 +89,7 @@ export class dcOffice extends dcView {
 
 	public static getInstance(parentElement: HTMLElement, autoInit: boolean = false): dcOffice {
 		if (!dcOffice.INSTANCE) {
-			dcOffice.INSTANCE = new dcOffice(parentElement, _UDom.CCE("office", { className: OFFICE_CSS_CLASSNAMES.CONTAINER }), autoInit);
+			dcOffice.INSTANCE = new dcOffice(parentElement, _UDom.CCE("office", {className: OFFICE_CSS_CLASSNAMES.CONTAINER}), autoInit);
 		}
 
 		return dcOffice.INSTANCE;
@@ -134,7 +116,6 @@ export class dcOffice extends dcView {
 		if (this.isInitiated()) {
 			//this.spector.displayUI();
 			this.animate();
-			this.subscribeToEventListeners();
 		}
 	}
 
@@ -156,9 +137,9 @@ export class dcOffice extends dcView {
 
 		//https://github.com/mrdoob/three.js/blob/master/examples/misc_controls_pointerlock.html
 
-		const light = new THREE.HemisphereLight( 0xeeeeff, 0x777788, 1 );
-		light.position.set( 0.5, 1, 0.75 );
-		this.scene.add( light );
+		const light = new THREE.HemisphereLight(0xeeeeff, 0x777788, 1);
+		light.position.set(0.5, 1, 0.75);
+		this.scene.add(light);
 
 		this.scene.add(this.camera);
 
@@ -166,9 +147,7 @@ export class dcOffice extends dcView {
 	}
 
 	private buildPresentationText(): void {
-		const presentationContainer = _UDom.CE("div", { className: OFFICE_CSS_CLASSNAMES.PRESENTATION_CONTAINER });
-
-		const ms = 62;
+		const presentationContainer = _UDom.CE("div", {className: OFFICE_CSS_CLASSNAMES.PRESENTATION_CONTAINER});
 
 		const presentationText = _UDom.CE("p");
 		presentationContainer.appendChild(presentationText);
@@ -177,88 +156,48 @@ export class dcOffice extends dcView {
 		const name = "Dalil CHABLIS, ";
 		const job = "Junior Fullstack Developer ! ";
 
-		this.writeTextInElement([
-			{ startCallback: null, endCallback: null, element: presentationText, text: hello},
-			{ startCallback: () => {
-					const nameContainer = _UDom.CE("span", { className: OFFICE_CSS_CLASSNAMES.PRESENTATION_NAME_CONTAINER });
-					presentationText.appendChild(nameContainer);
-					return nameContainer;
-				}, element: null, text: name, endCallback: null
-			},
-			{ startCallback: () => {
-					const jobContainer = _UDom.CE("span");
-					presentationText.appendChild(jobContainer);
-					return jobContainer;
-				}, element: null, text: job,
-				endCallback: () => {
-					presentationText.appendChild(_UIcon.getIcon(DcIcons.DcIconSmile));
-					presentationText.appendChild(_UDom.CE("span", { className: DOM_CSS_CLASSNAMES.BLINK, innerText: '_' }));
+		_UDom.writeTextInElements([
+				{
+					startCallback: null,
+					endCallback: null,
+					element: presentationText,
+					text: hello
+				},
+				{
+					startCallback: () => {
+						const nameContainer = _UDom.CE("span", {className: OFFICE_CSS_CLASSNAMES.PRESENTATION_NAME_CONTAINER});
+						presentationText.appendChild(nameContainer);
+						return nameContainer;
+					},
+					element: null,
+					text: name,
+					endCallback: null
+				},
+				{
+					startCallback: () => {
+						const jobContainer = _UDom.CE("span");
+						presentationText.appendChild(jobContainer);
+						return jobContainer;
+					},
+					endCallback: () => {
+						presentationText.appendChild(_UIcon.getIcon(DcIcons.DcIconSmile));
+						presentationText.appendChild(_UDom.CE("span", {
+							className: DOM_CSS_CLASSNAMES.BLINK,
+							innerText: '_'
+						}));
 
-					if (!this.resourcesLoaded)
-						this.buildLoading();
+						if (!this.resourcesLoaded)
+							this.buildLoading();
+					},
+					element: null,
+					text: job
 				}
-			}
-		], ms, true, false)
-
-		/*
-		presentationText.appendChild(_UIcon.getIcon(DcIcons.DcIconSmile));
-					presentationText.appendChild(_UDom.CE("span", { className: DOM_CSS_CLASSNAMES.BLINK, innerText: '_' }));
-
-					if (!this.resourcesLoaded)
-						this.buildLoading();
-		 */
+			],
+			60,
+			true,
+			false);
 
 		this.HTMLContainer.appendChild(presentationContainer);
-	}
-
-	public writeTextInElement(elements: { startCallback: null | Function, endCallback: null | Function, element: HTMLElement | null, text: string }[], ms: number = 100, blink: boolean = true, blinkAlwaysActive: boolean = true, blinkChar: string = '_'): void {
-		const resolveAfterMs = () => new Promise((resolve, _reject) => setTimeout(resolve, ms));
-
-		let elemIndex = 0;
-		let startIndex = 0;
-
-		const asyncCall =async () => {
-			await resolveAfterMs();
-
-			let element = elements[elemIndex];
-
-			if (element.startCallback && !element.element) {
-				element.element = element.startCallback();
-			}
-
-			if (startIndex < element.text.length) {
-				// @ts-ignore
-				element.element.innerText = element.text.substring(0, startIndex + 1);
-
-				if (blink) {
-					// @ts-ignore
-					element.element.appendChild(_UDom.CE("span", {className: DOM_CSS_CLASSNAMES.BLINK, innerText: blinkChar}));
-					// @ts-ignore
-					if (!blinkAlwaysActive && startIndex + 1 == element.text.length && element.element.lastChild)
-						{ // @ts-ignore
-							element.element.removeChild(element.element.lastChild);
-						}
-				}
-			}
-
-			startIndex += 1
-
-			if (startIndex >= element.text.length) {
-				if (element.endCallback) {
-					element.endCallback();
-				}
-
-				if (elemIndex >= elements.length) {
-					return;
-				}
-				elemIndex += 1;
-				startIndex = 0;
-			}
-
-			asyncCall();
-		}
-
-		asyncCall();
 	}
 
 	private buildLoading(): void {
@@ -270,80 +209,108 @@ export class dcOffice extends dcView {
 		bakedTexture.flipY = false;
 		bakedTexture.encoding = THREE.sRGBEncoding;
 
-		const bakedMaterial = new THREE.MeshBasicMaterial({ map: bakedTexture /*, color: 0xff0000 */ });
+		const bakedMaterial = new THREE.MeshBasicMaterial({map: bakedTexture /*, color: 0xff0000 */});
 
 		this.gltfLoader.load(dcGlobalVars.VIRTUAL_STUDIO_GLB_PATH, (gltf) => {
-			setTimeout(() => {
+			//setTimeout(() => {
 				gltf.scene.traverse((child) => {
 					// @ts-ignore
 					child.material = bakedMaterial;
 				});
-				console.log(gltf.scene);
+
+				// console.log(gltf.scene);
 				this.scene.add(gltf.scene);
 
 				this.buildStartVisitButton();
 
 				this.resourcesLoaded = true;
 
-				this.HTMLContainer.removeChild(this.loading);
-			}, 8000);
+				if (_UDom.elementHasChild(this.HTMLContainer, this.loading))
+					this.HTMLContainer.removeChild(this.loading);
+			//}, 6000);
 		});
 	}
 
 	private buildStartVisitButton(): void {
-		const startVisitContainer = _UDom.CE("div", { className: OFFICE_CSS_CLASSNAMES.START_VISIT_CONTAINER });
+		const startVisitContainer = _UDom.CE("div", {className: OFFICE_CSS_CLASSNAMES.START_VISIT_CONTAINER});
 		const startVisitIcon = _UIcon.getIcon(DcIcons.DcIconArrowUp)
 		startVisitContainer.appendChild(startVisitIcon);
 
-		// https://loading.io/
+		startVisitIcon.addEventListener("mouseover", () => {
+			console.log("hover")
+
+			gsap.to(this.camera.position, {
+				duration: 1.6,
+				x: 1.5,
+				onUpdate: () => {
+				},
+				onComplete: () => {}
+			});
+
+		});
+
+		startVisitIcon.addEventListener("mouseleave", () => {
+			console.log("leave")
+
+			gsap.to(this.camera.position, {
+				duration: 1.6,
+				x: -1.5,
+				onUpdate: () => {
+				},
+				onComplete: () => {}
+			});
+
+		});
+
+		startVisitIcon.addEventListener("click", () => {
+			this.getMainElement().removeChild(this.HTMLContainer);
+
+			this.camera.position.set(0, 1.25, 0);
+
+			this.controls.update();
+
+			gsap.to(this.camera.position, {
+				duration: 1.6,
+				x: 1.6,
+				onUpdate: () => {
+					this.controls.target.set(0, 1.25, 0)
+				},
+				onComplete: () => {}
+			});
+
+			this.controls.enableDamping = true;
+			this.controls.enablePan = false;
+			this.controls.enableRotate = true;
+			this.controls.enableZoom = true;
+			this.controls.maxDistance = 3;
+			this.controls.minDistance = 2;
+			this.controls.maxPolarAngle = Math.PI;
+			this.controls.minPolarAngle = 0;
+
+			this.subscribeToEventListeners();
+		});
 
 		this.HTMLContainer.appendChild(startVisitContainer);
 	}
 
 	private animate(): void {
-		const time = performance.now();
-
-		if (this.controls.isLocked) {
-			const delta = ( time - this.prevTime ) / 1000;
-
-			this.velocity.x -= this.velocity.x * 100.0 * delta;
-			this.velocity.z -= this.velocity.z * 100.0 * delta;
-
-			this.direction.z = Number(this.moveForward) - Number(this.moveBackward);
-			this.direction.x = Number(this.moveRight) - Number(this.moveLeft);
-			this.direction.normalize(); // this ensures consistent movements in all directions
-
-			if (this.moveForward || this.moveBackward) {
-				this.velocity.z -= this.direction.z * 500.0 * delta;
-			}
-
-			if (this.moveLeft || this.moveRight) {
-				this.velocity.x -= this.direction.x * 500.0 * delta;
-			}
-
-			this.controls.moveRight(-this.velocity.x * delta);
-			this.controls.moveForward(-this.velocity.z * delta);
-		}
-
-		this.prevTime = time;
-
+		//const time = performance.now();
+		this.controls.update();
+		//this.prevTime = time;
 		this.renderer.render(this.scene, this.camera);
-
 		globalThis.requestAnimationFrame(() => this.animate());
 	}
 
 	private subscribeToEventListeners(): void {
 		globalThis.addEventListener("resize", () => this.onResize());
-		globalThis.addEventListener("keydown", (e) => this.onKeyDown(e));
-		globalThis.addEventListener("keyup", (e) => this.onKeyUp(e));
-
-		//this.canvas.addEventListener("click", () => this.controls.lock());
+		globalThis.addEventListener("mousedown", () => this.onMouseDown());
+		globalThis.addEventListener("mouseup", () => this.onMouseUp());
 	}
 
 	private unSubscribeToEventListeners(): void {
 		globalThis.removeEventListener("resize", this.onResize);
-		globalThis.removeEventListener("keydown", this.onKeyDown);
-		globalThis.removeEventListener("keyup", this.onKeyUp);
+		globalThis.removeEventListener("mousedown", this.onMouseDown);
+		globalThis.removeEventListener("mouseup", this.onMouseUp);
 	}
 
 	private onResize(): void {
@@ -352,46 +319,12 @@ export class dcOffice extends dcView {
 		this.updateRendererProperties();
 	}
 
-	private onKeyDown(event: KeyboardEvent): void {
-		switch ( event.code ) {
-			case "ArrowUp":
-			case "KeyW":
-				this.moveForward = true;
-				break;
-			case "ArrowLeft":
-			case "KeyA":
-				this.moveLeft = true;
-				break;
-			case "ArrowDown":
-			case "KeyS":
-				this.moveBackward = true;
-				break;
-			case "ArrowRight":
-			case "KeyD":
-				this.moveRight = true;
-				break;
-		}
+	private onMouseDown(): void {
+		this.canvas.style.cursor = "grabbing";
 	}
 
-	private onKeyUp(event: KeyboardEvent): void {
-		switch ( event.code ) {
-			case 'ArrowUp':
-			case 'KeyW':
-				this.moveForward = false;
-				break;
-			case 'ArrowLeft':
-			case 'KeyA':
-				this.moveLeft = false;
-				break;
-			case 'ArrowDown':
-			case 'KeyS':
-				this.moveBackward = false;
-				break;
-			case 'ArrowRight':
-			case 'KeyD':
-				this.moveRight = false;
-				break;
-		}
+	private onMouseUp(): void {
+		this.canvas.style.cursor = "grab";
 	}
 
 }

@@ -67,9 +67,12 @@
     border: 1px solid #FFFFFF;
     border-radius: 21px;
     cursor: pointer;
+    transition: 0.3s ease-in-out;
+    opacity: .9;
 }
 
 .office-start-visit-container i:hover {
     background-color: #FFFFFF;
     color: #000000;
+    opacity: 1;
 }

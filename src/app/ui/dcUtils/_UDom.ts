@@ -38,4 +38,68 @@ export class _UDom {
 		return parent;
 	}
 
+	public static elementHasChild(element: HTMLElement, child: HTMLElement): boolean {
+		for (let i = 0; i < element.children.length; i++) {
+			if (element.children[i] == child)
+				return true;
+		}
+
+		return false;
+	}
+
+	// TODO : Refactor
+	public static writeTextInElements(elements: { startCallback: null | Function, endCallback: null | Function, element: HTMLElement | null, text: string }[], ms: number = 100, blink: boolean = true, blinkAlwaysActive: boolean = true, blinkChar: string = '_'): void {
+		const wait = () => new Promise((resolve) => setTimeout(resolve, ms));
+
+		let elemIndex = 0;
+		let startIndex = 0;
+
+		const asyncCall = async () => {
+			await wait();
+
+			let element = elements[elemIndex];
+
+			if (!element) {
+				return;
+			}
+
+			if (element.startCallback && !element.element) {
+				element.element = element.startCallback();
+			}
+
+			if (element.element && startIndex < element.text.length) {
+				element.element.innerText = element.text.substring(0, startIndex + 1);
+
+				if (blink) {
+					element.element.appendChild(_UDom.CE("span", {
+						className: DOM_CSS_CLASSNAMES.BLINK,
+						innerText: blinkChar
+					}));
+
+					if (!blinkAlwaysActive && startIndex + 1 == element.text.length && element.element.lastChild)
+						element?.element.removeChild(element.element.lastChild);
+				}
+			}
+
+			startIndex += 1
+
+			if (startIndex >= element.text.length) {
+				if (element.endCallback) {
+					element.endCallback();
+				}
+
+				if (elemIndex >= elements.length) {
+					return;
+				}
+
+				elemIndex += 1;
+				startIndex = 0;
+			}
+
+			await asyncCall();
+		}
+
+		asyncCall();
+	}
+
 }
