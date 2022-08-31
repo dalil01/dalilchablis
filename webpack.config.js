@@ -13,7 +13,7 @@ const webpackConfig = {
     target: "web",
     entry: path.resolve(__dirname, "./src/main.ts"),
     output: {
-        path: path.resolve(__dirname, "./dist/"),
+        path: path.resolve(__dirname, "./dist"),
         filename: "index" + (dev ? '' : ".[chunkhash:12]") + ".js",
     },
     resolve: {
@@ -41,9 +41,24 @@ const webpackConfig = {
                 test: /\.css$/,
                 use: [MiniCssExtractPlugin.loader, "css-loader"]
             },
+            // TODO
+            {
+                test: /\.(png|jpe?g|gif|woff2|woff|eot|ttf|svg)$/i,
+                loader: "file-loader",
+                type: "asset/resource",
+                options: {
+                    name: "[contenthash].[ext]",
+                },
+                dependency: { not: ['url'] },
+
+            }
+            /*,
             {
                 test: /\.(ico|ttf|eot|woff|woff2)(\?.*)?$/,
                 loader: "file-loader",
+                options: {
+                    name: "assets/images/[hash:12].[ext]",
+                }
             },
             {
                 test: /\.(png|jpe?g|gif|svg)$/,
@@ -62,7 +77,7 @@ const webpackConfig = {
                         }
                     }
                 ]
-            },
+            }*/,
             {
                 exclude: /node_modules/
             }
@@ -98,6 +113,12 @@ const webpackConfig = {
 };
 
 if (!dev) {
+    webpackConfig.plugins.filter(plugin => plugin instanceof CopyWebpackPlugin)[0]?.patterns.push({
+        from: path.resolve(__dirname, "./src/.htaccess"),
+        to: "./",
+        noErrorOnMissing: true
+    });
+
     webpackConfig.plugins.push(new CleanWebpackPlugin({
         verbose: true
     }));

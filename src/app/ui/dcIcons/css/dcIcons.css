@@ -1,0 +1,38 @@
+@font-face {
+    font-family: "dcIcons";
+    src: url("../fonts/dcIcons.eot?c43c1e5b2ebcb7a43a2e6c17f863107f#iefix") format("embedded-opentype"),
+url("../fonts/dcIcons.svg?c43c1e5b2ebcb7a43a2e6c17f863107f#dcIcons") format("svg"),
+url("../fonts/dcIcons.ttf?c43c1e5b2ebcb7a43a2e6c17f863107f") format("truetype"),
+url("../fonts/dcIcons.woff?c43c1e5b2ebcb7a43a2e6c17f863107f") format("woff"),
+url("../fonts/dcIcons.woff2?c43c1e5b2ebcb7a43a2e6c17f863107f") format("woff2");
+}
+
+i[class^="dcIcon-"]:before, i[class*=" dcIcon-"]:before {
+    font-family: dcIcons !important;
+    font-style: normal;
+    font-weight: normal !important;
+    font-variant: normal;
+    text-transform: none;
+    line-height: 1;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+.dcIcon-arrow-up:before {
+    content: "\f101";
+}
+.dcIcon-contact:before {
+    content: "\f102";
+}
+.dcIcon-help:before {
+    content: "\f103";
+}
+.dcIcon-loading:before {
+    content: "\f104";
+}
+.dcIcon-settings:before {
+    content: "\f105";
+}
+.dcIcon-smile:before {
+    content: "\f106";
+}

@@ -1,5 +1,6 @@
-import { dcHome } from "./dcViews/dcHome/dcHome";
-import { dcStudio } from "./dcViews/dcStudio/dcStudio";
+import { dcOffice } from "./dcViews/dcOffice/dcOffice";
+import {dcHeader} from "./dcComponents/dcHeader/dcHeader";
+import {dcFooter} from "./dcComponents/dcFooter/dcFooter";
 
 export class dcUIManager {
 
@@ -36,8 +37,9 @@ export class dcUIManager {
 	}
 
 	private buildUI(): void {
-		//dcHome.getInstance(this.parentElement).init();
-		dcStudio.getInstance(this.parentElement).init();
+		new dcHeader(this.parentElement, true);
+		dcOffice.getInstance(this.parentElement, true);
+		new dcFooter(this.parentElement, true);
 	}
 
 }

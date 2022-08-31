@@ -10,7 +10,8 @@
     "module": "ESNext",
     "lib": [
       "ESNext",
-      "dom"
+      "dom",
+      "es2021.promise"
     ],
     "target": "ES5",
     "moduleResolution": "Node",

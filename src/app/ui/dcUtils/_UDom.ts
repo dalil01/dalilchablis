@@ -1,3 +1,5 @@
+import {DOM_CSS_CLASSNAMES} from "../../dcGlobalEnums";
+
 export class _UDom {
 
 	/**
