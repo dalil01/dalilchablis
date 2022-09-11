@@ -193,7 +193,7 @@ export class dcOffice extends dcView {
 					text: job
 				}
 			],
-			60,
+			62,
 			true,
 			false);
 
