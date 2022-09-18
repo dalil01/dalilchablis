@@ -47,6 +47,12 @@ export class _UDom {
 		return false;
 	}
 
+	static removeAllChildren(parent: HTMLElement) {
+		while (parent.firstChild) {
+			parent.removeChild(parent.firstChild);
+		}
+	}
+
 	// TODO : Refactor
 	public static writeTextInElements(elements: { startCallback: null | Function, endCallback: null | Function, element: HTMLElement | null, text: string }[], ms: number = 100, blink: boolean = true, blinkAlwaysActive: boolean = true, blinkChar: string = '_'): void {
 		const wait = () => new Promise((resolve) => setTimeout(resolve, ms));

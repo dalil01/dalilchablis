@@ -7,7 +7,8 @@
     "serve": "NODE_ENV=development webpack-dev-server --hot",
     "build": "NODE_ENV=production webpack",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "generate-dcIcons": "npx fantasticon"
+    "generate-dcIcons": "npx fantasticon",
+    "generate-translation": "npx translation.js"
   },
   "repository": {
     "type": "git",

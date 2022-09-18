@@ -1,4 +1,4 @@
-import {T_TRANSLATION} from "./dcTranslation";
+import {dcTranslation} from "./dcTranslation";
 
 export class dcTranslator {
 
@@ -11,7 +11,7 @@ export class dcTranslator {
 	/**
 	 * Translate key in current locale.
 	 */
-	public static T(key: T_TRANSLATION): void {
+	public static T(key: dcTranslation): void {
 		// TODO
 		// this.translations.set(key)
 	}

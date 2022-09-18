@@ -17,6 +17,14 @@ html, body {
     height: 100%;
 }
 
+.bg-light {
+    background-color: #FFFFFF;
+}
+
+.bg-dark {
+    background-color: #222222;
+}
+
 .blink {
     -webkit-animation-delay: 500ms; -moz-animation-delay: 500ms;
     -ms-animation-delay: 500ms; -o-animation-delay: 500ms; animation-delay: 500ms;

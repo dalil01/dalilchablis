@@ -4,8 +4,6 @@ import {dcComponent} from "../dcComponent";
 import {_UDom} from "../../dcUtils/_UDom";
 import {_UIcon} from "../../dcUtils/_UIcon";
 import {DcIcons} from "../../dcIcons/dcIcons";
-import {dcTranslator} from "../../dcTranslator/dcTranslator";
-import {DcTranslation} from "../../dcTranslator/dcTranslation";
 
 enum FOOTER_CSS_CLASSNAMES {
 	CONTAINER = "footer-container",

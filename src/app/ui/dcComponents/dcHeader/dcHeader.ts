@@ -8,6 +8,7 @@ import {dcGlobalVars} from "../../../global/dcGlobalVars";
 import {dcGlobalConfig} from "../../../global/dcGlobalConfig";
 import {dcCursor} from "../dcCursor/dcCursor";
 import {TEMPLATES} from "../../../global/dcGlobalEnums";
+import {dcUIManager} from "../../dcUIManager";
 
 enum HEADER_CSS_CLASSNAMES {
 	CONTAINER = "header-container",
@@ -31,6 +32,7 @@ export class dcHeader extends dcComponent {
 	public buildUI(): void {
 		const logoContainer = _UDom.CE("div", { className: HEADER_CSS_CLASSNAMES.LOGO_CONTAINER });
 		const logo = _UDom.CE("img", { src: dcGlobalVars.LOGO_IMAGE_PATH, className: HEADER_CSS_CLASSNAMES.LOGO });
+		logo.addEventListener("click", () => dcUIManager.getInstance().refreshUI());
 		logoContainer.appendChild(logo);
 
 		const menuContainer = _UDom.CE("nav", { className: HEADER_CSS_CLASSNAMES.MENU_CONTAINER });
@@ -45,11 +47,13 @@ export class dcHeader extends dcComponent {
 
 		const modeIconContainer = _UDom.CE("div", { className: HEADER_CSS_CLASSNAMES.MODE_ICON_CONTAINER });
 		const modeIcon = _UIcon.getIcon(dcGlobalConfig.isDarkMode ? DcIcons.DcIconLight : DcIcons.DcIconMoonSharp);
+		modeIcon.addEventListener("click", () => dcUIManager.getInstance().toggleMode());
 		modeIconContainer.appendChild(modeIcon);
 
 		const localeIconContainer = _UDom.CE("div", { className: HEADER_CSS_CLASSNAMES.LOCALE_CONTAINER });
 		const globeIcon = _UIcon.getIcon(DcIcons.DcIconGlobe);
 		const locale = _UDom.CE("span", { innerText: dcGlobalConfig.locale });
+		locale.addEventListener("click", () => dcUIManager.getInstance().toggleLocale());
 		localeIconContainer.appendChild(globeIcon);
 		localeIconContainer.appendChild(locale);
 
