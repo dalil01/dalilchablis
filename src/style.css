@@ -1,3 +1,7 @@
+* {
+    cursor: none;
+}
+
 *, ::before, ::after {
     margin: 0;
     padding: 0;
@@ -20,6 +24,19 @@ html, body {
 }
 
 @keyframes blink {
-    50% { opacity: 0; }
-    to { opacity: 1;}
+    50% {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes rotate {
+    from {
+        filter: hue-rotate(0deg);
+    }
+    to {
+        filter: hue-rotate(360deg);
+    }
 }

@@ -5,12 +5,12 @@ import {_UDom} from "../../dcUtils/_UDom";
 import * as THREE from "three";
 import {Euler, Scene, TextureLoader, Vector3, WebGLRenderer} from "three";
 import {DRACOLoader} from "three/examples/jsm/loaders/DRACOLoader";
-import {dcGlobalVars} from "../../../dcGlobalVars";
+import {dcGlobalVars} from "../../../global/dcGlobalVars";
 import {GLTFLoader} from "three/examples/jsm/loaders/GLTFLoader";
-import {dcDimension} from "../../../dcGlobalTypes";
+import {dcDimension} from "../../../global/dcGlobalTypes";
 import {_UIcon} from "../../dcUtils/_UIcon";
 import {DcIcons} from "../../dcIcons/dcIcons";
-import {DOM_CSS_CLASSNAMES} from "../../../dcGlobalEnums";
+import {GLOBAL_CSS_CLASSNAMES} from "../../../global/dcGlobalEnums";
 import {OrbitControls} from "three/examples/jsm/controls/OrbitControls";
 import gsap from "gsap";
 
@@ -154,7 +154,7 @@ export class dcOffice extends dcView {
 
 		const hello = "Hello, welcome to my website. \n I'm ";
 		const name = "Dalil CHABLIS, ";
-		const job = "Junior Fullstack Developer ! ";
+		const job = "Fullstack Developer ! ";
 
 		_UDom.writeTextInElements([
 				{
@@ -182,7 +182,7 @@ export class dcOffice extends dcView {
 					endCallback: () => {
 						presentationText.appendChild(_UIcon.getIcon(DcIcons.DcIconSmile));
 						presentationText.appendChild(_UDom.CE("span", {
-							className: DOM_CSS_CLASSNAMES.BLINK,
+							className: GLOBAL_CSS_CLASSNAMES.BLINK,
 							innerText: '_'
 						}));
 

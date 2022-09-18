@@ -4,6 +4,8 @@ import {dcComponent} from "../dcComponent";
 import {_UDom} from "../../dcUtils/_UDom";
 import {_UIcon} from "../../dcUtils/_UIcon";
 import {DcIcons} from "../../dcIcons/dcIcons";
+import {dcTranslator} from "../../dcTranslator/dcTranslator";
+import {DcTranslation} from "../../dcTranslator/dcTranslation";
 
 enum FOOTER_CSS_CLASSNAMES {
 	CONTAINER = "footer-container",
@@ -27,7 +29,7 @@ export class dcFooter extends dcComponent {
 
 		const contactContainer = _UDom.CE("div", { className: FOOTER_CSS_CLASSNAMES.CONTACT_CONTAINER });
 		const contactIcon = _UIcon.getIcon(DcIcons.DcIconContact);
-		const contactLabel = _UDom.CE("p", { innerText: "CONTACT" });
+		const contactLabel = _UDom.CE("p", { innerText: "dcTranslator.T(DcTranslation.CONTACT)" });
 		_UDom.AC(contactContainer, contactIcon, contactLabel);
 
 		_UDom.AC(this.getMainElement(), helpContainer, contactContainer);

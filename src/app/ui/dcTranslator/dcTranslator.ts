@@ -1,3 +1,5 @@
+import {T_TRANSLATION} from "./dcTranslation";
+
 export class dcTranslator {
 
 	private translations: Map<string, string>;
@@ -9,7 +11,7 @@ export class dcTranslator {
 	/**
 	 * Translate key in current locale.
 	 */
-	public T(key: EN_TRANSLATION | FR_TRANSLATION): void {
+	public static T(key: T_TRANSLATION): void {
 		// TODO
 		// this.translations.set(key)
 	}

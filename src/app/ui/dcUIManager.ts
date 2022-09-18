@@ -1,6 +1,7 @@
 import { dcOffice } from "./dcViews/dcOffice/dcOffice";
 import {dcHeader} from "./dcComponents/dcHeader/dcHeader";
 import {dcFooter} from "./dcComponents/dcFooter/dcFooter";
+import {dcCursor} from "./dcComponents/dcCursor/dcCursor";
 
 export class dcUIManager {
 
@@ -38,8 +39,9 @@ export class dcUIManager {
 
 	private buildUI(): void {
 		new dcHeader(this.parentElement, true);
-		dcOffice.getInstance(this.parentElement, true);
+		//dcOffice.getInstance(this.parentElement, true);
 		new dcFooter(this.parentElement, true);
+		new dcCursor(this.parentElement, true);
 	}
 
 }

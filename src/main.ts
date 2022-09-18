@@ -1,4 +1,4 @@
-import "./styles.css";
+import "./style.css";
 
 import { dcUIManager } from "./app/ui/dcUIManager";
 

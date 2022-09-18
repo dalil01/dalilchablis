@@ -1,3 +1,0 @@
-enum EN_TRANSLATION {
-	PRESENTATION_TEXT = ""
-}
