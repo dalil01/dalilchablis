@@ -51,13 +51,13 @@
 }
 
 .header-locale-container i {
-    font-size: .9rem !important;
+    font-size: .85rem !important;
     opacity: .6;
 }
 
 .header-locale-container span {
     padding-left: 5px;
-    font-size: .75rem;
+    font-size: .8rem;
     opacity: .9;
 }
 

@@ -1,10 +1,10 @@
 @font-face {
     font-family: "dcIcons";
-    src: url("../fonts/dcIcons.eot?d9ff294123147fba19761345ded34a51#iefix") format("embedded-opentype"),
-url("../fonts/dcIcons.svg?d9ff294123147fba19761345ded34a51#dcIcons") format("svg"),
-url("../fonts/dcIcons.ttf?d9ff294123147fba19761345ded34a51") format("truetype"),
-url("../fonts/dcIcons.woff?d9ff294123147fba19761345ded34a51") format("woff"),
-url("../fonts/dcIcons.woff2?d9ff294123147fba19761345ded34a51") format("woff2");
+    src: url("../fonts/dcIcons.eot?979ed8e884039dd5e5a577dc2969ae67#iefix") format("embedded-opentype"),
+url("../fonts/dcIcons.svg?979ed8e884039dd5e5a577dc2969ae67#dcIcons") format("svg"),
+url("../fonts/dcIcons.ttf?979ed8e884039dd5e5a577dc2969ae67") format("truetype"),
+url("../fonts/dcIcons.woff?979ed8e884039dd5e5a577dc2969ae67") format("woff"),
+url("../fonts/dcIcons.woff2?979ed8e884039dd5e5a577dc2969ae67") format("woff2");
 }
 
 i[class^="dcIcon-"]:before, i[class*=" dcIcon-"]:before {
@@ -36,15 +36,18 @@ i[class^="dcIcon-"]:before, i[class*=" dcIcon-"]:before {
 .dcIcon-loading:before {
     content: "\f106";
 }
-.dcIcon-moon-sharp:before {
+.dcIcon-moon-outline:before {
     content: "\f107";
 }
-.dcIcon-settings:before {
+.dcIcon-moon-sharp:before {
     content: "\f108";
 }
-.dcIcon-smile:before {
+.dcIcon-settings:before {
     content: "\f109";
 }
-.dcIcon-virtual-reality-glasses:before {
+.dcIcon-smile:before {
     content: "\f10a";
+}
+.dcIcon-virtual-reality-glasses:before {
+    content: "\f10b";
 }

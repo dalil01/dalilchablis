@@ -1,3 +1,11 @@
+.footer-light {
+    color: #000000;
+}
+
+.footer-dark {
+    color: #FFFFFF;
+}
+
 .footer-container {
     position: fixed;
     left: 0;
@@ -14,12 +22,12 @@
 }
 
 .footer-help-container {
+    position: relative;
     display: flex;
     align-items: center;
     justify-content: center;
     background-color: darkgray;
     border-radius: 50%;
-    cursor: pointer;
 }
 
 .footer-help-container:hover {
@@ -34,19 +42,19 @@
 .footer-contact-container {
     display: flex;
     align-items: center;
-    font-size: .62rem;
+    font-size: .7rem;
 }
 
 .footer-contact-container i {
-    padding: 0 3px;
+    padding: 0 6px;
 }
 
 .footer-contact-container:hover {
-    cursor: pointer;
-    text-decoration: underline;
     text-underline-offset: 3px;
     transform: translate3d(0, 0, 0);
 }
 
-
-
+.footer-contact-container:hover:after {
+    width: 100%;
+    left: 0;
+}

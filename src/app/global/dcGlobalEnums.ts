@@ -9,7 +9,7 @@ export enum LOCALE {
 	FR = "FR"
 }
 
-export enum TEMPLATES {
+export enum VIEWS {
 	PARTICLES = "particles",
 	OFFICE = "office"
 }

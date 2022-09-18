@@ -7,11 +7,11 @@ import {GLOBAL_CSS_CLASSNAMES, LOCALE} from "../global/dcGlobalEnums";
 
 export class dcUIManager {
 
-	private readonly parentElement: HTMLElement;
-
 	private static INSTANCE: dcUIManager;
 
+	private readonly parentElement: HTMLElement;
 	private started: boolean;
+	private cursor!: dcCursor;
 
 	private constructor(parentElement: HTMLElement) {
 		this.parentElement = parentElement;
@@ -67,7 +67,13 @@ export class dcUIManager {
 		new dcHeader(this.parentElement, true);
 		//dcOffice.getInstance(this.parentElement, true);
 		new dcFooter(this.parentElement, true);
-		new dcCursor(this.parentElement, true);
+
+		if (!this.cursor) {
+			this.cursor = new dcCursor(this.parentElement, true);
+		} else {
+			this.cursor.updateMode();
+			this.parentElement.appendChild(this.cursor.getMainElement());
+		}
 	}
 
 }

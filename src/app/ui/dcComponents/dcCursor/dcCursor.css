@@ -15,12 +15,19 @@
     width: 20px;
     height: 20px;
     border-radius: 100%;
-    background-color: black;
     opacity: .3;
     position: fixed;
     transform: translate(-50%, -50%);
     pointer-events: none;
     transition: width .3s, height .3s, opacity .3s;
+}
+
+.cursor-inner-light {
+    background-color: black;
+}
+
+.cursor-inner-dark {
+    background-color: grey;
 }
 
 .cursor-inner-hover {

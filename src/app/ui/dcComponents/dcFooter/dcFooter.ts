@@ -4,8 +4,14 @@ import {dcComponent} from "../dcComponent";
 import {_UDom} from "../../dcUtils/_UDom";
 import {_UIcon} from "../../dcUtils/_UIcon";
 import {DcIcons} from "../../dcIcons/dcIcons";
+import {dcCursor} from "../dcCursor/dcCursor";
+import {dcGlobalConfig} from "../../../global/dcGlobalConfig";
+import {dcTranslation} from "../../dcTranslator/dcTranslation";
+import {dcTranslator} from "../../dcTranslator/dcTranslator";
 
 enum FOOTER_CSS_CLASSNAMES {
+	LIGHT = "footer-light",
+	DARK = "footer-dark",
 	CONTAINER = "footer-container",
 	HELP_CONTAINER = "footer-help-container",
 	CONTACT_CONTAINER = "footer-contact-container"
@@ -27,8 +33,13 @@ export class dcFooter extends dcComponent {
 
 		const contactContainer = _UDom.CE("div", { className: FOOTER_CSS_CLASSNAMES.CONTACT_CONTAINER });
 		const contactIcon = _UIcon.getIcon(DcIcons.DcIconContact);
-		const contactLabel = _UDom.CE("p", { innerText: "dcTranslator.T(DcTranslation.CONTACT)" });
+		const contactLabel = _UDom.CE("p", { innerText: dcTranslator.T(dcTranslation.CONTACT).toUpperCase() });
 		_UDom.AC(contactContainer, contactIcon, contactLabel);
+
+		this.getMainElement().classList.add((dcGlobalConfig.isDarkMode) ? FOOTER_CSS_CLASSNAMES.DARK : FOOTER_CSS_CLASSNAMES.LIGHT);
+
+		dcCursor.subscribeElementToDetectHover(helpContainer);
+		dcCursor.subscribeElementToDetectHover(contactContainer);
 
 		_UDom.AC(this.getMainElement(), helpContainer, contactContainer);
 	}

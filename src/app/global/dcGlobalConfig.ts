@@ -1,7 +1,7 @@
-import {LOCALE, TEMPLATES} from "./dcGlobalEnums";
+import {LOCALE, VIEWS} from "./dcGlobalEnums";
 
 export class dcGlobalConfig {
-	public static isDarkMode = false;
+	public static isDarkMode = true;
 	public static locale = LOCALE.EN;
-	public static template = TEMPLATES.PARTICLES;
+	public static template = VIEWS.PARTICLES;
 }

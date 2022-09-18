@@ -5,6 +5,7 @@ export enum DcIcons {
   DcIconHelp = "dcIcon-help",
   DcIconLight = "dcIcon-light",
   DcIconLoading = "dcIcon-loading",
+  DcIconMoonOutline = "dcIcon-moon-outline",
   DcIconMoonSharp = "dcIcon-moon-sharp",
   DcIconSettings = "dcIcon-settings",
   DcIconSmile = "dcIcon-smile",
