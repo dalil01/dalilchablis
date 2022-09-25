@@ -14,7 +14,9 @@ enum FOOTER_CSS_CLASSNAMES {
 	DARK = "footer-dark",
 	CONTAINER = "footer-container",
 	HELP_CONTAINER = "footer-help-container",
-	CONTACT_CONTAINER = "footer-contact-container"
+	CONTACT_CONTAINER = "footer-contact-container",
+	CONTACT_CONTAINER_LIGHT = "footer-contact-container-light",
+	CONTACT_CONTAINER_DARK = "footer-contact-container-dark"
 }
 
 export class dcFooter extends dcComponent {

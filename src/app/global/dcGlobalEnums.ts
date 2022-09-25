@@ -1,7 +1,8 @@
 export enum GLOBAL_CSS_CLASSNAMES {
-	BLINK = "blink",
 	BG_LIGHT = "bg-light",
 	BG_DARK = "bg-dark",
+	DISPLAY_NONE = "display-none",
+	BLINK = "blink"
 }
 
 export enum LOCALE {

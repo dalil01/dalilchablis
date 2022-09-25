@@ -5,7 +5,7 @@ export abstract class dcUI {
 
 	private initiated: boolean;
 
-	protected constructor(parentElement: HTMLElement, mainElement: HTMLElement) {
+	protected constructor(parentElement: HTMLElement, mainElement: HTMLElement, autoInit: boolean = false) {
 		this.parentElement = parentElement;
 		this.mainElement = mainElement;
 		this.initiated = false;

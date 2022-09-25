@@ -9,6 +9,7 @@ import {dcGlobalConfig} from "../../../global/dcGlobalConfig";
 import {dcCursor} from "../dcCursor/dcCursor";
 import {VIEWS} from "../../../global/dcGlobalEnums";
 import {dcUIManager} from "../../dcUIManager";
+import {dcPopup} from "../dcPopup/dcPopup";
 
 enum HEADER_CSS_CLASSNAMES {
 	CONTAINER = "header-container",
@@ -42,8 +43,12 @@ export class dcHeader extends dcComponent {
 		vrIconContainer.appendChild(vrIcon);
 
 		const settingsIconContainer = _UDom.CE("div", { className: HEADER_CSS_CLASSNAMES.SETTINGS_ICON_CONTAINER });
-		const settingsIcon = _UIcon.getIcon(DcIcons.DcIconSettings);
+		const settingsIconName = DcIcons.DcIconSettings;
+		const settingsTitle = "Settings";
+		const settingsIcon = _UIcon.getIcon(settingsIconName);
 		settingsIconContainer.appendChild(settingsIcon);
+
+		this.buildSettingsPopup(settingsIconContainer, settingsIconName, settingsTitle);
 
 		const modeIconContainer = _UDom.CE("div", { className: HEADER_CSS_CLASSNAMES.MODE_ICON_CONTAINER });
 		const modeIcon = _UIcon.getIcon(dcGlobalConfig.isDarkMode ? DcIcons.DcIconLight : DcIcons.DcIconMoonOutline);
@@ -71,6 +76,14 @@ export class dcHeader extends dcComponent {
 		dcCursor.subscribeElementToDetectHover(localeIconContainer);
 
 		_UDom.AC(this.getMainElement(), logoContainer, menuContainer);
+	}
+
+	public buildSettingsPopup(button: HTMLElement, iconName: DcIcons, title: string): void {
+		const settingsPopupContent = _UDom.CE("div");
+
+
+
+		new dcPopup(button, _UIcon.getIcon(iconName), title, settingsPopupContent, true, true, true);
 	}
 
 }

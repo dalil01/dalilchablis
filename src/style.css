@@ -17,6 +17,10 @@ html, body {
     height: 100%;
 }
 
+h2 {
+    font-size: 1.1rem;
+}
+
 .bg-light {
     background-color: #FFFFFF;
 }
@@ -29,6 +33,10 @@ html, body {
     -webkit-animation-delay: 500ms; -moz-animation-delay: 500ms;
     -ms-animation-delay: 500ms; -o-animation-delay: 500ms; animation-delay: 500ms;
     animation: blink 1.2s infinite;
+}
+
+.display-none {
+    display: none !important;
 }
 
 @keyframes blink {

@@ -1,5 +1,6 @@
 export enum DcIcons {
   DcIconArrowUp = "dcIcon-arrow-up",
+  DcIconCloseCircle = "dcIcon-close-circle",
   DcIconContact = "dcIcon-contact",
   DcIconGlobe = "dcIcon-globe",
   DcIconHelp = "dcIcon-help",
