@@ -14,3 +14,8 @@ export enum VIEWS {
 	PARTICLES = "particles",
 	OFFICE = "office"
 }
+
+export enum LOCAL_STORAGE_KEY {
+	IS_DARK_MODE = "is-dark-mode",
+	LOCALE = "locale"
+}

@@ -9,7 +9,9 @@ import {dcGlobalConfig} from "../../../global/dcGlobalConfig";
 import {dcCursor} from "../dcCursor/dcCursor";
 import {VIEWS} from "../../../global/dcGlobalEnums";
 import {dcUIManager} from "../../dcUIManager";
-import {dcPopup} from "../dcPopup/dcPopup";
+import {dcModal} from "../dcModal/dcModal";
+import {dcTranslator} from "../../dcTranslator/dcTranslator";
+import {dcTranslation} from "../../dcTranslator/dcTranslation";
 
 enum HEADER_CSS_CLASSNAMES {
 	CONTAINER = "header-container",
@@ -44,11 +46,12 @@ export class dcHeader extends dcComponent {
 
 		const settingsIconContainer = _UDom.CE("div", { className: HEADER_CSS_CLASSNAMES.SETTINGS_ICON_CONTAINER });
 		const settingsIconName = DcIcons.DcIconSettings;
-		const settingsTitle = "Settings";
+		const settingsTitle = dcTranslator.T(dcTranslation.SETTINGS);
 		const settingsIcon = _UIcon.getIcon(settingsIconName);
 		settingsIconContainer.appendChild(settingsIcon);
 
-		this.buildSettingsPopup(settingsIconContainer, settingsIconName, settingsTitle);
+		const settingsModal = this.buildSettingsModal(settingsIconContainer, settingsIconName, settingsTitle);
+		settingsIconContainer.addEventListener("click", () => settingsModal.toggle());
 
 		const modeIconContainer = _UDom.CE("div", { className: HEADER_CSS_CLASSNAMES.MODE_ICON_CONTAINER });
 		const modeIcon = _UIcon.getIcon(dcGlobalConfig.isDarkMode ? DcIcons.DcIconLight : DcIcons.DcIconMoonOutline);
@@ -58,7 +61,9 @@ export class dcHeader extends dcComponent {
 		const localeIconContainer = _UDom.CE("div", { className: HEADER_CSS_CLASSNAMES.LOCALE_CONTAINER });
 		const globeIcon = _UIcon.getIcon(DcIcons.DcIconGlobe);
 		const locale = _UDom.CE("span", { innerText: dcGlobalConfig.locale });
-		localeIconContainer.addEventListener("click", () => dcUIManager.getInstance().toggleLocale());
+		localeIconContainer.addEventListener("click", () => {
+			dcUIManager.getInstance().toggleLocale()
+		});
 		localeIconContainer.appendChild(globeIcon);
 		localeIconContainer.appendChild(locale);
 
@@ -78,12 +83,13 @@ export class dcHeader extends dcComponent {
 		_UDom.AC(this.getMainElement(), logoContainer, menuContainer);
 	}
 
-	public buildSettingsPopup(button: HTMLElement, iconName: DcIcons, title: string): void {
-		const settingsPopupContent = _UDom.CE("div");
+	private buildSettingsModal(button: HTMLElement, iconName: DcIcons, title: string): dcModal {
+		const settingsModalContent = _UDom.CE("div");
+
+		//settingsModalContent.innerText = "lorem".repeat(8000);
 
 
-
-		new dcPopup(button, _UIcon.getIcon(iconName), title, settingsPopupContent, true, true, true);
+		return new dcModal(button, _UIcon.getIcon(iconName), title, settingsModalContent, true, true, true);
 	}
 
 }

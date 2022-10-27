@@ -1,4 +1,4 @@
-.popup-background {
+.modal-background {
     position: fixed;
     display: flex;
     align-items: center;
@@ -6,47 +6,59 @@
     top: 0;
     bottom: 0;
     width: 100%;
-    background-color: rgb(255 255 255 / 25%);
+    background-color: rgb(255 255 255 / 32%);
     z-index: 10;
 }
 
-.popup {
+.modal {
     width: 70%;
     height: 70%;
-    border-radius: 5px;
+    border-radius: 10px;
     background-color: white;
     box-shadow: 0 1px 2px 0 grey, 0 2px 6px 2px rgba(60, 64, 67, 0.15);
     padding: 15px;
     overflow-y: auto;
     text-align: center;
     z-index: 60;
+    animation: zoom 0.5s;
 }
 
-.popup-header {
+.modal-header {
     display: flex;
     align-items: center;
     justify-content: space-between;
 }
 
-.popup-header {
-    padding-bottom: 6px;
+.modal-header {
+    padding-bottom: 8px;
 }
 
-.popup-light .popup-header {
+.modal-light .modal-header {
     color: #000000;
     border-bottom: 1px solid rgba(60, 64, 67, 0.15);
 }
 
-.popup-dark .popup-header {
+.modal-dark .modal-header {
     color: #FFFFFF;
     border-bottom: 1px solid grey;
 }
 
+.modal-title {
+    font-size: .9rem;
+}
 
-.popup-light .popup {
+.modal-title i {
+    padding-right: 5px;
+}
+
+.modal-light .modal {
     background-color: #FFFFFF;
 }
 
-.popup-dark .popup {
+.modal-dark .modal {
     background-color: #222222;
+}
+
+.modal-body {
+    padding: 12px;
 }

@@ -8,6 +8,7 @@ import {dcCursor} from "../dcCursor/dcCursor";
 import {dcGlobalConfig} from "../../../global/dcGlobalConfig";
 import {dcTranslation} from "../../dcTranslator/dcTranslation";
 import {dcTranslator} from "../../dcTranslator/dcTranslator";
+import {dcModal} from "../dcModal/dcModal";
 
 enum FOOTER_CSS_CLASSNAMES {
 	LIGHT = "footer-light",
@@ -31,12 +32,20 @@ export class dcFooter extends dcComponent {
 	public buildUI(): void {
 		const helpContainer = _UDom.CE("div", { className: FOOTER_CSS_CLASSNAMES.HELP_CONTAINER });
 		const helpIcon = _UIcon.getIcon(DcIcons.DcIconHelp);
+		const helpTitle = dcTranslator.T(dcTranslation.HELP);
 		helpContainer.appendChild(helpIcon);
+
+		const helpModal = this.buildHelpModal(helpContainer, DcIcons.DcIconHelpOutline, helpTitle);
+		helpContainer.addEventListener("click", () => helpModal.toggle());
 
 		const contactContainer = _UDom.CE("div", { className: FOOTER_CSS_CLASSNAMES.CONTACT_CONTAINER });
 		const contactIcon = _UIcon.getIcon(DcIcons.DcIconContact);
-		const contactLabel = _UDom.CE("p", { innerText: dcTranslator.T(dcTranslation.CONTACT).toUpperCase() });
+		const contactTitle = dcTranslator.T(dcTranslation.CONTACT);
+		const contactLabel = _UDom.CE("p", { innerText: contactTitle.toUpperCase() });
 		_UDom.AC(contactContainer, contactIcon, contactLabel);
+
+		const contactModal = this.buildContactModal(contactContainer, DcIcons.DcIconContact, contactTitle);
+		contactContainer.addEventListener("click", () => contactModal.toggle());
 
 		this.getMainElement().classList.add((dcGlobalConfig.isDarkMode) ? FOOTER_CSS_CLASSNAMES.DARK : FOOTER_CSS_CLASSNAMES.LIGHT);
 
@@ -44,6 +53,18 @@ export class dcFooter extends dcComponent {
 		dcCursor.subscribeElementToDetectHover(contactContainer);
 
 		_UDom.AC(this.getMainElement(), helpContainer, contactContainer);
+	}
+
+	private buildHelpModal(button: HTMLElement, iconName: DcIcons, title: string): dcModal {
+		const helpModalContent = _UDom.CE("div");
+
+		return new dcModal(button, _UIcon.getIcon(iconName), title, helpModalContent, true, true, true);
+	}
+
+	private buildContactModal(button: HTMLElement, iconName: DcIcons, title: string): dcModal {
+		const contactModalContent = _UDom.CE("div");
+
+		return new dcModal(button, _UIcon.getIcon(iconName), title, contactModalContent, true, true, true);
 	}
 
 }

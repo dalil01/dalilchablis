@@ -1,3 +1,5 @@
 export enum dcTranslation {
-	CONTACT
+	SETTINGS,
+	CONTACT,
+	HELP
 }
