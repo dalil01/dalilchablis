@@ -52,6 +52,7 @@ export class dcOffice extends dcView {
 		super(parentElement, mainElement);
 
 		this.HTMLContainer = _UDom.CE("div", {className: OFFICE_CSS_CLASSNAMES.HTML_CONTAINER});
+
 		this.canvas = _UDom.CE("canvas");
 		this.canvas.style.cursor = "grab";
 
@@ -127,8 +128,6 @@ export class dcOffice extends dcView {
 	}
 
 	protected buildUI(): void {
-		this.buildPresentationText();
-
 		this.updateDimension();
 		this.updateCameraProperties();
 		this.updateRendererProperties();
@@ -143,65 +142,12 @@ export class dcOffice extends dcView {
 
 		this.scene.add(this.camera);
 
-		_UDom.AC(this.getMainElement(), this.HTMLContainer, this.canvas);
+		//_UDom.AC(this.getMainElement(), this.HTMLContainer, this.canvas);
 	}
 
-	private buildPresentationText(): void {
-		const presentationContainer = _UDom.CE("div", {className: OFFICE_CSS_CLASSNAMES.PRESENTATION_CONTAINER});
-
-		const presentationText = _UDom.CE("p");
-		presentationContainer.appendChild(presentationText);
-
-		const hello = "Hello, welcome to my website. \n I'm ";
-		const name = "Dalil CHABLIS, ";
-		const job = "Fullstack Developer ! ";
-
-		_UDom.writeTextInElements([
-				{
-					startCallback: null,
-					endCallback: null,
-					element: presentationText,
-					text: hello
-				},
-				{
-					startCallback: () => {
-						const nameContainer = _UDom.CE("span", {className: OFFICE_CSS_CLASSNAMES.PRESENTATION_NAME_CONTAINER});
-						presentationText.appendChild(nameContainer);
-						return nameContainer;
-					},
-					element: null,
-					text: name,
-					endCallback: null
-				},
-				{
-					startCallback: () => {
-						const jobContainer = _UDom.CE("span");
-						presentationText.appendChild(jobContainer);
-						return jobContainer;
-					},
-					endCallback: () => {
-						presentationText.appendChild(_UIcon.getIcon(DcIcons.DcIconSmile));
-						presentationText.appendChild(_UDom.CE("span", {
-							className: GLOBAL_CSS_CLASSNAMES.BLINK,
-							innerText: '_'
-						}));
-
-						if (!this.resourcesLoaded)
-							this.buildLoading();
-					},
-					element: null,
-					text: job
-				}
-			],
-			62,
-			true,
-			false);
-
-		this.HTMLContainer.appendChild(presentationContainer);
-	}
 
 	private buildLoading(): void {
-		this.HTMLContainer.appendChild(this.loading);
+		//this.HTMLContainer.appendChild(this.loading);
 	}
 
 	private loadResources(): void {
@@ -225,8 +171,8 @@ export class dcOffice extends dcView {
 
 				this.resourcesLoaded = true;
 
-				if (_UDom.elementHasChild(this.HTMLContainer, this.loading))
-					this.HTMLContainer.removeChild(this.loading);
+				//if (_UDom.elementHasChild(this.HTMLContainer, this.loading))
+				//	this.HTMLContainer.removeChild(this.loading);
 			//}, 6000);
 		});
 	}
@@ -263,7 +209,7 @@ export class dcOffice extends dcView {
 		});
 
 		startVisitIcon.addEventListener("click", () => {
-			this.getMainElement().removeChild(this.HTMLContainer);
+			//this.getMainElement().removeChild(this.HTMLContainer);
 
 			this.camera.position.set(0, 1.25, 0);
 
@@ -290,7 +236,7 @@ export class dcOffice extends dcView {
 			this.subscribeToEventListeners();
 		});
 
-		this.HTMLContainer.appendChild(startVisitContainer);
+		//this.HTMLContainer.appendChild(startVisitContainer);
 	}
 
 	private animate(): void {

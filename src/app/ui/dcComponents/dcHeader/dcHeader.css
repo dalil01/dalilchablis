@@ -66,3 +66,11 @@
     opacity: 1;
 }
 
+@keyframes rotate {
+    from {
+        filter: hue-rotate(0deg);
+    }
+    to {
+        filter: hue-rotate(360deg);
+    }
+}

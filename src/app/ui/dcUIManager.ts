@@ -3,13 +3,18 @@ import {dcFooter} from "./dcComponents/dcFooter/dcFooter";
 import {dcCursor} from "./dcComponents/dcCursor/dcCursor";
 import {_UDom} from "./dcUtils/_UDom";
 import {dcGlobalConfig} from "../global/dcGlobalConfig";
-import {GLOBAL_CSS_CLASSNAMES, LOCAL_STORAGE_KEY, LOCALE} from "../global/dcGlobalEnums";
+import {GLOBAL_CSS_CLASSNAMES, LOCAL_STORAGE_KEY, LOCALE, VIEWS} from "../global/dcGlobalEnums";
+import {dcIntro} from "./dcComponents/dcIntro/dcIntro";
+import {dcOffice} from "./dcViews/dcOffice/dcOffice";
+import {dcParticles} from "./dcViews/dcParticles/dcParticles";
+import {dcView} from "./dcViews/dcView";
 
 export class dcUIManager {
 
 	private static INSTANCE: dcUIManager;
 
 	private readonly parentElement: HTMLElement;
+	private mainElement!: HTMLElement;
 	private started: boolean;
 	private cursor!: dcCursor;
 
@@ -68,7 +73,22 @@ export class dcUIManager {
 		this.setLocale();
 
 		new dcHeader(this.parentElement, true);
-		//dcOffice.getInstance(this.parentElement, true);
+
+		this.mainElement = _UDom.CE("main");
+
+		let view: dcView;
+		switch (dcGlobalConfig.template) {
+			case VIEWS.OFFICE:
+				view = dcOffice.getInstance(this.parentElement, true);
+				break;
+			default:
+				view = dcParticles.getInstance(this.parentElement, true);
+		}
+		const intro = new dcIntro(this.mainElement,true);
+		view.onReady(() => intro.displayStopButton());
+
+		this.parentElement.appendChild(this.mainElement);
+
 		new dcFooter(this.parentElement, true);
 
 		if (!this.cursor) {
