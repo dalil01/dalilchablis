@@ -24,4 +24,9 @@ export abstract class dcView extends dcUI {
 			this.onReadyCallback();
 	}
 
+	public init() {
+		super.init();
+		this.executeOnReadyCallback();
+	}
+
 }

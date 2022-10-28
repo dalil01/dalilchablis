@@ -50,17 +50,32 @@
 
 .intro-stop-container i {
     font-size: .8em;
-    color: #FFFFFF;
     padding: 10px 5px;
-    border: 1px solid #FFFFFF;
     border-radius: 21px;
-    cursor: pointer;
     transition: 0.3s ease-in-out;
     opacity: .9;
 }
 
+.intro-light .intro-stop-container i {
+    color: #000000;
+    border: 1px solid #000000;
+}
+
+.intro-dark .intro-stop-container i {
+    color: #FFFFFF;
+    border: 1px solid #FFFFFF;
+}
+
 .intro-stop-container i:hover {
+    opacity: 1;
+}
+
+.intro-light .intro-stop-container i:hover {
+    background-color: #000000;
+    color: #FFFFFF;
+}
+
+.intro-dark .intro-stop-container i:hover {
     background-color: #FFFFFF;
     color: #000000;
-    opacity: 1;
 }

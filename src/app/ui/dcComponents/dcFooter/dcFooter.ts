@@ -31,7 +31,7 @@ export class dcFooter extends dcComponent {
 
 	public buildUI(): void {
 		const helpContainer = _UDom.CE("div", { className: FOOTER_CSS_CLASSNAMES.HELP_CONTAINER });
-		const helpIcon = _UIcon.getIcon(DcIcons.DcIconHelp);
+		const helpIcon = _UIcon.getIcon(dcGlobalConfig.soundEnable ? DcIcons.DcIconMusicNote : DcIcons.DcIconMusicNoteOff);
 		const helpTitle = dcTranslator.T(dcTranslation.HELP);
 		helpContainer.appendChild(helpIcon);
 

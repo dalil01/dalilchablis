@@ -6,6 +6,8 @@ enum PARTICLES_CSS_CLASSNAMES {
 
 }
 
+/* https://css-tricks.com/guide-svg-animations-smil/ */
+
 export class dcParticles extends dcView {
 
     private static INSTANCE: dcParticles;
@@ -19,11 +21,11 @@ export class dcParticles extends dcView {
             dcParticles.INSTANCE = new dcParticles(parentElement, _UDom.CCE("office", {className: PARTICLES_CSS_CLASSNAMES.CONTAINER}), autoInit);
         }
 
-        dcParticles.INSTANCE.executeOnReadyCallback();
-
         return dcParticles.INSTANCE;
     }
 
+    public buildUI(): void {
 
+    }
 
 }

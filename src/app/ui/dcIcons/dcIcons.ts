@@ -1,5 +1,6 @@
 export enum DcIcons {
   DcIconArrowUp = "dcIcon-arrow-up",
+  DcIconAt = "dcIcon-at",
   DcIconCloseCircle = "dcIcon-close-circle",
   DcIconContact = "dcIcon-contact",
   DcIconGlobe = "dcIcon-globe",
@@ -7,9 +8,15 @@ export enum DcIcons {
   DcIconHelp = "dcIcon-help",
   DcIconLight = "dcIcon-light",
   DcIconLoading = "dcIcon-loading",
+  DcIconMail = "dcIcon-mail",
   DcIconMoonOutline = "dcIcon-moon-outline",
   DcIconMoonSharp = "dcIcon-moon-sharp",
+  DcIconMusicNoteOff = "dcIcon-music-note-off",
+  DcIconMusicNote = "dcIcon-music-note",
   DcIconSettings = "dcIcon-settings",
   DcIconSmile = "dcIcon-smile",
+  DcIconUser = "dcIcon-user",
   DcIconVirtualRealityGlasses = "dcIcon-virtual-reality-glasses",
+  DcIconWaveLarge = "dcIcon-wave-large",
+  DcIconWaveSmall = "dcIcon-wave-small",
 }

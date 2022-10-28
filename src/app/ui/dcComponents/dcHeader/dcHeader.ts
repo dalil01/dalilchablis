@@ -7,7 +7,7 @@ import {DcIcons} from "../../dcIcons/dcIcons";
 import {dcGlobalVars} from "../../../global/dcGlobalVars";
 import {dcGlobalConfig} from "../../../global/dcGlobalConfig";
 import {dcCursor} from "../dcCursor/dcCursor";
-import {VIEWS} from "../../../global/dcGlobalEnums";
+import {LOCALE, VIEWS} from "../../../global/dcGlobalEnums";
 import {dcUIManager} from "../../dcUIManager";
 import {dcModal} from "../dcModal/dcModal";
 import {dcTranslator} from "../../dcTranslator/dcTranslator";
@@ -60,14 +60,12 @@ export class dcHeader extends dcComponent {
 
 		const localeIconContainer = _UDom.CE("div", { className: HEADER_CSS_CLASSNAMES.LOCALE_CONTAINER });
 		const globeIcon = _UIcon.getIcon(DcIcons.DcIconGlobe);
-		const locale = _UDom.CE("span", { innerText: dcGlobalConfig.locale });
-		localeIconContainer.addEventListener("click", () => {
-			dcUIManager.getInstance().toggleLocale()
-		});
+		const locale = _UDom.CE("span", { innerText: dcGlobalConfig.locale === LOCALE.EN ? LOCALE.FR : LOCALE.EN });
+		localeIconContainer.addEventListener("click", () => dcUIManager.getInstance().toggleLocale());
 		localeIconContainer.appendChild(globeIcon);
 		localeIconContainer.appendChild(locale);
 
-		if (dcGlobalConfig.template === VIEWS.OFFICE) {
+		if (dcGlobalConfig.view === VIEWS.OFFICE) {
 			menuContainer.appendChild(vrIconContainer);
 			dcCursor.subscribeElementToDetectHover(vrIconContainer);
 		}

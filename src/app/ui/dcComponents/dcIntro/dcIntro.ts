@@ -6,6 +6,9 @@ import {_UIcon} from "../../dcUtils/_UIcon";
 import {DcIcons} from "../../dcIcons/dcIcons";
 import {GLOBAL_CSS_CLASSNAMES} from "../../../global/dcGlobalEnums";
 import {dcGlobalConfig} from "../../../global/dcGlobalConfig";
+import {dcCursor} from "../dcCursor/dcCursor";
+import {dcTranslator} from "../../dcTranslator/dcTranslator";
+import {dcTranslation} from "../../dcTranslator/dcTranslation";
 
 enum INTRO_CSS_CLASSNAMES {
     LIGHT = "intro-light",
@@ -20,6 +23,7 @@ export class dcIntro extends dcComponent {
 
     private loadingContainer!: HTMLElement;
     private stopIntroContainer!: HTMLElement;
+    private stopIntroButtonVisible = false;
 
     constructor(parentElement: HTMLElement, autoInit: boolean) {
         super(parentElement, _UDom.CCE("intro", { className: INTRO_CSS_CLASSNAMES.CONTAINER }));
@@ -29,6 +33,7 @@ export class dcIntro extends dcComponent {
     }
 
     public displayStopButton() {
+        this.stopIntroButtonVisible = true;
         this.loadingContainer.classList.add(GLOBAL_CSS_CLASSNAMES.DISPLAY_NONE);
         this.stopIntroContainer.classList.remove(GLOBAL_CSS_CLASSNAMES.DISPLAY_NONE);
     }
@@ -36,9 +41,9 @@ export class dcIntro extends dcComponent {
     public buildUI(): void {
         const introText = _UDom.CE("p");
 
-        const hello = "Hello, welcome to my website. \n I'm ";
+        const hello = dcTranslator.T(dcTranslation.HELLO) + ", " + dcTranslator.T(dcTranslation.WELCOME_TO_MY_WEBSITE) + ".\n " + dcTranslator.T(dcTranslation.I_AM) + ' ';
         const name = "Dalil CHABLIS";
-        const job = ", Fullstack Developer ! ";
+        const job = ", " + dcTranslator.T(dcTranslation.FULLSTACK_DEVELOPER) + " ! ";
 
         _UDom.writeTextInElements([
                 {
@@ -81,13 +86,19 @@ export class dcIntro extends dcComponent {
         this.getMainElement().classList.add((dcGlobalConfig.isDarkMode) ? INTRO_CSS_CLASSNAMES.DARK : INTRO_CSS_CLASSNAMES.LIGHT);
         this.getMainElement().appendChild(introText);
 
-        this.loadingContainer = _UIcon.getIcon(DcIcons.DcIconLoading, {className: INTRO_CSS_CLASSNAMES.LOADING});
+        this.loadingContainer = _UIcon.getIcon(DcIcons.DcIconLoading, {className: INTRO_CSS_CLASSNAMES.LOADING + ' ' + GLOBAL_CSS_CLASSNAMES.DISPLAY_NONE});
+        setTimeout(() => {
+            if (!this.stopIntroButtonVisible)
+                this.loadingContainer.classList.remove(GLOBAL_CSS_CLASSNAMES.DISPLAY_NONE);
+        }, 1000);
         this.getMainElement().appendChild(this.loadingContainer);
 
         this.stopIntroContainer = _UDom.CE("div", {className: INTRO_CSS_CLASSNAMES.STOP_INTRO_CONTAINER + ' ' + GLOBAL_CSS_CLASSNAMES.DISPLAY_NONE});
         const stopIntroIcon = _UIcon.getIcon(DcIcons.DcIconArrowUp);
         this.stopIntroContainer.appendChild(stopIntroIcon);
         this.stopIntroContainer.addEventListener("click", () => this.destroy());
+
+        dcCursor.subscribeElementToDetectHover(this.stopIntroContainer);
 
         this.getMainElement().appendChild(this.stopIntroContainer);
     }

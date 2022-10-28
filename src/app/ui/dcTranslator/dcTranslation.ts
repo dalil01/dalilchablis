@@ -1,5 +1,9 @@
 export enum dcTranslation {
 	SETTINGS,
 	CONTACT,
-	HELP
+	HELP,
+	HELLO,
+	WELCOME_TO_MY_WEBSITE,
+	I_AM,
+	FULLSTACK_DEVELOPER
 }

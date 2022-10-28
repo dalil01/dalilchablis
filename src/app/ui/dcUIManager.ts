@@ -67,7 +67,6 @@ export class dcUIManager {
 			dcGlobalConfig.isDarkMode = event.matches;
 			this.setMode();
 		});
-
 		this.setMode();
 
 		this.setLocale();
@@ -77,15 +76,16 @@ export class dcUIManager {
 		this.mainElement = _UDom.CE("main");
 
 		let view: dcView;
-		switch (dcGlobalConfig.template) {
+		switch (dcGlobalConfig.view) {
 			case VIEWS.OFFICE:
-				view = dcOffice.getInstance(this.parentElement, true);
+				view = dcOffice.getInstance(this.parentElement);
 				break;
 			default:
-				view = dcParticles.getInstance(this.parentElement, true);
+				view = dcParticles.getInstance(this.parentElement);
 		}
 		const intro = new dcIntro(this.mainElement,true);
 		view.onReady(() => intro.displayStopButton());
+		view.init();
 
 		this.parentElement.appendChild(this.mainElement);
 
