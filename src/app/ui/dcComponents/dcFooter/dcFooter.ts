@@ -9,15 +9,13 @@ import {dcGlobalConfig} from "../../../global/dcGlobalConfig";
 import {dcTranslation} from "../../dcTranslator/dcTranslation";
 import {dcTranslator} from "../../dcTranslator/dcTranslator";
 import {dcModal} from "../dcModal/dcModal";
+import {dcSound} from "../dcSound/dcSound";
 
 enum FOOTER_CSS_CLASSNAMES {
 	LIGHT = "footer-light",
 	DARK = "footer-dark",
 	CONTAINER = "footer-container",
-	HELP_CONTAINER = "footer-help-container",
-	CONTACT_CONTAINER = "footer-contact-container",
-	CONTACT_CONTAINER_LIGHT = "footer-contact-container-light",
-	CONTACT_CONTAINER_DARK = "footer-contact-container-dark"
+	CONTACT_CONTAINER = "footer-contact-container"
 }
 
 export class dcFooter extends dcComponent {
@@ -30,13 +28,7 @@ export class dcFooter extends dcComponent {
 	}
 
 	public buildUI(): void {
-		const helpContainer = _UDom.CE("div", { className: FOOTER_CSS_CLASSNAMES.HELP_CONTAINER });
-		const helpIcon = _UIcon.getIcon(dcGlobalConfig.soundEnable ? DcIcons.DcIconMusicNote : DcIcons.DcIconMusicNoteOff);
-		const helpTitle = dcTranslator.T(dcTranslation.HELP);
-		helpContainer.appendChild(helpIcon);
-
-		const helpModal = this.buildHelpModal(helpContainer, DcIcons.DcIconHelpOutline, helpTitle);
-		helpContainer.addEventListener("click", () => helpModal.toggle());
+		new dcSound(this.getMainElement(), true);
 
 		const contactContainer = _UDom.CE("div", { className: FOOTER_CSS_CLASSNAMES.CONTACT_CONTAINER });
 		const contactIcon = _UIcon.getIcon(DcIcons.DcIconContact);
@@ -49,16 +41,9 @@ export class dcFooter extends dcComponent {
 
 		this.getMainElement().classList.add((dcGlobalConfig.isDarkMode) ? FOOTER_CSS_CLASSNAMES.DARK : FOOTER_CSS_CLASSNAMES.LIGHT);
 
-		dcCursor.subscribeElementToDetectHover(helpContainer);
 		dcCursor.subscribeElementToDetectHover(contactContainer);
 
-		_UDom.AC(this.getMainElement(), helpContainer, contactContainer);
-	}
-
-	private buildHelpModal(button: HTMLElement, iconName: DcIcons, title: string): dcModal {
-		const helpModalContent = _UDom.CE("div");
-
-		return new dcModal(button, _UIcon.getIcon(iconName), title, helpModalContent, true, true, true);
+		_UDom.AC(this.getMainElement(), contactContainer);
 	}
 
 	private buildContactModal(button: HTMLElement, iconName: DcIcons, title: string): dcModal {

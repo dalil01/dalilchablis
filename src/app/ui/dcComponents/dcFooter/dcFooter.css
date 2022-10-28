@@ -21,24 +21,6 @@
     align-items: start !important;
 }
 
-.footer-help-container {
-    position: relative;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background-color: darkgray;
-    border-radius: 50%;
-}
-
-.footer-help-container:hover {
-    background-color: gray;
-}
-
-.footer-help-container i {
-    font-size: .8em;
-    padding: 6px 8px;
-}
-
 .footer-contact-container {
     display: flex;
     align-items: center;
@@ -76,14 +58,3 @@
 }
 
 
-/*
-.footer-contact-container:hover {
-    text-underline-offset: 3px;
-    transform: translate3d(0, 0, 0);
-}
-
-.footer-contact-container:hover:after {
-    width: 100%;
-    left: 0;
-}
-*/
