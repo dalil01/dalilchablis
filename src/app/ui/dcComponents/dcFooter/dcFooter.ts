@@ -31,12 +31,12 @@ export class dcFooter extends dcComponent {
 		new dcSound(this.getMainElement(), true);
 
 		const contactContainer = _UDom.CE("div", { className: FOOTER_CSS_CLASSNAMES.CONTACT_CONTAINER });
-		const contactIcon = _UIcon.getIcon(DcIcons.DcIconContact);
+		const contactIcon = _UIcon.getIcon(DcIcons.DcIconMail);
 		const contactTitle = dcTranslator.T(dcTranslation.CONTACT);
 		const contactLabel = _UDom.CE("p", { innerText: contactTitle.toUpperCase() });
 		_UDom.AC(contactContainer, contactIcon, contactLabel);
 
-		const contactModal = this.buildContactModal(contactContainer, DcIcons.DcIconContact, contactTitle);
+		const contactModal = this.buildContactModal(contactContainer, DcIcons.DcIconMail, contactTitle);
 		contactContainer.addEventListener("click", () => contactModal.toggle());
 
 		this.getMainElement().classList.add((dcGlobalConfig.isDarkMode) ? FOOTER_CSS_CLASSNAMES.DARK : FOOTER_CSS_CLASSNAMES.LIGHT);
