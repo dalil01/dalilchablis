@@ -33,8 +33,8 @@ export abstract class dcUI {
 
 	public init(): void {
 		if (!this.initiated) {
-			this.parentElement.appendChild(this.mainElement);
 			this.buildUI();
+			this.parentElement.appendChild(this.mainElement);
 			this.initiated = true;
 		}
 	}

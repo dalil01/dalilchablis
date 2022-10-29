@@ -4,6 +4,7 @@ import {dcComponent} from "../dcComponent";
 import {_UDom} from "../../dcUtils/_UDom";
 import {dcGlobalConfig} from "../../../global/dcGlobalConfig";
 import {dcCursor} from "../dcCursor/dcCursor";
+import {LOCAL_STORAGE_KEY} from "../../../global/dcGlobalEnums";
 
 enum SOUND_CSS_CLASSNAMES {
     CONTAINER = "sound-container",
@@ -27,7 +28,10 @@ export class dcSound extends dcComponent {
     }
 
     public buildUI(): void {
-        // TODO : use local storage to save soundEnable.
+        const lkSoundEnable = localStorage.getItem(LOCAL_STORAGE_KEY.SOUND_ENABLE);
+        if (lkSoundEnable) {
+            dcGlobalConfig.soundEnable = lkSoundEnable === "true";
+        }
 
         const boxes = _UDom.CE("div", { className: SOUND_CSS_CLASSNAMES.BOX_CONTAINER });
         const box1 = _UDom.CE("div", { className: SOUND_CSS_CLASSNAMES.BOX_1 });
@@ -55,6 +59,7 @@ export class dcSound extends dcComponent {
                 }
             });
             dcGlobalConfig.soundEnable = !dcGlobalConfig.soundEnable;
+            localStorage.setItem(LOCAL_STORAGE_KEY.SOUND_ENABLE, dcGlobalConfig.soundEnable.toString());
         });
 
         dcCursor.subscribeElementToDetectHover(this.getMainElement());

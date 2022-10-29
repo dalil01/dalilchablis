@@ -50,8 +50,7 @@ export class dcHeader extends dcComponent {
 		const settingsIcon = _UIcon.getIcon(settingsIconName);
 		settingsIconContainer.appendChild(settingsIcon);
 
-		const settingsModal = this.buildSettingsModal(settingsIconContainer, settingsIconName, settingsTitle);
-		settingsIconContainer.addEventListener("click", () => settingsModal.toggle());
+		this.buildSettingsModal(settingsIconContainer, settingsIconName, settingsTitle);
 
 		const modeIconContainer = _UDom.CE("div", { className: HEADER_CSS_CLASSNAMES.MODE_ICON_CONTAINER });
 		const modeIcon = _UIcon.getIcon(dcGlobalConfig.isDarkMode ? DcIcons.DcIconLight : DcIcons.DcIconMoonOutline);
@@ -81,13 +80,13 @@ export class dcHeader extends dcComponent {
 		_UDom.AC(this.getMainElement(), logoContainer, menuContainer);
 	}
 
-	private buildSettingsModal(button: HTMLElement, iconName: DcIcons, title: string): dcModal {
+	private buildSettingsModal(button: HTMLElement, iconName: DcIcons, title: string): void {
 		const settingsModalContent = _UDom.CE("div");
 
 		//settingsModalContent.innerText = "lorem".repeat(8000);
 
 
-		return new dcModal(button, _UIcon.getIcon(iconName), title, settingsModalContent, true, true, true);
+		new dcModal(button, _UIcon.getIcon(iconName), title, settingsModalContent, true, true, true);
 	}
 
 }

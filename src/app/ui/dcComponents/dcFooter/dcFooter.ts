@@ -10,6 +10,7 @@ import {dcTranslation} from "../../dcTranslator/dcTranslation";
 import {dcTranslator} from "../../dcTranslator/dcTranslator";
 import {dcModal} from "../dcModal/dcModal";
 import {dcSound} from "../dcSound/dcSound";
+import {dcContact} from "../dcContact/dcContact";
 
 enum FOOTER_CSS_CLASSNAMES {
 	LIGHT = "footer-light",
@@ -31,13 +32,11 @@ export class dcFooter extends dcComponent {
 		new dcSound(this.getMainElement(), true);
 
 		const contactContainer = _UDom.CE("div", { className: FOOTER_CSS_CLASSNAMES.CONTACT_CONTAINER });
-		const contactIcon = _UIcon.getIcon(DcIcons.DcIconMail);
-		const contactTitle = dcTranslator.T(dcTranslation.CONTACT);
-		const contactLabel = _UDom.CE("p", { innerText: contactTitle.toUpperCase() });
+		const contactIcon = _UIcon.getIcon(DcIcons.DcIconContact);
+		const contactLabel = _UDom.CE("p", { innerText: dcTranslator.T(dcTranslation.CONTACT).toUpperCase() });
 		_UDom.AC(contactContainer, contactIcon, contactLabel);
 
-		const contactModal = this.buildContactModal(contactContainer, DcIcons.DcIconMail, contactTitle);
-		contactContainer.addEventListener("click", () => contactModal.toggle());
+		this.buildContactModal(contactContainer, DcIcons.DcIconContact, dcTranslator.T(dcTranslation.CONTACT_ME).toUpperCase());
 
 		this.getMainElement().classList.add((dcGlobalConfig.isDarkMode) ? FOOTER_CSS_CLASSNAMES.DARK : FOOTER_CSS_CLASSNAMES.LIGHT);
 
@@ -46,10 +45,10 @@ export class dcFooter extends dcComponent {
 		_UDom.AC(this.getMainElement(), contactContainer);
 	}
 
-	private buildContactModal(button: HTMLElement, iconName: DcIcons, title: string): dcModal {
-		const contactModalContent = _UDom.CE("div");
-
-		return new dcModal(button, _UIcon.getIcon(iconName), title, contactModalContent, true, true, true);
+	private buildContactModal(button: HTMLElement, iconName: DcIcons, title: string): void {
+		const contactModal = new dcModal(button, _UIcon.getIcon(iconName), title, undefined, true, true, true);
+		const contactComponent = new dcContact(contactModal.getMainElement(), true);
+		contactModal.setContent(contactComponent.getMainElement());
 	}
 
 }

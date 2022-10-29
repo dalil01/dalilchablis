@@ -7,6 +7,10 @@ export const dcTranslated = {
 		EN: "Contact",
 		FR: "Contact"
 	},
+	CONTACT_ME: {
+		EN: "Contact me",
+		FR: "Me contacter"
+	},
 	HELP: {
 		EN: "Help",
 		FR: "Aide"
@@ -26,5 +30,29 @@ export const dcTranslated = {
 	FULLSTACK_DEVELOPER: {
 		EN: "Fullstack Developer",
 		FR: "Développeur Fullstack"
+	},
+	SOCIAL_NETWORKS: {
+		EN: "Social networks",
+		FR: "Réseaux sociaux"
+	},
+	EMAIL: {
+		EN: "Email",
+		FR: "E-mail"
+	},
+	SEND: {
+		EN: "Send",
+		FR: "Envoyer"
+	},
+	FIRSTNAME_LASTNAME: {
+		EN: "Firstname / LASTNAME",
+		FR: "Prénom / NOM"
+	},
+	SUBJECT: {
+		EN: "Subject",
+		FR: "Sujet"
+	},
+	MESSAGE: {
+		EN: "Message",
+		FR: "Message"
 	}
 }

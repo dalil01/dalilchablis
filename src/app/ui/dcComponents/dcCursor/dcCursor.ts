@@ -44,6 +44,10 @@ export class dcCursor extends dcComponent {
 		element.addEventListener("mouseleave", () => dcCursor.cursorInner.classList.remove(CURSOR_CSS_CLASSNAMES.CURSOR_HOVER))
 	}
 
+	public static subscribeElementsToDetectHover(elements: HTMLElement[]): void {
+		elements.forEach((e) => dcCursor.subscribeElementToDetectHover(e));
+	}
+
 	private subscribeToEventListeners(): void {
 		globalThis.addEventListener("mousemove", (e) => {
 			this.cursor.style.transform = `translate3d(calc(${e.clientX}px - 50%), calc(${e.clientY}px - 50%), 0)`;

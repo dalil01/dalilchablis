@@ -1,0 +1,33 @@
+.contact-container {
+    padding: 5px;
+    width: 100%;
+    overflow-y: auto;
+}
+
+.bg-light .contact-container {
+    color: #222222;
+}
+
+.bg-dark .contact-container {
+    color: darkgrey;
+}
+
+.contact-social-networks-container {
+}
+
+.contact-social-networks-title {
+    margin: 0 0 20px 10px;
+    font-size: .8rem;
+    text-align: left;
+}
+
+.contact-social-networks i {
+    margin: 6px;
+    padding: 3px;
+}
+
+.contact-form-title {
+    margin: 25px 0 20px 10px;
+    font-size: .8rem;
+    text-align: left;
+}

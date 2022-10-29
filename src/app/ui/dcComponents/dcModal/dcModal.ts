@@ -16,7 +16,9 @@ enum Modal_CSS_CLASSNAMES {
 	HEADER = "modal-header",
 	TITLE = "modal-title",
 	BODY = "modal-body",
-	FOOTER = "modal-footer"
+	FOOTER = "modal-footer",
+	ZOOM_IN = "modal-zoom-in",
+	ZOOM_OUT = "modal-zoom-out"
 }
 
 export class dcModal extends dcComponent {
@@ -25,13 +27,14 @@ export class dcModal extends dcComponent {
 	private readonly icon: HTMLElement;
 	private readonly title: string;
 	private readonly modal: HTMLElement;
-	private readonly content: HTMLElement;
+	private modalBody!: HTMLElement;
+	private content: HTMLElement | undefined;
 	private readonly withFooter: boolean;
 	private readonly closeWhenClickOutside: boolean;
 
 	private isOpen: boolean;
 
-	constructor(button: HTMLElement, icon: HTMLElement, title: string, content: HTMLElement, withFooter: boolean = false, closeWhenClickOutside: boolean = true, autoInit: boolean = false) {
+	constructor(button: HTMLElement, icon: HTMLElement, title: string, content: HTMLElement | undefined = undefined, withFooter: boolean = false, closeWhenClickOutside: boolean = true, autoInit: boolean = false) {
 		super(document.body, _UDom.CCE("modal-background", { className: Modal_CSS_CLASSNAMES.BACKGROUND + ' ' + GLOBAL_CSS_CLASSNAMES.DISPLAY_NONE }));
 
 		this.button = button;
@@ -48,7 +51,12 @@ export class dcModal extends dcComponent {
 			this.init();
 	}
 
-	protected buildUI(): void {
+	public setContent(content: HTMLElement): void {
+		this.content = content;
+		this.modalBody.appendChild(this.content);
+	}
+
+	public buildUI(): void {
 		this.getMainElement().classList.add(dcGlobalConfig.isDarkMode ? Modal_CSS_CLASSNAMES.DARK : Modal_CSS_CLASSNAMES.LIGHT );
 
 		const header = _UDom.CE("header", { className: Modal_CSS_CLASSNAMES.HEADER });
@@ -60,16 +68,19 @@ export class dcModal extends dcComponent {
 		header.appendChild(h2);
 
 		const closeIcon = _UIcon.getIcon(DcIcons.DcIconCloseCircle);
+		closeIcon.addEventListener("click", () => this.close());
 		dcCursor.subscribeElementToDetectHover(closeIcon);
 		header.appendChild(closeIcon);
 
-		const main = _UDom.CE("main", { className: Modal_CSS_CLASSNAMES.BODY });
+		this.modalBody = _UDom.CE("main", { className: Modal_CSS_CLASSNAMES.BODY });
 
 		const footer = _UDom.CE("footer", { className: Modal_CSS_CLASSNAMES.FOOTER });
 
-		_UDom.AC(this.modal, header, main);
+		_UDom.AC(this.modal, header, this.modalBody);
 
-		main.appendChild(this.content);
+		if (this.content) {
+			this.modalBody.appendChild(this.content);
+		}
 
 		if (this.withFooter) {
 			this.modal.appendChild(footer);
@@ -82,23 +93,24 @@ export class dcModal extends dcComponent {
 			});
 		}
 
-		[this.button, closeIcon].forEach((e) => e.addEventListener("click", () => {
-			this.getMainElement().classList.toggle(GLOBAL_CSS_CLASSNAMES.DISPLAY_NONE);
-			this.modal.classList.toggle(GLOBAL_CSS_CLASSNAMES.DISPLAY_NONE);
-		}));
-
 		this.getMainElement().appendChild(this.modal);
+
+		this.button.addEventListener("click", () => this.open());
 	}
 
 	public open(): void {
 		this.getMainElement().classList.remove(GLOBAL_CSS_CLASSNAMES.DISPLAY_NONE);
-		this.modal.classList.remove(GLOBAL_CSS_CLASSNAMES.DISPLAY_NONE);
+		this.modal.classList.remove(Modal_CSS_CLASSNAMES.ZOOM_OUT);
+		this.modal.classList.add(Modal_CSS_CLASSNAMES.ZOOM_IN);
 		this.isOpen = true;
 	}
 
 	public close(): void {
-		this.getMainElement().classList.add(GLOBAL_CSS_CLASSNAMES.DISPLAY_NONE);
-		this.modal.classList.add(GLOBAL_CSS_CLASSNAMES.DISPLAY_NONE);
+		this.modal.classList.remove(Modal_CSS_CLASSNAMES.ZOOM_IN);
+		this.modal.classList.add(Modal_CSS_CLASSNAMES.ZOOM_OUT);
+		setTimeout(() => {
+			this.getMainElement().classList.add(GLOBAL_CSS_CLASSNAMES.DISPLAY_NONE);
+		}, 300);
 		this.isOpen = false;
 	}
 
