@@ -26,9 +26,16 @@
 .intro-loading {
     margin-top: 21px;
     font-size: 1.2em;
-    color: #FFFFFF;
     border-radius: 21px;
     animation: loading 2s linear infinite;
+}
+
+.intro-dark .intro-loading {
+    color: #FFFFFF;
+}
+
+.intro-light .intro-loading {
+    color: #000000;
 }
 
 @keyframes loading {

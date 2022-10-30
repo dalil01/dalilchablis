@@ -90,7 +90,7 @@ export class dcIntro extends dcComponent {
         setTimeout(() => {
             if (!this.stopIntroButtonVisible)
                 this.loadingContainer.classList.remove(GLOBAL_CSS_CLASSNAMES.DISPLAY_NONE);
-        }, 1000);
+        }, 600);
         this.getMainElement().appendChild(this.loadingContainer);
 
         this.stopIntroContainer = _UDom.CE("div", {className: INTRO_CSS_CLASSNAMES.STOP_INTRO_CONTAINER + ' ' + GLOBAL_CSS_CLASSNAMES.DISPLAY_NONE});

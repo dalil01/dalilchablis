@@ -6,7 +6,7 @@
     background-color: #AAAAAA;
     opacity: .8;
     border-radius: 50%;
-    padding: 3px;
+    padding: 2px;
 }
 
 .sound-container:hover {
@@ -21,7 +21,7 @@
     --boxSize: 2px;
     --gutter: 4px;
     width: calc((var(--boxSize) + var(--gutter)) * 5);
-    padding: 3px;
+    padding: 4px;
 }
 
 .sound-box {
@@ -57,7 +57,7 @@
     height: 60%;
     background-color: #FAFAFA;
     width: var(--boxSize);
-    animation-duration: 1.6s;
+    animation-duration: 1.8s;
     animation-timing-function: ease-in-out;
     animation-iteration-count: infinite;
     border-radius: 8px;
