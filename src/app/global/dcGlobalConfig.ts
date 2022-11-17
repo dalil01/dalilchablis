@@ -1,4 +1,4 @@
-import {LOCALE, VIEWS} from "./dcGlobalEnums";
+import { LOCALE, VIEWS } from "./dcGlobalEnums";
 
 export class dcGlobalConfig {
 	public static isDarkMode = true;

@@ -1,80 +1,81 @@
-import {dcHeader} from "./dcComponents/dcHeader/dcHeader";
-import {dcFooter} from "./dcComponents/dcFooter/dcFooter";
-import {dcCursor} from "./dcComponents/dcCursor/dcCursor";
-import {_UDom} from "./dcUtils/_UDom";
-import {dcGlobalConfig} from "../global/dcGlobalConfig";
-import {GLOBAL_CSS_CLASSNAMES, LOCAL_STORAGE_KEY, LOCALE, VIEWS} from "../global/dcGlobalEnums";
-import {dcIntro} from "./dcComponents/dcIntro/dcIntro";
-import {dcOffice} from "./dcViews/dcOffice/dcOffice";
-import {dcParticles} from "./dcViews/dcParticles/dcParticles";
-import {dcView} from "./dcViews/dcView";
+import { dcHeader } from "./dcComponents/dcHeader/dcHeader";
+import { dcFooter } from "./dcComponents/dcFooter/dcFooter";
+import { dcCursor } from "./dcComponents/dcCursor/dcCursor";
+import { _UDom } from "./dcUtils/_UDom";
+import { dcGlobalConfig } from "../global/dcGlobalConfig";
+import { GLOBAL_CSS_CLASSNAMES, LOCAL_STORAGE_KEY, LOCALE, VIEWS } from "../global/dcGlobalEnums";
+import { dcIntro } from "./dcComponents/dcIntro/dcIntro";
+import { dcOffice } from "./dcViews/dcOffice/dcOffice";
+import { dcParticles } from "./dcViews/dcParticles/dcParticles";
+import { dcView } from "./dcViews/dcView";
+import { dcSideBar } from "./dcComponents/dcSideBar/dcSideBar";
 
 export class dcUIManager {
-
+	
 	private static INSTANCE: dcUIManager;
-
+	
 	private readonly parentElement: HTMLElement;
 	private mainElement!: HTMLElement;
 	private started: boolean;
 	private cursor!: dcCursor;
-
+	
 	private constructor(parentElement: HTMLElement) {
 		this.parentElement = parentElement;
 		this.started = false;
 	}
-
+	
 	public static getInstance(parentElement: HTMLElement | null = null): dcUIManager {
 		if (parentElement && !dcUIManager.INSTANCE) {
 			dcUIManager.INSTANCE = new dcUIManager(parentElement);
 		}
-
+		
 		return dcUIManager.INSTANCE;
 	}
-
+	
 	public toggleMode(): void {
 		dcGlobalConfig.isDarkMode = !dcGlobalConfig.isDarkMode;
 		localStorage.setItem(LOCAL_STORAGE_KEY.IS_DARK_MODE, dcGlobalConfig.isDarkMode.toString());
 		this.refreshUI();
 	}
-
+	
 	public toggleLocale(): void {
 		dcGlobalConfig.locale = (dcGlobalConfig.locale === LOCALE.EN) ? LOCALE.FR : LOCALE.EN;
 		localStorage.setItem(LOCAL_STORAGE_KEY.LOCALE, dcGlobalConfig.locale);
 		this.refreshUI();
 	}
-
+	
 	public refreshUI(): void {
 		this.stop();
 		this.start();
 	}
-
+	
 	public start(): void {
 		if (!this.started) {
 			this.buildUI();
 			this.started = true;
 		}
 	}
-
+	
 	private stop(): void {
 		if (this.started) {
 			_UDom.removeAllChildren(this.parentElement);
 			this.started = false;
 		}
 	}
-
+	
 	private buildUI(): void {
 		globalThis.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', event => {
 			dcGlobalConfig.isDarkMode = event.matches;
 			this.setMode();
 		});
 		this.setMode();
-
+		
 		this.setLocale();
-
+		
 		new dcHeader(this.parentElement, true);
-
-		this.mainElement = _UDom.CE("main");
-
+		
+		this.mainElement = _UDom.main();
+		
 		let view: dcView;
 		switch (dcGlobalConfig.view) {
 			case VIEWS.OFFICE:
@@ -83,14 +84,23 @@ export class dcUIManager {
 			default:
 				view = dcParticles.getInstance(this.parentElement);
 		}
-		const intro = new dcIntro(this.mainElement,true);
+		
+		const intro = new dcIntro(this.mainElement, true);
+		const sideBar = new dcSideBar(this.mainElement);
+		
+		intro.setOnStoppedCallback(() => {
+			if (dcGlobalConfig.view != VIEWS.OFFICE) {
+				sideBar.init();
+			}
+		});
+		
 		view.onReady(() => intro.displayStopButton());
 		view.init();
-
+		
 		this.parentElement.appendChild(this.mainElement);
-
+		
 		new dcFooter(this.parentElement, true);
-
+		
 		if (!this.cursor) {
 			this.cursor = new dcCursor(this.parentElement, true);
 		} else {
@@ -98,13 +108,13 @@ export class dcUIManager {
 			this.parentElement.appendChild(this.cursor.getMainElement());
 		}
 	}
-
+	
 	private setMode(): void {
 		const lsDarkMode = localStorage.getItem(LOCAL_STORAGE_KEY.IS_DARK_MODE);
 		if (lsDarkMode) {
 			dcGlobalConfig.isDarkMode = lsDarkMode == "true";
 		}
-
+		
 		if (dcGlobalConfig.isDarkMode) {
 			this.parentElement.classList.remove(GLOBAL_CSS_CLASSNAMES.BG_LIGHT);
 			this.parentElement.classList.add(GLOBAL_CSS_CLASSNAMES.BG_DARK);
@@ -113,15 +123,15 @@ export class dcUIManager {
 			this.parentElement.classList.add(GLOBAL_CSS_CLASSNAMES.BG_LIGHT);
 		}
 	}
-
+	
 	private setLocale(): void {
 		const userLocale = (navigator.languages && navigator.languages.length ? navigator.languages[0] : navigator.language).toUpperCase();
 		dcGlobalConfig.locale = userLocale.startsWith(LOCALE.FR) ? LOCALE.FR : LOCALE.EN;
-
+		
 		const lsLocale = localStorage.getItem(LOCAL_STORAGE_KEY.LOCALE);
 		if (lsLocale) {
 			dcGlobalConfig.locale = lsLocale == LOCALE.FR ? LOCALE.FR : LOCALE.EN;
 		}
 	}
-
+	
 }

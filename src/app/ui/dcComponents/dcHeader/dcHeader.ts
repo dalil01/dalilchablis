@@ -1,17 +1,17 @@
 import "./dcHeader.css";
 
-import {dcComponent} from "../dcComponent";
-import {_UDom} from "../../dcUtils/_UDom";
-import {_UIcon} from "../../dcUtils/_UIcon";
-import {DcIcons} from "../../dcIcons/dcIcons";
-import {dcGlobalVars} from "../../../global/dcGlobalVars";
-import {dcGlobalConfig} from "../../../global/dcGlobalConfig";
-import {dcCursor} from "../dcCursor/dcCursor";
-import {LOCALE, VIEWS} from "../../../global/dcGlobalEnums";
-import {dcUIManager} from "../../dcUIManager";
-import {dcModal} from "../dcModal/dcModal";
-import {dcTranslator} from "../../dcTranslator/dcTranslator";
-import {dcTranslation} from "../../dcTranslator/dcTranslation";
+import { dcComponent } from "../dcComponent";
+import { _UDom } from "../../dcUtils/_UDom";
+import { _UIcon } from "../../dcUtils/_UIcon";
+import { DcIcons } from "../../dcIcons/dcIcons";
+import { dcGlobalVars } from "../../../global/dcGlobalVars";
+import { dcGlobalConfig } from "../../../global/dcGlobalConfig";
+import { dcCursor } from "../dcCursor/dcCursor";
+import { LOCALE, VIEWS } from "../../../global/dcGlobalEnums";
+import { dcUIManager } from "../../dcUIManager";
+import { dcModal } from "../dcModal/dcModal";
+import { dcTranslator } from "../../dcTranslator/dcTranslator";
+import { dcTranslation } from "../../dcTranslator/dcTranslation";
 
 enum HEADER_CSS_CLASSNAMES {
 	CONTAINER = "header-container",
@@ -24,46 +24,46 @@ enum HEADER_CSS_CLASSNAMES {
 }
 
 export class dcHeader extends dcComponent {
-
+	
 	constructor(parentElement: HTMLElement, autoInit: boolean = false) {
-		super(parentElement, _UDom.CE("header", {  className: HEADER_CSS_CLASSNAMES.CONTAINER }));
-
+		super(parentElement, _UDom.header({ className: HEADER_CSS_CLASSNAMES.CONTAINER }));
+		
 		if (autoInit)
 			this.init();
 	}
-
+	
 	public buildUI(): void {
-		const logoContainer = _UDom.CE("div", { className: HEADER_CSS_CLASSNAMES.LOGO_CONTAINER });
-		const logo = _UDom.CE("img", { src: dcGlobalVars.LOGO_IMAGE_PATH, className: HEADER_CSS_CLASSNAMES.LOGO });
+		const logoContainer = _UDom.div({ className: HEADER_CSS_CLASSNAMES.LOGO_CONTAINER });
+		const logo = _UDom.img({ src: dcGlobalVars.LOGO_IMAGE_PATH, className: HEADER_CSS_CLASSNAMES.LOGO });
 		logoContainer.addEventListener("click", () => dcUIManager.getInstance().refreshUI());
 		logoContainer.appendChild(logo);
-
-		const menuContainer = _UDom.CE("nav", { className: HEADER_CSS_CLASSNAMES.MENU_CONTAINER });
-
-		const vrIconContainer = _UDom.CE("div", { className: HEADER_CSS_CLASSNAMES.MODE_ICON_CONTAINER });
+		
+		const menuContainer = _UDom.nav({ className: HEADER_CSS_CLASSNAMES.MENU_CONTAINER });
+		
+		const vrIconContainer = _UDom.div({ className: HEADER_CSS_CLASSNAMES.MODE_ICON_CONTAINER });
 		const vrIcon = _UIcon.getIcon(DcIcons.DcIconVirtualRealityGlasses);
 		vrIconContainer.appendChild(vrIcon);
-
-		const settingsIconContainer = _UDom.CE("div", { className: HEADER_CSS_CLASSNAMES.SETTINGS_ICON_CONTAINER });
+		
+		const settingsIconContainer = _UDom.div({ className: HEADER_CSS_CLASSNAMES.SETTINGS_ICON_CONTAINER });
 		const settingsIconName = DcIcons.DcIconSettings;
 		const settingsTitle = dcTranslator.T(dcTranslation.SETTINGS);
 		const settingsIcon = _UIcon.getIcon(settingsIconName);
 		settingsIconContainer.appendChild(settingsIcon);
-
+		
 		this.buildSettingsModal(settingsIconContainer, settingsIconName, settingsTitle);
-
-		const modeIconContainer = _UDom.CE("div", { className: HEADER_CSS_CLASSNAMES.MODE_ICON_CONTAINER });
+		
+		const modeIconContainer = _UDom.div({ className: HEADER_CSS_CLASSNAMES.MODE_ICON_CONTAINER });
 		const modeIcon = _UIcon.getIcon(dcGlobalConfig.isDarkMode ? DcIcons.DcIconLight : DcIcons.DcIconMoonOutline);
 		modeIconContainer.addEventListener("click", () => dcUIManager.getInstance().toggleMode());
 		modeIconContainer.appendChild(modeIcon);
-
-		const localeIconContainer = _UDom.CE("div", { className: HEADER_CSS_CLASSNAMES.LOCALE_CONTAINER });
+		
+		const localeIconContainer = _UDom.div({ className: HEADER_CSS_CLASSNAMES.LOCALE_CONTAINER });
 		const globeIcon = _UIcon.getIcon(DcIcons.DcIconGlobe);
-		const locale = _UDom.CE("span", { innerText: dcGlobalConfig.locale === LOCALE.EN ? LOCALE.FR : LOCALE.EN });
+		const locale = _UDom.span({ innerText: dcGlobalConfig.locale === LOCALE.EN ? LOCALE.FR : LOCALE.EN });
 		localeIconContainer.addEventListener("click", () => dcUIManager.getInstance().toggleLocale());
 		localeIconContainer.appendChild(globeIcon);
 		localeIconContainer.appendChild(locale);
-
+		
 		if (dcGlobalConfig.view === VIEWS.OFFICE) {
 			menuContainer.appendChild(vrIconContainer);
 			dcCursor.subscribeElementToDetectHover(vrIconContainer);
@@ -71,22 +71,22 @@ export class dcHeader extends dcComponent {
 		menuContainer.appendChild(settingsIconContainer);
 		menuContainer.appendChild(modeIconContainer);
 		menuContainer.appendChild(localeIconContainer);
-
+		
 		dcCursor.subscribeElementToDetectHover(logoContainer);
 		dcCursor.subscribeElementToDetectHover(settingsIconContainer);
 		dcCursor.subscribeElementToDetectHover(modeIconContainer);
 		dcCursor.subscribeElementToDetectHover(localeIconContainer);
-
+		
 		_UDom.AC(this.getMainElement(), logoContainer, menuContainer);
 	}
-
+	
 	private buildSettingsModal(button: HTMLElement, iconName: DcIcons, title: string): void {
-		const settingsModalContent = _UDom.CE("div");
-
+		const settingsModalContent = _UDom.div();
+		
 		//settingsModalContent.innerText = "lorem".repeat(8000);
-
-
+		
+		
 		new dcModal(button, _UIcon.getIcon(iconName), title, settingsModalContent, true, true, true);
 	}
-
+	
 }

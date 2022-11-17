@@ -43,11 +43,13 @@
     bottom: -4px;
     padding: 0 !important;
     transition: width .3s ease;
+    opacity: .6;
 }
 
 .footer-contact-container:hover:after {
     width: 100%;
     left: 0;
+    opacity: .6;
 }
 
 .footer-light .footer-contact-container:after, .footer-light .footer-contact-container:hover:after {
