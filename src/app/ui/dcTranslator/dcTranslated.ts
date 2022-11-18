@@ -54,5 +54,25 @@ export const dcTranslated = {
 	MESSAGE: {
 		EN: "Message",
 		FR: "Message"
+	},
+	ABOUT_ME: {
+		EN: "About me",
+		FR: "A propos"
+	},
+	SKILLS: {
+		EN: "Skills",
+		FR: "Compétences"
+	},
+	PROJECTS: {
+		EN: "Projects",
+		FR: "Projets"
+	},
+	EDUCATION: {
+		EN: "Education",
+		FR: "Parcours"
+	},
+	EXPERIENCE: {
+		EN: "Experience",
+		FR: "Experience"
 	}
 }

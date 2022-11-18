@@ -6,17 +6,18 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 30px 20px 30px 30px;
+    padding: 25px 21px 15px 21px;
+    z-index: 3;
 }
 
 .header-logo-container {
     display: flex;
     align-items: center;
     /* background: linear-gradient(green, yellow, red); */
-    background: linear-gradient(#CCCCCC, #AAAAAA, #000000);
+    /*background: linear-gradient(#CCCCCC, #AAAAAA, #000000);*/
     border-radius: 50%;
     /* animation: rotate 3s linear infinite; */
-    padding: 3px;
+    padding: 4px;
 }
 
 .header-logo {

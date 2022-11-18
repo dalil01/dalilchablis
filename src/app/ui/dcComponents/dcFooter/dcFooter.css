@@ -14,7 +14,7 @@
     display: flex;
     align-items: baseline;
     justify-content: space-between;
-    padding: 30px;
+    padding: 0 25px 23px 25px;
 }
 
 .footer-container:nth-child(2) {

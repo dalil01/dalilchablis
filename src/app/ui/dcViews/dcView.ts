@@ -8,13 +8,6 @@ export abstract class dcView extends dcUI {
 		super(parentElement, mainElement);
 	}
 	
-	/**
-	 * Return a singleton of this.
-	 */
-	public static getInstance(parentElement: HTMLElement): dcView {
-		throw new Error("This method must be implemented.");
-	}
-	
 	public onReady(callback: Function): void {
 		this.onReadyCallback = callback;
 	}

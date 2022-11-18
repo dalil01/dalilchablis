@@ -11,7 +11,7 @@ export enum LOCALE {
 }
 
 export enum VIEWS {
-	PARTICLES = "particles",
+	CV = "CV",
 	OFFICE = "office"
 }
 

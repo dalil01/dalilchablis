@@ -40,8 +40,8 @@ export class dcCursor extends dcComponent {
 	}
 	
 	public static subscribeElementToDetectHover(element: HTMLElement): void {
-		element.addEventListener("mouseover", () => dcCursor.cursorInner.classList.add(CURSOR_CSS_CLASSNAMES.CURSOR_HOVER))
-		element.addEventListener("mouseleave", () => dcCursor.cursorInner.classList.remove(CURSOR_CSS_CLASSNAMES.CURSOR_HOVER))
+		element.addEventListener("mouseover", () => dcCursor.cursorInner.classList.add(CURSOR_CSS_CLASSNAMES.CURSOR_HOVER));
+		element.addEventListener("mouseout", () => dcCursor.cursorInner.classList.remove(CURSOR_CSS_CLASSNAMES.CURSOR_HOVER));
 	}
 	
 	public static subscribeElementsToDetectHover(elements: HTMLElement[]): void {
@@ -55,11 +55,21 @@ export class dcCursor extends dcComponent {
 			dcCursor.cursorInner.style.top = e.clientY + "px";
 		});
 		
+		globalThis.addEventListener("mouseenter", () => {
+			dcCursor.cursorInner.classList.add(CURSOR_CSS_CLASSNAMES.CURSOR_HOVER);
+		});
+		
 		globalThis.addEventListener("mousedown", () => {
 			dcCursor.cursorInner.classList.add(CURSOR_CSS_CLASSNAMES.CURSOR_INNER_HOVER);
 		});
 		
 		globalThis.addEventListener("mouseup", () => {
+			dcCursor.cursorInner.classList.remove(CURSOR_CSS_CLASSNAMES.CURSOR_HOVER);
+			dcCursor.cursorInner.classList.remove(CURSOR_CSS_CLASSNAMES.CURSOR_INNER_HOVER);
+		});
+		
+		globalThis.addEventListener("mouseout", () => {
+			dcCursor.cursorInner.classList.remove(CURSOR_CSS_CLASSNAMES.CURSOR_HOVER);
 			dcCursor.cursorInner.classList.remove(CURSOR_CSS_CLASSNAMES.CURSOR_INNER_HOVER);
 		});
 	}

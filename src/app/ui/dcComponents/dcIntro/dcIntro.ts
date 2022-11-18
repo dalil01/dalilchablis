@@ -14,6 +14,7 @@ enum INTRO_CSS_CLASSNAMES {
 	LIGHT = "intro-light",
 	DARK = "intro-dark",
 	CONTAINER = "intro-container",
+	PROFILE_IMG = "intro-profile-img",
 	NAME_CONTAINER = "intro-name-container",
 	LOADING = "intro-loading",
 	STOP_INTRO_CONTAINER = "intro-stop-container",
@@ -39,9 +40,11 @@ export class dcIntro extends dcComponent {
 	}
 	
 	public displayStopButton() {
-		this.stopIntroButtonVisible = true;
-		this.loadingContainer.classList.add(GLOBAL_CSS_CLASSNAMES.DISPLAY_NONE);
-		this.stopIntroContainer.classList.remove(GLOBAL_CSS_CLASSNAMES.DISPLAY_NONE);
+		if (!this.stopIntroButtonVisible) {
+			this.stopIntroButtonVisible = true;
+			this.loadingContainer.classList.add(GLOBAL_CSS_CLASSNAMES.DISPLAY_NONE);
+			this.stopIntroContainer.classList.remove(GLOBAL_CSS_CLASSNAMES.DISPLAY_NONE);
+		}
 	}
 	
 	public buildUI(): void {

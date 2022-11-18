@@ -6,9 +6,8 @@ import { dcGlobalConfig } from "../global/dcGlobalConfig";
 import { GLOBAL_CSS_CLASSNAMES, LOCAL_STORAGE_KEY, LOCALE, VIEWS } from "../global/dcGlobalEnums";
 import { dcIntro } from "./dcComponents/dcIntro/dcIntro";
 import { dcOffice } from "./dcViews/dcOffice/dcOffice";
-import { dcParticles } from "./dcViews/dcParticles/dcParticles";
 import { dcView } from "./dcViews/dcView";
-import { dcSideBar } from "./dcComponents/dcSideBar/dcSideBar";
+import { dcCV } from "./dcViews/dcCV/dcCV";
 
 export class dcUIManager {
 	
@@ -17,7 +16,9 @@ export class dcUIManager {
 	private readonly parentElement: HTMLElement;
 	private mainElement!: HTMLElement;
 	private started: boolean;
+	
 	private cursor!: dcCursor;
+	private currentView!: dcView;
 	
 	private constructor(parentElement: HTMLElement) {
 		this.parentElement = parentElement;
@@ -76,26 +77,20 @@ export class dcUIManager {
 		
 		this.mainElement = _UDom.main();
 		
-		let view: dcView;
+		const intro = new dcIntro(this.mainElement, true);
+		
 		switch (dcGlobalConfig.view) {
 			case VIEWS.OFFICE:
-				view = dcOffice.getInstance(this.parentElement);
+				this.currentView = dcOffice.getInstance(this.mainElement, true);
 				break;
+			case VIEWS.CV:
 			default:
-				view = dcParticles.getInstance(this.parentElement);
+				this.currentView = new dcCV(this.mainElement);
+				intro.displayStopButton();
 		}
 		
-		const intro = new dcIntro(this.mainElement, true);
-		const sideBar = new dcSideBar(this.mainElement);
-		
-		intro.setOnStoppedCallback(() => {
-			if (dcGlobalConfig.view != VIEWS.OFFICE) {
-				sideBar.init();
-			}
-		});
-		
-		view.onReady(() => intro.displayStopButton());
-		view.init();
+		this.currentView.onReady(() => intro.displayStopButton());
+		intro.setOnStoppedCallback(() => this.currentView.init());
 		
 		this.parentElement.appendChild(this.mainElement);
 		
