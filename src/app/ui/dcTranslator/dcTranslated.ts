@@ -59,6 +59,10 @@ export const dcTranslated = {
 		EN: "About me",
 		FR: "A propos"
 	},
+	ME: {
+		EN: "Me",
+		FR: "Moi"
+	},
 	SKILLS: {
 		EN: "Skills",
 		FR: "Compétences"

@@ -1,4 +1,5 @@
 export enum DcIcons {
+  DcIconAboutMe = "dcIcon-about-me",
   DcIconArrowDown = "dcIcon-arrow-down",
   DcIconArrowUp_2 = "dcIcon-arrow-up-2",
   DcIconArrowUp = "dcIcon-arrow-up",
@@ -33,4 +34,5 @@ export enum DcIcons {
   DcIconVirtualRealityGlasses = "dcIcon-virtual-reality-glasses",
   DcIconWaveLarge = "dcIcon-wave-large",
   DcIconWaveSmall = "dcIcon-wave-small",
+  DcIconWorkExperience = "dcIcon-work-experience",
 }

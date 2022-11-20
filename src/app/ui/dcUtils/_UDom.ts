@@ -212,8 +212,6 @@ export class _UDom {
 		return _UDom.CE("hgroup", properties);
 	}
 	
-	"hr": HTMLHRElement;
-	
 	public static hr(properties: HTMLElementProperties = {}): HTMLHRElement {
 		return _UDom.CE("hr", properties);
 	}
@@ -519,7 +517,7 @@ export class _UDom {
 		}
 	}
 	
-	// TODO : Refactor
+	// TODO : Refactor (use setInterval)
 	public static writeTextInElements(elements: { startCallback: null | Function, endCallback: null | Function, element: HTMLElement | null, text: string }[], ms: number = 100, blink: boolean = true, blinkAlwaysActive: boolean = true, blinkChar: string = '_'): void {
 		const wait = () => new Promise((resolve) => setTimeout(resolve, ms));
 		

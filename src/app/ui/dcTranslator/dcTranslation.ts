@@ -14,6 +14,7 @@ export enum dcTranslation {
 	SUBJECT,
 	MESSAGE,
 	ABOUT_ME,
+	ME,
 	SKILLS,
 	PROJECTS,
 	EDUCATION,

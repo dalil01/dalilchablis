@@ -1,3 +1,5 @@
+import { _UDom } from "./dcUtils/_UDom";
+
 export abstract class dcUI {
 	
 	private parentElement: HTMLElement;
@@ -41,7 +43,8 @@ export abstract class dcUI {
 	
 	public destroy(): void {
 		if (this.initiated) {
-			this.parentElement.removeChild(this.mainElement);
+			_UDom.removeAllChildren(this.parentElement);
+			_UDom.removeAllChildren(this.mainElement);
 			this.initiated = false;
 		}
 	}
