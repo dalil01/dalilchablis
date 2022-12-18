@@ -1,4 +1,4 @@
-import "./dcCV.css";
+import "./dcDashboard.css";
 
 import { dcView } from "../dcView";
 import { _UDom } from "../../dcUtils/_UDom";
@@ -14,14 +14,16 @@ import { dcSkills } from "../../dcComponents/dcInfos/dcSkills/dcSkills";
 import { dcProjects } from "../../dcComponents/dcInfos/dcProjects/dcProjects";
 import { dcComponent } from "../../dcComponents/dcComponent";
 
-enum CV_CSS_CLASSNAMES {
-	SIDE_BAR = "cv-side-bar",
-	SIDE_BAR_CONTENT = "cv-side-bar-content",
-	SIDE_BAR_ICON = "cv-side-bar-icon",
-	CONTENT = "cv-content",
+enum DASHBOARD_CSS_CLASSNAMES {
+	SIDE_BAR = "dashboard-side-bar",
+	SIDE_BAR_CONTENT = "dashboard-side-bar-content",
+	SIDE_BAR_ICON = "dashboard-side-bar-icon",
+	CONTENT = "dashboard-content",
+	FIRST_LINE = "dashboard-first-line",
+	SECOND_LINE = "dashboard-second-line",
 }
 
-export class dcCV extends dcView {
+export class dcDashboard extends dcView {
 	
 	private container!: HTMLDivElement;
 	
@@ -34,7 +36,7 @@ export class dcCV extends dcView {
 	private openedComponent!: dcComponent;
 	
 	public constructor(parentElement: HTMLElement, autoInit: boolean = false) {
-		super(parentElement, _UDom.CCE("cv"));
+		super(parentElement, _UDom.CCE("dashboard"));
 		
 		if (autoInit)
 			this.init();
@@ -46,26 +48,26 @@ export class dcCV extends dcView {
 	}
 	
 	private buildSideBar(): void {
-		const sideBar = _UDom.div({ className: CV_CSS_CLASSNAMES.SIDE_BAR });
-		const sideBarContent = _UDom.div({ className: CV_CSS_CLASSNAMES.SIDE_BAR_CONTENT });
+		const sideBar = _UDom.div({ className: DASHBOARD_CSS_CLASSNAMES.SIDE_BAR });
+		const sideBarContent = _UDom.div({ className: DASHBOARD_CSS_CLASSNAMES.SIDE_BAR_CONTENT });
 		
-		const aboutMeIcon = _UIcon.getIcon(DcIcons.DcIconAboutMe, { className: CV_CSS_CLASSNAMES.SIDE_BAR_ICON });
+		const aboutMeIcon = _UIcon.getIcon(DcIcons.DcIconAboutMe, { className: DASHBOARD_CSS_CLASSNAMES.SIDE_BAR_ICON });
 		new dcTooltip(sideBarContent, aboutMeIcon, dcTranslator.T(dcTranslation.ABOUT_ME), true);
 		aboutMeIcon.addEventListener("click", () => this.openComponent(this.aboutMe));
 		
-		const educationIcon = _UIcon.getIcon(DcIcons.DcIconGraduationCap, { className: CV_CSS_CLASSNAMES.SIDE_BAR_ICON });
+		const educationIcon = _UIcon.getIcon(DcIcons.DcIconGraduationCap, { className: DASHBOARD_CSS_CLASSNAMES.SIDE_BAR_ICON });
 		new dcTooltip(sideBarContent, educationIcon, dcTranslator.T(dcTranslation.EDUCATION), true);
 		educationIcon.addEventListener("click", () => this.openComponent(this.education));
 		
-		const experienceIcon = _UIcon.getIcon(DcIcons.DcIconWorkExperience, { className: CV_CSS_CLASSNAMES.SIDE_BAR_ICON });
+		const experienceIcon = _UIcon.getIcon(DcIcons.DcIconWorkExperience, { className: DASHBOARD_CSS_CLASSNAMES.SIDE_BAR_ICON });
 		new dcTooltip(sideBarContent, experienceIcon, dcTranslator.T(dcTranslation.EXPERIENCE), true);
 		experienceIcon.addEventListener("click", () => this.openComponent(this.experience));
 		
-		const skillsIcon = _UIcon.getIcon(DcIcons.DcIconSkills, { className: CV_CSS_CLASSNAMES.SIDE_BAR_ICON });
+		const skillsIcon = _UIcon.getIcon(DcIcons.DcIconSkills, { className: DASHBOARD_CSS_CLASSNAMES.SIDE_BAR_ICON });
 		new dcTooltip(sideBarContent, skillsIcon, dcTranslator.T(dcTranslation.SKILLS), true);
 		skillsIcon.addEventListener("click", () => this.openComponent(this.skills));
 		
-		const projectsIcon = _UIcon.getIcon(DcIcons.DcIconHeart, { className: CV_CSS_CLASSNAMES.SIDE_BAR_ICON });
+		const projectsIcon = _UIcon.getIcon(DcIcons.DcIconHeart, { className: DASHBOARD_CSS_CLASSNAMES.SIDE_BAR_ICON });
 		new dcTooltip(sideBarContent, projectsIcon, dcTranslator.T(dcTranslation.PROJECTS), true);
 		projectsIcon.addEventListener("click", () => this.openComponent(this.projects));
 		
@@ -73,13 +75,18 @@ export class dcCV extends dcView {
 	}
 	
 	private buildContainer(): void {
-		this.container = _UDom.div({ className: CV_CSS_CLASSNAMES.CONTENT });
+		this.container = _UDom.div({ className: DASHBOARD_CSS_CLASSNAMES.CONTENT });
 		
-		this.aboutMe = this.openedComponent = new dcAboutMe(this.container, true);
-		this.education = new dcEducation(this.container);
-		this.experience = new dcExperience(this.container);
-		this.skills = new dcSkills(this.container);
-		this.projects = new dcProjects(this.container);
+		const firstLine = _UDom.div({ className: DASHBOARD_CSS_CLASSNAMES.FIRST_LINE });
+		this.aboutMe = this.openedComponent = new dcAboutMe(firstLine, true);
+		this.education = new dcEducation(firstLine, true);
+		this.experience = new dcExperience(firstLine, true);
+		this.container.appendChild(firstLine);
+		
+		const secondLine = _UDom.div({ className: DASHBOARD_CSS_CLASSNAMES.SECOND_LINE });
+		this.skills = new dcSkills(secondLine, true);
+		this.projects = new dcProjects(secondLine, true);
+		this.container.appendChild(secondLine);
 		
 		_UDom.AC(this.getMainElement(), this.container);
 	}

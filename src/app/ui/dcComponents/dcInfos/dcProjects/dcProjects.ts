@@ -21,8 +21,22 @@ export class dcProjects extends dcComponent {
 	public buildUI(): void {
 		const title = _UDom.h2( { innerText: dcTranslator.T(dcTranslation.PROJECTS) });
 		
+		const personals = _UDom.h3({ innerText: "Personals" });
+		const personalsContainer = _UDom.div();
 		
-		_UDom.AC(this.getMainElement(), title);
+		const academics = _UDom.h3({ innerText: "Academics" });
+		const academicsContainer = _UDom.div();
+		
+		const professionals = _UDom.h3({ innerText: "Professionals" });
+		const professionalsContainer = _UDom.div();
+		
+		_UDom.AC(
+			this.getMainElement(),
+			title,
+			personals, personalsContainer,
+			academics, academicsContainer,
+			professionals, professionalsContainer
+		);
 	}
 	
 }

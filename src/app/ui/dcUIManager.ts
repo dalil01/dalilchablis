@@ -7,7 +7,7 @@ import { GLOBAL_CSS_CLASSNAMES, LOCAL_STORAGE_KEY, LOCALE, VIEWS } from "../glob
 import { dcIntro } from "./dcComponents/dcIntro/dcIntro";
 import { dcOffice } from "./dcViews/dcOffice/dcOffice";
 import { dcView } from "./dcViews/dcView";
-import { dcCV } from "./dcViews/dcCV/dcCV";
+import { dcDashboard } from "./dcViews/dcDashboard/dcDashboard";
 
 export class dcUIManager {
 	
@@ -85,7 +85,7 @@ export class dcUIManager {
 				break;
 			case VIEWS.CV:
 			default:
-				this.currentView = new dcCV(this.mainElement);
+				this.currentView = new dcDashboard(this.mainElement);
 				intro.displayStopButton();
 		}
 		
