@@ -1,4 +1,3 @@
-// https://vitejs.dev/config/#configuring-vite
 export default {
     root: "src",
     server: {

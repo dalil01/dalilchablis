@@ -1,18 +1,18 @@
 import "./dcDashboard.css";
 
-import { dcView } from "../dcView";
-import { _UDom } from "../../dcUtils/_UDom";
-import { dcAboutMe } from "../../dcComponents/dcInfos/dcAboutMe/dcAboutMe";
-import { _UIcon } from "../../dcUtils/_UIcon";
-import { DcIcons } from "../../dcIcons/dcIcons";
-import { dcTooltip } from "../../dcComponents/dcTooltip/dcTooltip";
-import { dcTranslator } from "../../dcTranslator/dcTranslator";
-import { dcTranslation } from "../../dcTranslator/dcTranslation";
-import { dcEducation } from "../../dcComponents/dcInfos/dcEducation/dcEducation";
-import { dcExperience } from "../../dcComponents/dcInfos/dcExperience/dcExperience";
-import { dcSkills } from "../../dcComponents/dcInfos/dcSkills/dcSkills";
-import { dcProjects } from "../../dcComponents/dcInfos/dcProjects/dcProjects";
-import { dcComponent } from "../../dcComponents/dcComponent";
+import { dcView } from "../../../../../../src/app/ui/dcViews/dcView";
+import { _UDom } from "../../../../../../src/app/ui/dcUtils/_UDom";
+import { dcAboutMe } from "../../../../../../src/app/ui/dcComponents/dcInfos/dcAboutMe/dcAboutMe";
+import { _UIcon } from "../../../../../../src/app/ui/dcUtils/_UIcon";
+import { DcIcons } from "../../../../../../src/app/ui/dcIcons/dcIcons";
+import { dcTooltip } from "../../../../../../src/app/ui/dcComponents/dcTooltip/dcTooltip";
+import { dcTranslator } from "../../../../../../src/app/ui/dcTranslator/dcTranslator";
+import { dcTranslation } from "../../../../../../src/app/ui/dcTranslator/dcTranslation";
+import { dcEducation } from "../../../../../../src/app/ui/dcComponents/dcInfos/dcEducation/dcEducation";
+import { dcExperience } from "../../../../../../src/app/ui/dcComponents/dcInfos/dcExperience/dcExperience";
+import { dcSkills } from "../../../../../../src/app/ui/dcComponents/dcInfos/dcSkills/dcSkills";
+import { dcProjects } from "../../../../../../src/app/ui/dcComponents/dcInfos/dcProjects/dcProjects";
+import { dcComponent } from "../../../../../../src/app/ui/dcComponents/dcComponent";
 
 enum DASHBOARD_CSS_CLASSNAMES {
 	SIDE_BAR = "dashboard-side-bar",

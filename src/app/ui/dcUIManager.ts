@@ -7,7 +7,6 @@ import { GLOBAL_CSS_CLASSNAMES, LOCAL_STORAGE_KEY, LOCALE, VIEWS } from "../glob
 import { dcIntro } from "./dcComponents/dcIntro/dcIntro";
 import { dcOffice } from "./dcViews/dcOffice/dcOffice";
 import { dcView } from "./dcViews/dcView";
-import { dcDashboard } from "./dcViews/dcDashboard/dcDashboard";
 
 export class dcUIManager {
 	
@@ -81,11 +80,8 @@ export class dcUIManager {
 		
 		switch (dcGlobalConfig.view) {
 			case VIEWS.OFFICE:
-				this.currentView = dcOffice.getInstance(this.mainElement, true);
-				break;
-			case VIEWS.CV:
 			default:
-				this.currentView = new dcDashboard(this.mainElement);
+				this.currentView = dcOffice.getInstance(this.mainElement, true);
 				intro.displayStopButton();
 		}
 		

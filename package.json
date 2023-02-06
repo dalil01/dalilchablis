@@ -7,8 +7,6 @@
     "vite-dev": "vite",
     "vite-build": "tsc && vite build",
     "vite-preview": "vite preview",
-    "serve": "NODE_ENV=development webpack-dev-server --hot",
-    "build": "NODE_ENV=production webpack",
     "test": "echo \"Error: no test specified\" && exit 1",
     "generate-dcIcons": "npx fantasticon",
     "generate-translation": "npx translatordc"
