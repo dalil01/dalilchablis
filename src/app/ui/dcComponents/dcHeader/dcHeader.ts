@@ -65,9 +65,10 @@ export class dcHeader extends dcComponent {
 		localeIconContainer.appendChild(locale);
 		
 		if (dcGlobalConfig.view === VIEWS.OFFICE) {
-			menuContainer.appendChild(vrIconContainer);
-			dcCursor.subscribeElementToDetectHover(vrIconContainer);
+			//menuContainer.appendChild(vrIconContainer);
+			//dcCursor.subscribeElementToDetectHover(vrIconContainer);
 		}
+
 		menuContainer.appendChild(settingsIconContainer);
 		menuContainer.appendChild(modeIconContainer);
 		menuContainer.appendChild(localeIconContainer);

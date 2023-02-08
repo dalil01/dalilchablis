@@ -11,7 +11,6 @@ export enum LOCALE {
 }
 
 export enum VIEWS {
-	CV = "CV",
 	OFFICE = "office"
 }
 

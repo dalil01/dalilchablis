@@ -14,6 +14,8 @@ enum INTRO_CSS_CLASSNAMES {
 	LIGHT = "intro-light",
 	DARK = "intro-dark",
 	CONTAINER = "intro-container",
+	CONTAINER_LIGHT = "container-light",
+	CONTAINER_DARK = "container-dark",
 	PROFILE_IMG = "intro-profile-img",
 	NAME_CONTAINER = "intro-name-container",
 	LOADING = "intro-loading",
@@ -25,7 +27,10 @@ export class dcIntro extends dcComponent {
 	private loadingContainer!: HTMLElement;
 	private stopIntroContainer!: HTMLElement;
 	private stopIntroButtonVisible = false;
-	
+
+	private onHoverStopIntroButtonCallback: Function = () => {};
+	private onLeaveStopIntroButtonCallback: Function = () => {};
+
 	private onStoppedCallback: Function = () => {};
 	
 	constructor(parentElement: HTMLElement, autoInit: boolean) {
@@ -35,15 +40,25 @@ export class dcIntro extends dcComponent {
 			this.init();
 	}
 	
-	public setOnStoppedCallback(callback: Function) {
+	public onHoverStopIntroButton(callback: Function): void {
+		this.onHoverStopIntroButtonCallback = callback;
+	}
+
+	public onLeaveStopIntroButton(callback: Function): void {
+		this.onLeaveStopIntroButtonCallback = callback;
+	}
+
+	public onStopped(callback: Function): void {
 		this.onStoppedCallback = callback;
 	}
-	
+
 	public displayStopButton() {
 		if (!this.stopIntroButtonVisible) {
 			this.stopIntroButtonVisible = true;
 			this.loadingContainer.classList.add(GLOBAL_CSS_CLASSNAMES.DISPLAY_NONE);
 			this.stopIntroContainer.classList.remove(GLOBAL_CSS_CLASSNAMES.DISPLAY_NONE);
+			this.getMainElement().classList.remove(INTRO_CSS_CLASSNAMES.CONTAINER_LIGHT);
+			this.getMainElement().classList.remove(INTRO_CSS_CLASSNAMES.CONTAINER_DARK);
 		}
 	}
 	
@@ -93,6 +108,7 @@ export class dcIntro extends dcComponent {
 			false);
 		
 		this.getMainElement().classList.add((dcGlobalConfig.isDarkMode) ? INTRO_CSS_CLASSNAMES.DARK : INTRO_CSS_CLASSNAMES.LIGHT);
+		this.getMainElement().classList.add((dcGlobalConfig.isDarkMode) ? INTRO_CSS_CLASSNAMES.CONTAINER_DARK : INTRO_CSS_CLASSNAMES.CONTAINER_LIGHT);
 		this.getMainElement().appendChild(introText);
 		
 		this.loadingContainer = _UIcon.getIcon(DcIcons.DcIconLoading, { className: INTRO_CSS_CLASSNAMES.LOADING + ' ' + GLOBAL_CSS_CLASSNAMES.DISPLAY_NONE });
@@ -105,9 +121,18 @@ export class dcIntro extends dcComponent {
 		this.stopIntroContainer = _UDom.div({ className: INTRO_CSS_CLASSNAMES.STOP_INTRO_CONTAINER + ' ' + GLOBAL_CSS_CLASSNAMES.DISPLAY_NONE });
 		const stopIntroIcon = _UIcon.getIcon(DcIcons.DcIconArrowUp);
 		this.stopIntroContainer.appendChild(stopIntroIcon);
+
+		this.stopIntroContainer.addEventListener("mouseover", () => {
+			this.onHoverStopIntroButtonCallback();
+		});
+
+		this.stopIntroContainer.addEventListener("mouseleave", () => {
+			this.onLeaveStopIntroButtonCallback();
+		});
+
 		this.stopIntroContainer.addEventListener("click", () => {
 			this.destroy();
-			this.onStoppedCallback()
+			this.onStoppedCallback();
 		});
 		
 		dcCursor.subscribeElementToDetectHover(this.stopIntroContainer);

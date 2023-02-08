@@ -15,6 +15,7 @@
     align-items: baseline;
     justify-content: space-between;
     padding: 0 25px 23px 25px;
+    z-index: 3;
 }
 
 .footer-container:nth-child(2) {

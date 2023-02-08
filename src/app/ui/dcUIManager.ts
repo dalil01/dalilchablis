@@ -68,6 +68,7 @@ export class dcUIManager {
 			dcGlobalConfig.isDarkMode = event.matches;
 			this.setMode();
 		});
+
 		this.setMode();
 		
 		this.setLocale();
@@ -81,12 +82,22 @@ export class dcUIManager {
 		switch (dcGlobalConfig.view) {
 			case VIEWS.OFFICE:
 			default:
-				this.currentView = dcOffice.getInstance(this.mainElement, true);
-				intro.displayStopButton();
+				this.currentView = new dcOffice(this.mainElement);
+		}
+
+		if (this.currentView instanceof dcOffice) {
+			intro.onHoverStopIntroButton(this.currentView.onHoverStartVisitButton());
+			intro.onLeaveStopIntroButton(this.currentView.onLeaveStartVisitButton());
+			intro.onStopped(this.currentView.onStartVisit());
 		}
 		
 		this.currentView.onReady(() => intro.displayStopButton());
-		intro.setOnStoppedCallback(() => this.currentView.init());
+
+		if (this.currentView.isInitiated()) {
+			intro.displayStopButton();
+		} else {
+			this.currentView.init();
+		}
 		
 		this.parentElement.appendChild(this.mainElement);
 		
