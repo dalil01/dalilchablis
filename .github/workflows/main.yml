@@ -19,11 +19,6 @@ jobs:
       - name: Build App
         run: npm run build
 
-      - name: pwd
-        run: | 
-          pwd
-          ls
-
       - name: Deploy
         uses: SamKirkland/FTP-Deploy-Action@v4.3.4
         with:
@@ -32,3 +27,4 @@ jobs:
           password: ${{ secrets.FTP_PASSWORD }}
           server-dir: /public_html/dalilchablis/
           local-dir: ./dist/
+          clean: true
