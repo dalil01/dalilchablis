@@ -2,10 +2,10 @@ import { _UDom } from "./dcUtils/_UDom";
 
 export abstract class dcUI {
 	
-	private parentElement: HTMLElement;
-	private mainElement: HTMLElement;
+	protected parentElement: HTMLElement;
+	protected mainElement: HTMLElement;
 	
-	private initiated: boolean;
+	protected initiated: boolean;
 	
 	protected constructor(parentElement: HTMLElement, mainElement: HTMLElement, autoInit: boolean = false) {
 		this.parentElement = parentElement;
@@ -43,9 +43,15 @@ export abstract class dcUI {
 	
 	public destroy(): void {
 		if (this.initiated) {
-			this.parentElement.removeChild(this.mainElement)
+			this.parentElement.removeChild(this.mainElement);
 			this.initiated = false;
 		}
+	}
+
+	public update(): void {
+		_UDom.removeAllChildren(this.mainElement);
+		this.initiated = false;
+		this.init();
 	}
 	
 	protected buildUI(): void {

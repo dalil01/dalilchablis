@@ -1,6 +1,6 @@
-export enum GLOBAL_CSS_CLASSNAMES {
-	BG_LIGHT = "bg-light",
-	BG_DARK = "bg-dark",
+export enum GLOBAL_CSS {
+	LIGHT_MODE = "light-mode",
+	DARK_MODE = "dark-mode",
 	DISPLAY_NONE = "display-none",
 	BLINK = "blink"
 }
@@ -11,11 +11,13 @@ export enum LOCALE {
 }
 
 export enum VIEWS {
-	OFFICE = "office"
+	HOME,
+	OFFICE
 }
 
 export enum LOCAL_STORAGE_KEY {
 	IS_DARK_MODE = "is-dark-mode",
+	VR_ENABLE = "vr-enable",
 	LOCALE = "locale",
 	SOUND_ENABLE = "sound-enable"
 }

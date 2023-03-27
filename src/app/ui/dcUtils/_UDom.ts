@@ -1,4 +1,4 @@
-import { GLOBAL_CSS_CLASSNAMES } from "../../global/dcGlobalEnums";
+import { GLOBAL_CSS } from "../../global/dcGlobalEnums";
 
 type HTMLElementProperties = {
 	className?: string,
@@ -542,7 +542,7 @@ export class _UDom {
 				
 				if (blink) {
 					element.element.appendChild(_UDom.CE("span", {
-						className: GLOBAL_CSS_CLASSNAMES.BLINK,
+						className: GLOBAL_CSS.BLINK,
 						innerText: blinkChar
 					}));
 					

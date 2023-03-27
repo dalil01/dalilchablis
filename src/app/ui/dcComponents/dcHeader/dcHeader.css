@@ -13,18 +13,12 @@
 .header-logo-container {
     display: flex;
     align-items: center;
-    /* background: linear-gradient(green, yellow, red); */
-    /*background: linear-gradient(#CCCCCC, #AAAAAA, #000000);*/
     border-radius: 50%;
-    /* animation: rotate 3s linear infinite; */
-    padding: 4px;
 }
 
 .header-logo {
-    width: 1.8rem;
-    color: #FFFFFF;;
+    width: 2.8rem;
     border-radius: 50%;
-    padding: 4px;
 }
 
 .header-logo:hover {

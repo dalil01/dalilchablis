@@ -2,17 +2,26 @@ import "./dcModal.css";
 
 import { dcComponent } from "../dcComponent";
 import { _UDom } from "../../dcUtils/_UDom";
-import { GLOBAL_CSS_CLASSNAMES } from "../../../global/dcGlobalEnums";
+import { GLOBAL_CSS } from "../../../global/dcGlobalEnums";
 import { dcGlobalConfig } from "../../../global/dcGlobalConfig";
 import { _UIcon } from "../../dcUtils/_UIcon";
 import { DcIcons } from "../../dcIcons/dcIcons";
 import { dcCursor } from "../dcCursor/dcCursor";
 
-enum Modal_CSS_CLASSNAMES {
+export enum Modal_TYPE {
+	SMALL,
+	MEDIUM,
+	LARGE
+}
+
+enum Modal_CSS {
 	LIGHT = "modal-light",
 	DARK = "modal-dark",
 	BACKGROUND = "modal-background",
 	CONTAINER = "modal",
+	SMALL = "modal-small",
+	MEDIUM = "modal-medium",
+	LARGE = "modal-large",
 	HEADER = "modal-header",
 	TITLE = "modal-title",
 	BODY = "modal-body",
@@ -22,7 +31,8 @@ enum Modal_CSS_CLASSNAMES {
 }
 
 export class dcModal extends dcComponent {
-	
+
+	private readonly type: Modal_TYPE;
 	private readonly button: HTMLElement;
 	private readonly icon: HTMLElement;
 	private readonly title: string;
@@ -33,15 +43,29 @@ export class dcModal extends dcComponent {
 	private readonly closeWhenClickOutside: boolean;
 	
 	private isOpen: boolean;
+
+	private onCloseCallback: Function = () => {};
 	
-	constructor(button: HTMLElement, icon: HTMLElement, title: string, content: HTMLElement | undefined = undefined, withFooter: boolean = false, closeWhenClickOutside: boolean = true, autoInit: boolean = false) {
-		super(document.body, _UDom.CCE("modal-background", { className: Modal_CSS_CLASSNAMES.BACKGROUND + ' ' + GLOBAL_CSS_CLASSNAMES.DISPLAY_NONE }));
-		
+	constructor(type: Modal_TYPE, button: HTMLElement, icon: HTMLElement, title: string, content: HTMLElement | undefined = undefined, withFooter: boolean = false, closeWhenClickOutside: boolean = true, autoInit: boolean = false) {
+		super(document.body, _UDom.CCE("modal-background", { className: Modal_CSS.BACKGROUND + ' ' + GLOBAL_CSS.DISPLAY_NONE }));
+
+		this.type = type;
 		this.button = button;
 		this.icon = icon;
 		this.title = title;
 		this.content = content;
-		this.modal = _UDom.CCE("modal", { className: Modal_CSS_CLASSNAMES.CONTAINER });
+		this.modal = _UDom.CCE("modal", { className: Modal_CSS.CONTAINER });
+		switch (this.type) {
+			case Modal_TYPE.SMALL:
+				this.modal.classList.add(Modal_CSS.SMALL);
+				break;
+			case Modal_TYPE.LARGE:
+				this.modal.classList.add(Modal_CSS.LARGE);
+				break;
+			case Modal_TYPE.MEDIUM:
+			default:
+				this.modal.classList.add(Modal_CSS.MEDIUM)
+		}
 		this.withFooter = withFooter;
 		this.closeWhenClickOutside = closeWhenClickOutside;
 		
@@ -55,12 +79,16 @@ export class dcModal extends dcComponent {
 		this.content = content;
 		this.modalBody.appendChild(this.content);
 	}
+
+	public onClose(callback: Function): void {
+		this.onCloseCallback = callback;
+	}
 	
 	public buildUI(): void {
-		this.getMainElement().classList.add(dcGlobalConfig.isDarkMode ? Modal_CSS_CLASSNAMES.DARK : Modal_CSS_CLASSNAMES.LIGHT);
+		this.mainElement.classList.add(dcGlobalConfig.isDarkMode ? Modal_CSS.DARK : Modal_CSS.LIGHT);
 		
-		const header = _UDom.header({ className: Modal_CSS_CLASSNAMES.HEADER });
-		const h2 = _UDom.h2({ className: Modal_CSS_CLASSNAMES.TITLE });
+		const header = _UDom.header({ className: Modal_CSS.HEADER });
+		const h2 = _UDom.h2({ className: Modal_CSS.TITLE });
 		
 		h2.appendChild(this.icon);
 		h2.appendChild(_UDom.span({ innerText: this.title }));
@@ -72,9 +100,9 @@ export class dcModal extends dcComponent {
 		dcCursor.subscribeElementToDetectHover(closeIcon);
 		header.appendChild(closeIcon);
 		
-		this.modalBody = _UDom.main({ className: Modal_CSS_CLASSNAMES.BODY });
+		this.modalBody = _UDom.main({ className: Modal_CSS.BODY });
 		
-		const footer = _UDom.footer({ className: Modal_CSS_CLASSNAMES.FOOTER });
+		const footer = _UDom.footer({ className: Modal_CSS.FOOTER });
 		
 		_UDom.AC(this.modal, header, this.modalBody);
 		
@@ -87,31 +115,33 @@ export class dcModal extends dcComponent {
 		}
 		
 		if (this.closeWhenClickOutside) {
-			this.getMainElement().addEventListener("click", (e) => {
-				if (e.target == this.getMainElement())
+			this.mainElement.addEventListener("click", (e) => {
+				if (e.target == this.mainElement) {
 					this.close();
+				}
 			});
 		}
 		
-		this.getMainElement().appendChild(this.modal);
+		this.mainElement.appendChild(this.modal);
 		
 		this.button.addEventListener("click", () => this.open());
 	}
 	
 	public open(): void {
-		this.getMainElement().classList.remove(GLOBAL_CSS_CLASSNAMES.DISPLAY_NONE);
-		this.modal.classList.remove(Modal_CSS_CLASSNAMES.ZOOM_OUT);
-		this.modal.classList.add(Modal_CSS_CLASSNAMES.ZOOM_IN);
+		this.mainElement.classList.remove(GLOBAL_CSS.DISPLAY_NONE);
+		this.modal.classList.remove(Modal_CSS.ZOOM_OUT);
+		this.modal.classList.add(Modal_CSS.ZOOM_IN);
 		this.isOpen = true;
 	}
 	
 	public close(): void {
-		this.modal.classList.remove(Modal_CSS_CLASSNAMES.ZOOM_IN);
-		this.modal.classList.add(Modal_CSS_CLASSNAMES.ZOOM_OUT);
+		this.modal.classList.remove(Modal_CSS.ZOOM_IN);
+		this.modal.classList.add(Modal_CSS.ZOOM_OUT);
 		setTimeout(() => {
-			this.getMainElement().classList.add(GLOBAL_CSS_CLASSNAMES.DISPLAY_NONE);
+			this.mainElement.classList.add(GLOBAL_CSS.DISPLAY_NONE);
 		}, 300);
 		this.isOpen = false;
+		this.onCloseCallback();
 	}
 	
 	public toggle(): void {

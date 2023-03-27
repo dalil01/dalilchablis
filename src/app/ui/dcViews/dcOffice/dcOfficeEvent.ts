@@ -1,62 +1,75 @@
 import * as THREE from "three";
-import {dcOffice} from "./dcOffice";
-import {dcDimension} from "../../../global/dcGlobalTypes";
-import {WebGLRenderer} from "three";
+
+import { dcOffice } from "./dcOffice";
+import { dcDimension } from "../../../global/dcGlobalTypes";
+import { WebGLRenderer } from "three";
+import { EffectComposer } from "three/examples/jsm/postprocessing/EffectComposer";
 
 export class dcOfficeEvent {
 
-    private readonly canvas: HTMLCanvasElement;
-    private readonly dimension: dcDimension;
-    private readonly camera: THREE.PerspectiveCamera;
-    private readonly renderer: WebGLRenderer;
+	private readonly office: dcOffice;
 
-    constructor(office: dcOffice) {
-        this.canvas = office.getCanvas();
-        this.dimension = office.getDimension();
-        this.camera = office.getCamera();
-        this.renderer = office.getRenderer();
-    }
+	private canvas!: HTMLCanvasElement;
+	private dimension!: dcDimension;
+	private camera!: THREE.PerspectiveCamera;
+	private renderer!: WebGLRenderer;
+	private effectComposer!: EffectComposer;
 
-    public subscribeToEventListeners(): void {
-        globalThis.addEventListener("resize", () => this.onResize());
-        globalThis.addEventListener("mousedown", () => this.onMouseDown());
-        globalThis.addEventListener("mouseup", () => this.onMouseUp());
-    }
+	constructor(office: dcOffice) {
+		this.office = office;
+	}
 
-    public unSubscribeToEventListeners(): void {
-        globalThis.removeEventListener("resize", this.onResize);
-        globalThis.removeEventListener("mousedown", this.onMouseDown);
-        globalThis.removeEventListener("mouseup", this.onMouseUp);
-    }
+	public init() {
+		this.canvas = this.office.getCanvas();
+		this.dimension = this.office.getDimension();
+		this.camera = this.office.getCamera();
+		this.renderer = this.office.getRenderer();
+		this.effectComposer = this.office.getEffectComposer();
+	}
 
-    private onResize(): void {
-        this.updateDimension();
-        this.updateCameraProperties();
-        this.updateRendererProperties();
-    }
+	public subscribeToEventListeners(): void {
+		globalThis.addEventListener("resize", () => this.onResize());
+		globalThis.addEventListener("pointerdown", () => this.onMouseDown());
+		globalThis.addEventListener("pointerup", () => this.onMouseUp());
+	}
 
-    private onMouseDown(): void {
-        this.canvas.style.cursor = "grabbing";
-    }
+	public unSubscribeToEventListeners(): void {
+		globalThis.removeEventListener("resize", this.onResize);
+		globalThis.removeEventListener("pointerdown", this.onMouseDown);
+		globalThis.removeEventListener("pointerup", this.onMouseUp);
+	}
 
-    private onMouseUp(): void {
-        this.canvas.style.cursor = "grab";
-    }
+	private onResize(): void {
+		this.updateDimension();
+		this.updateCameraProperties();
+		this.updateRendererProperties();
+		this.updateEffectComposer();
+	}
 
-    public updateDimension(): void {
-        this.dimension.w = globalThis.innerWidth;
-        this.dimension.h = globalThis.innerHeight;
-    }
+	private onMouseDown(): void {
+	}
 
-    public updateCameraProperties(): void {
-        this.camera.aspect = this.dimension.w / this.dimension.h;
-        this.camera.updateProjectionMatrix();
-    }
+	private onMouseUp(): void {
+	}
 
-    public updateRendererProperties(): void {
-        this.renderer.setSize(this.dimension.w, this.dimension.h);
-        this.renderer.setPixelRatio(Math.min(globalThis.devicePixelRatio, 2));
-        this.renderer.outputEncoding = THREE.sRGBEncoding;
-    }
+	public updateDimension(): void {
+		this.dimension.w = globalThis.innerWidth;
+		this.dimension.h = globalThis.innerHeight;
+	}
+
+	public updateCameraProperties(): void {
+		this.camera.aspect = this.dimension.w / this.dimension.h;
+		this.camera.updateProjectionMatrix();
+	}
+
+	public updateRendererProperties(): void {
+		this.renderer.setSize(this.dimension.w, this.dimension.h);
+		this.renderer.setPixelRatio(Math.min(globalThis.devicePixelRatio, 2));
+		this.renderer.outputEncoding = THREE.sRGBEncoding;
+	}
+
+	public updateEffectComposer(): void {
+		this.effectComposer.setSize(this.dimension.w, this.dimension.h)
+	}
 
 }

@@ -5,16 +5,13 @@ import { _UDom } from "../../dcUtils/_UDom";
 import { _UIcon } from "../../dcUtils/_UIcon";
 import { DcIcons } from "../../dcIcons/dcIcons";
 import { dcCursor } from "../dcCursor/dcCursor";
-import { dcGlobalConfig } from "../../../global/dcGlobalConfig";
 import { dcTranslation } from "../../dcTranslator/dcTranslation";
 import { dcTranslator } from "../../dcTranslator/dcTranslator";
-import { dcModal } from "../dcModal/dcModal";
+import { dcModal, Modal_TYPE } from "../dcModal/dcModal";
 import { dcSound } from "../dcSound/dcSound";
 import { dcContact } from "../dcContact/dcContact";
 
-enum FOOTER_CSS_CLASSNAMES {
-	LIGHT = "footer-light",
-	DARK = "footer-dark",
+enum FOOTER_CSS {
 	CONTAINER = "footer-container",
 	CONTACT_CONTAINER = "footer-contact-container"
 }
@@ -22,31 +19,29 @@ enum FOOTER_CSS_CLASSNAMES {
 export class dcFooter extends dcComponent {
 	
 	constructor(parentElement: HTMLElement, autoInit: boolean = false) {
-		super(parentElement, _UDom.footer({ className: FOOTER_CSS_CLASSNAMES.CONTAINER }));
+		super(parentElement, _UDom.footer({ className: FOOTER_CSS.CONTAINER }));
 		
 		if (autoInit)
 			this.init();
 	}
 	
 	public buildUI(): void {
-		new dcSound(this.getMainElement(), true);
+		new dcSound(this.mainElement, true);
 		
-		const contactContainer = _UDom.div({ className: FOOTER_CSS_CLASSNAMES.CONTACT_CONTAINER });
-		const contactIcon = _UIcon.getIcon(DcIcons.DcIconContact);
+		const contactContainer = _UDom.div({ className: FOOTER_CSS.CONTACT_CONTAINER });
+		const contactIcon = _UIcon.getIcon(DcIcons.DcIconTelephoneFill);
 		const contactLabel = _UDom.p({ innerText: dcTranslator.T(dcTranslation.CONTACT).toUpperCase() });
 		_UDom.AC(contactContainer, contactIcon, contactLabel);
 		
-		this.buildContactModal(contactContainer, DcIcons.DcIconContact, dcTranslator.T(dcTranslation.CONTACT_ME).toUpperCase());
-		
-		this.getMainElement().classList.add((dcGlobalConfig.isDarkMode) ? FOOTER_CSS_CLASSNAMES.DARK : FOOTER_CSS_CLASSNAMES.LIGHT);
-		
+		this.buildContactModal(contactContainer, DcIcons.DcIconTelephoneFill, dcTranslator.T(dcTranslation.CONTACT_ME).toUpperCase());
+
 		dcCursor.subscribeElementToDetectHover(contactContainer);
 		
-		_UDom.AC(this.getMainElement(), contactContainer);
+		_UDom.AC(this.mainElement, contactContainer);
 	}
 	
 	private buildContactModal(button: HTMLElement, iconName: DcIcons, title: string): void {
-		const contactModal = new dcModal(button, _UIcon.getIcon(iconName), title, undefined, true, true, true);
+		const contactModal = new dcModal(Modal_TYPE.SMALL, button, _UIcon.getIcon(iconName), title, undefined, true, true, true);
 		const contactComponent = new dcContact(contactModal.getMainElement(), true);
 		contactModal.setContent(contactComponent.getMainElement());
 	}

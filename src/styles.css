@@ -1,15 +1,24 @@
-* {
-    cursor: none;
-}
-
 *, ::before, ::after {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    cursor: none;
 }
 
 :root {
     font-family: Avenir, Verdana, sans-serif;
+    --light-mode-bg: #F7F7F7;
+    --light-mode-color: #F7F7F7;
+    --dark-mode-bg: rgb(36,36,36);
+    --dark-mode-color: rgb(36,36,36);
+}
+
+.light-mode {
+    background-color: var(--light-mode-bg);
+}
+
+.dark-mode {
+    background-color: var(--dark-mode-bg);
 }
 
 ::-webkit-scrollbar {
@@ -27,12 +36,12 @@
     background: #AAAAAA;
 }
 
-.bg-light ::-webkit-scrollbar-track {
-    background-color: #FFFFFF;
+.light-mode ::-webkit-scrollbar-track {
+    background-color: var(--light-mode-bg);
 }
 
-.bg-dark ::-webkit-scrollbar-track {
-    background-color: #222222;
+.dark-mode ::-webkit-scrollbar-track {
+    background-color: var(--dark-mode-bg);
 }
 
 html, body, main {
@@ -43,14 +52,6 @@ html, body, main {
 
 h2 {
     font-size: 1.1rem;
-}
-
-.bg-light {
-    background-color: #FFFFFF;
-}
-
-.bg-dark {
-    background-color: #222222;
 }
 
 .blink {
@@ -71,4 +72,3 @@ h2 {
         opacity: 1;
     }
 }
-
