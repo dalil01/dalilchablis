@@ -19,7 +19,6 @@ import { _UIcon } from "../../dcUtils/_UIcon";
 import { DcIcons } from "../../dcIcons/dcIcons";
 import { dcTranslator } from "../../dcTranslator/dcTranslator";
 import { dcTranslation } from "../../dcTranslator/dcTranslation";
-import * as Stats from 'stats.js'
 import { dcGlobalConfig } from "../../../global/dcGlobalConfig";
 import { VIEWS } from "../../../global/dcGlobalEnums";
 import { dcModal, Modal_TYPE } from "../../dcComponents/dcModal/dcModal";
@@ -28,6 +27,7 @@ import { dcAboutMe } from "../../dcComponents/dcInfos/dcAboutMe/dcAboutMe";
 import { dcExperience } from "../../dcComponents/dcInfos/dcExperience/dcExperience";
 import { dcEducation } from "../../dcComponents/dcInfos/dcEducation/dcEducation";
 import { dcProjects } from "../../dcComponents/dcInfos/dcProjects/dcProjects";
+//import * as Stats from 'stats.js'
 
 enum OFFICE_CSS {
 	CONTAINER = "office-container",
@@ -47,7 +47,7 @@ export class dcOffice extends dcView {
 
 	private readonly canvas: HTMLCanvasElement;
 
-	private stats = new Stats();
+	//private stats = new Stats();
 
 	private readonly scene: Scene;
 	private readonly dimension: dcDimension;
@@ -225,8 +225,8 @@ export class dcOffice extends dcView {
 	}
 
 	protected buildUI(): void {
-		this.stats.showPanel(1)
-		this.mainElement.appendChild(this.stats.dom);
+		//this.stats.showPanel(1)
+		//this.mainElement.appendChild(this.stats.dom);
 
 		this.addPoints();
 
@@ -644,9 +644,9 @@ export class dcOffice extends dcView {
 
 		this.controls.update();
 
-		if (this.stats) {
-			this.stats.begin();
-		}
+		//if (this.stats) {
+		//	this.stats.begin();
+		//}
 
 		this.points.forEach((point) => {
 			if (point.position) {
@@ -669,9 +669,9 @@ export class dcOffice extends dcView {
 
 		this.effectComposer.render();
 
-		if (this.stats) {
-			this.stats.end();
-		}
+		//if (this.stats) {
+		//	this.stats.end();
+		//}
 
 		globalThis.requestAnimationFrame(() => this.animate());
 	}

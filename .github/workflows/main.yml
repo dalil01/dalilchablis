@@ -27,4 +27,4 @@ jobs:
           password: ${{ secrets.FTP_PASSWORD }}
           server-dir: /public_html/dalilchablis/
           local-dir: ./dist/
-          clean: true
+          dangerous-clean-slate: true
