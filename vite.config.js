@@ -1,3 +1,5 @@
+import { viteStaticCopy } from "vite-plugin-static-copy";
+
 export default {
     root: "src",
     publicDir: "public",
@@ -6,14 +8,15 @@ export default {
     },
     build: {
         outDir: "../dist",
-        rollupOptions: {
-            output: {
-                // Copie le fichier .htaccess du dossier "public" vers le dossier "dist"
-                copy: [{
-                    from: "public/.htaccess",
-                    to: ".htaccess"
-                }]
-            }
-        }
-    }
+    },
+    plugins: [
+        viteStaticCopy({
+            targets: [
+                {
+                    src: ".htaccess",
+                    dest: "../dist"
+                }
+            ]
+        })
+    ]
 }
