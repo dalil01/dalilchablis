@@ -9,12 +9,7 @@ export default {
         port: 1200
     },
     build: {
-        outDir: "../dist",
-        rollupOptions: {
-            input: {
-                './assets/videos/video.mp4': dcGlobalVars.OUTSIDE_VIDEO
-            }
-        }
+        outDir: "../dist"
     },
     plugins: [
         viteStaticCopy({
