@@ -1,4 +1,5 @@
 import { viteStaticCopy } from "vite-plugin-static-copy";
+import {dcGlobalVars} from "./src/app/global/dcGlobalVars";
 
 export default {
     base: "./",
@@ -9,6 +10,11 @@ export default {
     },
     build: {
         outDir: "../dist",
+        rollupOptions: {
+            input: {
+                './assets/videos/video.mp4': dcGlobalVars.OUTSIDE_VIDEO
+            }
+        }
     },
     plugins: [
         viteStaticCopy({
