@@ -17,17 +17,46 @@
 
 .contact-social-networks-title {
     margin: 0 0 20px 10px;
-    font-size: .8rem;
+    font-size: .9rem;
     text-align: left;
 }
 
-.contact-social-networks i {
-    margin: 6px;
-    padding: 3px;
+.contact-social-networks {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.contact-social-network {
+    flex-grow: 1;
+    width: 33%;
+    margin: 30px 0;
+}
+
+.contact-social-network i {
+    font-size: 1.2rem;
+    border-radius: 6px;
+    padding: 10px;
+}
+
+.contact-social-network i:hover {
+    color: var(--dark-mode-color);
+    background-color: var(--light-mode-bg);
+}
+
+.light-mode .contact-social-network i:hover {
+    color: var(--light-mode-color);
+    background-color: var(--dark-mode-bg);
+}
+
+.contact-form-container form {
+    margin: auto;
+    width: 70%;
 }
 
 .contact-form-title {
-    margin: 25px 0 20px 10px;
-    font-size: .8rem;
+    margin: 25px 0 25px 10px;
+    font-size: .9rem;
     text-align: left;
 }
+

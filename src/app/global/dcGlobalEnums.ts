@@ -29,5 +29,6 @@ export enum SOCIAL_NETWORKS_LINKS {
 	TWITTER = "https://twitter.com/dalil_chbls",
 	GITHUB = "https://github.com/dalil01",
 	GITLAB = "https://gitlab.com/dalil01",
-	LINKEDIN = "https://www.linkedin.com/in/dalil-chablis/"
+	LINKEDIN = "https://www.linkedin.com/in/dalil-chablis/",
+	EMAIL = "dalil.chablis@gmail.com"
 }

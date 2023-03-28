@@ -1,11 +1,19 @@
+import "./dcForm.css";
+
 import { dcComponent } from "../dcComponent";
 import { _UDom } from "../../dcUtils/_UDom";
 import { DcIcons } from "../../dcIcons/dcIcons";
 import { _UIcon } from "../../dcUtils/_UIcon";
+import { dcCursor } from "../dcCursor/dcCursor";
 
-enum FORM_CSS_CLASSNAMES {
+enum FORM_CSS {
 	CONTAINER = "form-container",
+	FIELD_CONTAINER = "form-field-container",
+	INPUT = "form-input",
+	TEXTAREA = "form-textarea",
 	BUTTON_CONTAINER = "form-button-container",
+	BUTTON = "form-button",
+	BUTTON_ROUNDED = "form-button-rounded",
 }
 
 export type dcFormInputType = {
@@ -20,18 +28,24 @@ export enum INPUT_TYPE {
 	TEXTAREA = "textarea"
 }
 
+export type dcFormButton = {
+	icon?: DcIcons;
+	text?: string;
+	rounded: boolean;
+}
+
 export class dcForm extends dcComponent {
 	
 	private inputs: dcFormInputType[];
-	private buttonName: string;
+	private button: dcFormButton;
 	
 	private onSubmitCallback!: Function;
 	
-	constructor(parentElement: HTMLElement, inputs: dcFormInputType[], buttonName: string, autoInit: boolean = false) {
-		super(parentElement, _UDom.CE("form", { className: FORM_CSS_CLASSNAMES.CONTAINER }));
+	constructor(parentElement: HTMLElement, inputs: dcFormInputType[], button: dcFormButton, autoInit: boolean = false) {
+		super(parentElement, _UDom.CE("form", { className: FORM_CSS.CONTAINER }));
 		
 		this.inputs = inputs;
-		this.buttonName = buttonName;
+		this.button = button;
 		
 		if (autoInit)
 			this.init();
@@ -41,8 +55,8 @@ export class dcForm extends dcComponent {
 		this.inputs = inputs;
 	}
 	
-	public setButtonName(buttonName: string): void {
-		this.buttonName = buttonName;
+	public setButton(button: dcFormButton): void {
+		this.button = button;
 	}
 	
 	public onSubmit(callback: Function) {
@@ -52,40 +66,49 @@ export class dcForm extends dcComponent {
 	public buildUI(): void {
 		for (let i = 0; i < this.inputs.length; i++) {
 			const input = this.inputs[i];
-			
-			const inputContainer = _UDom.div();
-			
-			if (input.icon) {
-				const iconSpan = _UDom.span();
-				iconSpan.appendChild(_UIcon.getIcon(input.icon));
-				inputContainer.appendChild(iconSpan);
-			}
-			
-			let inputElement: HTMLInputElement | HTMLTextAreaElement = _UDom.input();
+			const inputContainer = _UDom.div({ className: FORM_CSS.FIELD_CONTAINER });
+
+			let inputElement: HTMLInputElement | HTMLTextAreaElement = _UDom.input({ className: FORM_CSS.INPUT });
 			switch (input.inputType) {
 				case INPUT_TYPE.EMAIL:
 					inputElement.type = "email";
 					break
 				case INPUT_TYPE.TEXTAREA:
-					inputElement = _UDom.CE("textarea");
+					// @ts-ignore
+					inputElement = _UDom.CE("textarea", { className: FORM_CSS.TEXTAREA, placeholder:  input?.placeholder || '' });
 					break
 				case INPUT_TYPE.TEXT:
 				default:
 					(<HTMLInputElement>inputElement).type = "text";
 			}
-			
+
 			inputElement.placeholder = input?.placeholder || '';
-			
+
 			inputContainer.appendChild(inputElement);
-			
-			this.getMainElement().appendChild(inputContainer);
+
+			this.mainElement.appendChild(inputContainer);
 		}
 		
-		if (this.buttonName) {
-			const buttonContainer = _UDom.div({ className: FORM_CSS_CLASSNAMES.BUTTON_CONTAINER });
-			const button = _UDom.button({ innerText: this.buttonName });
-			_UDom.AC(buttonContainer, button);
-			this.getMainElement().appendChild(buttonContainer);
+		if (this.button) {
+			const buttonContainer = _UDom.div({ className: FORM_CSS.BUTTON_CONTAINER });
+
+			let button = _UDom.button({ className: FORM_CSS.BUTTON });
+
+			if (this.button?.icon) {
+				button.appendChild(_UIcon.getIcon(this.button.icon));
+			}
+
+			if (this.button?.text) {
+				button.appendChild(_UDom.span({ innerText: this.button.text }));
+			}
+
+			if (this.button.rounded) {
+				button.classList.add(FORM_CSS.BUTTON_ROUNDED);
+			}
+
+			dcCursor.subscribeElementToDetectHover(button);
+
+			_UDom.AC(this.mainElement, _UDom.AC(buttonContainer, button));
 		}
 	}
 	

@@ -20,13 +20,14 @@ import { DcIcons } from "../../dcIcons/dcIcons";
 import { dcTranslator } from "../../dcTranslator/dcTranslator";
 import { dcTranslation } from "../../dcTranslator/dcTranslation";
 import { dcGlobalConfig } from "../../../global/dcGlobalConfig";
-import { VIEWS } from "../../../global/dcGlobalEnums";
+import { GLOBAL_CSS, VIEWS } from "../../../global/dcGlobalEnums";
 import { dcModal, Modal_TYPE } from "../../dcComponents/dcModal/dcModal";
 import { dcContact } from "../../dcComponents/dcContact/dcContact";
 import { dcAboutMe } from "../../dcComponents/dcInfos/dcAboutMe/dcAboutMe";
 import { dcExperience } from "../../dcComponents/dcInfos/dcExperience/dcExperience";
 import { dcEducation } from "../../dcComponents/dcInfos/dcEducation/dcEducation";
 import { dcProjects } from "../../dcComponents/dcInfos/dcProjects/dcProjects";
+import { VRButton } from "three/examples/jsm/webxr/VRButton";
 //import * as Stats from 'stats.js'
 
 enum OFFICE_CSS {
@@ -61,6 +62,8 @@ export class dcOffice extends dcView {
 	private readonly defaultControlsPosition: Vector3;
 	private readonly renderer: WebGLRenderer;
 	private readonly effectComposer: EffectComposer;
+	// @ts-ignore
+	private readonly vrButton: VRButton;
 
 	private readonly officeEvent: dcOfficeEvent;
 
@@ -100,6 +103,10 @@ export class dcOffice extends dcView {
 			precision: "mediump",
 			powerPreference: 'high-performance'
 		});
+
+		this.vrButton = VRButton.createButton(this.renderer);
+		this.autoSetVRMode();
+		this.parentElement.appendChild(this.vrButton);
 
 		let RenderTargetClass;
 		if (this.renderer.getPixelRatio() === 1 && this.renderer.capabilities.isWebGL2) {
@@ -197,6 +204,16 @@ export class dcOffice extends dcView {
 		} else {
 			this.controls.target.set(0, 1.45, 0)
 			this.controls.update();
+		}
+	}
+
+	public autoSetVRMode(): void {
+		if (dcGlobalConfig.isVRMode) {
+			this.renderer.xr.enabled = true;
+			this.vrButton.classList.remove(GLOBAL_CSS.DISPLAY_NONE);
+		} else {
+			this.renderer.xr.enabled = false;
+			this.vrButton.classList.add(GLOBAL_CSS.DISPLAY_NONE);
 		}
 	}
 

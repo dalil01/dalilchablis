@@ -24,6 +24,7 @@ export enum DcIcons {
   DcIconMoonSharp = "dcIcon-moon-sharp",
   DcIconMusicNoteOff = "dcIcon-music-note-off",
   DcIconMusicNote = "dcIcon-music-note",
+  DcIconSendRegular = "dcIcon-send-regular",
   DcIconSettings = "dcIcon-settings",
   DcIconSkills = "dcIcon-skills",
   DcIconSmile = "dcIcon-smile",

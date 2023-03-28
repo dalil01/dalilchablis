@@ -1,10 +1,10 @@
 @font-face {
     font-family: "dcIcons";
-    src: url("../fonts/dcIcons.eot?372ed2ca2130aa451c0f281672bf7846#iefix") format("embedded-opentype"),
-url("../fonts/dcIcons.svg?372ed2ca2130aa451c0f281672bf7846#dcIcons") format("svg"),
-url("../fonts/dcIcons.ttf?372ed2ca2130aa451c0f281672bf7846") format("truetype"),
-url("../fonts/dcIcons.woff?372ed2ca2130aa451c0f281672bf7846") format("woff"),
-url("../fonts/dcIcons.woff2?372ed2ca2130aa451c0f281672bf7846") format("woff2");
+    src: url("../fonts/dcIcons.eot?c01a4819f1cb453bb7b6cc0764c6f6d5#iefix") format("embedded-opentype"),
+url("../fonts/dcIcons.svg?c01a4819f1cb453bb7b6cc0764c6f6d5#dcIcons") format("svg"),
+url("../fonts/dcIcons.ttf?c01a4819f1cb453bb7b6cc0764c6f6d5") format("truetype"),
+url("../fonts/dcIcons.woff?c01a4819f1cb453bb7b6cc0764c6f6d5") format("woff"),
+url("../fonts/dcIcons.woff2?c01a4819f1cb453bb7b6cc0764c6f6d5") format("woff2");
 }
 
 i[class^="dcIcon-"]:before, i[class*=" dcIcon-"]:before {
@@ -93,42 +93,45 @@ i[class^="dcIcon-"]:before, i[class*=" dcIcon-"]:before {
 .dcIcon-music-note:before {
     content: "\f119";
 }
-.dcIcon-settings:before {
+.dcIcon-send-regular:before {
     content: "\f11a";
 }
-.dcIcon-skills:before {
+.dcIcon-settings:before {
     content: "\f11b";
 }
-.dcIcon-smile:before {
+.dcIcon-skills:before {
     content: "\f11c";
 }
-.dcIcon-snapchat-logo:before {
+.dcIcon-smile:before {
     content: "\f11d";
 }
-.dcIcon-telephone-fill:before {
+.dcIcon-snapchat-logo:before {
     content: "\f11e";
 }
-.dcIcon-twitter-logo:before {
+.dcIcon-telephone-fill:before {
     content: "\f11f";
 }
-.dcIcon-user-graduate:before {
+.dcIcon-twitter-logo:before {
     content: "\f120";
 }
-.dcIcon-user:before {
+.dcIcon-user-graduate:before {
     content: "\f121";
 }
-.dcIcon-vr-headset-solid:before {
+.dcIcon-user:before {
     content: "\f122";
 }
-.dcIcon-vr-headset:before {
+.dcIcon-vr-headset-solid:before {
     content: "\f123";
 }
-.dcIcon-wave-large:before {
+.dcIcon-vr-headset:before {
     content: "\f124";
 }
-.dcIcon-wave-small:before {
+.dcIcon-wave-large:before {
     content: "\f125";
 }
-.dcIcon-work-experience:before {
+.dcIcon-wave-small:before {
     content: "\f126";
+}
+.dcIcon-work-experience:before {
+    content: "\f127";
 }

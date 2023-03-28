@@ -41,13 +41,13 @@ export class dcSound extends dcComponent {
 		const box5 = _UDom.div({ className: SOUND_CSS_CLASSNAMES.BOX_5 });
 		
 		_UDom.AC(boxes, box1, box2, box3, box4, box5);
-		this.getMainElement().appendChild(boxes);
+		this.mainElement.appendChild(boxes);
 		
 		const boxesList = [box1, box2, box3, box4, box5];
 		boxesList.forEach((e) => {
 			e.classList.add((dcGlobalConfig.soundEnable) ? SOUND_CSS_CLASSNAMES.BOX_ENABLE : SOUND_CSS_CLASSNAMES.BOX);
 		});
-		
+
 		boxes.addEventListener("click", () => {
 			boxesList.forEach((e) => {
 				if (dcGlobalConfig.soundEnable) {
@@ -62,9 +62,9 @@ export class dcSound extends dcComponent {
 			localStorage.setItem(LOCAL_STORAGE_KEY.SOUND_ENABLE, dcGlobalConfig.soundEnable.toString());
 		});
 		
-		dcCursor.subscribeElementToDetectHover(this.getMainElement());
+		dcCursor.subscribeElementToDetectHover(this.mainElement);
 		
-		this.getParentElement().appendChild(this.getMainElement());
+		this.parentElement.appendChild(this.mainElement);
 	}
 	
 }

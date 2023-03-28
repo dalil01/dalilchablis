@@ -156,6 +156,7 @@ export class dcUIManager {
 		if (lsVREnable) {
 			dcGlobalConfig.isDarkMode = lsVREnable === "true";
 		}
+		this.officeView?.autoSetVRMode();
 	}
 
 	private autoSetMode(): void {

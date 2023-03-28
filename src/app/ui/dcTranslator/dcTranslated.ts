@@ -44,8 +44,8 @@ export const dcTranslated = {
 		FR: "Envoyer"
 	},
 	FIRSTNAME_LASTNAME: {
-		EN: "Firstname / LASTNAME",
-		FR: "Prénom / NOM"
+		EN: "Firstname / Lastname",
+		FR: "Prénom / Nom"
 	},
 	SUBJECT: {
 		EN: "Subject",
