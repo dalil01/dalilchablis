@@ -6,6 +6,7 @@ notToBake = [
     "pacman.001", "pacman.002", "pacman.003", "pacman.004",
     "led.001", "led.002", "led.003", "led.004", "led.005", "led.006", "led.007", "led.008", "led.009", "led.010", "led.011", "led.012",
     "cactus",
+    "table 1 glass", "table 2 glass",
     "about", "contact", "education", "experience", "projects", "skills"
 ]
 
