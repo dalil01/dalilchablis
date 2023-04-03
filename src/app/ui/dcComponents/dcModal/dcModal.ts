@@ -23,6 +23,7 @@ enum Modal_CSS {
 	MEDIUM = "modal-medium",
 	LARGE = "modal-large",
 	HEADER = "modal-header",
+	CLOSE_BTN = "modal-close-btn",
 	TITLE = "modal-title",
 	BODY = "modal-body",
 	FOOTER = "modal-footer",
@@ -95,7 +96,7 @@ export class dcModal extends dcComponent {
 		
 		header.appendChild(h2);
 		
-		const closeIcon = _UIcon.getIcon(DcIcons.DcIconCloseCircle);
+		const closeIcon = _UIcon.getIcon(DcIcons.DcIconCloseCircle, { className: Modal_CSS.CLOSE_BTN });
 		closeIcon.addEventListener("click", () => this.close());
 		dcCursor.subscribeElementToDetectHover(closeIcon);
 		header.appendChild(closeIcon);

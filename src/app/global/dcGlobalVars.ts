@@ -6,7 +6,8 @@ export class dcGlobalVars {
 	public static LOGO_BLACK_PATH = "./assets/images/dcLogoBlack.svg";
 	public static LOGO_WHITE_PATH = "./assets/images/dcLogoWhite.svg";
 	public static DRACO_LOADER_PATH = "./libs/draco/";
-	public static VIRTUAL_STUDIO_TEXTURE_PATH = "./assets/models/dcOffice.jpg";
+	public static VIRTUAL_STUDIO_LIGHT_TEXTURE_PATH = "./assets/models/dcOffice-light.jpg";
+	public static VIRTUAL_STUDIO_DARK_TEXTURE_PATH = "./assets/models/dcOffice-dark.jpg";
 	public static VIRTUAL_STUDIO_GLB_PATH = "./assets/models/dcOffice.glb";
-	public static OUTSIDE_VIDEO = "./assets/videos/video.mp4";
+	public static OUTSIDE_LIGHT_VIDEO = "./assets/videos/outside-light-2.mp4";
 }

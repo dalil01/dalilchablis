@@ -3,4 +3,5 @@
 dist
 node_modules
 
+resources/dcOffice/baked/dcOffice.baked.hdr
 vracs

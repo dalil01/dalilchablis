@@ -23,31 +23,25 @@ export class dcAboutMe extends dcComponent {
 	}
 	
 	public buildUI(): void {
-		const banner = _UDom.img({ src: "https://via.placeholder.com/150", className: ABOUT_ME_CSS_CLASSNAMES.BACKGROUND_IMAGE });
-		this.getMainElement().appendChild(banner);
-		
-		const profileImage = _UDom.img({ src: "https://via.placeholder.com/50", className: ABOUT_ME_CSS_CLASSNAMES.PROFILE_IMAGE });
-		this.getMainElement().appendChild(profileImage);
-		
-		const textContainer = _UDom.div({ className: ABOUT_ME_CSS_CLASSNAMES.TEXT_CONTAINER });
-		
-		const name = _UDom.h2({ innerText: "Dalil CHABLIS" });
-		const job = _UDom.p({ innerText: "Full-Stack Developer" });
-		const location = _UDom.p({ innerText: "Paris, France" });
-		
-		const title = _UDom.h3( { innerText: dcTranslator.T(dcTranslation.ABOUT_ME), className: ABOUT_ME_CSS_CLASSNAMES.TITLE });
-		this.getMainElement().appendChild(title);
-		
+		const imagesContainer = _UDom.div();
+		const img1 = _UDom.img({ src: "https://via.placeholder.com/50" });
+		const img2 = _UDom.img({ src: "https://via.placeholder.com/50" });
+		const img3 = _UDom.img({ src: "https://via.placeholder.com/50" });
+		_UDom.AC(imagesContainer, img1, img2, img3);
+
+		const aboutContainer = _UDom.div();
 		const about = _UDom.p({
 			innerText:
-				"Hi there (emoji) I'm Dalil, " +
+				"Hi there (emoji) I'm Dalil CHABLIS, " +
 				"a Full-Stack Developer in Paris. " +
 				"I'm passionate about everything related to computer science. " +
 				"Right now, my interests are rather in field of web, connected objects, 3D and virtual reality. " +
 				"I'm also passionate about sports, I go from athletics and I'm a javelin thrower!"
 		});
-		
-		_UDom.AC(this.getMainElement(), _UDom.AC(textContainer, name, job, location, title, about));
+		_UDom.AC(aboutContainer, about);
+
+
+		_UDom.AC(this.mainElement, imagesContainer, aboutContainer);
 	}
 	
 }

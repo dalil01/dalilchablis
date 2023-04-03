@@ -1,9 +1,9 @@
 import bpy
 
-baked_hdr_path = r"C:\Users\dalil\Projects\Personnals\dalilchablis\resources\dcOffice\dcOffice.baked.hdr"
+baked_hdr_path = r"/resources/dcOffice/dcOffice-light.baked.hdr"
 
-if "dcOffice.baked.hdr" in bpy.data.images:
-    baked_hdr = bpy.data.images.get("dcOffice.baked.hdr")
+if "dcOffice-light.baked.hdr" in bpy.data.images:
+    baked_hdr = bpy.data.images.get("dcOffice-light.baked.hdr")
 else:
     baked_hdr = bpy.data.images.load(baked_hdr_path)
 
