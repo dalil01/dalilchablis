@@ -25,6 +25,10 @@
     color: var(--light-mode-color);
 }
 
+.home-text-container {
+    width: 88%;
+}
+
 .home-name-container {
     font-weight: 600;
 }

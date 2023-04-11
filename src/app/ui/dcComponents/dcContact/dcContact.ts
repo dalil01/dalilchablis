@@ -58,7 +58,7 @@ export class dcContact extends dcComponent {
 		icons.forEach((icon) => icon.classList.add(CONTACT_CSS.SOCIAL_NETWORK));
 		dcCursor.subscribeElementsToDetectHover(icons);
 
-		_UDom.AC(socialNetworks, instagramIcon, snapchatIcon, twitterIcon, githubIcon, gitlabIcon, linkedinIcon, mailIcon);
+		_UDom.AC(socialNetworks, githubIcon, gitlabIcon, linkedinIcon, instagramIcon, snapchatIcon, twitterIcon, mailIcon);
 		_UDom.AC(socialNetworksContainer/*, socialNetworksTitle*/, socialNetworks);
 
 		/*

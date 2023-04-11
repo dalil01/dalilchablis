@@ -1,5 +1,6 @@
 {
   "name": "dalilchablis",
+  "type": "module",
   "version": "1.0.0",
   "description": "The personal website of Dalil CHABLIS.",
   "main": "./dist/index.js",

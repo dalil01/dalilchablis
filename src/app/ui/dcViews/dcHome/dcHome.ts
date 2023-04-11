@@ -12,23 +12,27 @@ import { dcUIManager } from "../../dcUIManager";
 
 enum HOME_CSS {
 	CONTAINER = "home-container",
+	TEXT_CONTAINER = "home-text-container",
 	NAME_CONTAINER = "home-name-container",
 	LOADING = "home-loading",
 	START_BTN = "home-start-button",
 }
 
 export class dcHome extends dcView {
-	
+
 	private loadingIcon!: HTMLElement;
 	private startBtn!: HTMLElement;
 
+	private text!: HTMLElement;
+	private writeTextAnimationEnd: boolean = false;
 	private startBtnVisible: boolean = false;
 
-	private onClickOnStartButtonCallback: Function = () => {};
+	private onClickOnStartButtonCallback: Function = () => {
+	};
 
 	constructor(parentElement: HTMLElement, autoInit: boolean = false) {
 		super(parentElement, _UDom.CCE("home", { className: HOME_CSS.CONTAINER }));
-		
+
 		if (autoInit)
 			this.init();
 	}
@@ -47,52 +51,54 @@ export class dcHome extends dcView {
 	}
 
 	private buildText(): void {
-		const text = _UDom.p();
+		if (!this.writeTextAnimationEnd) {
+			this.text = _UDom.p({ className: HOME_CSS.TEXT_CONTAINER });
 
-		const hello = dcTranslator.T(dcTranslation.HELLO) + ", " + dcTranslator.T(dcTranslation.WELCOME_TO_MY_WEBSITE) + ".\n " + dcTranslator.T(dcTranslation.I_AM) + ' ';
-		const name = "Dalil" + String.fromCharCode(160) + "CHABLIS";
-		const job = ", " + dcTranslator.T(dcTranslation.FULLSTACK_DEVELOPER) + " ! ";
+			const hello = dcTranslator.T(dcTranslation.HELLO) + ", " + dcTranslator.T(dcTranslation.WELCOME_TO_MY_WEBSITE) + ".\n " + dcTranslator.T(dcTranslation.I_AM) + ' ';
+			const name = "Dalil" + String.fromCharCode(160) + "CHABLIS";
+			const job = ", " + dcTranslator.T(dcTranslation.FULLSTACK_DEVELOPER) + " ! ";
 
-		_UDom.writeTextInElements([
-				{
-					startCallback: null,
-					endCallback: null,
-					element: text,
-					text: hello
-				},
-				{
-					startCallback: () => {
-						const nameContainer = _UDom.span({ className: HOME_CSS.NAME_CONTAINER });
-						text.appendChild(nameContainer);
-						return nameContainer;
+			_UDom.writeTextInElements([
+					{
+						startCallback: null,
+						endCallback: null,
+						element: this.text,
+						text: hello
 					},
-					element: null,
-					text: name,
-					endCallback: null
-				},
-				{
-					startCallback: () => {
-						const jobContainer = _UDom.span();
-						text.appendChild(jobContainer);
-						return jobContainer;
+					{
+						startCallback: () => {
+							const nameContainer = _UDom.span({ className: HOME_CSS.NAME_CONTAINER });
+							this.text.appendChild(nameContainer);
+							return nameContainer;
+						},
+						element: null,
+						text: name,
+						endCallback: null
 					},
-					endCallback: () => {
-						text.appendChild(_UIcon.getIcon(DcIcons.DcIconSmile));
-						text.appendChild(_UDom.span({
-							className: GLOBAL_CSS.BLINK,
-							innerText: '_'
-						}));
-					},
-					element: null,
-					text: job
-				}
-			],
-			62,
-			true,
-			false);
+					{
+						startCallback: () => {
+							const jobContainer = _UDom.span();
+							this.text.appendChild(jobContainer);
+							return jobContainer;
+						},
+						endCallback: () => {
+							this.text.appendChild(_UIcon.getIcon(DcIcons.DcIconSmile));
+							this.text.appendChild(_UDom.span({
+								className: GLOBAL_CSS.BLINK,
+								innerText: '_'
+							}));
+							this.writeTextAnimationEnd = true;
+						},
+						element: null,
+						text: job
+					}
+				],
+				62,
+				true,
+				false);
+		}
 
-
-		_UDom.AC(this.mainElement, text);
+		_UDom.AC(this.mainElement, this.text);
 	}
 
 	private buildLoading(): void {

@@ -14,11 +14,16 @@
 }
 
 .about-me-text-container {
-    padding: 8px 12px 12px 12px;
+    padding: 42px;
+    font-size: .9rem;
 }
 
 .about-me-title {
     border-top: 1px solid rgba(60, 64, 67, 0.15);
     margin-top: 12px;
     padding: 12px 0;
+}
+
+.about-me-emoji-hand {
+    color: #FFCA28;
 }

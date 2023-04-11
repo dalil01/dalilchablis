@@ -1,0 +1,14 @@
+{
+  "systemsAndAdministration": [
+    {
+      "imgPath": "../../../../assets/images/skills/systems_administration/windows.png",
+      "url": "https://www.microsoft.com/windows",
+      "name": "Windows"
+    },
+    {
+      "imgPath": "../../../../assets/images/skills/systems_administration/linux.png",
+      "url": "https://www.linux.org/",
+      "name": "Linux"
+    }
+  ]
+}

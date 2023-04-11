@@ -28,6 +28,7 @@ import { dcExperience } from "../../dcComponents/dcInfos/dcExperience/dcExperien
 import { dcEducation } from "../../dcComponents/dcInfos/dcEducation/dcEducation";
 import { dcProjects } from "../../dcComponents/dcInfos/dcProjects/dcProjects";
 import { VRButton } from "three/examples/jsm/webxr/VRButton";
+import { dcSkills } from "../../dcComponents/dcInfos/dcSkills/dcSkills";
 //import * as Stats from 'stats.js'
 
 enum OFFICE_CSS {
@@ -267,12 +268,12 @@ export class dcOffice extends dcView {
 	}
 
 	private addPoints(): void {
-		//this.addAboutMePoint();
+		this.addAboutMePoint();
 		this.addContactPoint();
 		//this.addEducationPoint();
 		//this.addExperiencePoint();
 		//this.addProjectsPoint();
-		//this.addSkillsPoint();
+		this.addSkillsPoint();
 
 		this.points.forEach((point) => {
 			const text = point.element.getElementsByClassName("text")[0];
@@ -524,7 +525,7 @@ export class dcOffice extends dcView {
 		}
 
 		const modal = new dcModal(Modal_TYPE.MEDIUM, pointWrapperElement, _UIcon.getIcon(DcIcons.DcIconSkills), dcTranslator.T(dcTranslation.SKILLS), undefined, true, true, true);
-		const modalComponent = new dcProjects(modal.getMainElement(), true);
+		const modalComponent = new dcSkills(modal.getMainElement(), true);
 		modal.setContent(modalComponent.getMainElement());
 		modal.onClose(() => this.moveToDefaultPosition());
 		pointWrapperElement.addEventListener("pointerdown", () => {
@@ -551,6 +552,7 @@ export class dcOffice extends dcView {
 		bakedTextureLight.flipY = false;
 		bakedTextureLight.encoding = THREE.sRGBEncoding;
 
+		/*
 		const outsideLightVideo = _UDom.video();
 		outsideLightVideo.setAttribute("crossorigin", "anonymous");
 		outsideLightVideo.src = dcGlobalVars.OUTSIDE_LIGHT_VIDEO;
@@ -558,6 +560,10 @@ export class dcOffice extends dcView {
 		outsideLightVideo.playsInline = true;
 		outsideLightVideo.autoplay = true;
 		outsideLightVideo.loop = true;
+
+		outsideLightVideo.onpause = () => {
+			outsideLightVideo.play();
+		}
 
 		const outsideLightTexture = new THREE.VideoTexture(outsideLightVideo);
 		(async () => await outsideLightVideo.play().then(() => {
@@ -569,6 +575,7 @@ export class dcOffice extends dcView {
 			outsideLightTexture.generateMipmaps = false;
 			outsideLightTexture.encoding = THREE.sRGBEncoding;
 		}))();
+		 */
 
 		this.gltfLoader.load(dcGlobalVars.VIRTUAL_STUDIO_GLB_PATH, (gltf) => {
 			this.gltfSceneDark = gltf.scene;
@@ -606,7 +613,7 @@ export class dcOffice extends dcView {
 							break;
 						case "windows":
 							child.material = new THREE.MeshBasicMaterial({
-								opacity: 0.21,
+								opacity: 0.12,
 								color: "#818181",
 								transparent: true,
 								side: THREE.DoubleSide,
@@ -614,17 +621,17 @@ export class dcOffice extends dcView {
 							});
 							break;
 						case "outside":
-							if (i != 0) {
-								child.material = new THREE.MeshBasicMaterial({
-									map: outsideLightTexture,
-									side: THREE.DoubleSide
-								});
-							}
+							//if (i != 0) {
+							//	child.material = new THREE.MeshBasicMaterial({
+							//		map: outsideLightTexture,
+							//		side: THREE.DoubleSide
+							//	});
+							//}
 							break;
 						case "table_1_glass":
 						case "table_2_glass":
 							child.material = new THREE.MeshBasicMaterial({
-								opacity: 0.25,
+								opacity: (i == 0) ? 0.1 :  0.21,
 								color: "#818181",
 								transparent: true,
 								side: THREE.DoubleSide,
@@ -680,7 +687,7 @@ export class dcOffice extends dcView {
 	private moveToDefaultPosition(): void {
 		this.controls.enableRotate = false;
 		gsap.to(this.controls.target, {
-			duration: 1.5,
+			duration: 1.2,
 			x: this.defaultControlsPosition.x,
 			y: this.defaultControlsPosition.y,
 			z: this.defaultControlsPosition.z,

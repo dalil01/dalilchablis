@@ -59,6 +59,14 @@ export const dcTranslated = {
 		EN: "About me",
 		FR: "A propos de moi"
 	},
+	HI_THERE: {
+		EN: "Hi there",
+		FR: "Hello"
+	},
+	ABOUT_TEXT: {
+		EN: "I'm Dalil CHABLIS, a Full-Stack Developer in Paris. I'm passionate about everything related to computer science. Right now, my interests are rather in field of web, connected objects, 3D and virtual reality. I'm also passionate about sports, I go from athletics and I'm a javelin thrower!",
+		FR: "Je suis Dalil CHABLIS, un développeur Full-Stack à Paris. Je suis passionné par tout ce qui touche à l'informatique. En ce moment, mes intérêts se portent plutôt dans le domaine du web, des objets connectés, de la 3D et de la réalité virtuelle. Je suis également passionné de sport, je fais de l'athlétisme et je suis lanceur de javelot!"
+	},
 	ME: {
 		EN: "Me",
 		FR: "Moi"
@@ -66,6 +74,14 @@ export const dcTranslated = {
 	SKILLS: {
 		EN: "Skills",
 		FR: "Compétences"
+	},
+	SEARCH: {
+		EN: "Search",
+		FR: "Rechercher"
+	},
+	SYSTEMS_ADMINISTRATION: {
+		EN: "Systems and administration",
+		FR: "Systèmes et administration"
 	},
 	PROJECTS: {
 		EN: "Projects",

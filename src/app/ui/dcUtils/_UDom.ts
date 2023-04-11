@@ -3,7 +3,10 @@ import { GLOBAL_CSS } from "../../global/dcGlobalEnums";
 type HTMLElementProperties = {
 	className?: string,
 	innerText?: string,
-	src?: string
+	src?: string,
+	title?: string,
+	type?: string,
+	placeholder?: string
 }
 
 export class _UDom {
