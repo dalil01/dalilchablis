@@ -271,7 +271,7 @@ export class dcOffice extends dcView {
 		this.addAboutMePoint();
 		this.addContactPoint();
 		this.addEducationPoint();
-		//this.addExperiencePoint();
+		this.addExperiencePoint();
 		//this.addProjectsPoint();
 		//this.addSkillsPoint();
 

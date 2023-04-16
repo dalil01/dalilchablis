@@ -16,7 +16,6 @@ enum EDUCATION_CSS {
 	CARD_IMAGE = "education-card-image",
 	CARD_TITLE = "education-card-title",
 	CARD_SUBTITLE = "education-card-subtitle",
-	CARD_DESCRIPTION = "education-card-subtitle",
 	CARD_LINK = "education-card-link",
 	CARD_SEPARATOR = "education-card-separator",
 	CARD_SEPARATOR_ICON = "education-separator-icon"
@@ -52,17 +51,16 @@ export class dcEducation extends dcComponent {
 
 		this.addCard(
 			imgEducationPath + "ldv-logo.jpg",
-			"http://www.uruguayfrance.fr/wp/",
-			"Lycée Léonard de Vinci (Melun)",
+			"https://www.vinci-melun.org/",
+			dcTranslator.T(dcTranslation.LYCEE) + " Léonard de Vinci (Melun)",
 			"BTS SIO SLAM | 2019 - 2021",
 			"https://www.onisep.fr/ressources/univers-formation/Formations/Post-bac/bts-services-informatiques-aux-organisations-option-b-solutions-logicielles-et-applications-metiers"
 		);
 
-
 		this.addCard(
 			imgEducationPath + "uruguay-logo.jpg",
-			"",
-			"Lycée Uruguay France (Avon)",
+			"http://www.uruguayfrance.fr/wp/",
+			dcTranslator.T(dcTranslation.LYCEE) + " Uruguay France (Avon)",
 			"BAC STMG SIG | 2017 - 2019",
 			"https://www.onisep.fr/ressources/univers-formation/Formations/Lycees/bac-techno-stmg-sciences-et-technologies-du-management-et-de-la-gestion-enseignement-specifique-systemes-d-information-de-gestion"
 		);

@@ -110,5 +110,13 @@ export const dcTranslated = {
 	CFA_SCIENCES: {
 		EN: "Cfa of sciences",
 		FR: "Cfa des sciences"
+	},
+	LYCEE: {
+		EN: "High school",
+		FR: "Lycée"
+	},
+	TODAY: {
+		EN: "Today",
+		FR: "Aujourd'hui"
 	}
 }
