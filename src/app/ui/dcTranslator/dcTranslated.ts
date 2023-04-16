@@ -94,5 +94,21 @@ export const dcTranslated = {
 	EXPERIENCE: {
 		EN: "Experience",
 		FR: "Experience"
+	},
+	READ_MORE: {
+		EN: "Read more",
+		FR: "En savoir plus"
+	},
+	EPITECH_DESCRIPTION: {
+		EN: "European Institute of Technology",
+		FR: "L'Institut européen de technologie"
+	},
+	UNIVERSITY: {
+		EN: "UNIVERSITY",
+		FR: "UNIVERSITÉ"
+	},
+	CFA_SCIENCES: {
+		EN: "Cfa of sciences",
+		FR: "Cfa des sciences"
 	}
 }

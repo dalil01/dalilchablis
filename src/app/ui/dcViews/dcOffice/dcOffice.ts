@@ -270,10 +270,10 @@ export class dcOffice extends dcView {
 	private addPoints(): void {
 		this.addAboutMePoint();
 		this.addContactPoint();
-		//this.addEducationPoint();
+		this.addEducationPoint();
 		//this.addExperiencePoint();
 		//this.addProjectsPoint();
-		this.addSkillsPoint();
+		//this.addSkillsPoint();
 
 		this.points.forEach((point) => {
 			const text = point.element.getElementsByClassName("text")[0];

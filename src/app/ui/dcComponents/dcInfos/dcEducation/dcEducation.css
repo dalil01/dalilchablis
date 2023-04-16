@@ -1,0 +1,69 @@
+.education-container {
+    display: block;
+    width: 100%;
+    height: 100%;
+    margin: 15px 0;
+}
+
+.education-card-container {
+    display: flex;
+    justify-content: space-around;
+}
+
+.education-card {
+    border: 1px solid #222222;
+    color: #222222;
+    width: 70%;
+    margin: 30px 0;
+    padding: 12px;
+    text-align: left;
+    border-radius: 6px;
+}
+
+.education-card-header {
+    display: flex;
+    align-items: center;
+}
+
+
+.education-card-image {
+    width: 1.5rem;
+    height: 1.5rem;
+}
+
+.education-card-title {
+    margin-left: 8px;
+    font-size: 1rem;
+}
+
+.education-card-subtitle {
+    margin-top: 10px;
+    font-size: .9rem;
+    font-weight: 600;
+}
+
+.education-card-description {
+    margin-top: 10px;
+    font-size: .8rem;
+    font-weight: 500;
+}
+
+.education-card-link {
+    display: block;
+    margin-top: 10px;
+    font-size: .8rem;
+    font-weight: 500;
+    text-decoration: none;
+}
+
+.education-card-separator {
+    width: 1px;
+    background-color: rgba(60, 64, 67, 0.15);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.education-separator-icon {
+    font-size: 1.2rem;
+}
