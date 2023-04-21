@@ -118,5 +118,49 @@ export const dcTranslated = {
 	TODAY: {
 		EN: "Today",
 		FR: "Aujourd'hui"
+	},
+	SUMMER_JOB: {
+		EN: "Summer job",
+		FR: "Job d'été"
+	},
+	APPRENTICE: {
+		EN: "Apprentice",
+		FR: "Alternance"
+	},
+	MONTHS: {
+		EN: "months",
+		FR: "mois"
+	},
+	TESTER: {
+		EN: "Tester",
+		FR: "Testeur"
+	},
+	INTERN: {
+		EN: "Intern",
+		FR: "Stagiaire"
+	},
+	CASHIER_SHELF_WORKER: {
+		EN: "Cashier and Shelf worker",
+		FR: "Caissier et Employé de rayon"
+	},
+	DCBRAIN_INTERN_WORK: {
+		EN: "Implementation of an automated system for monitoring and managing end-to-end tests with Jira, Xray, Cypress, Cucumber and Gitlab CI.",
+		FR: "Mise en place d'un système automatisé de suivi et de gestion des tests de bout en bout avec Jira, Xray, Cypress, Cucumber et Gitlab CI."
+	},
+	DCBRAIN_FREELANCE_WORK: {
+		EN: "Test automation with cypress and Gitlab CI.",
+		FR: "Automatisation des tests avec Cypress et Gitlab CI."
+	},
+	DCBRAIN_APPRENTICE_1: {
+		EN: "Fixed bugs and added new features to the application.",
+		FR: "Correction des bugs et ajout de nouvelles fonctionnalités dans l'application."
+	},
+	DCBRAIN_APPRENTICE_2: {
+		EN: "Creation of a 2D canvas data grid in typescript.",
+		FR: "Création d'une grille de données en canvas 2D in typescript."
+	},
+	DCBRAIN_APPRENTICE_3: {
+		EN: "Implementation of a test management platform with playwright in Java.",
+		FR: "Mise en place d'une plateforme de gestion des tests avec playwright en Java."
 	}
 }

@@ -19,18 +19,19 @@ enum EXPERIENCE_CSS {
 	CARD_JOB_TITLE = "experience-card-job-title",
 	CARD_JOB_SUBTITLE = "experience-card-job-subtitle",
 	CARD_SEPARATOR = "experience-card-separator",
+	CARD_LINK = "experience-card-link",
 	CARD_SEPARATOR_ICON = "experience-separator-icon"
 }
 
 export class dcExperience extends dcComponent {
-	
+
 	constructor(parentElement: HTMLElement, autoInit: boolean = false) {
 		super(parentElement, _UDom.CCE("experience", { className: EXPERIENCE_CSS.CONTAINER }));
-		
+
 		if (autoInit)
 			this.init();
 	}
-	
+
 	public buildUI(): void {
 		const imgExperiencePath = "../../../../assets/images/experience/";
 
@@ -38,56 +39,41 @@ export class dcExperience extends dcComponent {
 			imgExperiencePath + "dcbrain-logo.png",
 			"https://dcbrain.com/",
 			"DCbrain (Paris)",
+			dcTranslator.T(dcTranslation.FULLSTACK_DEVELOPER) + " - " + dcTranslator.T(dcTranslation.APPRENTICE) + " | " + "2021 - " + dcTranslator.T(dcTranslation.TODAY),
 			[
-				{
-					title: "Full Stack Déveloper - Apprentice",
-					subTitle: "2021 - " + dcTranslator.T(dcTranslation.TODAY)
-				}
-			],
+				"• " + dcTranslator.T(dcTranslation.DCBRAIN_APPRENTICE_1),
+				"• " + dcTranslator.T(dcTranslation.DCBRAIN_APPRENTICE_2),
+				"• " + dcTranslator.T(dcTranslation.DCBRAIN_APPRENTICE_3)
+			]
 		);
 
 		this.addCard(
 			imgExperiencePath + "dcbrain-logo.png",
 			"https://dcbrain.com/",
 			"DCbrain (Paris)",
-			[
-				{
-					title: "QA tester - Freelance",
-					subTitle: "2021 (7 months)"
-				},
-				{
-					title: "Intern",
-					subTitle: "2021 (2 months)"
-				}
-			],
+			"QA " + dcTranslator.T(dcTranslation.TESTER) + " - Freelance | 2021 (7 " + dcTranslator.T(dcTranslation.MONTHS) + ')',
+			dcTranslator.T(dcTranslation.DCBRAIN_FREELANCE_WORK)
 		);
 
 		this.addCard(
 			imgExperiencePath + "dcbrain-logo.png",
 			"https://dcbrain.com/",
 			"DCbrain (Paris)",
-			[
-				{
-					title: "Intern",
-					subTitle: "2021 (2 months)"
-				}
-			],
+			dcTranslator.T(dcTranslation.INTERN) + " | 2021 (2 " + dcTranslator.T(dcTranslation.MONTHS) + ')',
+			dcTranslator.T(dcTranslation.DCBRAIN_INTERN_WORK),
+			"https://gitlab.com/dalil01/automatisation-test-e2e"
 		);
 
 		this.addCard(
 			imgExperiencePath + "carrefour-logo.png",
 			"https://www.carrefour.fr/magasin/market-ecuelles",
 			"Carrefour Market (Ecuelles)",
-			[
-				{
-					title: "Summer Job",
-					subTitle: "2020 (1 months)"
-				}
-			],
+			dcTranslator.T(dcTranslation.SUMMER_JOB) + " | 2020 (1 " + dcTranslator.T(dcTranslation.MONTHS) + ')',
+			dcTranslator.T(dcTranslation.CASHIER_SHELF_WORKER) + '.'
 		);
 	}
 
-	public addCard(imageSrc: string, imgLink: string, title: string, jobs: { title: string, subTitle: string }[]): void {
+	public addCard(imageSrc: string, imgLink: string, title: string, jobTitle: string, jobSubTitles: string | string[], link: undefined | string = undefined): void {
 		const cardContainer = _UDom.div({ className: EXPERIENCE_CSS.CARD_CONTAINER });
 
 		const separator = _UDom.div({ className: EXPERIENCE_CSS.CARD_SEPARATOR });
@@ -104,16 +90,29 @@ export class dcExperience extends dcComponent {
 
 		_UDom.AC(card, _UDom.AC(cardHeader, cardImage, cardTitle));
 
-		for (const job of jobs) {
-			const cardJob = _UDom.div({ className: EXPERIENCE_CSS.CARD_JOB });
-			const cardJobTitle = _UDom.h2({ innerText: job.title, className: EXPERIENCE_CSS.CARD_JOB_TITLE });
-			const cardJobSubTitle = _UDom.h2({ innerText: job.subTitle, className: EXPERIENCE_CSS.CARD_JOB_SUBTITLE });
-			card.appendChild(_UDom.AC(cardJob, cardJobTitle, cardJobSubTitle));
+		const cardJob = _UDom.div({ className: EXPERIENCE_CSS.CARD_JOB });
+		const cardJobTitle = _UDom.h2({ innerText: jobTitle, className: EXPERIENCE_CSS.CARD_JOB_TITLE });
+		_UDom.AC(cardJob, cardJobTitle);
+
+		if (typeof jobSubTitles === "string") {
+			jobSubTitles = [jobSubTitles];
 		}
+
+		for (const jobSubTitle of jobSubTitles) {
+			const cardJobSubTitle = _UDom.h2({ innerText: jobSubTitle, className: EXPERIENCE_CSS.CARD_JOB_SUBTITLE });
+			cardJob.appendChild(cardJobSubTitle);
+		}
+
+		card.appendChild(cardJob);
 
 		_UDom.AC(cardContainer, separator, card);
 
+		if (link) {
+			const readMore = _UDom.a({ href: link, innerText: dcTranslator.T(dcTranslation.READ_MORE) + "...", className: EXPERIENCE_CSS.CARD_LINK, target: "_blank" });
+			card.appendChild(readMore);
+		}
+
 		this.mainElement.appendChild(cardContainer);
 	}
-	
+
 }

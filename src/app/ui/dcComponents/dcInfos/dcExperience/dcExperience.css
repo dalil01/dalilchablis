@@ -34,7 +34,7 @@
 }
 
 .experience-card-image {
-    width: 1.3rem;
+    width: 1.5rem;
     height: 1.5rem;
 }
 
@@ -43,20 +43,16 @@
     font-size: .85rem;
 }
 
-.experience-card-subtitle {
+.experience-card-job-title {
     margin-top: 10px;
     font-size: .75rem;
     font-weight: 600;
 }
 
-.experience-card-description {
+.experience-card-job-subtitle {
     margin-top: 10px;
     font-size: .8rem;
     font-weight: 500;
-}
-
-.experience-card-link:hover {
-    text-decoration: underline;
 }
 
 .experience-card-separator {
@@ -73,6 +69,26 @@
 
 .light-mode .experience-card-separator {
     background-color: rgba(60, 64, 67, 0.21);
+}
+
+.experience-card-link {
+    display: block;
+    margin-top: 10px;
+    font-size: .72rem;
+    font-weight: 500;
+    text-decoration: none;
+}
+
+.dark-mode .experience-card-link {
+    color: var(--light-mode-color);
+}
+
+.light-mode .experience-card-link {
+    color: var(--dark-mode-color);
+}
+
+.experience-card-link:hover {
+    text-decoration: underline;
 }
 
 .experience-separator-icon {
