@@ -4,13 +4,19 @@ import { dcComponent } from "../../dcComponent";
 import { _UDom } from "../../../dcUtils/_UDom";
 import { dcTranslator } from "../../../dcTranslator/dcTranslator";
 import { dcTranslation } from "../../../dcTranslator/dcTranslation";
+import { dcGlobalVars } from "../../../../global/dcGlobalVars";
 
-enum PROJECTS_CSS_CLASSNAMES {
+enum SKILLS_CSS {
 	CONTAINER = "skills-container",
+	ITEMS = "skill-items",
+	ITEM = "skill-item",
+	IMAGE = "skill-item-image",
+	NAME = "skill-item-name",
 }
 
 type dcSkillsType = {
-	systemsAndAdministration: {
+	$title: string,
+	items: {
 		imgPath: string,
 		url: string,
 		name: string
@@ -19,10 +25,10 @@ type dcSkillsType = {
 
 export class dcSkills extends dcComponent {
 
-	private data!: dcSkillsType;
+	private data!: dcSkillsType[];
 
 	constructor(parentElement: HTMLElement, autoInit: boolean = false) {
-		super(parentElement, _UDom.CCE("skills", { className: PROJECTS_CSS_CLASSNAMES.CONTAINER }));
+		super(parentElement, _UDom.CCE("skills", { className: SKILLS_CSS.CONTAINER }));
 
 		if (autoInit)
 			this.init();
@@ -32,10 +38,8 @@ export class dcSkills extends dcComponent {
 		(async () => import("./dcSkills.json"))()
 			.then((response: any) => {
 				this.data = response.default;
-
 				this.buildFilter();
-
-				this.buildSystemsAdministrations();
+				this.buildItems();
 			});
 	}
 
@@ -49,21 +53,27 @@ export class dcSkills extends dcComponent {
 		this.mainElement.appendChild(container);
 	}
 
-	private buildSystemsAdministrations(): void {
-		const title = _UDom.p({ innerText: dcTranslator.T(dcTranslation.SYSTEMS_ADMINISTRATION) });
+	private buildItems(): void {
+		for (const skills of this.data) {
 
-		const container = _UDom.div();
-		for (const item of this.data.systemsAndAdministration) {
-			const div = _UDom.div();
+			const title = _UDom.p({ innerText: dcTranslator.T(dcTranslation[skills.$title]) });
 
-			dcSkills.openLink(div, item.url);
-			_UDom.AC(div, _UDom.img({ src: item.imgPath }));
-			_UDom.AC(div, _UDom.p({ innerText: item.name }));
+			const container = _UDom.div({ className: SKILLS_CSS.ITEMS });
 
-			container.appendChild(div);
+			this.mainElement.appendChild(title);
+
+			for (const item of skills.items) {
+				const div = _UDom.div({ className: SKILLS_CSS.ITEM });
+
+				dcSkills.openLink(div, item.url);
+				_UDom.AC(div, _UDom.img({ src: dcGlobalVars.IMAGE_PATH + "skills/" + item.imgPath, className: SKILLS_CSS.IMAGE }));
+				_UDom.AC(div, _UDom.p({ innerText: item.name, className: SKILLS_CSS.NAME }));
+
+				container.appendChild(div);
+			}
+
+			this.mainElement.appendChild(container);
 		}
-
-		_UDom.AC(this.mainElement, container, title);
 	}
 
 	private static openLink(element: HTMLElement, link: string): void {

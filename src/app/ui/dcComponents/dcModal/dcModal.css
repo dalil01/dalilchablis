@@ -82,6 +82,7 @@
     margin: 12px 0;
     width: 98%;
     height: 85%;
+    overflow: auto;
 }
 
 .modal-small, .modal-medium, .modal-large {

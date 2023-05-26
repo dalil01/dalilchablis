@@ -51,52 +51,50 @@ export class dcHome extends dcView {
 	}
 
 	private buildText(): void {
-		if (!this.writeTextAnimationEnd) {
-			this.text = _UDom.p({ className: HOME_CSS.TEXT_CONTAINER });
+		this.text = _UDom.p({ className: HOME_CSS.TEXT_CONTAINER });
 
-			const hello = dcTranslator.T(dcTranslation.HELLO) + ", " + dcTranslator.T(dcTranslation.WELCOME_TO_MY_WEBSITE) + ".\n " + dcTranslator.T(dcTranslation.I_AM) + ' ';
-			const name = "Dalil" + String.fromCharCode(160) + "CHABLIS";
-			const job = ", " + dcTranslator.T(dcTranslation.FULLSTACK_DEVELOPER) + " ! ";
+		const hello = dcTranslator.T(dcTranslation.HELLO) + ", " + dcTranslator.T(dcTranslation.WELCOME_TO_MY_WEBSITE) + ".\n " + dcTranslator.T(dcTranslation.I_AM) + ' ';
+		const name = "Dalil" + String.fromCharCode(160) + "CHABLIS";
+		const job = ", " + dcTranslator.T(dcTranslation.FULLSTACK_DEVELOPER) + " ! ";
 
-			_UDom.writeTextInElements([
-					{
-						startCallback: null,
-						endCallback: null,
-						element: this.text,
-						text: hello
+		_UDom.writeTextInElements([
+				{
+					startCallback: null,
+					endCallback: null,
+					element: this.text,
+					text: hello
+				},
+				{
+					startCallback: () => {
+						const nameContainer = _UDom.span({ className: HOME_CSS.NAME_CONTAINER });
+						this.text.appendChild(nameContainer);
+						return nameContainer;
 					},
-					{
-						startCallback: () => {
-							const nameContainer = _UDom.span({ className: HOME_CSS.NAME_CONTAINER });
-							this.text.appendChild(nameContainer);
-							return nameContainer;
-						},
-						element: null,
-						text: name,
-						endCallback: null
+					element: null,
+					text: name,
+					endCallback: null
+				},
+				{
+					startCallback: () => {
+						const jobContainer = _UDom.span();
+						this.text.appendChild(jobContainer);
+						return jobContainer;
 					},
-					{
-						startCallback: () => {
-							const jobContainer = _UDom.span();
-							this.text.appendChild(jobContainer);
-							return jobContainer;
-						},
-						endCallback: () => {
-							this.text.appendChild(_UIcon.getIcon(DcIcons.DcIconSmile));
-							this.text.appendChild(_UDom.span({
-								className: GLOBAL_CSS.BLINK,
-								innerText: '_'
-							}));
-							this.writeTextAnimationEnd = true;
-						},
-						element: null,
-						text: job
-					}
-				],
-				62,
-				true,
-				false);
-		}
+					endCallback: () => {
+						this.text.appendChild(_UIcon.getIcon(DcIcons.DcIconSmile));
+						this.text.appendChild(_UDom.span({
+							className: GLOBAL_CSS.BLINK,
+							innerText: '_'
+						}));
+						this.writeTextAnimationEnd = true;
+					},
+					element: null,
+					text: job
+				}
+			],
+			62,
+			true,
+			false);
 
 		_UDom.AC(this.mainElement, this.text);
 	}

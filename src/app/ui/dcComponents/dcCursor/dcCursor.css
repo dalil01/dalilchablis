@@ -6,7 +6,7 @@
     width: 50px;
     height: 50px;
     border-radius: 100%;
-    border: 1px solid grey;
+    border: 1px solid darkgray;
     transition: all 200ms ease-out;
     position: fixed;
     pointer-events: none;
@@ -28,12 +28,12 @@
     z-index: 100;
 }
 
-.cursor-inner-light {
+.light-mode .cursor-inner {
     background-color: black;
 }
 
-.cursor-inner-dark {
-    background-color: grey;
+.dark-mode .cursor-inner {
+    background-color: darkgray;
 }
 
 .cursor-inner-hover {

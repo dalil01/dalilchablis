@@ -1,0 +1,23 @@
+.skills-container {
+
+}
+
+.skill-items {
+    margin: 30px 10px;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.skill-item {
+
+}
+
+.skill-item-image {
+    width: 32px;
+    height: 32px;
+}
+
+.skill-item-name {
+
+}

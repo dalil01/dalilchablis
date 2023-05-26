@@ -29,6 +29,7 @@ import { dcEducation } from "../../dcComponents/dcInfos/dcEducation/dcEducation"
 import { dcProjects } from "../../dcComponents/dcInfos/dcProjects/dcProjects";
 import { VRButton } from "three/examples/jsm/webxr/VRButton";
 import { dcSkills } from "../../dcComponents/dcInfos/dcSkills/dcSkills";
+
 //import * as Stats from 'stats.js'
 
 enum OFFICE_CSS {
@@ -67,8 +68,8 @@ export class dcOffice extends dcView {
 	private readonly defaultControlsPosition: Vector3;
 	private readonly renderer: WebGLRenderer;
 	private readonly effectComposer: EffectComposer;
-	// @ts-ignore
-	private readonly vrButton: VRButton;
+
+	private readonly vrButton: any;
 
 	private readonly officeEvent: dcOfficeEvent;
 
@@ -272,8 +273,8 @@ export class dcOffice extends dcView {
 		this.addContactPoint();
 		this.addEducationPoint();
 		this.addExperiencePoint();
+		this.addSkillsPoint();
 		//this.addProjectsPoint();
-		//this.addSkillsPoint();
 
 		this.points.forEach((point) => {
 			const text = point.element.getElementsByClassName("text")[0];
@@ -552,31 +553,6 @@ export class dcOffice extends dcView {
 		bakedTextureLight.flipY = false;
 		bakedTextureLight.encoding = THREE.sRGBEncoding;
 
-		/*
-		const outsideLightVideo = _UDom.video();
-		outsideLightVideo.setAttribute("crossorigin", "anonymous");
-		outsideLightVideo.src = dcGlobalVars.OUTSIDE_LIGHT_VIDEO;
-		outsideLightVideo.muted = true;
-		outsideLightVideo.playsInline = true;
-		outsideLightVideo.autoplay = true;
-		outsideLightVideo.loop = true;
-
-		outsideLightVideo.onpause = () => {
-			outsideLightVideo.play();
-		}
-
-		const outsideLightTexture = new THREE.VideoTexture(outsideLightVideo);
-		(async () => await outsideLightVideo.play().then(() => {
-			outsideLightTexture.flipY = false;
-			outsideLightTexture.rotation = 0;
-			outsideLightTexture.wrapS = THREE.ClampToEdgeWrapping;
-			outsideLightTexture.minFilter = THREE.LinearFilter;
-			outsideLightTexture.magFilter = THREE.LinearFilter;
-			outsideLightTexture.generateMipmaps = false;
-			outsideLightTexture.encoding = THREE.sRGBEncoding;
-		}))();
-		 */
-
 		this.gltfLoader.load(dcGlobalVars.VIRTUAL_STUDIO_GLB_PATH, (gltf) => {
 			this.gltfSceneDark = gltf.scene;
 			this.gltfSceneLight = gltf.scene.clone(true);
@@ -621,17 +597,18 @@ export class dcOffice extends dcView {
 							});
 							break;
 						case "outside":
-							//if (i != 0) {
-							//	child.material = new THREE.MeshBasicMaterial({
-							//		map: outsideLightTexture,
-							//		side: THREE.DoubleSide
-							//	});
-							//}
+							const outsideTexture = new THREE.TextureLoader().load(dcGlobalVars.OUTSIDE);
+							outsideTexture.flipY = false;
+							//outsideTexture.minFilter = THREE.LinearFilter;
+							//outsideTexture.magFilter = THREE.LinearFilter;
+							outsideTexture.wrapS = THREE.RepeatWrapping;
+							outsideTexture.wrapT = THREE.RepeatWrapping;
+							child.material = new THREE.MeshBasicMaterial({ map: outsideTexture });
 							break;
 						case "table_1_glass":
 						case "table_2_glass":
 							child.material = new THREE.MeshBasicMaterial({
-								opacity: (i == 0) ? 0.1 :  0.21,
+								opacity: (i == 0) ? 0.1 : 0.21,
 								color: "#818181",
 								transparent: true,
 								side: THREE.DoubleSide,

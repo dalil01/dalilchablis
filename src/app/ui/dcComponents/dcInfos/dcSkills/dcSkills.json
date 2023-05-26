@@ -1,14 +1,25 @@
-{
-  "systemsAndAdministration": [
-    {
-      "imgPath": "../../../../assets/images/skills/systems_administration/windows.png",
-      "url": "https://www.microsoft.com/windows",
-      "name": "Windows"
-    },
-    {
-      "imgPath": "../../../../assets/images/skills/systems_administration/linux.png",
-      "url": "https://www.linux.org/",
-      "name": "Linux"
-    }
-  ]
-}
+[
+  {
+	"$title": "SYSTEMS_ADMINISTRATION",
+	"items": [
+	  {
+		"imgPath": "systems_administration/windows.png",
+		"url": "https://www.microsoft.com/windows",
+		"name": "Windows"
+	  },
+	  {
+		"imgPath": "systems_administration/linux.png",
+		"url": "https://www.linux.org/",
+		"name": "Linux"
+	  }
+	]
+  },
+  {
+	"$title": "TOOLS_SOFTWARE",
+	"items": [
+	  {
+
+	  }
+	]
+  }
+]

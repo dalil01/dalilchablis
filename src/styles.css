@@ -23,6 +23,7 @@
 
 ::-webkit-scrollbar {
     width: 8px;
+    height: 8px;
 }
 
 ::-webkit-scrollbar-track {
@@ -39,7 +40,7 @@
     background: #ababab;
 }
 
-.dark-mode ::-webkit-scrollbar-thumb {
+.dark-mode ::-webkit-scrollbar-thumb, .light-mode ::-webkit-scrollbar-corner {
     background: #cccccc;
 }
 

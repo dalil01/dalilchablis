@@ -157,7 +157,7 @@ export const dcTranslated = {
 	},
 	DCBRAIN_APPRENTICE_2: {
 		EN: "Creation of a 2D canvas data grid in typescript.",
-		FR: "Création d'une grille de données en canvas 2D in typescript."
+		FR: "Création d'une grille de données en canvas 2D en typescript."
 	},
 	DCBRAIN_APPRENTICE_3: {
 		EN: "Implementation of a test management platform with playwright in Java.",
