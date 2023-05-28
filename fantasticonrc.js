@@ -14,7 +14,7 @@ module.exports = {
     descent : 45,
     normalize : true,
     fontsUrl: "../fonts",
-    prefix: 'dcIcon',
+    prefix: "dcIcon",
     formatOptions: {
         ts: {
             // select what kind of types you want to generate (default `['enum', 'constant', 'literalId', 'literalKey']`)

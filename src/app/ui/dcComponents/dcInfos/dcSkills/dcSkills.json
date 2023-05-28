@@ -1,24 +1,575 @@
 [
   {
-	"$title": "SYSTEMS_ADMINISTRATION",
+	"$title": "SYSTEMS",
+	"$subTitle": "OS",
 	"items": [
 	  {
-		"imgPath": "systems_administration/windows.png",
-		"url": "https://www.microsoft.com/windows",
-		"name": "Windows"
+		"imgPath": "systems/os/unix.png",
+		"url": "https://wikipedia.org/wiki/Unix",
+		"name": "Unix"
 	  },
 	  {
-		"imgPath": "systems_administration/linux.png",
+		"imgPath": "systems/os/linux.png",
 		"url": "https://www.linux.org/",
-		"name": "Linux"
+		"name": "GNU/Linux"
+	  },
+	  {
+		"imgPath": "systems/os/windows.png",
+		"url": "https://www.microsoft.com/windows",
+		"name": "Windows"
+	  }
+	]
+  },
+  {
+	"$subTitle": "DISTRIBUTIONS_VERSIONS",
+	"items": [
+	  {
+		"imgPath": "systems/distributions/debian.png",
+		"url": "https://www.debian.org/",
+		"name": "Debian"
+	  },
+	  {
+		"imgPath": "systems/distributions/ubuntu.png",
+		"url": "https://ubuntu.com/",
+		"name": "Ubuntu"
+	  },
+	  {
+		"imgPath": "systems/distributions/kubuntu.png",
+		"url": "https://kubuntu.org/",
+		"name": "Kubuntu"
+	  },
+	  {
+		"imgPath": "systems/distributions/pop-os.png",
+		"url": "https://pop.system76.com/",
+		"name": "Pop! OS"
+	  },
+	  {
+		"imgPath": "systems/distributions/kali.png",
+		"url": "https://www.kali.org/",
+		"name": "Kali Linux"
+	  },
+	  {
+		"imgPath": "systems/distributions/opensuse.png",
+		"url": "https://www.opensuse.org/",
+		"name": "OpenSUSE"
+	  },
+	  {
+		"imgPath": "systems/distributions/deepin.png",
+		"url": "https://www.deepin.org/",
+		"name": "Deepin"
+	  },
+	  {
+		"imgPath": "systems/distributions/openbsd.png",
+		"url": "https://www.openbsd.org/",
+		"name": "OpenBSD"
+	  },
+	  {
+		"imgPath": "systems/distributions/freebsd.png",
+		"url": "https://www.freebsd.org/",
+		"name": "FreeBSD"
+	  },
+	  {
+		"imgPath": "systems/distributions/windows10.png",
+		"url": "https://www.microsoft.com/fr-fr/software-download/windows10",
+		"name": "Windows 10"
+	  },
+	  {
+		"imgPath": "systems/distributions/windows11.png",
+		"url": "https://www.microsoft.com/fr-fr/software-download/windows11",
+		"name": "Windows 11"
 	  }
 	]
   },
   {
 	"$title": "TOOLS_SOFTWARE",
+	"$subTitle": "MODELING_PROTOTYPING",
 	"items": [
 	  {
-
+		"imgPath": "tools_software/prototyping_modeling/blender.png",
+		"url": "https://www.blender.org/",
+		"name": "Blender"
+	  },
+	  {
+		"imgPath": "tools_software/prototyping_modeling/figma.png",
+		"url": "https://www.figma.com/",
+		"name": "Figma"
+	  },
+	  {
+		"imgPath": "tools_software/prototyping_modeling/dia.png",
+		"url": "http://dia-installer.de/",
+		"name": "Dia"
+	  },
+	  {
+		"imgPath": "tools_software/prototyping_modeling/modelio.png",
+		"url": "https://www.modelio.org/index.htm",
+		"name": "Modelio"
+	  }
+	]
+  },
+  {
+	"$subTitle": "TEXT_EDITOR_IDE",
+	"items": [
+	  {
+		"imgPath": "tools_software/text_editor_ide/intellij.png",
+		"url": "https://www.jetbrains.com/idea/",
+		"name": "Intellij"
+	  },
+	  {
+		"imgPath": "tools_software/text_editor_ide/vscode.png",
+		"url": "https://code.visualstudio.com/",
+		"name": "VS Code"
+	  },
+	  {
+		"imgPath": "tools_software/text_editor_ide/phpstorm.png",
+		"url": "https://www.jetbrains.com/phpstorm/",
+		"name": "PhpStorm"
+	  },
+	  {
+		"imgPath": "tools_software/text_editor_ide/webstorm.png",
+		"url": "https://www.jetbrains.com/webstorm/",
+		"name": "WebStorm"
+	  },
+	  {
+		"imgPath": "tools_software/text_editor_ide/pycharm.png",
+		"url": "https://www.jetbrains.com/pycharm/",
+		"name": "PyCharm"
+	  },
+	  {
+		"imgPath": "tools_software/text_editor_ide/android-studio.png",
+		"url": "https://developer.android.com/studio/",
+		"name": "Android Studio"
+	  },
+	  {
+		"imgPath": "tools_software/text_editor_ide/notepad.png",
+		"url": "https://notepad-plus-plus.org/",
+		"name": "Notepad++"
+	  },
+	  {
+		"imgPath": "tools_software/text_editor_ide/sublimetext.png",
+		"url": "https://www.sublimetext.com/",
+		"name": "Sublime Text"
+	  },
+	  {
+		"imgPath": "tools_software/text_editor_ide/komodoedit.png",
+		"url": "https://www.activestate.com/products/komodo-edit/",
+		"name": "Komodo Edit"
+	  }
+	]
+  },
+  {
+	"$subTitle": "VERSIONNING",
+	"items": [
+	  {
+		"imgPath": "tools_software/versionning/git.png",
+		"url": "https://git-scm.com/",
+		"name": "Git"
+	  },
+	  {
+		"imgPath": "tools_software/versionning/github.png",
+		"url": "https://github.com/",
+		"name": "GitHub"
+	  },
+	  {
+		"imgPath": "tools_software/versionning/gitlab.png",
+		"url": "https://gitlab.com/",
+		"name": "GitLab"
+	  }
+	]
+  },
+  {
+	"$subTitle": "BUNDLER",
+	"items": [
+	  {
+		"imgPath": "tools_software/bundler/webpack.png",
+		"url": "https://webpack.js.org/",
+		"name": "Webpack"
+	  },
+	  {
+		"imgPath": "tools_software/bundler/vitejs.png",
+		"url": "https://vitejs.dev/",
+		"name": "Vite.js"
+	  }
+	]
+  },
+  {
+	"$subTitle": "DEPENDENCY_MANAGER",
+	"items": [
+	  {
+		"imgPath": "tools_software/dependency_manager/maven.png",
+		"url": "https://wikipedia.org/wiki/Apache_Maven",
+		"name": "Maven"
+	  },
+	  {
+		"imgPath": "tools_software/dependency_manager/gradle.png",
+		"url": "https://gradle.org/",
+		"name": "Gradle"
+	  },
+	  {
+		"imgPath": "tools_software/dependency_manager/npm.png",
+		"url": "https://www.npmjs.com/",
+		"name": "npm"
+	  }
+	]
+  },
+  {
+	"$subTitle": "SGBD",
+	"items": [
+	  {
+		"imgPath": "tools_software/sgbd/mysql.png",
+		"url": "https://www.mysql.com/",
+		"name": "MySQL"
+	  },
+	  {
+		"imgPath": "tools_software/sgbd/mongodb.png",
+		"url": "https://www.mongodb.com/",
+		"name": "MongoDB"
+	  },
+	  {
+		"imgPath": "tools_software/sgbd/mariadb.png",
+		"url": "https://mariadb.org/",
+		"name": "MariaDB"
+	  },
+	  {
+		"imgPath": "tools_software/sgbd/redis.png",
+		"url": "https://redis.io/",
+		"name": "Redis"
+	  }
+	]
+  },
+  {
+	"$subTitle": "TESTING",
+	"items": [
+	  {
+		"imgPath": "tools_software/testing/postman.png",
+		"url": "https://www.postman.com/",
+		"name": "Postman"
+	  },
+	  {
+		"imgPath": "tools_software/testing/insomnia.png",
+		"url": "https://insomnia.rest/",
+		"name": "Insomnia"
+	  },
+	  {
+		"imgPath": "tools_software/testing/xray.png",
+		"url": "https://www.getxray.app/",
+		"name": "Xray"
+	  },
+	  {
+		"imgPath": "tools_software/testing/percy.png",
+		"url": "https://percy.io/",
+		"name": "Percy"
+	  }
+	]
+  },
+  {
+	"$subTitle": "VIRTUALIZATION",
+	"items": [
+	  {
+		"imgPath": "tools_software/virtualization/virtualbox.png",
+		"url": "https://www.virtualbox.org/",
+		"name": "VirtualBox"
+	  }
+	]
+  },
+  {
+	"$subTitle": "DEVOPS",
+	"items": [
+	  {
+		"imgPath": "tools_software/devops/docker.png",
+		"url": "https://www.docker.com/",
+		"name": "Docker"
+	  },
+	  {
+		"imgPath": "tools_software/devops/filezilla.png",
+		"url": "https://filezilla-project.org/",
+		"name": "FileZilla"
+	  },
+	  {
+		"imgPath": "tools_software/devops/gitlab-ci-cd.png",
+		"url": "https://docs.gitlab.com/ee/ci/",
+		"name": "GitLab CI/CD"
+	  },
+	  {
+		"imgPath": "tools_software/devops/github-actions.png",
+		"url": "https://docs.github.com/en/actions",
+		"name": "GitHub Actions"
+	  },
+	  {
+		"imgPath": "tools_software/devops/ansible.png",
+		"url": "https://www.ansible.com/",
+		"name": "Ansible"
+	  },
+	  {
+		"imgPath": "tools_software/devops/jenkins.png",
+		"url": "https://www.jenkins.io/",
+		"name": "Jenkins"
+	  },
+	  {
+		"imgPath": "tools_software/devops/kubernetes.png",
+		"url": "https://kubernetes.io/",
+		"name": "Kubernetes"
+	  }
+	]
+  },
+  {
+	"$subTitle": "SECURITY",
+	"items": [
+	  {
+		"imgPath": "tools_software/security/nmap.png",
+		"url": "https://nmap.org/",
+		"name": "Nmap"
+	  },
+	  {
+		"imgPath": "tools_software/security/wireshark.png",
+		"url": "https://www.wireshark.org/",
+		"name": "Wireshark"
+	  },
+	  {
+		"imgPath": "tools_software/security/gobuster.png",
+		"url": "https://www.kali.org/tools/gobuster/",
+		"name": "Gobuster"
+	  },
+	  {
+		"imgPath": "tools_software/security/metasploit.png",
+		"url": "https://www.metasploit.com/",
+		"name": "Metasploit"
+	  },
+	  {
+		"imgPath": "tools_software/security/hydra.png",
+		"url": "https://en.kali.tools/?p=220/",
+		"name": "Hydra"
+	  }
+	]
+  },
+  {
+	"$subTitle": "WEB_SERVER",
+	"items": [
+	  {
+		"imgPath": "tools_software/server_web/apache.png",
+		"url": "https://httpd.apache.org/",
+		"name": "Apache"
+	  },
+	  {
+		"imgPath": "tools_software/server_web/nginx.png",
+		"url": "https://www.nginx.com/",
+		"name": "NGINX"
+	  }
+	]
+  },
+  {
+	"$subTitle": "MANAGEMENT",
+	"items": [
+	  {
+		"imgPath": "tools_software/management/jira.png",
+		"url": "https://www.atlassian.com/software/jira/",
+		"name": "Jira"
+	  },
+	  {
+		"imgPath": "tools_software/management/trello.png",
+		"url": "https://trello.com/",
+		"name": "Trello"
+	  }
+	]
+  },
+  {
+	"$title": "LANGAGES",
+	"$subTitle": "FRONT",
+	"items": [
+	  {
+		"imgPath": "langages/front/html.png",
+		"url": "https://developer.mozilla.org/fr/docs/Web/HTML/",
+		"name": "HTML"
+	  },
+	  {
+		"imgPath": "langages/front/css.png",
+		"url": "https://developer.mozilla.org/fr/docs/Web/css/",
+		"name": "CSS"
+	  },
+	  {
+		"imgPath": "langages/front/javascript.png",
+		"url": "https://developer.mozilla.org/fr/docs/Web/JavaScript/",
+		"name": "JavaScript"
+	  },
+	  {
+		"imgPath": "langages/front/typescript.png",
+		"url": "https://www.typescriptlang.org/",
+		"name": "TypeScript"
+	  }
+	]
+  },
+  {
+	"$subTitle": "BACK",
+	"items": [
+	  {
+		"imgPath": "langages/back/php.png",
+		"url": "https://www.php.net/",
+		"name": "PHP"
+	  },
+	  {
+		"imgPath": "langages/back/java.png",
+		"url": "https://www.java.com/",
+		"name": "Java"
+	  },
+	  {
+		"imgPath": "langages/back/nodejs.png",
+		"url": "https://nodejs.org/",
+		"name": "Js/Ts - Node.js"
+	  },
+	  {
+		"imgPath": "langages/back/python.png",
+		"url": "https://www.python.org/",
+		"name": "Python"
+	  }
+	]
+  },
+  {
+	"$subTitle": "SYSTEM",
+	"items": [
+	  {
+		"imgPath": "langages/system/c.png",
+		"url": "https://fr.wikipedia.org/wiki/C_(langage)",
+		"name": "C"
+	  },
+	  {
+		"imgPath": "langages/system/bash.png",
+		"url": "https://wikipedia.org/wiki/Bash_(Unix_shell)/",
+		"name": "Bash"
+	  }
+	]
+  },
+  {
+	"$subTitle": "DATABASE",
+	"items": [
+	  {
+		"imgPath": "langages/database/sql.png",
+		"url": "https://sql.sh/",
+		"name": "SQL"
+	  }
+	]
+  },
+  {
+	"$title": "FRAMEWORKS_LIBRARIES",
+	"$subTitle": "FRONT",
+	"items": [
+	  {
+		"imgPath": "frameworks_libraries/front/angular.png",
+		"url": "https://angular.io/",
+		"name": "Angular"
+	  },
+	  {
+		"imgPath": "frameworks_libraries/front/vuejs.png",
+		"url": "https://vuejs.org/",
+		"name": "Vue.js"
+	  },
+	  {
+		"imgPath": "frameworks_libraries/front/react.png",
+		"url": "https://legacy.reactjs.org/",
+		"name": "React"
+	  },
+	  {
+		"imgPath": "frameworks_libraries/front/react.png",
+		"url": "https://reactnative.dev/",
+		"name": "React Native"
+	  },
+	  {
+		"imgPath": "frameworks_libraries/front/jquery.png",
+		"url": "https://jquery.io/",
+		"name": "JQuery"
+	  }
+	]
+  },
+  {
+	"$subTitle": "CSS",
+	"items": [
+	  {
+		"imgPath": "frameworks_libraries/css/bootstrap.png",
+		"url": "https://getbootstrap.com/",
+		"name": "Bootstrap"
+	  },
+	  {
+		"imgPath": "frameworks_libraries/css/bulma.png",
+		"url": "https://bulma.io/",
+		"name": "Bulma"
+	  },
+	  {
+		"imgPath": "frameworks_libraries/css/tailwind.png",
+		"url": "https://tailwindcss.com/",
+		"name": "Tailwindcss"
+	  }
+	]
+  },
+  {
+	"$subTitle": "BACK",
+	"items": [
+	  {
+		"imgPath": "frameworks_libraries/back/symfony.png",
+		"url": "https://symfony.com/",
+		"name": "Symfony"
+	  },
+	  {
+		"imgPath": "frameworks_libraries/back/spring-boot.png",
+		"url": "https://spring.io/projects/spring-boot/",
+		"name": "Spring Boot"
+	  },
+	  {
+		"imgPath": "frameworks_libraries/back/jax-rs.png",
+		"url": "https://fr.wikipedia.org/wiki/Java_API_for_RESTful_Web_Services",
+		"name": "JAX-RS"
+	  },
+	  {
+		"imgPath": "frameworks_libraries/back/expressjs.png",
+		"url": "https://expressjs.com/",
+		"name": "Express.js"
+	  }
+	]
+  },
+  {
+	"$title": "TESTING",
+	"items": [
+	  {
+		"imgPath": "frameworks_libraries/testing/phpunit.png",
+		"url": "https://phpunit.de/",
+		"name": "PhpUnit"
+	  },
+	  {
+		"imgPath": "frameworks_libraries/testing/junit.png",
+		"url": "https://junit.org/",
+		"name": "JUnit"
+	  },
+	  {
+		"imgPath": "frameworks_libraries/testing/jest.png",
+		"url": "https://jestjs.io/",
+		"name": "Jest"
+	  },
+	  {
+		"imgPath": "frameworks_libraries/testing/vitest.png",
+		"url": "https://vitest.dev/",
+		"name": "Vitest"
+	  },
+	  {
+		"imgPath": "frameworks_libraries/testing/jasmine.png",
+		"url": "https://jasmine.github.io/",
+		"name": "Jasmine"
+	  },
+	  {
+		"imgPath": "frameworks_libraries/testing/cypress.png",
+		"url": "https://www.cypress.io/",
+		"name": "Cypress"
+	  },
+	  {
+		"imgPath": "frameworks_libraries/testing/selenium.png",
+		"url": "https://www.selenium.dev/",
+		"name": "Selenium"
+	  },
+	  {
+		"imgPath": "frameworks_libraries/testing/playwright.png",
+		"url": "https://playwright.dev/",
+		"name": "Playwright"
+	  },
+	  {
+		"imgPath": "frameworks_libraries/testing/cucumber.png",
+		"url": "https://cucumber.io/",
+		"name": "Cucumber"
 	  }
 	]
   }

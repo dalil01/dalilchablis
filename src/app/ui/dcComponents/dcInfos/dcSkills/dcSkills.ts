@@ -5,17 +5,25 @@ import { _UDom } from "../../../dcUtils/_UDom";
 import { dcTranslator } from "../../../dcTranslator/dcTranslator";
 import { dcTranslation } from "../../../dcTranslator/dcTranslation";
 import { dcGlobalVars } from "../../../../global/dcGlobalVars";
+import { _UIcon } from "../../../dcUtils/_UIcon";
+import { DcIcons } from "../../../dcIcons/dcIcons";
 
 enum SKILLS_CSS {
 	CONTAINER = "skills-container",
+	SEARCH_BAR_CONTAINER = "skills-search-bar-container",
+	SEARCH_ICON = "skills-search-icon",
+	SEARCH_BAR = "skills-search-bar",
 	ITEMS = "skill-items",
 	ITEM = "skill-item",
+	TITLE = "skill-item-title",
+	SUB_TITLE = "skill-item-sub-title",
 	IMAGE = "skill-item-image",
 	NAME = "skill-item-name",
 }
 
 type dcSkillsType = {
 	$title: string,
+	$subTitle?: string,
 	items: {
 		imgPath: string,
 		url: string,
@@ -38,15 +46,16 @@ export class dcSkills extends dcComponent {
 		(async () => import("./dcSkills.json"))()
 			.then((response: any) => {
 				this.data = response.default;
-				this.buildFilter();
+				//this.buildFilter();
 				this.buildItems();
 			});
 	}
 
 	private buildFilter(): void {
-		const container = _UDom.div();
+		const container = _UDom.div({ className: SKILLS_CSS.SEARCH_BAR_CONTAINER });
 
-		const searchBar = _UDom.input({ type: "search", placeholder: dcTranslator.T(dcTranslation.SEARCH) + "..." });
+		//const searchIcon = _UIcon.getIcon(DcIcons.Search, { className: SKILLS_CSS.SEARCH_ICON });
+		const searchBar = _UDom.input({ className: SKILLS_CSS.SEARCH_BAR, type: "search", placeholder: dcTranslator.T(dcTranslation.SEARCH) + "..." });
 
 		_UDom.AC(container, searchBar);
 
@@ -56,11 +65,23 @@ export class dcSkills extends dcComponent {
 	private buildItems(): void {
 		for (const skills of this.data) {
 
-			const title = _UDom.p({ innerText: dcTranslator.T(dcTranslation[skills.$title]) });
+			if (skills?.$title) {
+				const title = _UDom.h4({
+					className: SKILLS_CSS.TITLE,
+					innerText: dcTranslator.T(dcTranslation[skills.$title])
+				});
+				this.mainElement.appendChild(title);
+			}
+
+			if (skills.$subTitle) {
+				const subTitle = _UDom.h5({
+					className: SKILLS_CSS.SUB_TITLE,
+					innerText: dcTranslator.T(dcTranslation[skills.$subTitle])
+				});
+				this.mainElement.appendChild(subTitle);
+			}
 
 			const container = _UDom.div({ className: SKILLS_CSS.ITEMS });
-
-			this.mainElement.appendChild(title);
 
 			for (const item of skills.items) {
 				const div = _UDom.div({ className: SKILLS_CSS.ITEM });

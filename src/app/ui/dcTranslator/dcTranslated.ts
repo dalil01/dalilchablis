@@ -79,9 +79,97 @@ export const dcTranslated = {
 		EN: "Search",
 		FR: "Rechercher"
 	},
-	SYSTEMS_ADMINISTRATION: {
-		EN: "Systems and administration",
-		FR: "Systèmes et administration"
+	SYSTEMS: {
+		EN: "Systems",
+		FR: "Systèmes"
+	},
+	OS: {
+		EN: "OS",
+		FR: "OS"
+	},
+	DISTRIBUTIONS_VERSIONS: {
+		EN: "Distributions / Versions",
+		FR: "Distributions / Versions"
+	},
+	TOOLS_SOFTWARE: {
+		EN: "Tools / Software",
+		FR: "Outils / Logiciels"
+	},
+	MODELING_PROTOTYPING: {
+		EN: "Modeling / Prototyping",
+		FR: "Modélisation / Prototypage"
+	},
+	TEXT_EDITOR_IDE: {
+		EN: "Text editor / IDE",
+		FR: "Éditeur de texte / IDE"
+	},
+	VERSIONNING: {
+		EN: "Versionning",
+		FR: "Gestion de version"
+	},
+	DEPENDENCY_MANAGER: {
+		EN: "Dependency manager",
+		FR: "Gestionnaire des dépendances"
+	},
+	SGBD: {
+		EN: "SGBD",
+		FR: "SGBD"
+	},
+	BUNDLER: {
+		EN: "Bundler",
+		FR: "Bundler"
+	},
+	MANAGEMENT: {
+		EN: "Management",
+		FR: "Management"
+	},
+	TESTING: {
+		EN: "Testing",
+		FR: "Testing"
+	},
+	LANGAGES: {
+		EN: "Langages",
+		FR: "Langages"
+	},
+	FRONT: {
+		EN: "Front",
+		FR: "Front"
+	},
+	BACK: {
+		EN: "Back",
+		FR: "Back"
+	},
+	SYSTEM: {
+		EN: "Système",
+		FR: "System"
+	},
+	DATABASE: {
+		EN: "Database",
+		FR: "Base de données"
+	},
+	FRAMEWORKS_LIBRARIES: {
+		EN: "Frameworks / Libraries",
+		FR: "Frameworks / Bibliothèques"
+	},
+	CSS: {
+		EN: "CSS",
+		FR: "CSS"
+	},
+	VIRTUALIZATION: {
+		EN: "Virtualization",
+		FR: "Virtualisation"
+	},
+	DEVOPS: {
+		EN: "Devops",
+		FR: "Devops"
+	},
+	SECURITY: {
+		EN: "Security",
+		FR: "Sécurité"
+	},
+	WEB_SERVER: {
+		EN: "Web Server",
+		FR: "Server Web"
 	},
 	PROJECTS: {
 		EN: "Projects",
