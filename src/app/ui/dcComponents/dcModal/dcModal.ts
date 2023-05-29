@@ -45,6 +45,8 @@ export class dcModal extends dcComponent {
 	
 	private isOpen: boolean;
 
+	private canSelect: boolean = false;
+
 	private onCloseCallback: Function = () => {};
 	
 	constructor(type: Modal_TYPE, button: HTMLElement, icon: HTMLElement, title: string, content: HTMLElement | undefined = undefined, withFooter: boolean = false, closeWhenClickOutside: boolean = true, autoInit: boolean = false) {
@@ -126,9 +128,18 @@ export class dcModal extends dcComponent {
 		this.mainElement.appendChild(this.modal);
 		
 		this.button.addEventListener("click", () => this.open());
+
+		this.mainElement.addEventListener("selectstart", (e) => {
+			if (!this.canSelect) {
+				e.preventDefault();
+			}
+		});
+
+		this.mainElement.addEventListener("pointerup", () => this.canSelect = true);
 	}
 	
 	public open(): void {
+		this.canSelect = false;
 		this.mainElement.classList.remove(GLOBAL_CSS.DISPLAY_NONE);
 		this.modal.classList.remove(Modal_CSS.ZOOM_OUT);
 		this.modal.classList.add(Modal_CSS.ZOOM_IN);
@@ -140,7 +151,7 @@ export class dcModal extends dcComponent {
 		this.modal.classList.add(Modal_CSS.ZOOM_OUT);
 		setTimeout(() => {
 			this.mainElement.classList.add(GLOBAL_CSS.DISPLAY_NONE);
-		}, 300);
+		}, 200);
 		this.isOpen = false;
 		this.onCloseCallback();
 	}

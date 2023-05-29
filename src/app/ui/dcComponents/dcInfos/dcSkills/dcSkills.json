@@ -220,14 +220,14 @@
 		"name": "MySQL"
 	  },
 	  {
-		"imgPath": "tools_software/sgbd/mongodb.png",
-		"url": "https://www.mongodb.com/",
-		"name": "MongoDB"
-	  },
-	  {
 		"imgPath": "tools_software/sgbd/mariadb.png",
 		"url": "https://mariadb.org/",
 		"name": "MariaDB"
+	  },
+	  {
+		"imgPath": "tools_software/sgbd/mongodb.png",
+		"url": "https://www.mongodb.com/",
+		"name": "MongoDB"
 	  },
 	  {
 		"imgPath": "tools_software/sgbd/redis.png",
@@ -373,6 +373,16 @@
   },
   {
 	"$title": "LANGAGES",
+	"$subTitle": "MODELING",
+	"items": [
+	  {
+		"imgPath": "langages/modeling/uml.png",
+		"url": "https://wikipedia.org/wiki/UML_(informatique)/",
+		"name": "UML"
+	  }
+	]
+  },
+  {
 	"$subTitle": "FRONT",
 	"items": [
 	  {
@@ -475,6 +485,11 @@
 		"imgPath": "frameworks_libraries/front/jquery.png",
 		"url": "https://jquery.io/",
 		"name": "JQuery"
+	  },
+	  {
+		"imgPath": "frameworks_libraries/front/kivy.png",
+		"url": "https://kivy.org/",
+		"name": "Kivy"
 	  }
 	]
   },

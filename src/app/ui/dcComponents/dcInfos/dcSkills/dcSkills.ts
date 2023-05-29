@@ -22,7 +22,7 @@ enum SKILLS_CSS {
 }
 
 type dcSkillsType = {
-	$title: string,
+	$title?: string,
 	$subTitle?: string,
 	items: {
 		imgPath: string,

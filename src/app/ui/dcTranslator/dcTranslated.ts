@@ -131,6 +131,10 @@ export const dcTranslated = {
 		EN: "Langages",
 		FR: "Langages"
 	},
+	MODELING: {
+		EN: "Modeling",
+		FR: "Modélisation"
+	},
 	FRONT: {
 		EN: "Front",
 		FR: "Front"
@@ -250,5 +254,137 @@ export const dcTranslated = {
 	DCBRAIN_APPRENTICE_3: {
 		EN: "Implementation of a test management platform with playwright in Java.",
 		FR: "Mise en place d'une plateforme de gestion des tests avec playwright en Java."
+	},
+	PERSONALS: {
+		EN: "Personals",
+		FR: "Personnels"
+	},
+	PROFESSIONALS: {
+		EN: "Professionals",
+		FR: "Professionnels"
+	},
+	ACADEMICS: {
+		EN: "Academics",
+		FR: "Scolaires"
+	},
+	TECH_STACK: {
+		EN: "Tech Stack",
+		FR: "Stack technique"
+	},
+	IN_DEV: {
+		EN: "Project in development...",
+		FR: "Projet en cours de développement..."
+	},
+	PORTFOLIO_V1: {
+		EN: "Portfolio v1",
+		FR: "Portfolio v1"
+	},
+	PORTFOLIO_V2: {
+		EN: "Portfolio v2",
+		FR: "Portfolio v2"
+	},
+	TRANSLATORDC: {
+		EN: "Translation generation tool for web applications",
+		FR: "Outil de génération de traductions pour les applications web"
+	},
+	BRAIN: {
+		EN: "Resources containing course reminders",
+		FR: "Ressources contenant des rappels de cours"
+	},
+	MYSPORT: {
+		EN: "Sportsmen's social network",
+		FR: "Réseau social des sportifs"
+	},
+	ATHLETEC: {
+		EN: "Athletes' social network",
+		FR: "Réseau social des l'athlètes"
+	},
+	DCTESTS: {
+		EN: "Creating a test management framework",
+		FR: "Création d'un framework de gestion des tests"
+	},
+	CANVAS_GRID: {
+		EN: "Creation of a canvas 2d data grid",
+		FR: "Création d'une grille de données en canvas 2d"
+	},
+	E2E_TEST_AUTOMATION: {
+		EN: "Implementation of an automated end-to-end test monitoring and management system",
+		FR: "Mise en place d'un système automatisé de suivi et de gestion des tests de bout en bout"
+	},
+	ECOMMERCE: {
+		EN: "Creation of a generic API for e-commerce websites",
+		FR: "Création d'une API générique pour les sites de e-commerce"
+	},
+	REDDITECH: {
+		EN: "Creating a mobile application using Reddit's API",
+		FR: "Création d'une application mobile utilisant l'API de Reddit"
+	},
+	TEMP_CHAT: {
+		EN: "Creating a messaging application",
+		FR: "Création d'un application de messagerie"
+	},
+	YOU_SHALL_NOT_PASS: {
+		EN: "Creating and configuring a LAN network",
+		FR: "Création et configuration d'un réseau LAN"
+	},
+	EPIVIBES: {
+		EN: "Create a dashboard that works like Netvibes",
+		FR: "Création d'un dashboard fonctionnant comme Netvibes"
+	},
+	JOB_BOARD: {
+		EN: "Creation of a job-finding application",
+		FR: "Création d'une application de recherche d'emploi"
+	},
+	DATA_ANALYZER: {
+		EN: "Creation of a mobile application to detect a cat or dog and numbers",
+		FR: "Création d'une application mobile permettant de détecter un chat ou un chien ou des chiffres"
+	},
+	KILLEDDB: {
+		EN: "Creating an in-memory database",
+		FR: "Création d'une base de données en mémoire"
+	},
+	BLINDTEST: {
+		EN: "Creating a blind test application",
+		FR: "Création d'une application de blind test"
+	},
+	SLACKLIKE: {
+		EN: "Creating an equivalent of the Slack application",
+		FR: "Création d'un équivalent de l'application Slack"
+	},
+	IBUYSU: {
+		EN: "Creation of a commercial website (Java code generation from UML diagrams)",
+		FR: "Création d'un site web commercial (génération de code Java à partir de diagrammes UML)"
+	},
+	CITYCAR: {
+		EN: "Customer management web application for car repair company CityCar",
+		FR: "Application web de gestion client pour l'entreprise de réparation automobile CityCar"
+	},
+	MULTIPLICATION: {
+		EN: "Single-page web application displaying multiplication tables",
+		FR: "Application web mono-page affichant des tables de multiplication"
+	},
+	SPARKLINE: {
+		EN: "Exploit CSV documents as a web application",
+		FR: "Exploitation de documents CSV sous la forme d’une application web"
+	},
+	GUESSWHAT: {
+		EN: "Development of card game logic",
+		FR: "Développement d'une logique de jeu de cartes"
+	},
+	VIRTUAL_LANDSCAPE: {
+		EN: "Drawing a virtual landscape in canvas 2d",
+		FR: "Dessin d'un paysage virtuel en canvas 2d"
+	},
+	GEOWORLD: {
+		EN: "Consultation of global geopolitical and economic data",
+		FR: "Consultation des données géopolitiques et économiques de la planète"
+	},
+	AEROCLUB_FROTEY_LES_LURE: {
+		EN: "Aeroclub Frotey-lès-Lure website",
+		FR: "Site web de l'aeroclub Frotey-lès-Lure"
+	},
+	BOUCHERIE_MEME: {
+		EN: "MEME butcher's website",
+		FR: "Site web de la boucherie MEME"
 	}
 }

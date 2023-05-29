@@ -1,0 +1,44 @@
+.projects-container {
+}
+
+.projects-title {
+    margin-top: 30px;
+    font-weight: 600;
+    font-size: .9rem;
+}
+
+.projects-items {
+    margin: 30px 10px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+}
+
+.projects-item {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    margin-top: 25px;
+    margin-bottom: 35px;
+    width: 33%;
+    padding: 10px;
+}
+
+.projects-item-image {
+    width: 50%;
+    height: 50%;
+    border-radius: 6px;
+}
+
+.projects-item-name {
+    width: 50%;
+    font-size: .9rem;
+    margin-top: 8px;
+}
+
+.projects-item-description {
+    width: 50%;
+    margin-top: 8px;
+}
