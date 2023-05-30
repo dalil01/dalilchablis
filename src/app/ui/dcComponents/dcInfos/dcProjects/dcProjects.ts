@@ -11,9 +11,12 @@ enum PROJECTS_CSS {
 	TITLE = "projects-title",
 	ITEMS = "projects-items",
 	ITEM = "projects-item",
+	ITEM_CONTENT = "projects-item-content",
 	IMAGE = "projects-item-image",
 	NAME = "projects-item-name",
-	DESCRIPTION = "projects-item-description"
+	DESCRIPTION = "projects-item-description",
+	TECH_STACK = "projects-item-stack",
+	READ_MORE = "projects-item-read-more"
 }
 
 type dcProjectsType = {
@@ -59,34 +62,27 @@ export class dcProjects extends dcComponent {
 			const container = _UDom.div({ className: PROJECTS_CSS.ITEMS });
 			for (const item of projects.items) {
 				const div = _UDom.div({ className: PROJECTS_CSS.ITEM });
+				const divContent = _UDom.div({ className: PROJECTS_CSS.ITEM_CONTENT });
 
-				_UDom.AC(div, _UDom.img({ src: dcGlobalVars.IMAGE_PATH + "projects/" + item.imgPath, className: PROJECTS_CSS.IMAGE }));
-				_UDom.AC(div, _UDom.h5({ innerText: item.name, className: PROJECTS_CSS.NAME }));
-				_UDom.AC(div, _UDom.p({ innerText: dcTranslator.T(dcTranslation[item.$description]), className: PROJECTS_CSS.DESCRIPTION }));
+				_UDom.AC(divContent, _UDom.img({ src: dcGlobalVars.IMAGE_PATH + "projects/" + item.imgPath, className: PROJECTS_CSS.IMAGE }));
+				_UDom.AC(divContent, _UDom.h5({ innerText: item.name, className: PROJECTS_CSS.NAME }));
+				_UDom.AC(divContent, _UDom.p({ innerText: dcTranslator.T(dcTranslation[item.$description]) + '.', className: PROJECTS_CSS.DESCRIPTION }));
 
 				if (item.techStack) {
-					const techStackContainer = _UDom.div();
-					_UDom.AC(
-						techStackContainer,
-						_UDom.h6({ innerText: dcTranslator.T(dcTranslation.TECH_STACK) + ": " }),
-						_UDom.p({ innerText: item.techStack })
-					);
-					div.appendChild(techStackContainer);
+					divContent.appendChild(_UDom.p({ innerText: item.techStack, className: PROJECTS_CSS.TECH_STACK }));
 				}
 
 				if (item.url) {
-					_UDom.AC(div, _UDom.a({ href: item.url, target: "_blank", innerText: dcTranslator.T(dcTranslation.READ_MORE) }));
+					_UDom.AC(divContent, _UDom.AC(_UDom.p({ className: PROJECTS_CSS.READ_MORE }), _UDom.a({ href: item.url, target: "_blank", innerText: dcTranslator.T(dcTranslation.READ_MORE) + "..." })));
 				}
+
+				div.appendChild(divContent);
 
 				container.appendChild(div);
 			}
 
 			this.mainElement.appendChild(container);
 		}
-	}
-
-	private static openLink(element: HTMLElement, link: string): void {
-		element.addEventListener("click", () => window.open(link, "_blank"));
 	}
 	
 }

@@ -57,7 +57,7 @@ export class dcHeader extends dcComponent {
 		dcCursor.subscribeElementToDetectHover(vrIconContainer);
 
 		const modeIconContainer = _UDom.div({ className: HEADER_CSS.MODE_CONTAINER });
-		const modeIcon = _UIcon.getIcon(dcGlobalConfig.isDarkMode ? DcIcons.DcIconLight : DcIcons.DcIconMoonOutline);
+		const modeIcon = _UIcon.getIcon(dcGlobalConfig.isDarkMode ? DcIcons.DcIconMoonOutline : DcIcons.DcIconLight);
 		modeIconContainer.addEventListener("click", () => dcUIManager.get().toggleMode());
 		_UDom.AC(menuContainer, _UDom.AC(modeIconContainer, modeIcon));
 		modeIconContainer.appendChild(modeIcon);
@@ -65,7 +65,7 @@ export class dcHeader extends dcComponent {
 
 		const localeIconContainer = _UDom.div({ className: HEADER_CSS.LOCALE_CONTAINER });
 		const globeIcon = _UIcon.getIcon(DcIcons.DcIconGlobe);
-		const locale = _UDom.span({ innerText: dcGlobalConfig.locale === LOCALE.EN ? LOCALE.FR : LOCALE.EN });
+		const locale = _UDom.span({ innerText: dcGlobalConfig.locale === LOCALE.EN ? LOCALE.EN : LOCALE.FR });
 		localeIconContainer.addEventListener("click", () => dcUIManager.get().toggleLocale());
 		_UDom.AC(menuContainer, _UDom.AC(localeIconContainer, globeIcon, locale));
 		dcCursor.subscribeElementToDetectHover(localeIconContainer);

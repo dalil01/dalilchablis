@@ -15,6 +15,7 @@ enum SKILLS_CSS {
 	SEARCH_BAR = "skills-search-bar",
 	ITEMS = "skill-items",
 	ITEM = "skill-item",
+	ITEM_CONTENT = "skill-item-content",
 	TITLE = "skill-item-title",
 	SUB_TITLE = "skill-item-sub-title",
 	IMAGE = "skill-item-image",
@@ -64,7 +65,6 @@ export class dcSkills extends dcComponent {
 
 	private buildItems(): void {
 		for (const skills of this.data) {
-
 			if (skills?.$title) {
 				const title = _UDom.h4({
 					className: SKILLS_CSS.TITLE,
@@ -85,10 +85,13 @@ export class dcSkills extends dcComponent {
 
 			for (const item of skills.items) {
 				const div = _UDom.div({ className: SKILLS_CSS.ITEM });
+				const divContent = _UDom.div({ className: SKILLS_CSS.ITEM_CONTENT });
 
-				dcSkills.openLink(div, item.url);
-				_UDom.AC(div, _UDom.img({ src: dcGlobalVars.IMAGE_PATH + "skills/" + item.imgPath, className: SKILLS_CSS.IMAGE }));
-				_UDom.AC(div, _UDom.p({ innerText: item.name, className: SKILLS_CSS.NAME }));
+				dcSkills.openLink(divContent, item.url);
+				_UDom.AC(divContent, _UDom.img({ src: dcGlobalVars.IMAGE_PATH + "skills/" + item.imgPath, className: SKILLS_CSS.IMAGE }));
+				_UDom.AC(divContent, _UDom.p({ innerText: item.name, className: SKILLS_CSS.NAME }));
+
+				div.appendChild(divContent);
 
 				container.appendChild(div);
 			}

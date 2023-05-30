@@ -38,7 +38,29 @@
     flex-direction: column;
     margin-top: 25px;
     margin-bottom: 35px;
-    width: 33%;
+    width: 50%;
+}
+
+.skill-item-content {
+    border-radius: 8px;
+    padding: 10px 15px;
+    transition: .6s;
+}
+
+.dark-mode .skill-item-content {
+    background-color: rgb(255 255 255 / 2%);
+}
+
+.dark-mode .skill-item-content:hover {
+    background-color: rgb(255 255 255 / 6%);
+}
+
+.light-mode .skill-item-content {
+    background-color: rgba(255, 255, 255, 50%);
+}
+
+.light-mode .skill-item-content:hover {
+    background-color: rgb(128 128 128 / 6%);
 }
 
 .skill-item-title {
@@ -64,4 +86,12 @@
     margin-top: 8px;
     text-align: center;
     padding: 0 6px;
+}
+
+@media (min-width: 768px) {
+
+    .skill-item {
+        width: calc(100% / 3);
+    }
+
 }

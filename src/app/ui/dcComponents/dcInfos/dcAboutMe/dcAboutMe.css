@@ -1,14 +1,19 @@
-.about-me-avatar {
-    margin-bottom: 30px;
-    width: 6.5rem;
-    height: 6.5rem;
-    border-radius: 50%;
+.about-me-container {
+    padding: 32px;
     display: flex;
-    margin-left: 50px;
+    align-items: center;
+    justify-content: space-around;
+    flex-direction: column;
+}
+
+.about-me-avatar {
+    width: 8rem;
+    border-radius: 5%;
+    display: flex;
 }
 
 .about-me-text-container {
-    padding: 32px;
+    padding: 30px;
     font-size: .85rem;
 }
 
@@ -16,41 +21,14 @@
     color: #FFCA28;
 }
 
-/*.about-me-images-container {
-    margin: 21px auto;
-    width: 80%;
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    justify-content: space-between;
+@media (min-width: 768px) {
+
+    .about-me-container {
+        flex-direction: row;
+    }
+
+    .about-me-text-container {
+        padding-right: 0;
+    }
+
 }
-
-.about-me-image-1 {
-    width: 30%;
-    height: 160px;
-}
-
-.about-me-image-2 {
-    width: 25%;
-}
-
-.about-me-image-3 {
-    width: 35%;
-}
-
-
-.about-me-image-4 {
-    width: 20%;
-}
-
-.about-me-image-5 {
-    width: 30%;
-    height: 130px;
-}
-
-.about-me-image-6 {
-    width: 50%;
-    height: 130px;
-}
-
- */

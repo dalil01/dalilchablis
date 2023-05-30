@@ -267,10 +267,6 @@ export const dcTranslated = {
 		EN: "Academics",
 		FR: "Scolaires"
 	},
-	TECH_STACK: {
-		EN: "Tech Stack",
-		FR: "Stack technique"
-	},
 	IN_DEV: {
 		EN: "Project in development...",
 		FR: "Projet en cours de développement..."

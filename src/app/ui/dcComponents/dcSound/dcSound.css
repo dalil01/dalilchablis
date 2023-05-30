@@ -24,10 +24,6 @@
     padding: 4px;
 }
 
-.sound-box-container:hover {
-    cursor: not-allowed;
-}
-
 .sound-box {
     transform: scaleY(.3);
     height: 60%;
@@ -61,9 +57,9 @@
     height: 60%;
     background-color: #FAFAFA;
     width: var(--boxSize);
-    /*animation-duration: 1.8s;
+    animation-duration: 1.8s;
     animation-timing-function: ease-in-out;
-    animation-iteration-count: infinite;*/
+    animation-iteration-count: infinite;
     border-radius: 8px;
 }
 
