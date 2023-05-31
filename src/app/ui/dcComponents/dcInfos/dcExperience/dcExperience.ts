@@ -41,9 +41,9 @@ export class dcExperience extends dcComponent {
 			"DCbrain (Paris)",
 			dcTranslator.T(dcTranslation.FULLSTACK_DEVELOPER) + " - " + dcTranslator.T(dcTranslation.APPRENTICE) + " | " + "2021 - " + dcTranslator.T(dcTranslation.TODAY),
 			[
-				"• " + dcTranslator.T(dcTranslation.DCBRAIN_APPRENTICE_1),
 				"• " + dcTranslator.T(dcTranslation.DCBRAIN_APPRENTICE_2),
-				"• " + dcTranslator.T(dcTranslation.DCBRAIN_APPRENTICE_3)
+				"• " + dcTranslator.T(dcTranslation.DCBRAIN_APPRENTICE_3),
+				"• " + dcTranslator.T(dcTranslation.DCBRAIN_APPRENTICE_1)
 			]
 		);
 

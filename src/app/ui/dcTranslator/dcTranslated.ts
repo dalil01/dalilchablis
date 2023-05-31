@@ -220,7 +220,7 @@ export const dcTranslated = {
 		FR: "Alternance"
 	},
 	MONTHS: {
-		EN: "months",
+		EN: "month",
 		FR: "mois"
 	},
 	TESTER: {

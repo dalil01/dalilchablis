@@ -24,7 +24,7 @@
 }
 
 .skill-items {
-    margin: 30px 10px;
+    margin: 30px auto;
     display: flex;
     align-items: center;
     justify-content: flex-start;
@@ -43,12 +43,13 @@
 
 .skill-item-content {
     border-radius: 8px;
-    padding: 10px 15px;
+    padding: 15px 10px;
     transition: .6s;
 }
 
 .dark-mode .skill-item-content {
     background-color: rgb(255 255 255 / 2%);
+    box-shadow: rgba(17, 17, 26, 0.05) 0 1px 0, rgba(17, 17, 26, 0.1) 0 0 8px;
 }
 
 .dark-mode .skill-item-content:hover {
@@ -57,6 +58,7 @@
 
 .light-mode .skill-item-content {
     background-color: rgba(255, 255, 255, 50%);
+    box-shadow: rgba(149, 157, 165, 0.2) 0 8px 24px;
 }
 
 .light-mode .skill-item-content:hover {
@@ -71,24 +73,25 @@
 
 .skill-item-sub-title {
     text-align: start;
-    margin-left: 30px;
+    margin-left: 21px;
     font-size: .82rem;
     opacity: .8;
 }
 
 .skill-item-image {
     width: 32px;
-    height: 32px;
+    height: 30px;
 }
 
 .skill-item-name {
-    font-size: .9rem;
+    font-size: .82rem;
     margin-top: 8px;
     text-align: center;
     padding: 0 6px;
 }
 
 @media (min-width: 768px) {
+
 
     .skill-item {
         width: calc(100% / 3);

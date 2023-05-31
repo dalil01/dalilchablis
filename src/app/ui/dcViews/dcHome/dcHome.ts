@@ -55,7 +55,7 @@ export class dcHome extends dcView {
 
 		const hello = dcTranslator.T(dcTranslation.HELLO) + ", " + dcTranslator.T(dcTranslation.WELCOME_TO_MY_WEBSITE) + ".\n " + dcTranslator.T(dcTranslation.I_AM) + ' ';
 		const name = "Dalil" + String.fromCharCode(160) + "CHABLIS";
-		const job = ", " + dcTranslator.T(dcTranslation.FULLSTACK_DEVELOPER) + " ! ";
+		const job = ", " + dcTranslator.T(dcTranslation.FULLSTACK_DEVELOPER) + String.fromCharCode(160) + "!" + String.fromCharCode(160);
 
 		_UDom.writeTextInElements([
 				{

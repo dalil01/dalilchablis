@@ -187,14 +187,14 @@
 		"techStack": "Symfony 5, PhpUnit"
 	  },
 	  {
-		"imgPath": "academics/Virtual-landscape.PNG",
+		"imgPath": "academics/virtual-landscape.png",
 		"url": "https://gitlab.com/dalil01/Virtual-landscape/",
 		"name": "Virtual Landscape (2020)",
 		"$description": "VIRTUAL_LANDSCAPE",
 		"techStack": "HTML, CSS, JavaScript"
 	  },
 	  {
-		"imgPath": "academics/geoworld.PNG",
+		"imgPath": "academics/geoworld.png",
 		"url": "https://gitlab.com/dalil01/GeoWorld/",
 		"name": "GeoWorld (2020)",
 		"$description": "GEOWORLD",
