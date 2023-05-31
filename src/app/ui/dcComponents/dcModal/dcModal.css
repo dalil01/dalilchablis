@@ -57,12 +57,16 @@
 }
 
 .modal-title {
-    font-size: .85rem;
+    font-size: .92rem;
 }
 
 .modal-title i {
-    font-size: .8rem;
+    font-size: 1rem;
     padding-right: 5px;
+}
+
+.modal-close-btn {
+    font-size: 1.12rem;
 }
 
 .modal-light .modal {
@@ -78,23 +82,37 @@
     margin: 12px 0;
     width: 98%;
     height: 85%;
+    overflow: auto;
+}
+
+.modal-small, .modal-medium, .modal-large {
+    max-height: 90%;
+}
+
+.modal-small {
+    width: 60%;
+}
+
+.modal-medium {
+    width: 75%;
+}
+
+.modal-large {
+    width: 90%;
+}
+
+@media (min-width: 601px) {
+
+    .modal-small {
+        width: 500px;
+    }
+
 }
 
 @media (min-width: 1024px) {
 
-    .modal-small {
-        width: 45%;
-        max-height: 95%;
-    }
-
     .modal-medium {
-        width: 65%;
-        max-height: 95%;
-    }
-
-    .modal-large {
-        width: 95%;
-        max-height: 95%;
+        width: 800px;
     }
 
 }

@@ -2,52 +2,42 @@ import "./dcAboutMe.css";
 
 import { dcComponent } from "../../dcComponent";
 import { _UDom } from "../../../dcUtils/_UDom";
+import { _UIcon } from "../../../dcUtils/_UIcon";
+import { DcIcons } from "../../../dcIcons/dcIcons";
 import { dcTranslator } from "../../../dcTranslator/dcTranslator";
 import { dcTranslation } from "../../../dcTranslator/dcTranslation";
+import { dcGlobalVars } from "../../../../global/dcGlobalVars";
 
-enum ABOUT_ME_CSS_CLASSNAMES {
+enum ABOUT_ME_CSS {
 	CONTAINER = "about-me-container",
-	BACKGROUND_IMAGE = "about-me-banner",
-	PROFILE_IMAGE = "about-me-profile-image",
-	TITLE = "about-me-title",
+	AVATAR = "about-me-avatar",
 	TEXT_CONTAINER = "about-me-text-container",
+	EMOJI_HAND = "about-me-emoji-hand"
 }
 
 export class dcAboutMe extends dcComponent {
 	
 	constructor(parentElement: HTMLElement, autoInit: boolean = false) {
-		super(parentElement, _UDom.CCE("about-me", { className: ABOUT_ME_CSS_CLASSNAMES.CONTAINER }));
+		super(parentElement, _UDom.CCE("about-me", { className: ABOUT_ME_CSS.CONTAINER }));
 		
 		if (autoInit)
 			this.init();
 	}
 	
 	public buildUI(): void {
-		const banner = _UDom.img({ src: "https://via.placeholder.com/150", className: ABOUT_ME_CSS_CLASSNAMES.BACKGROUND_IMAGE });
-		this.getMainElement().appendChild(banner);
-		
-		const profileImage = _UDom.img({ src: "https://via.placeholder.com/50", className: ABOUT_ME_CSS_CLASSNAMES.PROFILE_IMAGE });
-		this.getMainElement().appendChild(profileImage);
-		
-		const textContainer = _UDom.div({ className: ABOUT_ME_CSS_CLASSNAMES.TEXT_CONTAINER });
-		
-		const name = _UDom.h2({ innerText: "Dalil CHABLIS" });
-		const job = _UDom.p({ innerText: "Full-Stack Developer" });
-		const location = _UDom.p({ innerText: "Paris, France" });
-		
-		const title = _UDom.h3( { innerText: dcTranslator.T(dcTranslation.ABOUT_ME), className: ABOUT_ME_CSS_CLASSNAMES.TITLE });
-		this.getMainElement().appendChild(title);
-		
-		const about = _UDom.p({
-			innerText:
-				"Hi there (emoji) I'm Dalil, " +
-				"a Full-Stack Developer in Paris. " +
-				"I'm passionate about everything related to computer science. " +
-				"Right now, my interests are rather in field of web, connected objects, 3D and virtual reality. " +
-				"I'm also passionate about sports, I go from athletics and I'm a javelin thrower!"
+		const avatar = _UDom.img({ src: dcGlobalVars.IMAGE_PATH + "about/me.png", className: ABOUT_ME_CSS.AVATAR });
+		this.mainElement.appendChild(avatar);
+
+		const aboutContainer = _UDom.div({ className: ABOUT_ME_CSS.TEXT_CONTAINER });
+		const hi = _UDom.span({ innerText: dcTranslator.T(dcTranslation.HI_THERE) + ' ' });
+		const hand = _UIcon.getIcon(DcIcons.DcIconHand, { className: ABOUT_ME_CSS.EMOJI_HAND });
+		const about = _UDom.span({
+			innerText: ", " + dcTranslator.T(dcTranslation.ABOUT_TEXT) + " (｡◕‿◕｡)"
 		});
-		
-		_UDom.AC(this.getMainElement(), _UDom.AC(textContainer, name, job, location, title, about));
+
+		_UDom.AC(aboutContainer, hi, hand, about);
+
+		this.mainElement.appendChild(aboutContainer);
 	}
 	
 }

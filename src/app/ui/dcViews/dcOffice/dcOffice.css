@@ -51,12 +51,21 @@
     width: 30px;
     height: 30px;
     border-radius: 50%;
-    background: #212123;
-    border: 1px solid #ffffff77;
-    color: #ffffff;
     font-family: Helvetica, Arial, sans-serif;
     text-align: center;
     font-size: .8rem;
+}
+
+.dark-mode .point-wrapper .icon {
+    background: #ffffff;
+    border: 1px solid #ffffff77;
+    color: #212123;
+}
+
+.light-mode .point-wrapper .icon {
+    background: #212123;
+    border: 1px solid #ffffff77;
+    color: #ffffff;
 }
 
 .point-wrapper .text {

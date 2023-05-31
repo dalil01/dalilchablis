@@ -23,6 +23,7 @@ enum Modal_CSS {
 	MEDIUM = "modal-medium",
 	LARGE = "modal-large",
 	HEADER = "modal-header",
+	CLOSE_BTN = "modal-close-btn",
 	TITLE = "modal-title",
 	BODY = "modal-body",
 	FOOTER = "modal-footer",
@@ -43,6 +44,8 @@ export class dcModal extends dcComponent {
 	private readonly closeWhenClickOutside: boolean;
 	
 	private isOpen: boolean;
+
+	private canSelect: boolean = false;
 
 	private onCloseCallback: Function = () => {};
 	
@@ -95,7 +98,7 @@ export class dcModal extends dcComponent {
 		
 		header.appendChild(h2);
 		
-		const closeIcon = _UIcon.getIcon(DcIcons.DcIconCloseCircle);
+		const closeIcon = _UIcon.getIcon(DcIcons.DcIconCloseCircle, { className: Modal_CSS.CLOSE_BTN });
 		closeIcon.addEventListener("click", () => this.close());
 		dcCursor.subscribeElementToDetectHover(closeIcon);
 		header.appendChild(closeIcon);
@@ -125,9 +128,18 @@ export class dcModal extends dcComponent {
 		this.mainElement.appendChild(this.modal);
 		
 		this.button.addEventListener("click", () => this.open());
+
+		this.mainElement.addEventListener("selectstart", (e) => {
+			if (!this.canSelect) {
+				e.preventDefault();
+			}
+		});
+
+		this.mainElement.addEventListener("pointerup", () => this.canSelect = true);
 	}
 	
 	public open(): void {
+		this.canSelect = false;
 		this.mainElement.classList.remove(GLOBAL_CSS.DISPLAY_NONE);
 		this.modal.classList.remove(Modal_CSS.ZOOM_OUT);
 		this.modal.classList.add(Modal_CSS.ZOOM_IN);
@@ -139,7 +151,7 @@ export class dcModal extends dcComponent {
 		this.modal.classList.add(Modal_CSS.ZOOM_OUT);
 		setTimeout(() => {
 			this.mainElement.classList.add(GLOBAL_CSS.DISPLAY_NONE);
-		}, 300);
+		}, 200);
 		this.isOpen = false;
 		this.onCloseCallback();
 	}

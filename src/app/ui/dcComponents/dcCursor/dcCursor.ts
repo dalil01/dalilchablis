@@ -2,16 +2,13 @@ import "./dcCursor.css";
 
 import { dcComponent } from "../dcComponent";
 import { _UDom } from "../../dcUtils/_UDom";
-import { dcGlobalConfig } from "../../../global/dcGlobalConfig";
 
 enum CURSOR_CSS {
 	CONTAINER = "cursor-container",
 	CURSOR = "cursor",
 	CURSOR_HOVER = "cursor-hover",
 	CURSOR_INNER = "cursor-inner",
-	CURSOR_INNER_HOVER = "cursor-inner-hover",
-	CURSOR_INNER_LIGHT = "cursor-inner-light",
-	CURSOR_INNER_DARK = "cursor-inner-dark",
+	CURSOR_INNER_HOVER = "cursor-inner-hover"
 }
 
 export class dcCursor extends dcComponent {
@@ -30,13 +27,8 @@ export class dcCursor extends dcComponent {
 	}
 	
 	public buildUI(): void {
-		this.updateMode();
 		this.subscribeToEventListeners();
 		_UDom.AC(this.getMainElement(), this.cursor, dcCursor.cursorInner);
-	}
-	
-	public updateMode(): void {
-		dcCursor.cursorInner.classList.add((dcGlobalConfig.isDarkMode) ? CURSOR_CSS.CURSOR_INNER_DARK : CURSOR_CSS.CURSOR_INNER_LIGHT);
 	}
 	
 	public static subscribeElementToDetectHover(element: HTMLElement): void {

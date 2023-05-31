@@ -101,6 +101,8 @@ export class dcUIManager {
 			this.cursor = new dcCursor(this.parentElement, true);
 		}
 
+		const lastMode = dcGlobalConfig.isDarkMode;
+
 		this.autoSetVRMode();
 		this.autoSetMode();
 		this.autoSetLocale();
@@ -118,12 +120,17 @@ export class dcUIManager {
 
 			this.autoSetCurrentView();
 
-			this.currentView.update();
+			if (this.currentView == this.officeView) {
+				this.officeView.update(lastMode === dcGlobalConfig.isDarkMode);
+			} else {
+				this.currentView.update();
+			}
 		} else {
 			this.homeView = new dcHome(this.mainElement, dcGlobalConfig.currentView == VIEWS.HOME);
 
 			this.officeView = new dcOffice(this.mainElement);
 			this.officeView.onReady(() => this.homeView.buildStartButton());
+
 			this.officeView.init();
 
 			this.homeView.onClickOnStartButton(() => this.officeView.setVisitStarted(true));

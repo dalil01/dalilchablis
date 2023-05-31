@@ -12,6 +12,7 @@ export enum DcIcons {
   DcIconGitlabLogo = "dcIcon-gitlab-logo",
   DcIconGlobe = "dcIcon-globe",
   DcIconGraduationCap = "dcIcon-graduation-cap",
+  DcIconHand = "dcIcon-hand",
   DcIconHeart = "dcIcon-heart",
   DcIconHelpOutline = "dcIcon-help-outline",
   DcIconHelp = "dcIcon-help",

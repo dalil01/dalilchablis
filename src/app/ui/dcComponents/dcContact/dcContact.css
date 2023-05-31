@@ -1,5 +1,5 @@
 .contact-container {
-    padding: 5px;
+    margin: 5px;
     width: 100%;
     overflow-y: auto;
 }
@@ -24,13 +24,15 @@
 .contact-social-networks {
     display: flex;
     justify-content: center;
+    margin: auto;
     flex-wrap: wrap;
+    width: 80%;
 }
 
 .contact-social-network {
     flex-grow: 1;
     width: 33%;
-    margin: 30px 0;
+    margin: 25px 0 30px 0;
 }
 
 .contact-social-network i {
