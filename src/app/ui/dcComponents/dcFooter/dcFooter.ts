@@ -17,17 +17,24 @@ enum FOOTER_CSS {
 }
 
 export class dcFooter extends dcComponent {
-	
+
+	private sound: dcSound;
+
 	constructor(parentElement: HTMLElement, autoInit: boolean = false) {
 		super(parentElement, _UDom.footer({ className: FOOTER_CSS.CONTAINER }));
-		
+
+		this.sound = new dcSound(this.mainElement, true);
+
 		if (autoInit)
 			this.init();
 	}
 	
 	public buildUI(): void {
-		new dcSound(this.mainElement, true);
-		
+		const soundMainElem = this.sound.getMainElement();
+		if (!this.mainElement.contains(soundMainElem)) {
+			this.mainElement.appendChild(soundMainElem);
+		}
+
 		const contactContainer = _UDom.div({ className: FOOTER_CSS.CONTACT_CONTAINER });
 		const contactIcon = _UIcon.getIcon(DcIcons.DcIconTelephoneFill);
 		const contactLabel = _UDom.p({ innerText: dcTranslator.T(dcTranslation.CONTACT).toUpperCase() });

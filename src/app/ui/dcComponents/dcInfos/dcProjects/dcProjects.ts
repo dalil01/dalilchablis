@@ -69,7 +69,7 @@ export class dcProjects extends dcComponent {
 				_UDom.AC(divContent, _UDom.p({ innerText: dcTranslator.T(dcTranslation[item.$description]) + '.', className: PROJECTS_CSS.DESCRIPTION }));
 
 				if (item.techStack) {
-					divContent.appendChild(_UDom.p({ innerText: item.techStack, className: PROJECTS_CSS.TECH_STACK }));
+					divContent.appendChild(_UDom.p({ innerText: item.techStack + '.', className: PROJECTS_CSS.TECH_STACK }));
 				}
 
 				if (item.url) {

@@ -5,6 +5,9 @@ import { _UDom } from "../../dcUtils/_UDom";
 import { dcGlobalConfig } from "../../../global/dcGlobalConfig";
 import { dcCursor } from "../dcCursor/dcCursor";
 import { LOCAL_STORAGE_KEY } from "../../../global/dcGlobalEnums";
+import { dcTranslator } from "../../dcTranslator/dcTranslator";
+import { dcTranslation } from "../../dcTranslator/dcTranslation";
+import { dcGlobalVars } from "../../../global/dcGlobalVars";
 
 enum SOUND_CSS_CLASSNAMES {
 	CONTAINER = "sound-container",
@@ -19,20 +22,22 @@ enum SOUND_CSS_CLASSNAMES {
 }
 
 export class dcSound extends dcComponent {
-	
+
+	private mp3: HTMLAudioElement;
+
 	constructor(parentElement: HTMLElement, autoInit: boolean = false) {
-		super(parentElement, _UDom.CCE("sound", { className: SOUND_CSS_CLASSNAMES.CONTAINER }));
+		super(parentElement, _UDom.CCE("sound", {
+			className: SOUND_CSS_CLASSNAMES.CONTAINER,
+			title: dcTranslator.T(dcTranslation.MUSIC_CREDIT) + '.'
+		}));
+
+		this.mp3 = new Audio(dcGlobalVars.SOUND_MP3_PATH);
 		
 		if (autoInit)
 			this.init();
 	}
 	
 	public buildUI(): void {
-		const lkSoundEnable = localStorage.getItem(LOCAL_STORAGE_KEY.SOUND_ENABLE);
-		if (lkSoundEnable) {
-			dcGlobalConfig.soundEnable = lkSoundEnable === "true";
-		}
-		
 		const boxes = _UDom.div({ className: SOUND_CSS_CLASSNAMES.BOX_CONTAINER });
 		const box1 = _UDom.div({ className: SOUND_CSS_CLASSNAMES.BOX_1 });
 		const box2 = _UDom.div({ className: SOUND_CSS_CLASSNAMES.BOX_2 });
@@ -58,8 +63,14 @@ export class dcSound extends dcComponent {
 					e.classList.remove(SOUND_CSS_CLASSNAMES.BOX);
 				}
 			});
+
 			dcGlobalConfig.soundEnable = !dcGlobalConfig.soundEnable;
-			localStorage.setItem(LOCAL_STORAGE_KEY.SOUND_ENABLE, dcGlobalConfig.soundEnable.toString());
+
+			if (dcGlobalConfig.soundEnable) {
+				this.mp3.play();
+			} else {
+				this.mp3.pause();
+			}
 		});
 		
 		dcCursor.subscribeElementToDetectHover(this.mainElement);

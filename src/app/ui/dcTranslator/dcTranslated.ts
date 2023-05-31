@@ -3,6 +3,10 @@ export const dcTranslated = {
 		EN: "Settings",
 		FR: "Paramètres"
 	},
+	MUSIC_CREDIT: {
+		EN: "Night Street by Ashot Danielyan",
+		FR: "Night Street par Ashot Danielyan"
+	},
 	CONTACT: {
 		EN: "Contact",
 		FR: "Contact"
@@ -268,8 +272,8 @@ export const dcTranslated = {
 		FR: "Scolaires"
 	},
 	IN_DEV: {
-		EN: "Project in development...",
-		FR: "Projet en cours de développement..."
+		EN: "Project in development..",
+		FR: "Projet en cours de développement.."
 	},
 	PORTFOLIO_V1: {
 		EN: "Portfolio v1",
@@ -300,7 +304,7 @@ export const dcTranslated = {
 		FR: "Création d'un framework de gestion des tests"
 	},
 	CANVAS_GRID: {
-		EN: "Creation of a canvas 2d data grid",
+		EN: "Creation of a 2d canvas data grid",
 		FR: "Création d'une grille de données en canvas 2d"
 	},
 	E2E_TEST_AUTOMATION: {

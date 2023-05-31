@@ -105,5 +105,17 @@
         width: 33%;
     }
 
+    .projects-item-content {
+        width: 80%;
+    }
+
+}
+
+@media (min-width: 1600px) {
+
+    .projects-item-content {
+        width: 60%;
+    }
+
 }
 

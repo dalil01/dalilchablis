@@ -1,5 +1,6 @@
 export enum dcTranslation {
 	SETTINGS,
+	MUSIC_CREDIT,
 	CONTACT,
 	CONTACT_ME,
 	HELP,
