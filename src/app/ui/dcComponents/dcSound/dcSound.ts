@@ -71,6 +71,13 @@ export class dcSound extends dcComponent {
 			} else {
 				this.mp3.pause();
 			}
+
+			this.mp3.addEventListener("ended", () => {
+				boxesList.forEach((e) => {
+					e.classList.remove(SOUND_CSS_CLASSNAMES.BOX_ENABLE);
+					e.classList.add(SOUND_CSS_CLASSNAMES.BOX);
+				});
+			});
 		});
 		
 		dcCursor.subscribeElementToDetectHover(this.mainElement);
