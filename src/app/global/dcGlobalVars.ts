@@ -3,7 +3,7 @@ import { VIEWS } from "./dcGlobalEnums";
 export class dcGlobalVars {
 	public static DEFAULT_VEW = VIEWS.HOME;
 	public static SOUNDS_PATH = "./assets/sounds/";
-	public static SOUND_MP3_PATH = "./assets/sounds/night-street.mp3";
+	public static SOUND_MP3_PATH = "./assets/sounds/dcSound.mp3";
 	public static IMAGE_PATH = "./assets/images/";
 	public static LOGO_BLACK_PATH = "./assets/images/dcLogoBlack.svg";
 	public static LOGO_WHITE_PATH = "./assets/images/dcLogoWhite.svg";

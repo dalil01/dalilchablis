@@ -28,7 +28,7 @@ export class dcSound extends dcComponent {
 	constructor(parentElement: HTMLElement, autoInit: boolean = false) {
 		super(parentElement, _UDom.CCE("sound", {
 			className: SOUND_CSS_CLASSNAMES.CONTAINER,
-			title: dcTranslator.T(dcTranslation.MUSIC_CREDIT) + '.'
+			title: dcTranslator.T(dcTranslation.MUSIC_CREDIT)
 		}));
 
 		this.mp3 = new Audio(dcGlobalVars.SOUND_MP3_PATH);

@@ -4,8 +4,8 @@ export const dcTranslated = {
 		FR: "Paramètres"
 	},
 	MUSIC_CREDIT: {
-		EN: "Night Street by Ashot Danielyan",
-		FR: "Night Street par Ashot Danielyan"
+		EN: "Music by Malo CARTRON", // "Night Street by Ashot Danielyan"
+		FR: "Musique par Malo CARTRON" // "Night Street par Ashot Danielyan"
 	},
 	CONTACT: {
 		EN: "Contact",
