@@ -315,11 +315,15 @@ export class dcOffice extends dcView {
 			});
 		}
 
-		const modal = new dcModal(Modal_TYPE.MEDIUM, pointWrapperElement, _UIcon.getIcon(DcIcons.DcIconAboutMe), dcTranslator.T(dcTranslation.ABOUT_ME), undefined, true, true, true);
-		const modalComponent = new dcAboutMe(modal.getMainElement(), true);
-		modal.setContent(modalComponent.getMainElement());
-		modal.onClose(() => this.moveToDefaultPosition());
+		let modal;
 		pointWrapperElement.addEventListener("pointerdown", () => {
+			if (!modal) {
+				modal = new dcModal(Modal_TYPE.MEDIUM, pointWrapperElement, _UIcon.getIcon(DcIcons.DcIconAboutMe), dcTranslator.T(dcTranslation.ABOUT_ME), undefined, true, true, true);
+				const modalComponent = new dcAboutMe(modal.getMainElement(), true);
+				modal.setContent(modalComponent.getMainElement());
+				modal.onClose(() => this.moveToDefaultPosition());
+			}
+
 			const point = this.points.get("about");
 			if (point && point.position) {
 				gsap.to(this.controls.target, {
@@ -358,11 +362,15 @@ export class dcOffice extends dcView {
 			});
 		}
 
-		const modal = new dcModal(Modal_TYPE.SMALL, pointWrapperElement, _UIcon.getIcon(DcIcons.DcIconTelephoneFill), dcTranslator.T(dcTranslation.CONTACT_ME), undefined, true, true, true);
-		const modalComponent = new dcContact(modal.getMainElement(), true);
-		modal.setContent(modalComponent.getMainElement());
-		modal.onClose(() => this.moveToDefaultPosition());
+		let modal;
 		pointWrapperElement.addEventListener("pointerdown", () => {
+			if (!modal) {
+				modal = new dcModal(Modal_TYPE.SMALL, pointWrapperElement, _UIcon.getIcon(DcIcons.DcIconTelephoneFill), dcTranslator.T(dcTranslation.CONTACT_ME), undefined, true, true, true);
+				const modalComponent = new dcContact(modal.getMainElement(), true);
+				modal.setContent(modalComponent.getMainElement());
+				modal.onClose(() => this.moveToDefaultPosition());
+			}
+
 			const point = this.points.get("contact");
 			if (point && point.position) {
 				gsap.to(this.controls.target, {
@@ -401,11 +409,15 @@ export class dcOffice extends dcView {
 			});
 		}
 
-		const modal = new dcModal(Modal_TYPE.MEDIUM, pointWrapperElement, _UIcon.getIcon(DcIcons.DcIconGraduationCap), dcTranslator.T(dcTranslation.EDUCATION), undefined, true, true, true);
-		const modalComponent = new dcEducation(modal.getMainElement(), true);
-		modal.setContent(modalComponent.getMainElement());
-		modal.onClose(() => this.moveToDefaultPosition());
+		let modal;
 		pointWrapperElement.addEventListener("pointerdown", () => {
+			if (!modal) {
+				modal = new dcModal(Modal_TYPE.MEDIUM, pointWrapperElement, _UIcon.getIcon(DcIcons.DcIconGraduationCap), dcTranslator.T(dcTranslation.EDUCATION), undefined, true, true, true);
+				const modalComponent = new dcEducation(modal.getMainElement(), true);
+				modal.setContent(modalComponent.getMainElement());
+				modal.onClose(() => this.moveToDefaultPosition());
+			}
+
 			const point = this.points.get("education");
 			if (point && point.position) {
 				gsap.to(this.controls.target, {
@@ -444,11 +456,15 @@ export class dcOffice extends dcView {
 			});
 		}
 
-		const modal = new dcModal(Modal_TYPE.MEDIUM, pointWrapperElement, _UIcon.getIcon(DcIcons.DcIconUserGraduate), dcTranslator.T(dcTranslation.EXPERIENCE), undefined, true, true, true);
-		const modalComponent = new dcExperience(modal.getMainElement(), true);
-		modal.setContent(modalComponent.getMainElement());
-		modal.onClose(() => this.moveToDefaultPosition());
+		let modal;
 		pointWrapperElement.addEventListener("pointerdown", () => {
+			if (!modal) {
+				modal = new dcModal(Modal_TYPE.MEDIUM, pointWrapperElement, _UIcon.getIcon(DcIcons.DcIconUserGraduate), dcTranslator.T(dcTranslation.EXPERIENCE), undefined, true, true, true);
+				const modalComponent = new dcExperience(modal.getMainElement(), true);
+				modal.setContent(modalComponent.getMainElement());
+				modal.onClose(() => this.moveToDefaultPosition());
+			}
+
 			const point = this.points.get("experience");
 			if (point && point.position) {
 				gsap.to(this.controls.target, {
@@ -487,11 +503,15 @@ export class dcOffice extends dcView {
 			});
 		}
 
-		const modal = new dcModal(Modal_TYPE.LARGE, pointWrapperElement, _UIcon.getIcon(DcIcons.DcIconHeart), dcTranslator.T(dcTranslation.PROJECTS), undefined, true, true, true);
-		const modalComponent = new dcProjects(modal.getMainElement(), true);
-		modal.setContent(modalComponent.getMainElement());
-		modal.onClose(() => this.moveToDefaultPosition());
+		let modal;
 		pointWrapperElement.addEventListener("pointerdown", () => {
+			if (!modal) {
+				modal = new dcModal(Modal_TYPE.LARGE, pointWrapperElement, _UIcon.getIcon(DcIcons.DcIconHeart), dcTranslator.T(dcTranslation.PROJECTS), undefined, true, true, true);
+				const modalComponent = new dcProjects(modal.getMainElement(), true);
+				modal.setContent(modalComponent.getMainElement());
+				modal.onClose(() => this.moveToDefaultPosition());
+			}
+
 			const point = this.points.get("projects");
 			if (point && point.position) {
 				gsap.to(this.controls.target, {
@@ -529,11 +549,15 @@ export class dcOffice extends dcView {
 			});
 		}
 
-		const modal = new dcModal(Modal_TYPE.MEDIUM, pointWrapperElement, _UIcon.getIcon(DcIcons.DcIconSkills), dcTranslator.T(dcTranslation.SKILLS), undefined, true, true, true);
-		const modalComponent = new dcSkills(modal.getMainElement(), true);
-		modal.setContent(modalComponent.getMainElement());
-		modal.onClose(() => this.moveToDefaultPosition());
+		let modal;
 		pointWrapperElement.addEventListener("pointerdown", () => {
+			if (!modal) {
+				modal = new dcModal(Modal_TYPE.MEDIUM, pointWrapperElement, _UIcon.getIcon(DcIcons.DcIconSkills), dcTranslator.T(dcTranslation.SKILLS), undefined, true, true, true);
+				const modalComponent = new dcSkills(modal.getMainElement(), true);
+				modal.setContent(modalComponent.getMainElement());
+				modal.onClose(() => this.moveToDefaultPosition());
+			}
+
 			const point = this.points.get("skills");
 			if (point && point.position) {
 				gsap.to(this.controls.target, {
