@@ -526,7 +526,7 @@ export class _UDom {
 			if (!element) {
 				return;
 			}
-			
+
 			if (element.startCallback && !element.element) {
 				element.element = element.startCallback();
 			}

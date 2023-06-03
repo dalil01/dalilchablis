@@ -78,6 +78,7 @@ export class dcOffice extends dcView {
 	private frustum: THREE.Frustum = new THREE.Frustum();
 
 	private visitStarted: boolean = false;
+	private resourcesLoaded: boolean = false;
 
 	constructor(parentElement: HTMLElement, autoInit: boolean = false) {
 		super(parentElement, _UDom.CCE("office"));
@@ -156,7 +157,6 @@ export class dcOffice extends dcView {
 		this.officeEvent.updateRendererProperties();
 
 		this.addPoints();
-		this.loadResources();
 
 		this.scene.add(this.camera);
 
@@ -189,11 +189,15 @@ export class dcOffice extends dcView {
 	}
 
 	public init(): void {
-		super.init();
+		this.loadResources().then(() => {
+			super.init();
 
-		if (this.isInitiated()) {
-			this.animate();
-		}
+			if (this.isInitiated()) {
+				this.animate();
+			}
+		})
+
+
 	}
 
 	public destroy(): void {
@@ -544,7 +548,11 @@ export class dcOffice extends dcView {
 		});
 	}
 
-	private loadResources(): void {
+	private async loadResources(): Promise<void> {
+		if (this.resourcesLoaded) {
+			return;
+		}
+
 		const bakedTextureDark = this.textureLoader.load(dcGlobalVars.VIRTUAL_STUDIO_DARK_TEXTURE_PATH);
 		bakedTextureDark.flipY = false;
 		bakedTextureDark.encoding = THREE.sRGBEncoding;
@@ -553,112 +561,120 @@ export class dcOffice extends dcView {
 		bakedTextureLight.flipY = false;
 		bakedTextureLight.encoding = THREE.sRGBEncoding;
 
-		this.gltfLoader.load(dcGlobalVars.VIRTUAL_STUDIO_GLB_PATH, (gltf) => {
-			this.gltfSceneDark = gltf.scene;
-			this.gltfSceneLight = gltf.scene.clone(true);
+		const gltfPromise = new Promise<void>((resolve) => {
+			this.gltfLoader.load(dcGlobalVars.VIRTUAL_STUDIO_GLB_PATH, (gltf) => {
+				this.gltfSceneDark = gltf.scene;
+				this.gltfSceneLight = gltf.scene.clone(true);
 
-			for (let i = 0; i < 2; i++) {
-				let scene;
-				let bakedMaterial;
+				for (let i = 0; i < 2; i++) {
+					let scene;
+					let bakedMaterial;
 
-				if (i == 0) {
-					scene = this.gltfSceneDark;
-					bakedMaterial = new THREE.MeshBasicMaterial({ map: bakedTextureDark /*, color: 0xff0000 */ })
-				} else {
-					scene = this.gltfSceneLight;
-					bakedMaterial = new THREE.MeshBasicMaterial({ map: bakedTextureLight /*, color: 0xff0000 */ })
+					if (i == 0) {
+						scene = this.gltfSceneDark;
+						bakedMaterial = new THREE.MeshBasicMaterial({ map: bakedTextureDark /*, color: 0xff0000 */ })
+					} else {
+						scene = this.gltfSceneLight;
+						bakedMaterial = new THREE.MeshBasicMaterial({ map: bakedTextureLight /*, color: 0xff0000 */ })
+					}
+
+					scene.traverse((child: any) => {
+						const name = child.name.trim().toLowerCase();
+						switch (name) {
+							case "about":
+							case "contact":
+							case "education":
+							case "experience":
+							case "projects":
+							case "skills":
+								const point = this.points.get(name);
+								if (point) {
+									point.position = new THREE.Vector3(
+										child.position.x + point.offset.x,
+										child.position.y + point.offset.y,
+										child.position.z + point.offset.z
+									);
+								}
+								break;
+							case "windows":
+								child.material = new THREE.MeshBasicMaterial({
+									opacity: 0.12,
+									color: "#818181",
+									transparent: true,
+									side: THREE.DoubleSide,
+									depthWrite: false
+								});
+								break;
+							case "outside":
+								const outsideTexture = new THREE.TextureLoader().load(dcGlobalVars.OUTSIDE);
+								outsideTexture.flipY = false;
+								//outsideTexture.minFilter = THREE.LinearFilter;
+								//outsideTexture.magFilter = THREE.LinearFilter;
+								outsideTexture.wrapS = THREE.RepeatWrapping;
+								outsideTexture.wrapT = THREE.RepeatWrapping;
+								child.material = new THREE.MeshBasicMaterial({ map: outsideTexture });
+								break;
+							case "table_1_glass":
+							case "table_2_glass":
+								child.material = new THREE.MeshBasicMaterial({
+									opacity: (i == 0) ? 0.1 : 0.21,
+									color: "#818181",
+									transparent: true,
+									side: THREE.DoubleSide,
+									depthWrite: false
+								});
+								break;
+							case "cactus":
+								child.material = new THREE.MeshBasicMaterial({ color: "#bcf1c0" });
+								break;
+							case "circle":
+								child.material = new THREE.MeshBasicMaterial({ color: "#2efc34" });
+								break;
+							case "triangle":
+								child.material = new THREE.MeshBasicMaterial({ color: "#f8a724" });
+								break;
+							case "square":
+								child.material = new THREE.MeshBasicMaterial({ color: "#dc27fd" });
+								break;
+							case "cross":
+								child.material = new THREE.MeshBasicMaterial({ color: "#1d49fa" });
+								break;
+							case "pacman_yellow":
+								child.material = new THREE.MeshBasicMaterial({ color: "#F9FE3E" });
+								break;
+							case "pacman_white":
+								child.material = new THREE.MeshBasicMaterial({ color: "#FFFFFF" });
+								break;
+							case "pacman_green":
+								child.material = new THREE.MeshBasicMaterial({ color: "#28FE22" });
+								break;
+							case "pacman_blue":
+								child.material = new THREE.MeshBasicMaterial({ color: "#243AFE" });
+								break;
+							default:
+								if (name.startsWith("led")) {
+									child.material = new THREE.MeshBasicMaterial({ color: "#544db4" });
+								} else {
+									child.material = bakedMaterial;
+								}
+						}
+
+						if (child instanceof THREE.Mesh) {
+							child.castShadow = true;
+							child.receiveShadow = true;
+						}
+					});
+
+					this.scene.add(dcGlobalConfig.isDarkMode ? this.gltfSceneDark : this.gltfSceneLight);
 				}
 
-				scene.traverse((child: any) => {
-					const name = child.name.trim().toLowerCase();
-					switch (name) {
-						case "about":
-						case "contact":
-						case "education":
-						case "experience":
-						case "projects":
-						case "skills":
-							const point = this.points.get(name);
-							if (point) {
-								point.position = new THREE.Vector3(
-									child.position.x + point.offset.x,
-									child.position.y + point.offset.y,
-									child.position.z + point.offset.z
-								);
-							}
-							break;
-						case "windows":
-							child.material = new THREE.MeshBasicMaterial({
-								opacity: 0.12,
-								color: "#818181",
-								transparent: true,
-								side: THREE.DoubleSide,
-								depthWrite: false
-							});
-							break;
-						case "outside":
-							const outsideTexture = new THREE.TextureLoader().load(dcGlobalVars.OUTSIDE);
-							outsideTexture.flipY = false;
-							//outsideTexture.minFilter = THREE.LinearFilter;
-							//outsideTexture.magFilter = THREE.LinearFilter;
-							outsideTexture.wrapS = THREE.RepeatWrapping;
-							outsideTexture.wrapT = THREE.RepeatWrapping;
-							child.material = new THREE.MeshBasicMaterial({ map: outsideTexture });
-							break;
-						case "table_1_glass":
-						case "table_2_glass":
-							child.material = new THREE.MeshBasicMaterial({
-								opacity: (i == 0) ? 0.1 : 0.21,
-								color: "#818181",
-								transparent: true,
-								side: THREE.DoubleSide,
-								depthWrite: false
-							});
-							break;
-						case "cactus":
-							child.material = new THREE.MeshBasicMaterial({ color: "#bcf1c0" });
-							break;
-						case "circle":
-							child.material = new THREE.MeshBasicMaterial({ color: "#2efc34" });
-							break;
-						case "triangle":
-							child.material = new THREE.MeshBasicMaterial({ color: "#f8a724" });
-							break;
-						case "square":
-							child.material = new THREE.MeshBasicMaterial({ color: "#dc27fd" });
-							break;
-						case "cross":
-							child.material = new THREE.MeshBasicMaterial({ color: "#1d49fa" });
-							break;
-						case "pacman_yellow":
-							child.material = new THREE.MeshBasicMaterial({ color: "#F9FE3E" });
-							break;
-						case "pacman_white":
-							child.material = new THREE.MeshBasicMaterial({ color: "#FFFFFF" });
-							break;
-						case "pacman_green":
-							child.material = new THREE.MeshBasicMaterial({ color: "#28FE22" });
-							break;
-						case "pacman_blue":
-							child.material = new THREE.MeshBasicMaterial({ color: "#243AFE" });
-							break;
-						default:
-							if (name.startsWith("led")) {
-								child.material = new THREE.MeshBasicMaterial({ color: "#544db4" });
-							} else {
-								child.material = bakedMaterial;
-							}
-					}
-
-					if (child instanceof THREE.Mesh) {
-						child.castShadow = true;
-						child.receiveShadow = true;
-					}
-				});
-
-				this.scene.add(dcGlobalConfig.isDarkMode ? this.gltfSceneDark : this.gltfSceneLight);
-			}
+				resolve();
+			});
 		});
+
+		await Promise.all([bakedTextureDark, bakedTextureLight, gltfPromise]);
+
+		this.resourcesLoaded = true;
 	}
 
 	private moveToDefaultPosition(): void {

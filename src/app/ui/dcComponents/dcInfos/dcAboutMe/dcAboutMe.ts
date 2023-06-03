@@ -32,7 +32,7 @@ export class dcAboutMe extends dcComponent {
 		const hi = _UDom.span({ innerText: dcTranslator.T(dcTranslation.HI_THERE) + ' ' });
 		const hand = _UIcon.getIcon(DcIcons.DcIconHand, { className: ABOUT_ME_CSS.EMOJI_HAND });
 		const about = _UDom.span({
-			innerText: ", " + dcTranslator.T(dcTranslation.ABOUT_TEXT) + " (｡◕‿◕｡)"
+			innerText: ", " + dcTranslator.T(dcTranslation.ABOUT_TEXT)
 		});
 
 		_UDom.AC(aboutContainer, hi, hand, about);

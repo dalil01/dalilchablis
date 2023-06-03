@@ -41,6 +41,11 @@ export class dcHome extends dcView {
 		this.onClickOnStartButtonCallback = callback;
 	}
 
+	public override update(): void {
+		this.destroy();
+		this.init();
+	}
+
 	public buildUI(): void {
 		this.buildText();
 		if (this.startBtnVisible) {
@@ -109,6 +114,11 @@ export class dcHome extends dcView {
 	}
 
 	public buildStartButton(): void {
+		if (this.startBtn) {
+			this.mainElement.appendChild(this.startBtn);
+			return;
+		}
+
 		if (!this.startBtnVisible) {
 			this.removeLoading();
 		}

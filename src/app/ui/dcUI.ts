@@ -43,6 +43,7 @@ export abstract class dcUI {
 	
 	public destroy(): void {
 		if (this.initiated) {
+			_UDom.removeAllChildren(this.mainElement);
 			this.parentElement.removeChild(this.mainElement);
 			this.initiated = false;
 		}
