@@ -7,6 +7,7 @@ import { dcTranslation } from "../../../dcTranslator/dcTranslation";
 import { dcGlobalVars } from "../../../../global/dcGlobalVars";
 import { _UIcon } from "../../../dcUtils/_UIcon";
 import { DcIcons } from "../../../dcIcons/dcIcons";
+import { dcCursor } from "../../dcCursor/dcCursor";
 
 enum SKILLS_CSS {
 	CONTAINER = "skills-container",
@@ -88,6 +89,8 @@ export class dcSkills extends dcComponent {
 				const divContent = _UDom.div({ className: SKILLS_CSS.ITEM_CONTENT });
 
 				dcSkills.openLink(divContent, item.url);
+				dcCursor.subscribeElementToDetectHover(divContent);
+
 				_UDom.AC(divContent, _UDom.img({ src: dcGlobalVars.IMAGE_PATH + "skills/" + item.imgPath, className: SKILLS_CSS.IMAGE }));
 				_UDom.AC(divContent, _UDom.p({ innerText: item.name, className: SKILLS_CSS.NAME }));
 

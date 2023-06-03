@@ -110,6 +110,7 @@ export class dcExperience extends dcComponent {
 		if (link) {
 			const readMore = _UDom.a({ href: link, innerText: dcTranslator.T(dcTranslation.READ_MORE) + "...", className: EXPERIENCE_CSS.CARD_LINK, target: "_blank" });
 			card.appendChild(readMore);
+			dcCursor.subscribeElementToDetectHover(readMore);
 		}
 
 		this.mainElement.appendChild(cardContainer);

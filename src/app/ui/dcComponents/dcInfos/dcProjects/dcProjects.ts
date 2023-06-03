@@ -5,6 +5,7 @@ import { _UDom } from "../../../dcUtils/_UDom";
 import { dcTranslator } from "../../../dcTranslator/dcTranslator";
 import { dcTranslation } from "../../../dcTranslator/dcTranslation";
 import { dcGlobalVars } from "../../../../global/dcGlobalVars";
+import { dcCursor } from "../../dcCursor/dcCursor";
 
 enum PROJECTS_CSS {
 	CONTAINER = "projects-container",
@@ -73,7 +74,10 @@ export class dcProjects extends dcComponent {
 				}
 
 				if (item.url) {
-					_UDom.AC(divContent, _UDom.AC(_UDom.p({ className: PROJECTS_CSS.READ_MORE }), _UDom.a({ href: item.url, target: "_blank", innerText: dcTranslator.T(dcTranslation.READ_MORE) + "..." })));
+					const readMore = _UDom.a({ href: item.url, target: "_blank", innerText: dcTranslator.T(dcTranslation.READ_MORE) + "..." });
+					dcCursor.subscribeElementToDetectHover(readMore);
+
+					_UDom.AC(divContent, _UDom.AC(_UDom.p({ className: PROJECTS_CSS.READ_MORE }), readMore));
 				}
 
 				div.appendChild(divContent);
