@@ -133,7 +133,10 @@ export class dcUIManager {
 
 			this.officeView.init();
 
-			this.homeView.onClickOnStartButton(() => this.officeView.setVisitStarted(true));
+			this.homeView.onClickOnStartButton(() => {
+				this.officeView.setVisitStarted(true);
+				this.officeView.update(lastMode === dcGlobalConfig.isDarkMode);
+			});
 
 			this.autoSetCurrentView();
 		}
