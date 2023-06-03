@@ -9,7 +9,8 @@ export default {
         port: 1200
     },
     build: {
-        outDir: "../dist"
+        outDir: "../dist",
+        emptyOutDir: true
     },
     plugins: [
         viteStaticCopy({

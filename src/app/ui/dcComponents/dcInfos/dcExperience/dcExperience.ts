@@ -36,7 +36,7 @@ export class dcExperience extends dcComponent {
 		const imgExperiencePath = "../../../../assets/images/experience/";
 
 		this.addCard(
-			imgExperiencePath + "dcbrain-logo.png",
+			imgExperiencePath + "dcbrain-logo.webp",
 			"https://dcbrain.com/",
 			"DCbrain (Paris)",
 			dcTranslator.T(dcTranslation.FULLSTACK_DEVELOPER) + " - " + dcTranslator.T(dcTranslation.APPRENTICE) + " | " + "2021 - " + dcTranslator.T(dcTranslation.TODAY),
@@ -48,7 +48,7 @@ export class dcExperience extends dcComponent {
 		);
 
 		this.addCard(
-			imgExperiencePath + "dcbrain-logo.png",
+			imgExperiencePath + "dcbrain-logo.webp",
 			"https://dcbrain.com/",
 			"DCbrain (Paris)",
 			"QA " + dcTranslator.T(dcTranslation.TESTER) + " - Freelance | 2021 (7 " + dcTranslator.T(dcTranslation.MONTHS) + ')',
@@ -56,7 +56,7 @@ export class dcExperience extends dcComponent {
 		);
 
 		this.addCard(
-			imgExperiencePath + "dcbrain-logo.png",
+			imgExperiencePath + "dcbrain-logo.webp",
 			"https://dcbrain.com/",
 			"DCbrain (Paris)",
 			dcTranslator.T(dcTranslation.INTERN) + " | 2021 (2 " + dcTranslator.T(dcTranslation.MONTHS) + ')',
@@ -65,7 +65,7 @@ export class dcExperience extends dcComponent {
 		);
 
 		this.addCard(
-			imgExperiencePath + "carrefour-logo.png",
+			imgExperiencePath + "carrefour-logo.webp",
 			"https://www.carrefour.fr/magasin/market-ecuelles",
 			"Carrefour Market (Ecuelles)",
 			dcTranslator.T(dcTranslation.SUMMER_JOB) + " | 2020 (1 " + dcTranslator.T(dcTranslation.MONTHS) + ')',

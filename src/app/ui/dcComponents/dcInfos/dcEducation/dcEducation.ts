@@ -42,7 +42,7 @@ export class dcEducation extends dcComponent {
 		);
 
 		this.addCard(
-			imgEducationPath + "sorbonne-logo.png",
+			imgEducationPath + "sorbonne-logo.webp",
 			"https://www.sorbonne-universite.fr/",
 			"SORBONNE " + dcTranslator.T(dcTranslation.UNIVERSITY) + " - " + dcTranslator.T(dcTranslation.CFA_SCIENCES) + " (Paris)",
 			"DANT | 2021 - 2022",
@@ -50,7 +50,7 @@ export class dcEducation extends dcComponent {
 		);
 
 		this.addCard(
-			imgEducationPath + "ldv-logo.jpg",
+			imgEducationPath + "ldv-logo.webp",
 			"https://www.vinci-melun.org/",
 			dcTranslator.T(dcTranslation.LYCEE) + " Léonard de Vinci (Melun)",
 			"BTS SIO SLAM | 2019 - 2021",
@@ -58,7 +58,7 @@ export class dcEducation extends dcComponent {
 		);
 
 		this.addCard(
-			imgEducationPath + "uruguay-logo.jpg",
+			imgEducationPath + "uruguay-logo.webp",
 			"http://www.uruguayfrance.fr/wp/",
 			dcTranslator.T(dcTranslation.LYCEE) + " Uruguay France (Avon)",
 			"BAC STMG SIG | 2017 - 2019",

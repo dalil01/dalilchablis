@@ -25,7 +25,7 @@ export class dcAboutMe extends dcComponent {
 	}
 	
 	public buildUI(): void {
-		const avatar = _UDom.img({ src: dcGlobalVars.IMAGE_PATH + "about/me.png", className: ABOUT_ME_CSS.AVATAR });
+		const avatar = _UDom.img({ src: dcGlobalVars.IMAGE_PATH + "about/me.webp", className: ABOUT_ME_CSS.AVATAR });
 		this.mainElement.appendChild(avatar);
 
 		const aboutContainer = _UDom.div({ className: ABOUT_ME_CSS.TEXT_CONTAINER });
