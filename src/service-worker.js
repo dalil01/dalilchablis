@@ -61,7 +61,14 @@ self.addEventListener("fetch", (event) => {
 
                     return response;
                 }).catch(() => {
-                    return new Response("<h1>You are offline.</h1>", { headers: { "Content-Type": "text/html" } });
+                    return new Response(
+                        `<!DOCTYPE html>
+                                   <html lang="en">
+                                     <body>
+                                        <h1>You are offline.</h1>
+                                     </body>
+                               </html>`
+                        , { headers: { "Content-Type": "text/html" } });
                 });
             })
         );

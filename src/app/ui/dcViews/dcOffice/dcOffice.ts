@@ -506,6 +506,8 @@ export class dcOffice extends dcView {
 			if (!modal) {
 				modal = new dcModal(Modal_TYPE.LARGE, pointWrapperElement, _UIcon.getIcon(DcIcons.DcIconHeart), dcTranslator.T(dcTranslation.PROJECTS), undefined, true, true, true);
 				const modalComponent = new dcProjects(modal.getMainElement(), true);
+				modalComponent.setMenuParent(<HTMLElement>modal.getFooter());
+				modalComponent.init();
 				modal.setContent(modalComponent.getMainElement());
 				modal.onClose(() => this.moveToDefaultPosition());
 			}
@@ -547,11 +549,13 @@ export class dcOffice extends dcView {
 			});
 		}
 
-		let modal;
+		let modal: dcModal;
 		pointWrapperElement.addEventListener("pointerdown", () => {
 			if (!modal) {
 				modal = new dcModal(Modal_TYPE.MEDIUM, pointWrapperElement, _UIcon.getIcon(DcIcons.DcIconSkills), dcTranslator.T(dcTranslation.SKILLS), undefined, true, true, true);
-				const modalComponent = new dcSkills(modal.getMainElement(), true);
+				const modalComponent = new dcSkills(modal.getMainElement());
+				modalComponent.setMenuParent(<HTMLElement>modal.getFooter());
+				modalComponent.init();
 				modal.setContent(modalComponent.getMainElement());
 				modal.onClose(() => this.moveToDefaultPosition());
 			}

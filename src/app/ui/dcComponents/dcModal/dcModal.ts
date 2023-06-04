@@ -47,6 +47,8 @@ export class dcModal extends dcComponent {
 
 	private canSelect: boolean = false;
 
+	private footer!: HTMLElement;
+
 	private onCloseCallback: Function = () => {};
 	
 	constructor(type: Modal_TYPE, button: HTMLElement, icon: HTMLElement, title: string, content: HTMLElement | undefined = undefined, withFooter: boolean = false, closeWhenClickOutside: boolean = true, autoInit: boolean = false) {
@@ -77,7 +79,11 @@ export class dcModal extends dcComponent {
 		if (autoInit)
 			this.init();
 	}
-	
+
+	public getFooter(): undefined | HTMLElement {
+		return this.footer;
+	}
+
 	public setContent(content: HTMLElement): void {
 		this.content = content;
 		this.modalBody.appendChild(this.content);
@@ -105,7 +111,7 @@ export class dcModal extends dcComponent {
 		
 		this.modalBody = _UDom.main({ className: Modal_CSS.BODY });
 		
-		const footer = _UDom.footer({ className: Modal_CSS.FOOTER });
+		this.footer = _UDom.footer({ className: Modal_CSS.FOOTER });
 		
 		_UDom.AC(this.modal, header, this.modalBody);
 		
@@ -114,7 +120,7 @@ export class dcModal extends dcComponent {
 		}
 		
 		if (this.withFooter) {
-			this.modal.appendChild(footer);
+			this.modal.appendChild(this.footer);
 		}
 		
 		if (this.closeWhenClickOutside) {
