@@ -12,7 +12,7 @@
       "ESNext",
       "dom"
     ],
-    "target": "ES5",
+    "target": "ES6",
     "moduleResolution": "Node",
     "experimentalDecorators": true,
     "noEmitOnError": true,
