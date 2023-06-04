@@ -20,6 +20,14 @@ export default {
                     dest: "../dist"
                 },
                 {
+                    src: "robot.txt",
+                    dest: "../dist"
+                },
+                {
+                    src: "service-worker.js",
+                    dest: "../dist"
+                },
+                {
                     src: "assets",
                     dest: "../dist"
                 },
