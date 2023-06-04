@@ -33,8 +33,8 @@ self.addEventListener("install", (event) => {
                     imagesDir + "dcLogoWhite512.png",
                     imagesDir + "outside/outside-1.webp",
                     modelsDir + "dcOffice.glb",
-                    modelsDir + "dcOffice-dark.webp",
-                    modelsDir + "dcOffice-light.webp",
+                    modelsDir + "dcOffice-dark.jpg",
+                    modelsDir + "dcOffice-light.jpg",
                     soundsDir + "dcSound.mp3"
                 ]);
             })

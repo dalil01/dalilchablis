@@ -23,7 +23,7 @@ enum SOUND_CSS_CLASSNAMES {
 
 export class dcSound extends dcComponent {
 
-	private mp3: HTMLAudioElement;
+	private mp3!: HTMLAudioElement;
 
 	constructor(parentElement: HTMLElement, autoInit: boolean = false) {
 		super(parentElement, _UDom.CCE("sound", {
@@ -31,8 +31,6 @@ export class dcSound extends dcComponent {
 			title: dcTranslator.T(dcTranslation.MUSIC_CREDIT)
 		}));
 
-		this.mp3 = new Audio(dcGlobalVars.SOUND_MP3_PATH);
-		
 		if (autoInit)
 			this.init();
 	}
@@ -54,6 +52,10 @@ export class dcSound extends dcComponent {
 		});
 
 		boxes.addEventListener("click", () => {
+			if (!this.mp3) {
+				this.mp3 = new Audio(dcGlobalVars.SOUND_MP3_PATH);
+			}
+
 			boxesList.forEach((e) => {
 				if (dcGlobalConfig.soundEnable) {
 					e.classList.remove(SOUND_CSS_CLASSNAMES.BOX_ENABLE);

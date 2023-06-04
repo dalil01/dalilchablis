@@ -10,7 +10,8 @@ export default {
     },
     build: {
         outDir: "../dist",
-        emptyOutDir: true
+        emptyOutDir: true,
+        sourcemap: true
     },
     plugins: [
         viteStaticCopy({
@@ -20,7 +21,7 @@ export default {
                     dest: "../dist"
                 },
                 {
-                    src: "robot.txt",
+                    src: "robots.txt",
                     dest: "../dist"
                 },
                 {
