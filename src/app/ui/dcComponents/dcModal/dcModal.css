@@ -108,12 +108,10 @@
 
 .modal-light .modal-footer {
     color: var(--dark-mode-color);
-    border-top: 1px solid rgba(60, 64, 67, 0.15);
 }
 
 .modal-dark .modal-footer {
     color: #FFFFFF;
-    border-top: 1px solid grey;
 }
 
 @media (min-width: 601px) {

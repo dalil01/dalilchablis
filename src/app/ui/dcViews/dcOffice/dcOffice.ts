@@ -363,7 +363,7 @@ export class dcOffice extends dcView {
 		let modal;
 		pointWrapperElement.addEventListener("pointerdown", () => {
 			if (!modal) {
-				modal = new dcModal(Modal_TYPE.SMALL, pointWrapperElement, _UIcon.getIcon(DcIcons.DcIconTelephoneFill), dcTranslator.T(dcTranslation.CONTACT_ME), undefined, true, true, true);
+				modal = new dcModal(Modal_TYPE.SMALL, pointWrapperElement, _UIcon.getIcon(DcIcons.DcIconTelephoneFill), dcTranslator.T(dcTranslation.CONTACT_ME), undefined, false, true, true);
 				const modalComponent = new dcContact(modal.getMainElement(), true);
 				modal.setContent(modalComponent.getMainElement());
 				modal.onClose(() => this.moveToDefaultPosition());
@@ -410,7 +410,7 @@ export class dcOffice extends dcView {
 		let modal;
 		pointWrapperElement.addEventListener("pointerdown", () => {
 			if (!modal) {
-				modal = new dcModal(Modal_TYPE.MEDIUM, pointWrapperElement, _UIcon.getIcon(DcIcons.DcIconGraduationCap), dcTranslator.T(dcTranslation.EDUCATION), undefined, true, true, true);
+				modal = new dcModal(Modal_TYPE.MEDIUM, pointWrapperElement, _UIcon.getIcon(DcIcons.DcIconGraduationCap), dcTranslator.T(dcTranslation.EDUCATION), undefined, false, true, true);
 				const modalComponent = new dcEducation(modal.getMainElement(), true);
 				modal.setContent(modalComponent.getMainElement());
 				modal.onClose(() => this.moveToDefaultPosition());
@@ -457,7 +457,7 @@ export class dcOffice extends dcView {
 		let modal;
 		pointWrapperElement.addEventListener("pointerdown", () => {
 			if (!modal) {
-				modal = new dcModal(Modal_TYPE.MEDIUM, pointWrapperElement, _UIcon.getIcon(DcIcons.DcIconUserGraduate), dcTranslator.T(dcTranslation.EXPERIENCE), undefined, true, true, true);
+				modal = new dcModal(Modal_TYPE.MEDIUM, pointWrapperElement, _UIcon.getIcon(DcIcons.DcIconUserGraduate), dcTranslator.T(dcTranslation.EXPERIENCE), undefined, false, true, true);
 				const modalComponent = new dcExperience(modal.getMainElement(), true);
 				modal.setContent(modalComponent.getMainElement());
 				modal.onClose(() => this.moveToDefaultPosition());

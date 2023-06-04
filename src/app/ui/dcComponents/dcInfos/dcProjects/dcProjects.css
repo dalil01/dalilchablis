@@ -1,18 +1,12 @@
 .projects-container {
 }
 
-.projects-title {
-    margin-top: 30px;
-    font-weight: 600;
-    font-size: 1rem;
-}
-
 .projects-items {
-    margin: 25px 10px;
     display: flex;
     align-items: center;
     justify-content: flex-start;
     flex-wrap: wrap;
+    margin-bottom: 10px;
 }
 
 .projects-item {
@@ -20,8 +14,8 @@
     align-items: center;
     justify-content: center;
     flex-direction: column;
-    margin-top: 25px;
-    margin-bottom: 35px;
+    margin-top: 21px;
+    margin-bottom: 11px;
     width: 100%;
     padding: 10px;
 }
@@ -32,7 +26,6 @@
     padding: 16px;
     transition: .6s;
     text-align: left;
-
 }
 
 .dark-mode .projects-item-content {
@@ -89,6 +82,45 @@
 
 .projects-item-read-more a:hover {
     text-decoration: underline;
+}
+
+.projects-menu-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: auto;
+    width: 80%;
+    overflow-x: scroll;
+}
+
+.projects-menu-button {
+    margin: 6px 12px;
+    padding: 6px 12px;
+    border-radius: 6px;
+    white-space: nowrap;
+    font-size: .82rem;
+    font-weight: 600;
+    border: 1px solid grey;
+}
+
+.dark-mode .projects-menu-button {
+    background: var(--dark-mode-bg);
+    color: var(--light-mode-color);
+}
+
+.light-mode .projects-menu-button {
+    background: var(--light-mode-bg);
+    color: var(--dark-mode-color);
+}
+
+.dark-mode .projects-menu-button-active {
+    background: var(--light-mode-bg);
+    color: var(--dark-mode-color);
+}
+
+.light-mode .projects-menu-button-active {
+    background: var(--dark-mode-color);
+    color: var(--light-mode-color);
 }
 
 @media (min-width: 900px) {

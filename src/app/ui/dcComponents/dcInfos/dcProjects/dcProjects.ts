@@ -12,7 +12,6 @@ enum PROJECTS_CSS {
 	MENU_CONTAINER = "projects-menu-container",
 	MENU_BUTTON = "projects-menu-button",
 	MENU_BUTTON_ACTIVE = "projects-menu-button-active",
-	TITLE = "projects-title",
 	ITEMS = "projects-items",
 	ITEM = "projects-item",
 	ITEM_CONTENT = "projects-item-content",
@@ -70,8 +69,8 @@ export class dcProjects extends dcComponent {
 		for (let i = 0; i < this.data.length; i++) {
 			const projects = this.data[i];
 			if (projects?.$title) {
-				const titleBtn = _UDom.h3({
-					className: PROJECTS_CSS.TITLE,
+				const titleBtn = _UDom.button({
+					className: PROJECTS_CSS.MENU_BUTTON,
 					innerText: dcTranslator.T(dcTranslation[projects.$title])
 				});
 
@@ -160,6 +159,9 @@ export class dcProjects extends dcComponent {
 
 					this.itemsContainer.appendChild(div);
 				}
+
+				this.currentItemsTitle = title;
+				this.itemsContainerByTitle.set(title, this.itemsContainer);
 
 				this.mainElement.appendChild(this.itemsContainer);
 			}
