@@ -23,7 +23,6 @@ export class dcHome extends dcView {
 	private loadingIcon!: HTMLElement;
 	private startBtn!: HTMLElement;
 
-	private text!: HTMLElement;
 	private writeTextAnimationEnd: boolean = false;
 	private startBtnVisible: boolean = false;
 
@@ -56,7 +55,7 @@ export class dcHome extends dcView {
 	}
 
 	private buildText(): void {
-		this.text = _UDom.p({ className: HOME_CSS.TEXT_CONTAINER });
+		const containerText = _UDom.p({ className: HOME_CSS.TEXT_CONTAINER });
 
 		const hello = dcTranslator.T(dcTranslation.HELLO) + ", " + dcTranslator.T(dcTranslation.WELCOME_TO_MY_WEBSITE) + ".\n " + dcTranslator.T(dcTranslation.I_AM) + ' ';
 		const name = "Dalil" + String.fromCharCode(160) + "CHABLIS";
@@ -66,13 +65,13 @@ export class dcHome extends dcView {
 				{
 					startCallback: null,
 					endCallback: null,
-					element: this.text,
+					element: containerText,
 					text: hello
 				},
 				{
 					startCallback: () => {
 						const nameContainer = _UDom.span({ className: HOME_CSS.NAME_CONTAINER });
-						this.text.appendChild(nameContainer);
+						containerText.appendChild(nameContainer);
 						return nameContainer;
 					},
 					element: null,
@@ -82,12 +81,12 @@ export class dcHome extends dcView {
 				{
 					startCallback: () => {
 						const jobContainer = _UDom.span();
-						this.text.appendChild(jobContainer);
+						containerText.appendChild(jobContainer);
 						return jobContainer;
 					},
 					endCallback: () => {
-						this.text.appendChild(_UIcon.getIcon(DcIcons.DcIconSmile));
-						this.text.appendChild(_UDom.span({
+						containerText.appendChild(_UIcon.getIcon(DcIcons.DcIconSmile));
+						containerText.appendChild(_UDom.span({
 							className: GLOBAL_CSS.BLINK,
 							innerText: '_'
 						}));
@@ -101,7 +100,7 @@ export class dcHome extends dcView {
 			true,
 			false);
 
-		_UDom.AC(this.mainElement, this.text);
+		_UDom.AC(this.mainElement, containerText);
 	}
 
 	private buildLoading(): void {
