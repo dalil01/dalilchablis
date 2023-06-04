@@ -195,9 +195,7 @@ export class dcOffice extends dcView {
 			if (this.isInitiated()) {
 				this.animate();
 			}
-		})
-
-
+		});
 	}
 
 	public destroy(): void {

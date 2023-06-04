@@ -1,5 +1,6 @@
 @font-face {
     font-family: "dcIcons";
+    font-display: swap;
     src: url("../fonts/dcIcons.eot?c5457b358a3bb1196ca2cc19c10033f4#iefix") format("embedded-opentype"),
 url("../fonts/dcIcons.svg?c5457b358a3bb1196ca2cc19c10033f4#dcIcons") format("svg"),
 url("../fonts/dcIcons.ttf?c5457b358a3bb1196ca2cc19c10033f4") format("truetype"),
