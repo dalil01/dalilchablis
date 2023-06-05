@@ -6,7 +6,7 @@
     align-items: center;
     justify-content: flex-start;
     flex-wrap: wrap;
-    margin-bottom: 10px;
+    padding-bottom: 15px;
 }
 
 .projects-item {
@@ -23,7 +23,7 @@
 .projects-item-content {
     width: 85%;
     border-radius: 8px;
-    padding: 16px;
+    padding: 15px 10px;
     transition: .6s;
     text-align: left;
 }
@@ -94,9 +94,9 @@
 }
 
 .projects-menu-button {
-    margin: 6px 12px;
+    margin: 12px;
     padding: 6px 12px;
-    border-radius: 6px;
+    border-radius: 16px;
     white-space: nowrap;
     font-size: .82rem;
     font-weight: 600;

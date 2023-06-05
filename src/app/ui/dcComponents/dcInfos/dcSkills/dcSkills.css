@@ -2,7 +2,6 @@
 }
 
 .skill-items {
-    height: 30%;
     overflow-y: auto;
     display: flex;
     align-items: center;
