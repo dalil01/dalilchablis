@@ -1,5 +1,6 @@
 .cursor-container {
     z-index: 100;
+    display: none;
 }
 
 .cursor {
@@ -44,4 +45,16 @@
 
 .cursor-hover {
     opacity: .6;
+}
+
+@media (min-width: 1024px) {
+
+    *, ::before, ::after {
+        cursor: none;
+    }
+
+    .cursor-container {
+        display: block;
+    }
+
 }

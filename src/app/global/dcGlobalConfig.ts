@@ -6,4 +6,5 @@ export class dcGlobalConfig {
 	public static locale = LOCALE.EN;
 	public static soundEnable = false;
 	public static currentView = VIEWS.HOME;
+	public static modalIsOpen = false;
 }

@@ -121,6 +121,8 @@ export class dcUIManager {
 			this.autoSetCurrentView();
 
 			if (this.currentView == this.officeView) {
+				document.body.style.cursor = "grab";
+				dcCursor.mouseOverDetectedElem = false;
 				this.officeView.update(lastMode === dcGlobalConfig.isDarkMode);
 			} else {
 				this.currentView.update();

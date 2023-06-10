@@ -69,7 +69,7 @@ export class dcProjects extends dcComponent {
 		for (let i = 0; i < this.data.length; i++) {
 			const projects = this.data[i];
 			if (projects?.$title) {
-				const titleBtn = _UDom.button({
+				const titleBtn = _UDom.div({
 					className: PROJECTS_CSS.MENU_BUTTON,
 					innerText: dcTranslator.T(dcTranslation[projects.$title])
 				});

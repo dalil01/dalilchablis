@@ -149,7 +149,7 @@ export class dcModal extends dcComponent {
 		this.mainElement.classList.remove(GLOBAL_CSS.DISPLAY_NONE);
 		this.modal.classList.remove(Modal_CSS.ZOOM_OUT);
 		this.modal.classList.add(Modal_CSS.ZOOM_IN);
-		this.isOpen = true;
+		this.isOpen = dcGlobalConfig.modalIsOpen = true;
 	}
 	
 	public close(): void {
@@ -158,7 +158,7 @@ export class dcModal extends dcComponent {
 		setTimeout(() => {
 			this.mainElement.classList.add(GLOBAL_CSS.DISPLAY_NONE);
 		}, 200);
-		this.isOpen = false;
+		this.isOpen = dcGlobalConfig.modalIsOpen = false;
 		this.onCloseCallback();
 	}
 	
