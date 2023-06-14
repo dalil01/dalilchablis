@@ -1,4 +1,4 @@
-const CACHE_VERSION = "1.0.1";
+const CACHE_VERSION = "1.0.3";
 const CACHE_NAME = "dalilchablis-v" + CACHE_VERSION;
 
 const assetsDir = "./assets/";

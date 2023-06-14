@@ -321,7 +321,7 @@ export const dcTranslated = {
 	},
 	TEMP_CHAT: {
 		EN: "Creating a messaging application",
-		FR: "Création d'un application de messagerie"
+		FR: "Création d'une application de messagerie"
 	},
 	YOU_SHALL_NOT_PASS: {
 		EN: "Creating and configuring a LAN network",

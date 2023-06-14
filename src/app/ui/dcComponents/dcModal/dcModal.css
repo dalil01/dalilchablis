@@ -130,6 +130,14 @@
 
 }
 
+@media (min-width: 2048px) {
+
+    .modal-large {
+        width: 1800px;
+    }
+
+}
+
 @keyframes zoom-in {
     from {
         transform: scale(0)
