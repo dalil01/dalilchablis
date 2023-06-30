@@ -10,6 +10,6 @@ export class dcGlobalVars {
 	public static DRACO_LOADER_PATH = "./libs/draco/";
 	public static VIRTUAL_STUDIO_LIGHT_TEXTURE_PATH = "./assets/models/dcOffice-light.jpg";
 	public static VIRTUAL_STUDIO_DARK_TEXTURE_PATH = "./assets/models/dcOffice-dark.jpg";
-	public static VIRTUAL_STUDIO_GLB_PATH = "./assets/models/dcOffice.glb";
-	public static OUTSIDE = "./assets/images/outside/outside-1.webp";
+	public static VIRTUAL_STUDIO_GLB_PATH = "./assets/models/dcOffice.v2.glb";
+	public static OUTSIDE = "./assets/images/outside/outside-city.webp";
 }

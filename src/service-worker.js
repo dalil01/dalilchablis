@@ -1,4 +1,4 @@
-const CACHE_VERSION = "1.0.3";
+const CACHE_VERSION = "1.0.4";
 const CACHE_NAME = "dalilchablis-v" + CACHE_VERSION;
 
 const assetsDir = "./assets/";
@@ -32,7 +32,7 @@ self.addEventListener("install", (event) => {
                     imagesDir + "dcLogoWhite196.png",
                     imagesDir + "dcLogoWhite512.png",
                     imagesDir + "outside/outside-1.webp",
-                    modelsDir + "dcOffice.glb",
+                    modelsDir + "dcOffice.v2.glb",
                     modelsDir + "dcOffice-dark.jpg",
                     modelsDir + "dcOffice-light.jpg",
                     soundsDir + "dcSound.mp3"

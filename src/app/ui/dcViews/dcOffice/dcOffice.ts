@@ -111,6 +111,9 @@ export class dcOffice extends dcView {
 			powerPreference: 'high-performance'
 		});
 
+		this.renderer.shadowMap.autoUpdate = false;
+		this.renderer.shadowMap.needsUpdate = true;
+
 		this.vrButton = VRButton.createButton(this.renderer);
 		this.autoSetVRMode();
 		this.parentElement.appendChild(this.vrButton);
