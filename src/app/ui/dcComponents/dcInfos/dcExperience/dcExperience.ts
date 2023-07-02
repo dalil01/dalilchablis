@@ -7,7 +7,7 @@ import { dcTranslation } from "../../../dcTranslator/dcTranslation";
 import { _UIcon } from "../../../dcUtils/_UIcon";
 import { DcIcons } from "../../../dcIcons/dcIcons";
 import { dcCursor } from "../../dcCursor/dcCursor";
-import { experience } from "./dcExperience.data";
+import { dcEducationData } from "./dcExperience.data";
 
 enum EXPERIENCE_CSS {
 	CONTAINER = "experience-container",
@@ -43,7 +43,7 @@ export class dcExperience extends dcComponent {
 	}
 
 	public async buildUI(): Promise<void> {
-		for (const e of experience) {
+		for (const e of dcEducationData.getData()) {
 			await this.addCard(e);
 		}
 	}

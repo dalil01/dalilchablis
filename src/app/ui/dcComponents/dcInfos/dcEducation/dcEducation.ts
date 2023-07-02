@@ -7,7 +7,7 @@ import { DcIcons } from "../../../dcIcons/dcIcons";
 import { dcTranslator } from "../../../dcTranslator/dcTranslator";
 import { dcTranslation } from "../../../dcTranslator/dcTranslation";
 import { dcCursor } from "../../dcCursor/dcCursor";
-import { education } from "./dcEducation.data";
+import { dcEducationData } from "./dcEducation.data";
 
 enum EDUCATION_CSS {
 	CONTAINER = "education-container",
@@ -40,7 +40,7 @@ export class dcEducation extends dcComponent {
 	}
 	
 	public async buildUI(): Promise<void> {
-		for (const e of education) {
+		for (const e of dcEducationData.getData()) {
 			await this.addCard(e);
 		}
 	}

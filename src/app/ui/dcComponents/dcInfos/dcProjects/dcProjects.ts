@@ -5,7 +5,7 @@ import { _UDom } from "../../../dcUtils/_UDom";
 import { dcTranslator } from "../../../dcTranslator/dcTranslator";
 import { dcTranslation } from "../../../dcTranslator/dcTranslation";
 import { dcCursor } from "../../dcCursor/dcCursor";
-import { projects } from "./dcProjects.data";
+import { dcProjectsData } from "./dcProjects.data";
 
 enum PROJECTS_CSS {
 	CONTAINER = "projects-container",
@@ -56,7 +56,7 @@ export class dcProjects extends dcComponent {
 	}
 	
 	public buildUI(): void {
-		this.data = projects;
+		this.data = dcProjectsData.getData();
 		this.buildMenu();
 	}
 

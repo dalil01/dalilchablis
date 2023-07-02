@@ -91,11 +91,6 @@ export class dcUIManager {
 	}
 
 	private buildUI(): void {
-		globalThis.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', event => {
-			dcGlobalConfig.isDarkMode = event.matches;
-			this.autoSetMode();
-		});
-
 		if (this.cursor) {
 			this.cursor.update();
 		} else {
@@ -164,7 +159,7 @@ export class dcUIManager {
 	private autoSetVRMode(): void {
 		const lsVREnable = localStorage.getItem(LOCAL_STORAGE_KEY.VR_ENABLE)?.trim();
 		if (lsVREnable) {
-			dcGlobalConfig.isDarkMode = lsVREnable === "true";
+			dcGlobalConfig.isVRMode = lsVREnable === "true";
 		}
 		this.officeView?.autoSetVRMode();
 	}

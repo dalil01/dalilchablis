@@ -5,7 +5,7 @@ import { _UDom } from "../../../dcUtils/_UDom";
 import { dcTranslator } from "../../../dcTranslator/dcTranslator";
 import { dcTranslation } from "../../../dcTranslator/dcTranslation";
 import { dcCursor } from "../../dcCursor/dcCursor";
-import { skills } from "./dcSkills.data";
+import { dcSkillsData } from "./dcSkills.data";
 
 enum SKILLS_CSS {
 	CONTAINER = "skills-container",
@@ -54,7 +54,7 @@ export class dcSkills extends dcComponent {
 	}
 
 	public buildUI(): void {
-		this.data = skills;
+		this.data = dcSkillsData.getData();
 		this.buildMenu();
 	}
 
