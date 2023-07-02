@@ -10,8 +10,9 @@ export default {
         sourcemap: true
     },
     build: {
+        emptyOutDir: true,
         outDir: "../dist",
-        emptyOutDir: true
+        assetsDir: "app"
     },
     plugins: [
         gltfPlugin(),
