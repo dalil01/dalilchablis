@@ -18,6 +18,8 @@ export class dcUIManager {
 
 	private started: boolean = false;
 
+	private modeAutoSet: boolean = false;
+
 	private cursor!: dcCursor;
 	private header!: dcHeader;
 
@@ -49,7 +51,6 @@ export class dcUIManager {
 
 	public toggleMode(): void {
 		dcGlobalConfig.isDarkMode = !dcGlobalConfig.isDarkMode;
-		localStorage.setItem(LOCAL_STORAGE_KEY.IS_DARK_MODE, dcGlobalConfig.isDarkMode.toString());
 		this.updateUI();
 	}
 
@@ -169,10 +170,18 @@ export class dcUIManager {
 	}
 
 	private autoSetMode(): void {
+		if (!this.modeAutoSet) {
+			const hour = new Date().getHours();
+			dcGlobalConfig.isDarkMode = !(hour >= 6 && hour < 18);
+			this.modeAutoSet = true;
+		}
+
+		/*
 		const lsDarkMode = localStorage.getItem(LOCAL_STORAGE_KEY.IS_DARK_MODE)?.trim();
 		if (lsDarkMode) {
 			dcGlobalConfig.isDarkMode = lsDarkMode === "true";
 		}
+		 */
 
 		if (dcGlobalConfig.isDarkMode) {
 			this.parentElement.classList.remove(GLOBAL_CSS.LIGHT_MODE);

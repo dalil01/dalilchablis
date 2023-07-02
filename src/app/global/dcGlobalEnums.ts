@@ -16,7 +16,6 @@ export enum VIEWS {
 }
 
 export enum LOCAL_STORAGE_KEY {
-	IS_DARK_MODE = "is-dark-mode",
 	VR_ENABLE = "vr-enable",
 	LOCALE = "locale",
 	SOUND_ENABLE = "sound-enable"

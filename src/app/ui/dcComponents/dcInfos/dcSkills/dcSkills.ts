@@ -4,8 +4,8 @@ import { dcComponent } from "../../dcComponent";
 import { _UDom } from "../../../dcUtils/_UDom";
 import { dcTranslator } from "../../../dcTranslator/dcTranslator";
 import { dcTranslation } from "../../../dcTranslator/dcTranslation";
-import { dcGlobalVars } from "../../../../global/dcGlobalVars";
 import { dcCursor } from "../../dcCursor/dcCursor";
+import { skills } from "./dcSkills.data";
 
 enum SKILLS_CSS {
 	CONTAINER = "skills-container",
@@ -21,11 +21,11 @@ enum SKILLS_CSS {
 	NAME = "skill-item-name",
 }
 
-type dcSkillsType = {
+export type dcSkillsType = {
 	$title?: string,
 	$subTitle?: string,
 	items: {
-		imgPath: string,
+		imgPath: Promise<any>,
 		url: string,
 		name: string
 	}[]
@@ -54,14 +54,11 @@ export class dcSkills extends dcComponent {
 	}
 
 	public buildUI(): void {
-		(async () => import("./dcSkills.json"))()
-			.then((response: any) => {
-				this.data = response.default;
-				this.buildMenu();
-			});
+		this.data = skills;
+		this.buildMenu();
 	}
 
-	private buildMenu(): void {
+	private async buildMenu(): Promise<void> {
 		const container = _UDom.div({ className: SKILLS_CSS.MENU_CONTAINER });
 
 		for (let i = 0; i < this.data.length; i++) {
@@ -74,16 +71,16 @@ export class dcSkills extends dcComponent {
 
 				dcCursor.subscribeElementToDetectHover(titleBtn);
 
-				titleBtn.addEventListener("click", () => {
+				titleBtn.addEventListener("click", async () => {
 					this.menuButtonByTitle.get(this.currentItemsTitle)?.classList.remove(SKILLS_CSS.MENU_BUTTON_ACTIVE);
 					titleBtn.classList.add(SKILLS_CSS.MENU_BUTTON_ACTIVE);
-					this.buildItems(<string>skills.$title);
+					await this.buildItems(<string>skills.$title);
 				});
 
 				container.appendChild(titleBtn);
 
 				if (i === 0) {
-					this.buildItems(<string>skills.$title);
+					await this.buildItems(<string>skills.$title);
 					titleBtn.classList.add(SKILLS_CSS.MENU_BUTTON_ACTIVE);
 				}
 
@@ -98,7 +95,7 @@ export class dcSkills extends dcComponent {
 		}
 	}
 
-	private buildItems(title: string): void {
+	private async buildItems(title: string): Promise<void> {
 		let titleFound = false;
 
 		for (const skills of this.data) {
@@ -152,10 +149,8 @@ export class dcSkills extends dcComponent {
 					dcSkills.openLink(divContent, item.url);
 					dcCursor.subscribeElementToDetectHover(divContent);
 
-					_UDom.AC(divContent, _UDom.img({
-						src: dcGlobalVars.IMAGE_PATH + "skills/" + item.imgPath,
-						className: SKILLS_CSS.IMAGE
-					}));
+					const { default: imgPath } = await item.imgPath;
+					_UDom.AC(divContent, _UDom.img({ src: imgPath, className: SKILLS_CSS.IMAGE }));
 					_UDom.AC(divContent, _UDom.p({ innerText: item.name, className: SKILLS_CSS.NAME }));
 
 					div.appendChild(divContent);

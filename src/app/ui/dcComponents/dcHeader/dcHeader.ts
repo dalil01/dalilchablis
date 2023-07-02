@@ -9,7 +9,6 @@ import { dcGlobalConfig } from "../../../global/dcGlobalConfig";
 import { dcCursor } from "../dcCursor/dcCursor";
 import { LOCALE } from "../../../global/dcGlobalEnums";
 import { dcUIManager } from "../../dcUIManager";
-import { dcTranslator } from "../../dcTranslator/dcTranslator";
 
 enum HEADER_CSS {
 	CONTAINER = "header-container",
@@ -31,13 +30,18 @@ export class dcHeader extends dcComponent {
 	}
 	
 	public buildUI(): void {
-		this.buildLogo();
-		this.buildMenu();
+		this.buildLogo().then(() => {
+			this.buildMenu();
+		});
 	}
 
-	private buildLogo(): void {
+	private async buildLogo(): Promise<void> {
 		const logoContainer = _UDom.div({ className: HEADER_CSS.LOGO_CONTAINER });
-		const logoImg = _UDom.img({ src: dcGlobalConfig.isDarkMode ? dcGlobalVars.LOGO_WHITE_PATH : dcGlobalVars.LOGO_BLACK_PATH, className: HEADER_CSS.LOGO, alt: "Dalil CHABLIS" });
+		const logoImg = _UDom.img({
+			src: dcGlobalConfig.isDarkMode ? await dcGlobalVars.getLogoWhitePath() : await dcGlobalVars.getLogoDarkPath(),
+			className: HEADER_CSS.LOGO,
+			alt: "Dalil CHABLIS"
+		});
 
 		logoContainer.addEventListener("click", () => {
 			dcUIManager.get().refreshUI();

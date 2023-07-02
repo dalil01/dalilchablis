@@ -582,16 +582,16 @@ export class dcOffice extends dcView {
 			return;
 		}
 
-		const bakedTextureDark = this.textureLoader.load(dcGlobalVars.VIRTUAL_STUDIO_DARK_TEXTURE_PATH);
+		const bakedTextureDark = this.textureLoader.load(await dcGlobalVars.getVirtualStudioDarkTexturePath());
 		bakedTextureDark.flipY = false;
 		bakedTextureDark.encoding = THREE.sRGBEncoding;
 
-		const bakedTextureLight = this.textureLoader.load(dcGlobalVars.VIRTUAL_STUDIO_LIGHT_TEXTURE_PATH);
+		const bakedTextureLight = this.textureLoader.load(await dcGlobalVars.getVirtualStudioLightTexturePath());
 		bakedTextureLight.flipY = false;
 		bakedTextureLight.encoding = THREE.sRGBEncoding;
 
-		const gltfPromise = new Promise<void>((resolve) => {
-			this.gltfLoader.load(dcGlobalVars.VIRTUAL_STUDIO_GLB_PATH, (gltf) => {
+		const gltfPromise = new Promise<void>(async (resolve) => {
+			this.gltfLoader.load(await dcGlobalVars.getDCStudioGLBPath(), (gltf) => {
 				this.gltfSceneDark = gltf.scene;
 				this.gltfSceneLight = gltf.scene.clone(true);
 
@@ -607,7 +607,7 @@ export class dcOffice extends dcView {
 						bakedMaterial = new THREE.MeshBasicMaterial({ map: bakedTextureLight /*, color: 0xff0000 */ })
 					}
 
-					scene.traverse((child: any) => {
+					scene.traverse(async (child: any) => {
 						const name = child.name.trim().toLowerCase();
 						switch (name) {
 							case "about":
@@ -635,7 +635,7 @@ export class dcOffice extends dcView {
 								});
 								break;
 							case "outside":
-								const outsideTexture = new THREE.TextureLoader().load(dcGlobalVars.OUTSIDE);
+								const outsideTexture = new THREE.TextureLoader().load(await dcGlobalVars.getOutsideCityPath());
 								outsideTexture.flipY = false;
 								//outsideTexture.minFilter = THREE.LinearFilter;
 								//outsideTexture.magFilter = THREE.LinearFilter;

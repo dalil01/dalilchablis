@@ -7,6 +7,7 @@ import { DcIcons } from "../../../dcIcons/dcIcons";
 import { dcTranslator } from "../../../dcTranslator/dcTranslator";
 import { dcTranslation } from "../../../dcTranslator/dcTranslation";
 import { dcCursor } from "../../dcCursor/dcCursor";
+import { education } from "./dcEducation.data";
 
 enum EDUCATION_CSS {
 	CONTAINER = "education-container",
@@ -21,8 +22,16 @@ enum EDUCATION_CSS {
 	CARD_SEPARATOR_ICON = "education-separator-icon"
 }
 
+export type dcEducationType = {
+	imageSrc: Promise<any>,
+	imgLink: string,
+	title: string,
+	subTitle: string,
+	readMoreLink: string
+}
+
 export class dcEducation extends dcComponent {
-	
+
 	constructor(parentElement: HTMLElement, autoInit: boolean = false) {
 		super(parentElement, _UDom.CCE("education", { className: EDUCATION_CSS.CONTAINER }));
 		
@@ -30,43 +39,13 @@ export class dcEducation extends dcComponent {
 			this.init();
 	}
 	
-	public buildUI(): void {
-		const imgEducationPath = "../../../../assets/images/education/";
-
-		this.addCard(
-			imgEducationPath + "epitech-logo.webp",
-			"https://www.epitech.eu/",
-			"Epitech - " + dcTranslator.T(dcTranslation.EPITECH_DESCRIPTION) + " (Paris)",
-			"MSc Pro | 2022 - 2025",
-			"https://www.epitech.eu/fr/formations/msc-pro-epitech-technology"
-		);
-
-		this.addCard(
-			imgEducationPath + "sorbonne-logo.webp",
-			"https://www.sorbonne-universite.fr/",
-			"SORBONNE " + dcTranslator.T(dcTranslation.UNIVERSITY) + " - " + dcTranslator.T(dcTranslation.CFA_SCIENCES) + " (Paris)",
-			"DANT | 2021 - 2022",
-			"https://www.cfa-sciences.fr/fr/licence-informatique-l3-dant-developpeur-dapplications-nouvelles-technologies"
-		);
-
-		this.addCard(
-			imgEducationPath + "ldv-logo.webp",
-			"https://www.vinci-melun.org/",
-			dcTranslator.T(dcTranslation.LYCEE) + " Léonard de Vinci (Melun)",
-			"BTS SIO SLAM | 2019 - 2021",
-			"https://www.onisep.fr/ressources/univers-formation/Formations/Post-bac/bts-services-informatiques-aux-organisations-option-b-solutions-logicielles-et-applications-metiers"
-		);
-
-		this.addCard(
-			imgEducationPath + "uruguay-logo.webp",
-			"http://www.uruguayfrance.fr/wp/",
-			dcTranslator.T(dcTranslation.LYCEE) + " Uruguay France (Avon)",
-			"BAC STMG SIG | 2017 - 2019",
-			"https://www.onisep.fr/ressources/univers-formation/Formations/Lycees/bac-techno-stmg-sciences-et-technologies-du-management-et-de-la-gestion-enseignement-specifique-systemes-d-information-de-gestion"
-		);
+	public async buildUI(): Promise<void> {
+		for (const e of education) {
+			await this.addCard(e);
+		}
 	}
 
-	public addCard(imageSrc: string, imgLink: string, title: string, subTitle: string, readMoreLink: string): void {
+	public async addCard(item: dcEducationType): Promise<void> {
 		const cardContainer = _UDom.div({ className: EDUCATION_CSS.CARD_CONTAINER });
 
 		const separator = _UDom.div({ className: EDUCATION_CSS.CARD_SEPARATOR });
@@ -75,11 +54,19 @@ export class dcEducation extends dcComponent {
 
 		const card = _UDom.div({ className: EDUCATION_CSS.CARD });
 		const cardHeader = _UDom.div({ className: EDUCATION_CSS.CARD_HEADER });
+
+		const { default: imageSrc } = await item.imageSrc;
 		const cardImage = _UDom.img({ src: imageSrc, className: EDUCATION_CSS.CARD_IMAGE });
-		cardImage.addEventListener("click", () => window.open(imgLink, "_blank"))
-		const cardTitle = _UDom.h1({ innerText: title, className: EDUCATION_CSS.CARD_TITLE });
-		const cardSubTitle = _UDom.h2({ innerText: subTitle, className: EDUCATION_CSS.CARD_SUBTITLE });
-		const readMore = _UDom.a({ href: readMoreLink, innerText: dcTranslator.T(dcTranslation.READ_MORE) + "...", className: EDUCATION_CSS.CARD_LINK, target: "_blank" });
+		cardImage.addEventListener("click", () => window.open(item.imgLink, "_blank"))
+
+		const cardTitle = _UDom.h1({ innerText: item.title, className: EDUCATION_CSS.CARD_TITLE });
+		const cardSubTitle = _UDom.h2({ innerText: item.subTitle, className: EDUCATION_CSS.CARD_SUBTITLE });
+		const readMore = _UDom.a({
+			href: item.readMoreLink,
+			innerText: dcTranslator.T(dcTranslation.READ_MORE) + "...",
+			className: EDUCATION_CSS.CARD_LINK,
+			target: "_blank"
+		});
 
 		dcCursor.subscribeElementToDetectHover(cardImage);
 		dcCursor.subscribeElementToDetectHover(readMore);

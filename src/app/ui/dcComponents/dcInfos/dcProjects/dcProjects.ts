@@ -4,8 +4,8 @@ import { dcComponent } from "../../dcComponent";
 import { _UDom } from "../../../dcUtils/_UDom";
 import { dcTranslator } from "../../../dcTranslator/dcTranslator";
 import { dcTranslation } from "../../../dcTranslator/dcTranslation";
-import { dcGlobalVars } from "../../../../global/dcGlobalVars";
 import { dcCursor } from "../../dcCursor/dcCursor";
+import { projects } from "./dcProjects.data";
 
 enum PROJECTS_CSS {
 	CONTAINER = "projects-container",
@@ -22,11 +22,11 @@ enum PROJECTS_CSS {
 	READ_MORE = "projects-item-read-more"
 }
 
-type dcProjectsType = {
+export type dcProjectsType = {
 	$title?: string,
 	items: {
-		imgPath: string,
-		url: string,
+		imgPath: Promise<any>,
+		url?: string,
 		name: string,
 		$description: string
 		techStack: string
@@ -56,14 +56,11 @@ export class dcProjects extends dcComponent {
 	}
 	
 	public buildUI(): void {
-		(async () => import("./dcProjects.json"))()
-			.then((response: any) => {
-				this.data = response.default;
-				this.buildMenu();
-			});
+		this.data = projects;
+		this.buildMenu();
 	}
 
-	private buildMenu(): void {
+	private async buildMenu(): Promise<void> {
 		const container = _UDom.div({ className: PROJECTS_CSS.MENU_CONTAINER });
 
 		for (let i = 0; i < this.data.length; i++) {
@@ -76,16 +73,16 @@ export class dcProjects extends dcComponent {
 
 				dcCursor.subscribeElementToDetectHover(titleBtn);
 
-				titleBtn.addEventListener("click", () => {
+				titleBtn.addEventListener("click", async () => {
 					this.menuButtonByTitle.get(this.currentItemsTitle)?.classList.remove(PROJECTS_CSS.MENU_BUTTON_ACTIVE);
 					titleBtn.classList.add(PROJECTS_CSS.MENU_BUTTON_ACTIVE);
-					this.buildItems(<string>projects.$title);
+					await this.buildItems(<string>projects.$title);
 				});
 
 				container.appendChild(titleBtn);
 
 				if (i === 0) {
-					this.buildItems(<string>projects.$title);
+					await this.buildItems(<string>projects.$title);
 					titleBtn.classList.add(PROJECTS_CSS.MENU_BUTTON_ACTIVE);
 				}
 
@@ -100,7 +97,7 @@ export class dcProjects extends dcComponent {
 		}
 	}
 
-	private buildItems(title: string): void {
+	private async buildItems(title: string): Promise<void> {
 		for (const projects of this.data) {
 			if (title === projects?.$title) {
 				if (this.currentItemsTitle === title) {
@@ -127,8 +124,10 @@ export class dcProjects extends dcComponent {
 					const div = _UDom.div({ className: PROJECTS_CSS.ITEM });
 					const divContent = _UDom.div({ className: PROJECTS_CSS.ITEM_CONTENT });
 
+					const { default: imgPath } = await item.imgPath;
+
 					_UDom.AC(divContent, _UDom.img({
-						src: dcGlobalVars.IMAGE_PATH + "projects/" + item.imgPath,
+						src: imgPath,
 						className: PROJECTS_CSS.IMAGE
 					}));
 					_UDom.AC(divContent, _UDom.h5({ innerText: item.name, className: PROJECTS_CSS.NAME }));

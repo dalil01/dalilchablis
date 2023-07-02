@@ -4,7 +4,6 @@ import { dcComponent } from "../dcComponent";
 import { _UDom } from "../../dcUtils/_UDom";
 import { dcGlobalConfig } from "../../../global/dcGlobalConfig";
 import { dcCursor } from "../dcCursor/dcCursor";
-import { LOCAL_STORAGE_KEY } from "../../../global/dcGlobalEnums";
 import { dcTranslator } from "../../dcTranslator/dcTranslator";
 import { dcTranslation } from "../../dcTranslator/dcTranslation";
 import { dcGlobalVars } from "../../../global/dcGlobalVars";
@@ -51,9 +50,9 @@ export class dcSound extends dcComponent {
 			e.classList.add((dcGlobalConfig.soundEnable) ? SOUND_CSS_CLASSNAMES.BOX_ENABLE : SOUND_CSS_CLASSNAMES.BOX);
 		});
 
-		boxes.addEventListener("click", () => {
+		boxes.addEventListener("click", async () => {
 			if (!this.mp3) {
-				this.mp3 = new Audio(dcGlobalVars.SOUND_MP3_PATH);
+				this.mp3 = new Audio(await dcGlobalVars.getSoundFilePath());
 			}
 
 			boxesList.forEach((e) => {

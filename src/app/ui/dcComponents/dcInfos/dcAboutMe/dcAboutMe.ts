@@ -6,7 +6,6 @@ import { _UIcon } from "../../../dcUtils/_UIcon";
 import { DcIcons } from "../../../dcIcons/dcIcons";
 import { dcTranslator } from "../../../dcTranslator/dcTranslator";
 import { dcTranslation } from "../../../dcTranslator/dcTranslation";
-import { dcGlobalVars } from "../../../../global/dcGlobalVars";
 
 enum ABOUT_ME_CSS {
 	CONTAINER = "about-me-container",
@@ -24,8 +23,10 @@ export class dcAboutMe extends dcComponent {
 			this.init();
 	}
 	
-	public buildUI(): void {
-		const avatar = _UDom.img({ src: dcGlobalVars.IMAGE_PATH + "about/me.webp", className: ABOUT_ME_CSS.AVATAR });
+	public async buildUI(): Promise<void> {
+		const { default: meImg } = await import((`../../../../../assets/images/about/me.webp`));
+
+		const avatar = _UDom.img({ src: meImg, className: ABOUT_ME_CSS.AVATAR });
 		this.mainElement.appendChild(avatar);
 
 		const aboutContainer = _UDom.div({ className: ABOUT_ME_CSS.TEXT_CONTAINER });

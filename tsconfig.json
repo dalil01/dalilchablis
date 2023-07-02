@@ -1,5 +1,5 @@
 {
-  "include": ["./src/**/*"],
+  "include": ["./src/**/*", "./assets/sounds/dcSound.mp3"],
   "compileOnSave": true,
   "compilerOptions": {
     "baseUrl": "./",

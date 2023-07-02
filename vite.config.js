@@ -1,19 +1,20 @@
 import { viteStaticCopy } from "vite-plugin-static-copy";
-import {dcGlobalVars} from "./src/app/global/dcGlobalVars";
+import gltfPlugin from 'vite-plugin-gltf';
 
 export default {
     base: "./",
     root: "src",
     publicDir: "public",
     server: {
-        port: 1200
+        port: 1200,
+        sourcemap: true
     },
     build: {
         outDir: "../dist",
-        emptyOutDir: true,
-        sourcemap: true
+        emptyOutDir: true
     },
     plugins: [
+        gltfPlugin(),
         viteStaticCopy({
             targets: [
                 {
@@ -22,14 +23,6 @@ export default {
                 },
                 {
                     src: "robots.txt",
-                    dest: "../dist"
-                },
-                {
-                    src: "service-worker.js",
-                    dest: "../dist"
-                },
-                {
-                    src: "assets",
                     dest: "../dist"
                 },
                 {

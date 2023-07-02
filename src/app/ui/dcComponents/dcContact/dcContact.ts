@@ -8,8 +8,6 @@ import { dcCursor } from "../dcCursor/dcCursor";
 import { dcTranslator } from "../../dcTranslator/dcTranslator";
 import { dcTranslation } from "../../dcTranslator/dcTranslation";
 import { SOCIAL_NETWORKS_LINKS } from "../../../global/dcGlobalEnums";
-import { dcForm, dcFormInputType, INPUT_TYPE } from "../dcForm/dcForm";
-import { dcTooltip } from "../dcTooltip/dcTooltip";
 
 enum CONTACT_CSS {
 	CONTAINER = "contact-container",

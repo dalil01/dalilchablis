@@ -7,6 +7,7 @@ import { dcTranslation } from "../../../dcTranslator/dcTranslation";
 import { _UIcon } from "../../../dcUtils/_UIcon";
 import { DcIcons } from "../../../dcIcons/dcIcons";
 import { dcCursor } from "../../dcCursor/dcCursor";
+import { experience } from "./dcExperience.data";
 
 enum EXPERIENCE_CSS {
 	CONTAINER = "experience-container",
@@ -23,6 +24,15 @@ enum EXPERIENCE_CSS {
 	CARD_SEPARATOR_ICON = "experience-separator-icon"
 }
 
+export type dcExperienceType = {
+	imageSrc: Promise<any>,
+	imgLink: string,
+	title: string,
+	jobTitle: string,
+	jobSubTitles: string | string[],
+	link?: undefined | string
+}
+
 export class dcExperience extends dcComponent {
 
 	constructor(parentElement: HTMLElement, autoInit: boolean = false) {
@@ -32,48 +42,13 @@ export class dcExperience extends dcComponent {
 			this.init();
 	}
 
-	public buildUI(): void {
-		const imgExperiencePath = "../../../../assets/images/experience/";
-
-		this.addCard(
-			imgExperiencePath + "dcbrain-logo.webp",
-			"https://dcbrain.com/",
-			"DCbrain (Paris)",
-			dcTranslator.T(dcTranslation.FULLSTACK_DEVELOPER) + " - " + dcTranslator.T(dcTranslation.APPRENTICE) + " | " + "2021 - " + dcTranslator.T(dcTranslation.TODAY),
-			[
-				"• " + dcTranslator.T(dcTranslation.DCBRAIN_APPRENTICE_2),
-				"• " + dcTranslator.T(dcTranslation.DCBRAIN_APPRENTICE_3),
-				"• " + dcTranslator.T(dcTranslation.DCBRAIN_APPRENTICE_1)
-			]
-		);
-
-		this.addCard(
-			imgExperiencePath + "dcbrain-logo.webp",
-			"https://dcbrain.com/",
-			"DCbrain (Paris)",
-			"QA " + dcTranslator.T(dcTranslation.TESTER) + " - Freelance | 2021 (7 " + dcTranslator.T(dcTranslation.MONTHS) + ')',
-			dcTranslator.T(dcTranslation.DCBRAIN_FREELANCE_WORK)
-		);
-
-		this.addCard(
-			imgExperiencePath + "dcbrain-logo.webp",
-			"https://dcbrain.com/",
-			"DCbrain (Paris)",
-			dcTranslator.T(dcTranslation.INTERN) + " | 2021 (2 " + dcTranslator.T(dcTranslation.MONTHS) + ')',
-			dcTranslator.T(dcTranslation.DCBRAIN_INTERN_WORK),
-			"https://gitlab.com/dalil01/automatisation-test-e2e"
-		);
-
-		this.addCard(
-			imgExperiencePath + "carrefour-logo.webp",
-			"https://www.carrefour.fr/magasin/market-ecuelles",
-			"Carrefour Market (Ecuelles)",
-			dcTranslator.T(dcTranslation.SUMMER_JOB) + " | 2020 (1 " + dcTranslator.T(dcTranslation.MONTHS) + ')',
-			dcTranslator.T(dcTranslation.CASHIER_SHELF_WORKER) + '.'
-		);
+	public async buildUI(): Promise<void> {
+		for (const e of experience) {
+			await this.addCard(e);
+		}
 	}
 
-	public addCard(imageSrc: string, imgLink: string, title: string, jobTitle: string, jobSubTitles: string | string[], link: undefined | string = undefined): void {
+	public async addCard(item: dcExperienceType): Promise<void> {
 		const cardContainer = _UDom.div({ className: EXPERIENCE_CSS.CARD_CONTAINER });
 
 		const separator = _UDom.div({ className: EXPERIENCE_CSS.CARD_SEPARATOR });
@@ -82,23 +57,25 @@ export class dcExperience extends dcComponent {
 
 		const card = _UDom.div({ className: EXPERIENCE_CSS.CARD });
 		const cardHeader = _UDom.div({ className: EXPERIENCE_CSS.CARD_HEADER });
+
+		const { default: imageSrc } = await item.imageSrc;
 		const cardImage = _UDom.img({ src: imageSrc, className: EXPERIENCE_CSS.CARD_IMAGE });
-		cardImage.addEventListener("click", () => window.open(imgLink, "_blank"))
-		const cardTitle = _UDom.h1({ innerText: title, className: EXPERIENCE_CSS.CARD_TITLE });
+		cardImage.addEventListener("click", () => window.open(item.imgLink, "_blank"))
+		const cardTitle = _UDom.h1({ innerText: item.title, className: EXPERIENCE_CSS.CARD_TITLE });
 
 		dcCursor.subscribeElementToDetectHover(cardImage);
 
 		_UDom.AC(card, _UDom.AC(cardHeader, cardImage, cardTitle));
 
 		const cardJob = _UDom.div({ className: EXPERIENCE_CSS.CARD_JOB });
-		const cardJobTitle = _UDom.h2({ innerText: jobTitle, className: EXPERIENCE_CSS.CARD_JOB_TITLE });
+		const cardJobTitle = _UDom.h2({ innerText: item.jobTitle, className: EXPERIENCE_CSS.CARD_JOB_TITLE });
 		_UDom.AC(cardJob, cardJobTitle);
 
-		if (typeof jobSubTitles === "string") {
-			jobSubTitles = [jobSubTitles];
+		if (typeof item.jobSubTitles === "string") {
+			item.jobSubTitles = [item.jobSubTitles];
 		}
 
-		for (const jobSubTitle of jobSubTitles) {
+		for (const jobSubTitle of item.jobSubTitles) {
 			const cardJobSubTitle = _UDom.h2({ innerText: jobSubTitle, className: EXPERIENCE_CSS.CARD_JOB_SUBTITLE });
 			cardJob.appendChild(cardJobSubTitle);
 		}
@@ -107,8 +84,13 @@ export class dcExperience extends dcComponent {
 
 		_UDom.AC(cardContainer, separator, card);
 
-		if (link) {
-			const readMore = _UDom.a({ href: link, innerText: dcTranslator.T(dcTranslation.READ_MORE) + "...", className: EXPERIENCE_CSS.CARD_LINK, target: "_blank" });
+		if (item.link) {
+			const readMore = _UDom.a({
+				href: item.link,
+				innerText: dcTranslator.T(dcTranslation.READ_MORE) + "...",
+				className: EXPERIENCE_CSS.CARD_LINK,
+				target: "_blank"
+			});
 			card.appendChild(readMore);
 			dcCursor.subscribeElementToDetectHover(readMore);
 		}
