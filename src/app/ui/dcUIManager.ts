@@ -97,8 +97,6 @@ export class dcUIManager {
 			this.cursor = new dcCursor(this.parentElement, true);
 		}
 
-		const lastMode = dcGlobalConfig.isDarkMode;
-
 		this.autoSetVRMode();
 		this.autoSetMode();
 		this.autoSetLocale();
@@ -119,7 +117,7 @@ export class dcUIManager {
 			if (this.currentView == this.officeView) {
 				document.body.style.cursor = "grab";
 				dcCursor.mouseOverDetectedElem = false;
-				this.officeView.update(lastMode === dcGlobalConfig.isDarkMode);
+				this.officeView.update();
 			} else {
 				this.currentView.update();
 			}

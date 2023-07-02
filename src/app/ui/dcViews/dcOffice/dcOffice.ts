@@ -208,7 +208,7 @@ export class dcOffice extends dcView {
 		}
 	}
 
-	public update(switchMode: boolean = false) {
+	public update() {
 		super.update();
 		if (!this.visitStarted) {
 			this.onStartVisit();
@@ -217,14 +217,12 @@ export class dcOffice extends dcView {
 			this.controls.update();
 		}
 
-		if (switchMode) {
-			if (dcGlobalConfig.isDarkMode) {
-				this.scene.remove(this.gltfSceneLight);
-				this.scene.add(this.gltfSceneDark);
-			} else {
-				this.scene.remove(this.gltfSceneDark);
-				this.scene.add(this.gltfSceneLight);
-			}
+		if (dcGlobalConfig.isDarkMode) {
+			this.scene.remove(this.gltfSceneLight);
+			this.scene.add(this.gltfSceneDark);
+		} else {
+			this.scene.remove(this.gltfSceneDark);
+			this.scene.add(this.gltfSceneLight);
 		}
 	}
 
