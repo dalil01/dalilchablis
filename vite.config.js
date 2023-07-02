@@ -26,8 +26,8 @@ export default {
                     dest: "../dist"
                 },
                 {
-                    src: "libs",
-                    dest: "../dist"
+                    src: "libs/draco/gltf/*.{js,wasm}",
+                    dest: "../dist/libs/draco/"
                 }
             ]
         })
