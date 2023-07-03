@@ -44,6 +44,7 @@ export class dcOfficeEvent {
 		this.updateCameraProperties();
 		this.updateRendererProperties();
 		this.updateEffectComposer();
+		this.updateVRControlsPosition();
 	}
 
 	private onMouseDown(): void {
@@ -68,8 +69,12 @@ export class dcOfficeEvent {
 		this.renderer.outputEncoding = THREE.sRGBEncoding;
 	}
 
-	public updateEffectComposer(): void {
+	private updateEffectComposer(): void {
 		this.effectComposer.setSize(this.dimension.w, this.dimension.h)
+	}
+
+	private updateVRControlsPosition(): void {
+		this.office.updateVRControlsPosition();
 	}
 
 }

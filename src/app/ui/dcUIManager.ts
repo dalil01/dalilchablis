@@ -43,10 +43,24 @@ export class dcUIManager {
 		return dcUIManager.INSTANCE;
 	}
 
-	public toggleVR(): void {
+	public toggleVR(updateUI: boolean = true): void {
 		dcGlobalConfig.isVRMode = !dcGlobalConfig.isVRMode;
 		localStorage.setItem(LOCAL_STORAGE_KEY.VR_ENABLE, dcGlobalConfig.isVRMode.toString());
-		this.updateUI();
+
+		if (!dcGlobalConfig.isVRMode) {
+			this.officeView?.autoSetVRMode();
+		}
+
+		if (!updateUI) {
+			return;
+		}
+
+		if (dcGlobalConfig.isVRMode && dcGlobalConfig.currentView != VIEWS.OFFICE) {
+			this.setCurrentView(VIEWS.OFFICE);
+			this.officeView.setVisitStarted(true);
+		} else {
+			this.updateUI();
+		}
 	}
 
 	public toggleMode(): void {
@@ -73,7 +87,12 @@ export class dcUIManager {
 	public refreshUI(): void {
 		this.officeView?.setVisitStarted(false);
 		dcGlobalConfig.currentView = dcGlobalVars.DEFAULT_VEW;
-		this.updateUI();
+
+		if (dcGlobalConfig.currentView != VIEWS.OFFICE && dcGlobalConfig.isVRMode) {
+			this.toggleVR();
+		} else {
+			this.updateUI();
+		}
 	}
 
 	public start(): void {
@@ -132,6 +151,10 @@ export class dcUIManager {
 			this.homeView.onClickOnStartButton(() => this.officeView.setVisitStarted(true));
 
 			this.autoSetCurrentView();
+
+			if (dcGlobalConfig.currentView != VIEWS.OFFICE && dcGlobalConfig.isVRMode) {
+				this.toggleVR(false);
+			}
 		}
 
 		this.parentElement.appendChild(this.mainElement);

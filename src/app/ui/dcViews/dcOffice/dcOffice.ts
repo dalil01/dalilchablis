@@ -196,7 +196,7 @@ export class dcOffice extends dcView {
 			super.init();
 
 			if (this.isInitiated()) {
-				this.animate();
+				this.renderer.setAnimationLoop(() => this.animate());
 			}
 		});
 	}
@@ -236,6 +236,19 @@ export class dcOffice extends dcView {
 		}
 	}
 
+	public updateVRControlsPosition(): void {
+		if (this.renderer.xr.isPresenting) {
+			this.setVRControlsPosition();
+		}
+	}
+
+	private setVRControlsPosition(): void {
+		const cameraPosition = this.camera.position.clone();
+		cameraPosition.y = this.defaultControlsPosition.y;
+		this.controls.target.copy(cameraPosition);
+		this.controls.update();
+	}
+
 	public onStartVisit(): void {
 		this.camera.position.set(-2.5, 1.45, -3);
 		this.controls.enableRotate = false;
@@ -267,6 +280,7 @@ export class dcOffice extends dcView {
 		//this.mainElement.appendChild(this.stats.dom);
 
 		this.addPoints();
+		this.updateVRControlsPosition();
 
 		_UDom.AC(this.mainElement, this.canvas);
 	}
@@ -752,8 +766,6 @@ export class dcOffice extends dcView {
 		//if (this.stats) {
 		//	this.stats.end();
 		//}
-
-		globalThis.requestAnimationFrame(() => this.animate());
 	}
 
 }
