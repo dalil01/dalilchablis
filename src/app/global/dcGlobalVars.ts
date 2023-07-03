@@ -2,8 +2,8 @@ import { VIEWS } from "./dcGlobalEnums";
 
 export class dcGlobalVars {
 
-	public static DEFAULT_VEW = VIEWS.HOME;
-	public static DRACO_LOADER_PATH = "./libs/draco/";
+	public static DEFAULT_VEW: VIEWS = VIEWS.HOME;
+	public static DRACO_LOADER_PATH: string = "./libs/draco/";
 
 	public static async getSoundFilePath(): Promise<string> {
 		const module = await import((`../../assets/sounds/dcSound.mp3`));

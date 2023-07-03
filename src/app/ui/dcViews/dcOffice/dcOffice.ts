@@ -34,7 +34,7 @@ import { dcSkills } from "../../dcComponents/dcInfos/dcSkills/dcSkills";
 
 enum OFFICE_CSS {
 	CONTAINER = "office-container",
-	HTML_CONTAINER = "office-html-container",
+	VR_BUTTON = "vr-button",
 	POINT_WRAPPER = "point-wrapper",
 	POINT = "point",
 	ICON = "icon",
@@ -69,7 +69,7 @@ export class dcOffice extends dcView {
 	private readonly renderer: WebGLRenderer;
 	private readonly effectComposer: EffectComposer;
 
-	private readonly vrButton: any;
+	private readonly vrButton: HTMLElement;
 
 	private readonly officeEvent: dcOfficeEvent;
 
@@ -115,6 +115,7 @@ export class dcOffice extends dcView {
 		this.renderer.shadowMap.needsUpdate = true;
 
 		this.vrButton = VRButton.createButton(this.renderer);
+		this.vrButton.classList.add(OFFICE_CSS.VR_BUTTON);
 		this.autoSetVRMode();
 		this.parentElement.appendChild(this.vrButton);
 
