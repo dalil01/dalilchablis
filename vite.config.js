@@ -55,6 +55,7 @@ export default {
             ]
         }),
         VitePWA({
+            version: "1.0.0",
             registerType: "autoUpdate",
             manifest: {
                 name: "Dalil CHABLIS",
