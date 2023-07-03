@@ -1,5 +1,8 @@
 {
   "include": ["./src/**/*", "./assets/sounds/dcSound.mp3"],
+  "files": [
+    "node_modules/vite-plugin-pwa/client.d.ts"
+  ],
   "compileOnSave": true,
   "compilerOptions": {
     "baseUrl": "./",
