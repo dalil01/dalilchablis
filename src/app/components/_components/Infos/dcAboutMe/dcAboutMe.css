@@ -1,0 +1,35 @@
+.about-me-container {
+    padding: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    flex-direction: column;
+}
+
+.about-me-avatar {
+    width: 8rem;
+    border-radius: 5%;
+    display: flex;
+}
+
+.about-me-text-container {
+    text-align: left;
+    padding: 30px;
+    font-size: .85rem;
+}
+
+.about-me-emoji-hand {
+    color: #FFCA28;
+}
+
+@media (min-width: 768px) {
+
+    .about-me-container {
+        flex-direction: row;
+    }
+
+    .about-me-text-container {
+        padding-right: 0;
+    }
+
+}

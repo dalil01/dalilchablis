@@ -1,0 +1,157 @@
+.modal-background {
+    position: fixed;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    top: 0;
+    bottom: 0;
+    width: 100%;
+    z-index: 10;
+}
+
+.dark-mode .modal-background {
+    background-color: rgb(255 255 255 / 15%);
+}
+
+.light-mode .modal-background {
+    background-color: rgb(255 255 255 / 50%);
+}
+
+.modal {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border-radius: 10px;
+    background-color: var(--light-mode-bg);
+    box-shadow: 0 1px 2px 0 rgb(128, 128, 128), 0 2px 6px 2px rgba(60, 64, 67, 0.15);
+    padding: 15px;
+    text-align: center;
+    z-index: 60;
+}
+
+.modal-zoom-in {
+    animation: zoom-in .5s;
+}
+
+.modal-zoom-out {
+    animation: zoom-out .3s;
+}
+
+.modal-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    padding-bottom: 12px;
+}
+
+.modal-light .modal-header {
+    color: var(--dark-mode-color);
+    border-bottom: 1px solid rgba(60, 64, 67, 0.15);
+}
+
+.modal-dark .modal-header {
+    color: #FFFFFF;
+    border-bottom: 1px solid grey;
+}
+
+.modal-title {
+    font-size: .92rem;
+}
+
+.modal-title i {
+    font-size: 1rem;
+    padding-right: 5px;
+}
+
+.modal-close-btn {
+    font-size: 1.12rem;
+}
+
+.modal-light .modal {
+    background-color: var(--light-mode-bg);
+}
+
+.modal-dark .modal {
+    color: var(--light-mode-color);
+    background-color: var(--dark-mode-bg);
+}
+
+.modal-body {
+    position: relative;
+    margin: 12px 0;
+    width: 98%;
+    height: 85%;
+    overflow: auto;
+}
+
+.modal-small, .modal-medium, .modal-large {
+    max-height: 90%;
+}
+
+.modal-small {
+    width: 60%;
+}
+
+.modal-medium {
+    width: 75%;
+}
+
+.modal-large {
+    width: 90%;
+}
+
+.modal-footer {
+    width: 100%;
+}
+
+.modal-light .modal-footer {
+    color: var(--dark-mode-color);
+}
+
+.modal-dark .modal-footer {
+    color: #FFFFFF;
+}
+
+@media (min-width: 601px) {
+
+    .modal-small {
+        width: 500px;
+    }
+
+}
+
+@media (min-width: 1024px) {
+
+    .modal-medium {
+        width: 800px;
+    }
+
+}
+
+@media (min-width: 2048px) {
+
+    .modal-large {
+        width: 1800px;
+    }
+
+}
+
+@keyframes zoom-in {
+    from {
+        transform: scale(0)
+    }
+    to {
+        transform: scale(1)
+    }
+}
+
+@keyframes zoom-out {
+    from {
+        transform: scale(1)
+    }
+    to {
+        transform: scale(0)
+    }
+}

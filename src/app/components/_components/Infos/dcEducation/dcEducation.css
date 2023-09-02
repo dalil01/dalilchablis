@@ -1,0 +1,98 @@
+.education-container {
+    display: block;
+    width: 100%;
+    height: 100%;
+    margin: 15px 0;
+}
+
+.education-card-container {
+    display: flex;
+    justify-content: space-around;
+}
+
+.education-card {
+    width: 70%;
+    margin: 30px 0;
+    padding: 21px;
+    text-align: left;
+    border-radius: 15px;
+}
+
+.dark-mode .education-card {
+    background-color: rgb(255 255 255 / 3%);
+    color: var(--light-mode-color);
+    box-shadow: rgba(17, 17, 26, 0.05) 0 1px 0, rgba(17, 17, 26, 0.1) 0 0 8px;
+}
+
+.light-mode .education-card {
+    background-color: rgba(255, 255, 255, 80%);
+    color: #222222;
+    box-shadow: rgba(149, 157, 165, 0.2) 0 8px 24px;
+}
+
+.education-card-header {
+    display: flex;
+    align-items: center;
+}
+
+.education-card-image {
+    width: 1.5rem;
+    height: 1.5rem;
+}
+
+.education-card-title {
+    margin-left: 8px;
+    font-size: .85rem;
+}
+
+.education-card-subtitle {
+    margin-top: 10px;
+    font-size: .75rem;
+    font-weight: 600;
+}
+
+.education-card-description {
+    margin-top: 10px;
+    font-size: .8rem;
+    font-weight: 500;
+}
+
+.education-card-link {
+    display: block;
+    margin-top: 10px;
+    font-size: .72rem;
+    font-weight: 500;
+    text-decoration: none;
+}
+
+.dark-mode .education-card-link {
+    color: var(--light-mode-color);
+}
+
+.light-mode .education-card-link {
+    color: var(--dark-mode-color);
+}
+
+.education-card-link:hover {
+    text-decoration: underline;
+}
+
+.education-card-separator {
+    width: 1px;
+    background-color: rgba(60, 64, 67, 0.60);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.dark-mode .education-card-separator {
+    background-color: rgba(60, 64, 67, 0.60);
+}
+
+.light-mode .education-card-separator {
+    background-color: rgba(60, 64, 67, 0.21);
+}
+
+.education-separator-icon {
+    font-size: 1.2rem;
+}

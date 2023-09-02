@@ -1,9 +1,9 @@
-import {dcTranslation} from "./src/app/ui/dcTranslator/dcTranslation";
+import { Translation } from "./src/app/translator/Translation.js";
 
-const translatorDir = "./src/app/ui/dcTranslator/";
+const translatorDir = "./src/app/ui/translator/";
 
 const translationConfig = {
-    translationEnum: dcTranslation,
+    translationEnum: Translation,
     outputDir: translatorDir + "translations",
     locales: ["EN", "FR"],
 }

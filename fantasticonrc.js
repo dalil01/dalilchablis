@@ -1,6 +1,6 @@
 // https://github.com/tancredi/fantasticon
 
-const dcIconDir = "./src/app/ui/dcIcons/";
+const dcIconDir = "./src/app/icons/";
 const dcIconCssDir = dcIconDir + "css/";
 const dcIconFontsDir = dcIconDir + "fonts/";
 
@@ -32,7 +32,7 @@ module.exports = {
         woff: dcIconFontsDir + "dcIcons.woff",
         woff2: dcIconFontsDir + "dcIcons.woff2",
         css: dcIconCssDir + "dcIcons.css",
-        ts: dcIconDir + "dcIcons.ts"
+        ts: dcIconDir + "Icons.ts"
     },
     // Customize generated icon IDs (unavailable with `.json` config file)
     getIconId: ({
