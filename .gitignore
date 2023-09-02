@@ -3,8 +3,8 @@
 dist
 node_modules
 
-vracs/3D/dcOffice
-vracs/logo
-vracs/sounds
+resources/3D
+resources/logo
+resources/sounds
 
 vracs
