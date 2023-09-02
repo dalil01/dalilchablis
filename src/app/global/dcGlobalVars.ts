@@ -3,40 +3,39 @@ import { VIEWS } from "./dcGlobalEnums";
 export class dcGlobalVars {
 
 	public static DEFAULT_VEW: VIEWS = VIEWS.HOME;
-	public static DRACO_LOADER_PATH: string = "./libs/draco/";
+	public static DRACO_LOADER_PATH: string = "libs/draco/";
 
-	public static async getSoundFilePath(): Promise<string> {
-		const module = await import((`../../assets/sounds/dcSound.mp3`));
-		return module.default;
+	public static getSoundFilePath(): string {
+		return "sounds/dcSound.mp3";
 	}
 
 	public static async getLogoDarkPath(): Promise<string> {
-		const module = await import((`../../assets/images/dcLogoBlack.svg`));
+		const module = await import((`images/dcLogoBlack.svg`));
 		return module.default;
 	}
 
 	public static async getLogoWhitePath(): Promise<string> {
-		const module = await import((`../../assets/images/dcLogoWhite.svg`));
+		const module = await import((`images/dcLogoWhite.svg`));
 		return module.default;
 	}
 
 	public static async getVirtualStudioLightTexturePath(): Promise<string> {
-		const module = await import((`../../assets/models/dcOffice-light.jpg`));
+		const module = await import((`models/dcOffice-light.jpg`));
 		return module.default;
 	}
 
 	public static async getVirtualStudioDarkTexturePath(): Promise<string> {
-		const module = await import((`../../assets/models/dcOffice-dark.jpg`));
+		const module = await import((`models/dcOffice-dark.jpg`));
 		return module.default;
 	}
 
 	public static async getDCStudioGLBPath(): Promise<string> {
-		const module = await import((`../../assets/models/dcOffice.glb`));
+		const module = await import((`models/dcOffice.glb`));
 		return module.default;
 	}
 
 	public static async getOutsideCityPath(): Promise<string> {
-		const module = await import((`../../assets/images/outside/outside-city.webp`));
+		const module = await import((`images/outside/outside-city.webp`));
 		return module.default;
 	}
 

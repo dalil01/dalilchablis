@@ -3,5 +3,8 @@
 dist
 node_modules
 
-resources/3D/dcOffice/baked/dcOffice.baked.hdr
+resources/3D/dcOffice
+resources/logo
+resources/sounds
+
 vracs

@@ -24,7 +24,7 @@ export class dcAboutMe extends dcComponent {
 	}
 	
 	public async buildUI(): Promise<void> {
-		const { default: meImg } = await import((`../../../../../assets/images/about/me.webp`));
+		const { default: meImg } = await import((`images/about/me.webp`));
 
 		const avatar = _UDom.img({ src: meImg, className: ABOUT_ME_CSS.AVATAR });
 		this.mainElement.appendChild(avatar);

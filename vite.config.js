@@ -1,4 +1,3 @@
-import { viteStaticCopy } from "vite-plugin-static-copy";
 import gltfPlugin from 'vite-plugin-gltf';
 import { VitePWA } from 'vite-plugin-pwa';
 
@@ -7,7 +6,7 @@ const MANIFEST_ICONS_URL = "https://dalilchablis.com/manifest_icons/";
 export default {
     base: "./",
     root: "src",
-    publicDir: "public",
+    publicDir: "../public/",
     server: {
         port: 1200,
         sourcemap: true
@@ -30,30 +29,6 @@ export default {
     },
     plugins: [
         gltfPlugin(),
-        viteStaticCopy({
-            targets: [
-                {
-                    src: ".htaccess",
-                    dest: "../dist"
-                },
-                {
-                    src: "robots.txt",
-                    dest: "../dist"
-                },
-                {
-                    src: "libs/draco/*.{js,wasm}",
-                    dest: "../dist/libs/draco"
-                },
-                {
-                    src: "libs/draco/gltf/*.{js,wasm}",
-                    dest: "../dist/libs/draco/gltf"
-                },
-                {
-                    src: "assets/images/manifest_icons/*.png",
-                    dest: "../dist/manifest_icons"
-                }
-            ]
-        }),
         VitePWA({
             version: "1.0.0",
             registerType: "autoUpdate",

@@ -52,7 +52,7 @@ export class dcSound extends dcComponent {
 
 		boxes.addEventListener("click", async () => {
 			if (!this.mp3) {
-				this.mp3 = new Audio(await dcGlobalVars.getSoundFilePath());
+				this.mp3 = new Audio(dcGlobalVars.getSoundFilePath());
 			}
 
 			boxesList.forEach((e) => {
