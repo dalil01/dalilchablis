@@ -532,7 +532,7 @@ export class Office extends View {
 		pointWrapperElement.addEventListener("pointerdown", () => {
 			if (!modal) {
 				modal = new Modal(Modal_TYPE.LARGE, pointWrapperElement, UIcon.getIcon(Icons.DcIconHeart), Translator.T(Translation.PROJECTS), undefined, true, true, true);
-				const modalComponent = new Projects(modal.getMainElement(), true);
+				const modalComponent = new Projects(modal.getMainElement());
 				modalComponent.setMenuParent(<HTMLElement>modal.getFooter());
 				modalComponent.init();
 				modal.setContent(modalComponent.getMainElement());
