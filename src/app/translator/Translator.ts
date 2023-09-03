@@ -1,6 +1,6 @@
 import { Translation } from "./Translation";
-import { LOCALE } from "../Experience";
-import { Vars } from "../../Vars";
+import { LOCALE, Vars } from "../../Vars";
+import { Translated } from "./Translated";
 
 export class Translator {
 	
@@ -9,7 +9,7 @@ export class Translator {
 	 */
 	public static T(key: Translation): string {
 		const k = Translation[key];
-		return (Vars.locale === LOCALE.EN) ? Translation[k].EN : Translation[k].FR;
+		return (Vars.LOCALE === LOCALE.EN) ? Translated[k].EN : Translated[k].FR;
 	}
 	
 }

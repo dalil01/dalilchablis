@@ -1,16 +1,17 @@
-import { Cursor } from "./components/_components/Cursor/Cursor";
-
+import { Cursor } from "./ui/components/Cursor/Cursor";
+import { Header } from "./ui/components/Header/Header";
+import { Home } from "./ui/views/Home/Home";
+import { Office } from "./ui/views/Office/Office";
+import { View, VIEWS } from "./ui/views/View";
+import { Footer } from "./ui/components/Footer/Footer";
+import { UDom } from "./utils/UDom";
+import { LOCALE, Vars } from "../Vars";
 
 export enum GLOBAL_CSS {
 	LIGHT_MODE = "light-mode",
 	DARK_MODE = "dark-mode",
 	DISPLAY_NONE = "display-none",
 	BLINK = "blink"
-}
-
-export enum LOCALE {
-	EN = "EN",
-	FR = "FR"
 }
 
 export enum LOCAL_STORAGE_KEY {
@@ -31,14 +32,14 @@ export class Experience {
 	private modeAutoSet: boolean = false;
 
 	private cursor!: Cursor;
-	private header!: dcHeader;
+	private header!: Header;
 
-	private homeView!: dcHome;
-	private officeView!: dcOffice;
+	private homeView!: Home;
+	private officeView!: Office;
 
-	private currentView!: dcView;
+	private currentView!: View;
 
-	private footer!: dcFooter;
+	private footer!: Footer;
 
 	private constructor(parentElement: HTMLElement) {
 		this.parentElement = parentElement;
@@ -54,10 +55,10 @@ export class Experience {
 	}
 
 	public toggleVR(updateUI: boolean = true): void {
-		dcGlobalConfig.isVRMode = !dcGlobalConfig.isVRMode;
-		localStorage.setItem(LOCAL_STORAGE_KEY.VR_ENABLE, dcGlobalConfig.isVRMode.toString());
+		Vars.IS_VR_MODE = !Vars.IS_VR_MODE;
+		localStorage.setItem(LOCAL_STORAGE_KEY.VR_ENABLE, Vars.IS_VR_MODE.toString());
 
-		if (!dcGlobalConfig.isVRMode) {
+		if (!Vars.IS_VR_MODE) {
 			this.officeView?.autoSetVRMode();
 		}
 
@@ -65,7 +66,7 @@ export class Experience {
 			return;
 		}
 
-		if (dcGlobalConfig.isVRMode && dcGlobalConfig.currentView != VIEWS.OFFICE) {
+		if (Vars.IS_VR_MODE && Vars.CURRENT_VIEW != VIEWS.OFFICE) {
 			this.setCurrentView(VIEWS.OFFICE);
 			this.officeView.setVisitStarted(true);
 		} else {
@@ -74,18 +75,18 @@ export class Experience {
 	}
 
 	public toggleMode(): void {
-		dcGlobalConfig.isDarkMode = !dcGlobalConfig.isDarkMode;
+		Vars.IS_DARK_MODE = !Vars.IS_DARK_MODE;
 		this.updateUI();
 	}
 
 	public toggleLocale(): void {
-		dcGlobalConfig.locale = (dcGlobalConfig.locale === LOCALE.EN) ? LOCALE.FR : LOCALE.EN;
-		localStorage.setItem(LOCAL_STORAGE_KEY.LOCALE, dcGlobalConfig.locale);
+		Vars.LOCALE = (Vars.LOCALE === LOCALE.EN) ? LOCALE.FR : LOCALE.EN;
+		localStorage.setItem(LOCAL_STORAGE_KEY.LOCALE, Vars.LOCALE);
 		this.updateUI();
 	}
 
 	public setCurrentView(view: VIEWS): void {
-		dcGlobalConfig.currentView = view;
+		Vars.CURRENT_VIEW = view;
 		this.updateUI();
 	}
 
@@ -96,9 +97,9 @@ export class Experience {
 
 	public refreshUI(): void {
 		this.officeView?.setVisitStarted(false);
-		dcGlobalConfig.currentView = vars.DEFAULT_VEW;
+		Vars.CURRENT_VIEW = Vars.DEFAULT_VEW;
 
-		if (dcGlobalConfig.currentView != VIEWS.OFFICE && dcGlobalConfig.isVRMode) {
+		if (Vars.CURRENT_VIEW != VIEWS.OFFICE && Vars.IS_VR_MODE) {
 			this.toggleVR();
 		} else {
 			this.updateUI();
@@ -123,7 +124,7 @@ export class Experience {
 		if (this.cursor) {
 			this.cursor.update();
 		} else {
-			this.cursor = new dcCursor(this.parentElement, true);
+			this.cursor = new Cursor(this.parentElement, true);
 		}
 
 		this.autoSetVRMode();
@@ -133,7 +134,7 @@ export class Experience {
 		if (this.header) {
 			this.header.update();
 		} else {
-			this.header = new dcHeader(this.parentElement, true);
+			this.header = new Header(this.parentElement, true);
 		}
 
 		if (this.currentView) {
@@ -145,15 +146,15 @@ export class Experience {
 
 			if (this.currentView == this.officeView) {
 				document.body.style.cursor = "grab";
-				dcCursor.mouseOverDetectedElem = false;
+				Cursor.mouseOverDetectedElem = false;
 				this.officeView.update();
 			} else {
 				this.currentView.update();
 			}
 		} else {
-			this.homeView = new dcHome(this.mainElement, dcGlobalConfig.currentView == VIEWS.HOME);
+			this.homeView = new Home(this.mainElement, Vars.CURRENT_VIEW == VIEWS.HOME);
 
-			this.officeView = new dcOffice(this.mainElement);
+			this.officeView = new Office(this.mainElement);
 			this.officeView.onReady(() => this.homeView.buildStartButton());
 
 			this.officeView.init();
@@ -162,7 +163,7 @@ export class Experience {
 
 			this.autoSetCurrentView();
 
-			if (dcGlobalConfig.currentView != VIEWS.OFFICE && dcGlobalConfig.isVRMode) {
+			if (Vars.CURRENT_VIEW != VIEWS.OFFICE && Vars.IS_VR_MODE) {
 				this.toggleVR(false);
 			}
 		}
@@ -172,12 +173,12 @@ export class Experience {
 		if (this.footer) {
 			this.footer.update();
 		} else {
-			this.footer = new dcFooter(this.parentElement, true);
+			this.footer = new Footer(this.parentElement, true);
 		}
 	}
 
 	private autoSetCurrentView(): void {
-		switch (dcGlobalConfig.currentView) {
+		switch (Vars.CURRENT_VIEW) {
 			case VIEWS.OFFICE:
 				this.currentView = this.officeView;
 				break;
@@ -190,7 +191,7 @@ export class Experience {
 	private autoSetVRMode(): void {
 		const lsVREnable = localStorage.getItem(LOCAL_STORAGE_KEY.VR_ENABLE)?.trim();
 		if (lsVREnable) {
-			dcGlobalConfig.isVRMode = lsVREnable === "true";
+			Vars.IS_VR_MODE = lsVREnable === "true";
 		}
 		this.officeView?.autoSetVRMode();
 	}
@@ -198,18 +199,18 @@ export class Experience {
 	private autoSetMode(): void {
 		if (!this.modeAutoSet) {
 			const hour = new Date().getHours();
-			dcGlobalConfig.isDarkMode = !(hour >= 6 && hour < 18);
+			Vars.IS_DARK_MODE = !(hour >= 6 && hour < 18);
 			this.modeAutoSet = true;
 		}
 
 		/*
 		const lsDarkMode = localStorage.getItem(LOCAL_STORAGE_KEY.IS_DARK_MODE)?.trim();
 		if (lsDarkMode) {
-			dcGlobalConfig.isDarkMode = lsDarkMode === "true";
+			Vars.isDarkMode = lsDarkMode === "true";
 		}
 		 */
 
-		if (dcGlobalConfig.isDarkMode) {
+		if (Vars.IS_DARK_MODE) {
 			this.parentElement.classList.remove(GLOBAL_CSS.LIGHT_MODE);
 			this.parentElement.classList.add(GLOBAL_CSS.DARK_MODE);
 		} else {
@@ -220,11 +221,11 @@ export class Experience {
 
 	private autoSetLocale(): void {
 		const userLocale = (navigator.languages && navigator.languages.length ? navigator.languages[0] : navigator.language).toUpperCase();
-		dcGlobalConfig.locale = userLocale.startsWith(LOCALE.FR) ? LOCALE.FR : LOCALE.EN;
+		Vars.LOCALE = userLocale.startsWith(LOCALE.FR) ? LOCALE.FR : LOCALE.EN;
 
 		const lsLocale = localStorage.getItem(LOCAL_STORAGE_KEY.LOCALE)?.trim();
 		if (lsLocale) {
-			dcGlobalConfig.locale = lsLocale == LOCALE.FR ? LOCALE.FR : LOCALE.EN;
+			Vars.LOCALE = lsLocale == LOCALE.FR ? LOCALE.FR : LOCALE.EN;
 		}
 	}
 

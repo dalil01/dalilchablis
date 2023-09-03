@@ -1,4 +1,4 @@
-import { GLOBAL_CSS } from "../../global/dcGlobalEnums";
+import { GLOBAL_CSS } from "../Experience";
 
 export class UDom {
 	
