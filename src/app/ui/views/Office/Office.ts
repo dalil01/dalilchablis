@@ -204,12 +204,15 @@ export class Office extends View {
 
 	public destroy(): void {
 		super.destroy();
+
 		if (!this.isInitiated()) {
 			this.officeEvent.unSubscribeToEventListeners();
 		}
 	}
 
 	public update() {
+		super.update();
+
 		if (!this.visitStarted) {
 			this.onStartVisit();
 		} else {
