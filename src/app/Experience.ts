@@ -180,7 +180,7 @@ export class Experience {
 	}
 
 	private buildAwwwardsRibbon(): void {
-		const ribbon = UDom.div({ id: "awwwards", style: "position: fixed; z-index: 10; transform: translateY(-50%); top: 50%;  right: 0" });
+		const ribbon = UDom.div({ id: "awwwards", style: "position: fixed; z-index: 10; transform: translateY(-80%); top: 80%;  right: 0" });
 
 		const bgColor = (Vars.IS_DARK_MODE) ? "white" : "black";
 		const textColor = (Vars.IS_DARK_MODE) ? "black" : "white";
