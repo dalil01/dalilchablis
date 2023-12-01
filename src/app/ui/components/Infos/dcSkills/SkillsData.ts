@@ -37,7 +37,7 @@ export class SkillsData {
 						imgPath: "images/skills/systems/distributions/ubuntu.webp",
 						url: "https://ubuntu.com/",
 						name: "Ubuntu"
-					},
+					}/*,
 					{
 						imgPath: "images/skills/systems/distributions/kubuntu.webp",
 						url: "https://kubuntu.org/",
@@ -62,7 +62,7 @@ export class SkillsData {
 						imgPath: "images/skills/systems/distributions/deepin.webp",
 						url: "https://www.deepin.org/",
 						name: "Deepin"
-					},
+					}*/,
 					{
 						imgPath: "images/skills/systems/distributions/openbsd.webp",
 						url: "https://www.openbsd.org/",
@@ -72,12 +72,12 @@ export class SkillsData {
 						imgPath: "images/skills/systems/distributions/freebsd.webp",
 						url: "https://www.freebsd.org/",
 						name: "FreeBSD"
-					},
+					}/*,
 					{
 						imgPath: "images/skills/systems/distributions/windows10.webp",
 						url: "https://www.microsoft.com/fr-fr/software-download/windows10",
 						name: "Windows 10"
-					},
+					}*/,
 					{
 						imgPath: "images/skills/systems/distributions/windows11.webp",
 						url: "https://www.microsoft.com/fr-fr/software-download/windows11",
@@ -93,22 +93,22 @@ export class SkillsData {
 						imgPath: "images/skills/tools_software/prototyping_modeling/blender.webp",
 						url: "https://www.blender.org/",
 						name: "Blender"
-					},
+					}/*,
 					{
 						imgPath: "images/skills/tools_software/prototyping_modeling/figma.webp",
 						url: "https://www.figma.com/",
 						name: "Figma"
-					},
+					}*/,
 					{
 						imgPath: "images/skills/tools_software/prototyping_modeling/dia.webp",
 						url: "http://dia-installer.de/",
 						name: "Dia"
-					},
+					}/*,
 					{
 						imgPath: "images/skills/tools_software/prototyping_modeling/modelio.webp",
 						url: "https://www.modelio.org/index.htm",
 						name: "Modelio"
-					}
+					}*/
 				]
 			},
 			{
@@ -118,7 +118,7 @@ export class SkillsData {
 						imgPath: "images/skills/tools_software/text_editor_ide/intellij.webp",
 						url: "https://www.jetbrains.com/idea/",
 						name: "Intellij"
-					},
+					}/*,
 					{
 						imgPath: "images/skills/tools_software/text_editor_ide/vscode.webp",
 						url: "https://code.visualstudio.com/",
@@ -138,12 +138,12 @@ export class SkillsData {
 						imgPath: "images/skills/tools_software/text_editor_ide/pycharm.webp",
 						url: "https://www.jetbrains.com/pycharm/",
 						name: "PyCharm"
-					},
+					}*/,
 					{
 						imgPath: "images/skills/tools_software/text_editor_ide/android-studio.webp",
 						url: "https://developer.android.com/studio/",
 						name: "Android Studio"
-					},
+					}/*,
 					{
 						imgPath: "images/skills/tools_software/text_editor_ide/notepad.webp",
 						url: "https://notepad-plus-plus.org/",
@@ -158,7 +158,7 @@ export class SkillsData {
 						imgPath: "images/skills/tools_software/text_editor_ide/komodoedit.webp",
 						url: "https://www.activestate.com/products/komodo-edit/",
 						name: "Komodo Edit"
-					}
+					}*/
 				]
 			},
 			{
@@ -303,12 +303,12 @@ export class SkillsData {
 						imgPath: "images/skills/tools_software/devops/ansible.webp",
 						url: "https://www.ansible.com/",
 						name: "Ansible"
-					},
+					}/*,
 					{
 						imgPath: "images/skills/tools_software/devops/jenkins.webp",
 						url: "https://www.jenkins.io/",
 						name: "Jenkins"
-					},
+					}*/,
 					{
 						imgPath: "images/skills/tools_software/devops/kubernetes.webp",
 						url: "https://kubernetes.io/",
@@ -485,7 +485,7 @@ export class SkillsData {
 						imgPath: "images/skills/frameworks_libraries/front/react.webp",
 						url: "https://reactnative.dev/",
 						name: "React Native"
-					},
+					}/*,
 					{
 						imgPath: "images/skills/frameworks_libraries/front/jquery.webp",
 						url: "https://jquery.io/",
@@ -495,12 +495,17 @@ export class SkillsData {
 						imgPath: "images/skills/frameworks_libraries/front/kivy.webp",
 						url: "https://kivy.org/",
 						name: "Kivy"
-					}
+					}*/
 				]
 			},
 			{
 				$subTitle: "CSS",
 				items: [
+					{
+						imgPath: "images/skills/frameworks_libraries/css/tailwind.webp",
+						url: "https://tailwindcss.com/",
+						name: "Tailwindcss"
+					},
 					{
 						imgPath: "images/skills/frameworks_libraries/css/bootstrap.webp",
 						url: "https://getbootstrap.com/",
@@ -510,11 +515,6 @@ export class SkillsData {
 						imgPath: "images/skills/frameworks_libraries/css/bulma.webp",
 						url: "https://bulma.io/",
 						name: "Bulma"
-					},
-					{
-						imgPath: "images/skills/frameworks_libraries/css/tailwind.webp",
-						url: "https://tailwindcss.com/",
-						name: "Tailwindcss"
 					}
 				]
 			},
@@ -530,12 +530,12 @@ export class SkillsData {
 						imgPath: "images/skills/frameworks_libraries/back/spring-boot.webp",
 						url: "https://spring.io/projects/spring-boot/",
 						name: "Spring Boot"
-					},
+					}/*,
 					{
 						imgPath: "images/skills/frameworks_libraries/back/jax-rs.webp",
 						url: "https://fr.wikipedia.org/wiki/Java_API_for_RESTful_Web_Services",
 						name: "JAX-RS"
-					},
+					}*/,
 					{
 						imgPath: "images/skills/frameworks_libraries/back/expressjs.webp",
 						url: "https://expressjs.com/",
