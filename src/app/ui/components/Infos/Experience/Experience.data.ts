@@ -7,10 +7,17 @@ export class EducationData {
 	public static getData(): ExperienceType[] {
 		return [
 			{
+				imageSrc: "images/experience/sezame-logo.webp",
+				imgLink: "https://www.hellosezame.com/",
+				title: "Sezame (Paris)",
+				jobTitle: "Lead Tech - Freelance | 2023 (4 " + Translator.T(Translation.MONTHS) + ')',
+				jobSubTitles: Translator.T(Translation.SEZAME_FREELANCE_WORK)
+			},
+			{
 				imageSrc: "images/experience/dcbrain-logo.webp",
 				imgLink: "https://dcbrain.com/",
 				title: "DCbrain (Paris)",
-				jobTitle: Translator.T(Translation.FULLSTACK_DEVELOPER) + " - " + Translator.T(Translation.APPRENTICE) + " | " + "2021 - " + Translator.T(Translation.TODAY),
+				jobTitle: Translator.T(Translation.FULLSTACK_DEVELOPER) + " - " + Translator.T(Translation.APPRENTICE) + " | " + "2021 - 2023",
 				jobSubTitles: [
 					"• " + Translator.T(Translation.DCBRAIN_APPRENTICE_2),
 					"• " + Translator.T(Translation.DCBRAIN_APPRENTICE_3),

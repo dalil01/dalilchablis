@@ -259,6 +259,10 @@ export const Translated = {
 		EN: "Implementation of a test management platform with playwright in Java.",
 		FR: "Mise en place d'une plateforme de gestion des tests avec playwright en Java."
 	},
+	SEZAME_FREELANCE_WORK: {
+		EN: "Contribution to the development of the sezame application in nextjs.",
+		FR: "Contribution au développement de l'application de sezame en nextjs."
+	},
 	PERSONALS: {
 		EN: "Personals",
 		FR: "Personnels"
