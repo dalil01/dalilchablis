@@ -4,7 +4,7 @@ export class SkillsData {
 
 	public static getData(): SkillsType[] {
 		return [
-			{
+			/*{
 				$title: "SYSTEMS",
 				$subTitle: "OS",
 				items: [
@@ -62,7 +62,7 @@ export class SkillsData {
 						imgPath: "images/skills/systems/distributions/deepin.webp",
 						url: "https://www.deepin.org/",
 						name: "Deepin"
-					}*/,
+					},
 					{
 						imgPath: "images/skills/systems/distributions/openbsd.webp",
 						url: "https://www.openbsd.org/",
@@ -77,15 +77,15 @@ export class SkillsData {
 						imgPath: "images/skills/systems/distributions/windows10.webp",
 						url: "https://www.microsoft.com/fr-fr/software-download/windows10",
 						name: "Windows 10"
-					}*/,
+					},
 					{
 						imgPath: "images/skills/systems/distributions/windows11.webp",
 						url: "https://www.microsoft.com/fr-fr/software-download/windows11",
 						name: "Windows 11"
 					}
 				]
-			},
-			{
+			},*/
+			/*{
 				$title: "TOOLS_SOFTWARE",
 				$subTitle: "MODELING_PROTOTYPING",
 				items: [
@@ -98,17 +98,17 @@ export class SkillsData {
 						imgPath: "images/skills/tools_software/prototyping_modeling/figma.webp",
 						url: "https://www.figma.com/",
 						name: "Figma"
-					}*/,
+					},
 					{
 						imgPath: "images/skills/tools_software/prototyping_modeling/dia.webp",
 						url: "http://dia-installer.de/",
 						name: "Dia"
-					}/*,
+					},
 					{
 						imgPath: "images/skills/tools_software/prototyping_modeling/modelio.webp",
 						url: "https://www.modelio.org/index.htm",
 						name: "Modelio"
-					}*/
+
 				]
 			},
 			{
@@ -118,7 +118,7 @@ export class SkillsData {
 						imgPath: "images/skills/tools_software/text_editor_ide/intellij.webp",
 						url: "https://www.jetbrains.com/idea/",
 						name: "Intellij"
-					}/*,
+					},
 					{
 						imgPath: "images/skills/tools_software/text_editor_ide/vscode.webp",
 						url: "https://code.visualstudio.com/",
@@ -138,7 +138,7 @@ export class SkillsData {
 						imgPath: "images/skills/tools_software/text_editor_ide/pycharm.webp",
 						url: "https://www.jetbrains.com/pycharm/",
 						name: "PyCharm"
-					}*/,
+					},
 					{
 						imgPath: "images/skills/tools_software/text_editor_ide/android-studio.webp",
 						url: "https://developer.android.com/studio/",
@@ -158,7 +158,7 @@ export class SkillsData {
 						imgPath: "images/skills/tools_software/text_editor_ide/komodoedit.webp",
 						url: "https://www.activestate.com/products/komodo-edit/",
 						name: "Komodo Edit"
-					}*/
+					}
 				]
 			},
 			{
@@ -303,12 +303,12 @@ export class SkillsData {
 						imgPath: "images/skills/tools_software/devops/ansible.webp",
 						url: "https://www.ansible.com/",
 						name: "Ansible"
-					}/*,
+					},
 					{
 						imgPath: "images/skills/tools_software/devops/jenkins.webp",
 						url: "https://www.jenkins.io/",
 						name: "Jenkins"
-					}*/,
+					},
 					{
 						imgPath: "images/skills/tools_software/devops/kubernetes.webp",
 						url: "https://kubernetes.io/",
@@ -375,7 +375,7 @@ export class SkillsData {
 						name: "Trello"
 					}
 				]
-			},
+			},*/
 			{
 				$title: "LANGAGES",
 				$subTitle: "MODELING",

@@ -227,6 +227,10 @@ export const Translated = {
 		EN: "month",
 		FR: "mois"
 	},
+	YEARS: {
+		EN: "years",
+		FR: "ans"
+	},
 	TESTER: {
 		EN: "Tester",
 		FR: "Testeur"

@@ -56,6 +56,7 @@ export enum Translation {
 	SUMMER_JOB,
 	APPRENTICE,
 	MONTHS,
+	YEARS,
 	TESTER,
 	INTERN,
 	CASHIER_SHELF_WORKER,

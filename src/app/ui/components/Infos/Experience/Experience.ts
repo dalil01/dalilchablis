@@ -1,7 +1,7 @@
 import "./Experience.css";
 
 import { Component } from "../../Component";
-import { EducationData } from "./Experience.data";
+import { EducationData } from "./ExperienceData";
 import { UDom } from "../../../../utils/UDom";
 import { UIcon } from "../../../../utils/UIcon";
 import { Cursor } from "../../Cursor/Cursor";
