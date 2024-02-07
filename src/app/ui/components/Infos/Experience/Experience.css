@@ -46,9 +46,13 @@
 }
 
 .experience-card-job-title {
-    margin-top: 10px;
+    margin-top: 15px;
     font-size: .75rem;
     font-weight: 600;
+}
+
+.experience-card-job-margin {
+    margin-top: 20px;
 }
 
 .experience-card-job-subtitle {

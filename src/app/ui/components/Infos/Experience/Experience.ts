@@ -18,6 +18,7 @@ enum EXPERIENCE_CSS {
 	CARD_TITLE = "experience-card-title",
 	CARD_JOB = "experience-card-job",
 	CARD_JOB_TITLE = "experience-card-job-title",
+	CARD_JOB_MARGIN = "experience-card-job-margin",
 	CARD_JOB_SUBTITLE = "experience-card-job-subtitle",
 	CARD_SEPARATOR = "experience-card-separator",
 	CARD_LINK = "experience-card-link",
@@ -28,9 +29,11 @@ export type ExperienceType = {
 	imageSrc: string,
 	imgLink: string,
 	title: string,
-	jobTitle: string,
-	jobSubTitles: string | string[],
-	link?: undefined | string
+	jobs: {
+		jobTitle: string,
+		jobSubTitles: string | string[],
+		link?: undefined | string
+	}[],
 }
 
 export class Experience extends Component {
@@ -67,32 +70,42 @@ export class Experience extends Component {
 		UDom.AC(card, UDom.AC(cardHeader, cardImage, cardTitle));
 
 		const cardJob = UDom.div({ className: EXPERIENCE_CSS.CARD_JOB });
-		const cardJobTitle = UDom.h2({ innerText: item.jobTitle, className: EXPERIENCE_CSS.CARD_JOB_TITLE });
-		UDom.AC(cardJob, cardJobTitle);
 
-		if (typeof item.jobSubTitles === "string") {
-			item.jobSubTitles = [item.jobSubTitles];
-		}
+		for (let i = 0; i < item.jobs.length; i++) {
+			const job = item.jobs[i];
 
-		for (const jobSubTitle of item.jobSubTitles) {
-			const cardJobSubTitle = UDom.h2({ innerText: jobSubTitle, className: EXPERIENCE_CSS.CARD_JOB_SUBTITLE });
-			cardJob.appendChild(cardJobSubTitle);
+			const cardJobTitle = UDom.h2({ innerText: job.jobTitle, className: EXPERIENCE_CSS.CARD_JOB_TITLE });
+
+			if (i > 0) {
+				cardJobTitle.classList.add(EXPERIENCE_CSS.CARD_JOB_MARGIN);
+			}
+
+			UDom.AC(cardJob, cardJobTitle);
+
+			if (typeof job.jobSubTitles === "string") {
+				job.jobSubTitles = [job.jobSubTitles];
+			}
+
+			for (const jobSubTitle of job.jobSubTitles) {
+				const cardJobSubTitle = UDom.h2({innerText: jobSubTitle, className: EXPERIENCE_CSS.CARD_JOB_SUBTITLE});
+				cardJob.appendChild(cardJobSubTitle);
+			}
+
+			if (job.link) {
+				const readMore = UDom.a({
+					href: job.link,
+					innerText: Translator.T(Translation.READ_MORE) + "...",
+					className: EXPERIENCE_CSS.CARD_LINK,
+					target: "_blank"
+				});
+				cardJob.appendChild(readMore);
+				Cursor.subscribeElementToDetectHover(readMore);
+			}
 		}
 
 		card.appendChild(cardJob);
 
 		UDom.AC(cardContainer, separator, card);
-
-		if (item.link) {
-			const readMore = UDom.a({
-				href: item.link,
-				innerText: Translator.T(Translation.READ_MORE) + "...",
-				className: EXPERIENCE_CSS.CARD_LINK,
-				target: "_blank"
-			});
-			card.appendChild(readMore);
-			Cursor.subscribeElementToDetectHover(readMore);
-		}
 
 		this.mainElement.appendChild(cardContainer);
 	}

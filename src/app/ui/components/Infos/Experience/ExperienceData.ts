@@ -10,34 +10,36 @@ export class EducationData {
 				imageSrc: "images/experience/sezame-logo.webp",
 				imgLink: "https://www.hellosezame.com/",
 				title: "Sezame (Paris)",
-				jobTitle: "Lead Tech - Freelance | 2023 (4 " + Translator.T(Translation.MONTHS) + ')',
-				jobSubTitles: Translator.T(Translation.SEZAME_FREELANCE_WORK)
-			},
-			{
-				imageSrc: "images/experience/dcbrain-logo.webp",
-				imgLink: "https://dcbrain.com/",
-				title: "DCbrain (Paris)",
-				jobTitle: Translator.T(Translation.FULLSTACK_DEVELOPER) + " | " + "2021 - 2023 (2 " + Translator.T(Translation.YEARS) + ')',
-				jobSubTitles: [
-					"• " + Translator.T(Translation.DCBRAIN_APPRENTICE_2),
-					"• " + Translator.T(Translation.DCBRAIN_APPRENTICE_3),
-					"• " + Translator.T(Translation.DCBRAIN_APPRENTICE_1)
+				jobs: [
+					{
+						jobTitle: "Lead Tech - Freelance | 2023 (4 " + Translator.T(Translation.MONTHS) + ')',
+						jobSubTitles: Translator.T(Translation.SEZAME_FREELANCE_WORK)
+					}
 				]
 			},
 			{
 				imageSrc: "images/experience/dcbrain-logo.webp",
 				imgLink: "https://dcbrain.com/",
 				title: "DCbrain (Paris)",
-				jobTitle: "QA " + Translator.T(Translation.TESTER) + " - Freelance | 2021 (7 " + Translator.T(Translation.MONTHS) + ')',
-				jobSubTitles: Translator.T(Translation.DCBRAIN_FREELANCE_WORK)
-			},
-			{
-				imageSrc: "images/experience/dcbrain-logo.webp",
-				imgLink: "https://dcbrain.com/",
-				title: "DCbrain (Paris)",
-				jobTitle: Translator.T(Translation.INTERN) + " | 2021 (2 " + Translator.T(Translation.MONTHS) + ')',
-				jobSubTitles: Translator.T(Translation.DCBRAIN_INTERN_WORK),
-				link: "https://gitlab.com/dalil01/automatisation-test-e2e"
+				jobs: [
+					{
+						jobTitle: Translator.T(Translation.FULLSTACK_DEVELOPER) + " | " + "2021 - 2023 (2 " + Translator.T(Translation.YEARS) + ')',
+						jobSubTitles: [
+							"• " + Translator.T(Translation.DCBRAIN_APPRENTICE_2),
+							"• " + Translator.T(Translation.DCBRAIN_APPRENTICE_3),
+							"• " + Translator.T(Translation.DCBRAIN_APPRENTICE_1)
+						]
+					},
+					{
+						jobTitle: "QA " + Translator.T(Translation.TESTER) + " - Freelance | 2021 (7 " + Translator.T(Translation.MONTHS) + ')',
+						jobSubTitles: Translator.T(Translation.DCBRAIN_FREELANCE_WORK)
+					},
+					{
+						jobTitle: Translator.T(Translation.INTERN) + " | 2021 (2 " + Translator.T(Translation.MONTHS) + ')',
+						jobSubTitles: Translator.T(Translation.DCBRAIN_INTERN_WORK),
+						link: "https://gitlab.com/dalil01/automatisation-test-e2e"
+					}
+				]
 			}/*,
 			{
 				imageSrc: "images/experience/carrefour-logo.webp",
