@@ -1,6 +1,6 @@
 import {ExperienceType} from "./Experience";
-import {Translator} from "../../../../translator/Translator";
-import {Translation} from "../../../../translator/Translation";
+import {Translator} from "../../../../translations/Translator";
+import {Translation} from "../../../../translations/Translation";
 
 export class EducationData {
 
@@ -12,7 +12,7 @@ export class EducationData {
 				title: "Sezame (Paris)",
 				jobs: [
 					{
-						jobTitle: "Lead Tech - Freelance | 2023 (4 " + Translator.T(Translation.MONTHS) + ')',
+						jobTitle: Translator.T(Translation.FULLSTACK_DEVELOPER) + " - Freelance | 2023 (4 " + Translator.T(Translation.MONTHS) + ')',
 						jobSubTitles: Translator.T(Translation.SEZAME_FREELANCE_WORK)
 					}
 				]

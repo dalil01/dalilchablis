@@ -5,8 +5,8 @@ import { EducationData } from "./EducationData";
 import { UDom } from "../../../../utils/UDom";
 import { UIcon } from "../../../../utils/UIcon";
 import { Icons } from "../../../../icons/Icons";
-import { Translator } from "../../../../translator/Translator";
-import { Translation } from "../../../../translator/Translation";
+import { Translator } from "../../../../translations/Translator";
+import { Translation } from "../../../../translations/Translation";
 import { Cursor } from "../../Cursor/Cursor";
 
 enum EDUCATION_CSS {

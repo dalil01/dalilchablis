@@ -4,8 +4,8 @@ import { Component } from "../../Component";
 import { UDom } from "../../../../utils/UDom";
 import { UIcon } from "../../../../utils/UIcon";
 import { Icons } from "../../../../icons/Icons";
-import { Translator } from "../../../../translator/Translator";
-import { Translation } from "../../../../translator/Translation";
+import { Translator } from "../../../../translations/Translator";
+import { Translation } from "../../../../translations/Translation";
 
 enum ABOUT_ME_CSS {
 	CONTAINER = "about-me-container",

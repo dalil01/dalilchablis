@@ -3,8 +3,8 @@ import "./Contact.css";
 import { Component } from "../Component";
 import { UDom } from "../../../utils/UDom";
 import { UIcon } from "../../../utils/UIcon";
-import { Translation } from "../../../translator/Translation";
-import { Translator } from "../../../translator/Translator";
+import { Translation } from "../../../translations/Translation";
+import { Translator } from "../../../translations/Translator";
 import { Icons } from "../../../icons/Icons";
 import { Cursor } from "../Cursor/Cursor";
 

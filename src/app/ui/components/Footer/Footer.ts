@@ -1,13 +1,13 @@
 import "./Footer.css";
 
 import { Component } from "../Component";
-import { Modal, Modal_TYPE } from "../dcModal/Modal";
+import { Modal, Modal_TYPE } from "../Modal/Modal";
 import { Sound } from "../Sound/Sound";
 import { UDom } from "../../../utils/UDom";
 import { UIcon } from "../../../utils/UIcon";
 import { Icons } from "../../../icons/Icons";
-import { Translator } from "../../../translator/Translator";
-import { Translation } from "../../../translator/Translation";
+import { Translator } from "../../../translations/Translator";
+import { Translation } from "../../../translations/Translation";
 import { Cursor } from "../Cursor/Cursor";
 import { Contact } from "../Contact/Contact";
 

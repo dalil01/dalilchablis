@@ -3,8 +3,8 @@ import "./Projects.css";
 import { Component } from "../../Component";
 import { ProjectsData } from "./ProjectsData";
 import { UDom } from "../../../../utils/UDom";
-import { Translator } from "../../../../translator/Translator";
-import { Translation } from "../../../../translator/Translation";
+import { Translator } from "../../../../translations/Translator";
+import { Translation } from "../../../../translations/Translation";
 import { Cursor } from "../../Cursor/Cursor";
 
 enum PROJECTS_CSS {

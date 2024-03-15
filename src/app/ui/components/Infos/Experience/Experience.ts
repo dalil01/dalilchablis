@@ -6,8 +6,8 @@ import { UDom } from "../../../../utils/UDom";
 import { UIcon } from "../../../../utils/UIcon";
 import { Cursor } from "../../Cursor/Cursor";
 import { Icons } from "../../../../icons/Icons";
-import { Translator } from "../../../../translator/Translator";
-import { Translation } from "../../../../translator/Translation";
+import { Translator } from "../../../../translations/Translator";
+import { Translation } from "../../../../translations/Translation";
 
 enum EXPERIENCE_CSS {
 	CONTAINER = "experience-container",

@@ -3,8 +3,8 @@ import "./Skills.css";
 import { Component } from "../../Component";
 import { SkillsData } from "./SkillsData";
 import { UDom } from "../../../../utils/UDom";
-import { Translator } from "../../../../translator/Translator";
-import { Translation } from "../../../../translator/Translation";
+import { Translator } from "../../../../translations/Translator";
+import { Translation } from "../../../../translations/Translation";
 import { Cursor } from "../../Cursor/Cursor";
 
 enum SKILLS_CSS {

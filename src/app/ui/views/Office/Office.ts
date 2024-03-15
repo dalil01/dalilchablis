@@ -17,16 +17,16 @@ import { VRButton } from "three/examples/jsm/webxr/VRButton";
 import { GLOBAL_CSS } from "../../../Experience";
 import { UIcon } from "../../../utils/UIcon";
 import { Icons } from "../../../icons/Icons";
-import { Translator } from "../../../translator/Translator";
-import { Translation } from "../../../translator/Translation";
+import { Translator } from "../../../translations/Translator";
+import { Translation } from "../../../translations/Translation";
 import { Cursor } from "../../components/Cursor/Cursor";
-import { Modal, Modal_TYPE } from "../../components/dcModal/Modal";
+import { Modal, Modal_TYPE } from "../../components/Modal/Modal";
 import { AboutMe } from "../../components/Infos/AboutMe/AboutMe";
 import { Contact } from "../../components/Contact/Contact";
 import { Education } from "../../components/Infos/Education/Education";
 import { Experience } from "../../components/Infos/Experience/Experience";
-import { Projects } from "../../components/Infos/dcProjects/Projects";
-import { Skills } from "../../components/Infos/dcSkills/Skills";
+import { Projects } from "../../components/Infos/Projects/Projects";
+import { Skills } from "../../components/Infos/Skills/Skills";
 
 //import * as Stats from 'stats.js'
 

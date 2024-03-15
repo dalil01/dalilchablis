@@ -2,8 +2,8 @@ import "./Sound.css";
 
 import { Component } from "../Component";
 import { UDom } from "../../../utils/UDom";
-import { Translator } from "../../../translator/Translator";
-import { Translation } from "../../../translator/Translation";
+import { Translator } from "../../../translations/Translator";
+import { Translation } from "../../../translations/Translation";
 import { Vars } from "../../../../Vars";
 import { Cursor } from "../Cursor/Cursor";
 

@@ -1,6 +1,6 @@
 import { EducationType } from "./Education";
-import { Translator } from "../../../../translator/Translator";
-import { Translation } from "../../../../translator/Translation";
+import { Translator } from "../../../../translations/Translator";
+import { Translation } from "../../../../translations/Translation";
 
 export class EducationData {
 

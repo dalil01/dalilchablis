@@ -1,4 +1,4 @@
-import { Translation } from "./src/app/translator/Translation.js";
+import { Translation } from "./src/app/translations/Translation.js";
 
 const translatorDir = "./src/app/ui/translator/";
 
