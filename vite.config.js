@@ -30,7 +30,7 @@ export default {
     plugins: [
         gltfPlugin(),
         VitePWA({
-            version: "1.0.1",
+            version: "1.0.2",
             registerType: "autoUpdate",
             manifest: {
                 name: "Dalil CHABLIS",

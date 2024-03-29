@@ -86,6 +86,10 @@
     overflow: auto;
 }
 
+.modal-footer {
+    width: 100%;
+}
+
 .modal-small, .modal-medium, .modal-large {
     width: 85%;
     max-height: 90%;
