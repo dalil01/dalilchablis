@@ -55,7 +55,7 @@ export class Experience extends Component {
 		const cardContainer = UDom.div({ className: EXPERIENCE_CSS.CARD_CONTAINER });
 
 		const separator = UDom.div({ className: EXPERIENCE_CSS.CARD_SEPARATOR });
-		const icon = UIcon.getIcon(Icons.DcIconUserGraduate, { className: EXPERIENCE_CSS.CARD_SEPARATOR_ICON });
+		const icon = UIcon.getIcon(Icons.IconUserGraduate, { className: EXPERIENCE_CSS.CARD_SEPARATOR_ICON });
 		UDom.AC(separator, icon);
 
 		const card = UDom.div({ className: EXPERIENCE_CSS.CARD });

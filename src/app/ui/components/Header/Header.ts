@@ -53,20 +53,20 @@ export class Header extends Component {
 		const menuContainer = UDom.nav({ className: HEADER_CSS.MENU_CONTAINER });
 
 		const vrIconContainer = UDom.div({ className: HEADER_CSS.VR_CONTAINER });
-		const vrIcon = UIcon.getIcon(Vars.IS_VR_MODE ? Icons.DcIconVrHeadsetSolid : Icons.DcIconVrHeadset);
+		const vrIcon = UIcon.getIcon(Vars.IS_VR_MODE ? Icons.IconVrHeadsetSolid : Icons.IconVrHeadset);
 		vrIconContainer.addEventListener("click", () => Experience.get().toggleVR());
 		UDom.AC(menuContainer, UDom.AC(vrIconContainer, vrIcon));
 		Cursor.subscribeElementToDetectHover(vrIconContainer);
 
 		const modeIconContainer = UDom.div({ className: HEADER_CSS.MODE_CONTAINER });
-		const modeIcon = UIcon.getIcon(Vars.IS_DARK_MODE ? Icons.DcIconMoonOutline : Icons.DcIconLight);
+		const modeIcon = UIcon.getIcon(Vars.IS_DARK_MODE ? Icons.IconMoonOutline : Icons.IconLight);
 		modeIconContainer.addEventListener("click", () => Experience.get().toggleMode());
 		UDom.AC(menuContainer, UDom.AC(modeIconContainer, modeIcon));
 		modeIconContainer.appendChild(modeIcon);
 		Cursor.subscribeElementToDetectHover(modeIconContainer);
 
 		const localeIconContainer = UDom.div({ className: HEADER_CSS.LOCALE_CONTAINER });
-		const globeIcon = UIcon.getIcon(Icons.DcIconGlobe);
+		const globeIcon = UIcon.getIcon(Icons.IconGlobe);
 		const locale = UDom.span({ innerText: Vars.LOCALE === LOCALE.EN ? LOCALE.EN : LOCALE.FR });
 		localeIconContainer.addEventListener("click", () => Experience.get().toggleLocale());
 		UDom.AC(menuContainer, UDom.AC(localeIconContainer, globeIcon, locale));

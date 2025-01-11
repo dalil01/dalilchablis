@@ -38,75 +38,69 @@ export class Cursor extends Component {
 	}
 
 	public static subscribeElementToDetectHover(element: HTMLElement): void {
-		element.addEventListener("mouseover", () => {
-			if (globalThis.innerWidth < Cursor.minScreenSize) {
-				document.body.style.cursor = "pointer";
-			}
-
-			Cursor.cursorInner.classList.add(CURSOR_CSS.CURSOR_HOVER);
-			Cursor.mouseOverDetectedElem = true;
-		});
-
-		element.addEventListener("mouseout", () => {
-			if (globalThis.innerWidth < Cursor.minScreenSize) {
-				document.body.style.cursor = "auto";
-			}
-
-			Cursor.cursorInner.classList.remove(CURSOR_CSS.CURSOR_HOVER);
-			Cursor.mouseOverDetectedElem = false;
-		});
+		element.addEventListener("mouseover", Cursor.handleHoverIn);
+		element.addEventListener("mouseout", Cursor.handleHoverOut);
 	}
 
 	public static subscribeElementsToDetectHover(elements: HTMLElement[]): void {
-		elements.forEach((e) => Cursor.subscribeElementToDetectHover(e));
+		elements.forEach(Cursor.subscribeElementToDetectHover);
 	}
 
 	private subscribeToEventListeners(): void {
-		globalThis.addEventListener("mousemove", (e) => {
-			if (!Vars.MODAL_IS_OPEN) {
-				e.preventDefault();
-			}
+		let animationFrameId: number;
 
-			window.requestAnimationFrame(() => {
-				if (!Cursor.mouseOverDetectedElem && globalThis.innerWidth < Cursor.minScreenSize && Vars.CURRENT_VIEW == VIEWS.OFFICE && document.body.style.cursor != "grabbing") {
-					document.body.style.cursor = (Vars.MODAL_IS_OPEN) ? "auto" : "grab";
-				}
+		const handleMouseMove = (e: MouseEvent) => {
+			if (animationFrameId) return;
 
-				this.cursor.style.transform = `translate3d(calc(${ e.clientX }px - 50%), calc(${ e.clientY }px - 50%), 0)`;
-				Cursor.cursorInner.style.left = e.clientX + "px";
-				Cursor.cursorInner.style.top = e.clientY + "px";
-			})
-		});
+			animationFrameId = window.requestAnimationFrame(() => {
+				this.updateCursorPosition(e.clientX, e.clientY);
+				animationFrameId = 0;
+			});
+		};
 
-		globalThis.addEventListener("mouseenter", () => {
-			Cursor.cursorInner.classList.add(CURSOR_CSS.CURSOR_HOVER);
-		});
+		globalThis.addEventListener("mousemove", handleMouseMove);
+		globalThis.addEventListener("pointerdown", Cursor.handlePointerDown);
+		globalThis.addEventListener("pointerup", Cursor.handlePointerUp);
+		globalThis.addEventListener("mouseenter", Cursor.handleHoverIn);
+		globalThis.addEventListener("mouseout", Cursor.handleHoverOut);
+	}
 
-		globalThis.addEventListener("pointerdown", () => {
-			if (!Cursor.mouseOverDetectedElem && Vars.CURRENT_VIEW == VIEWS.OFFICE && globalThis.innerWidth < Cursor.minScreenSize) {
-				document.body.style.cursor = (Vars.MODAL_IS_OPEN) ? "auto" : "grabbing";
-			}
+	private updateCursorPosition(x: number, y: number): void {
+		const cursorInner = Cursor.cursorInner;
+		const { minScreenSize } = Cursor;
 
-			Cursor.cursorInner.classList.add(CURSOR_CSS.CURSOR_INNER_HOVER);
-		});
+		if (!Cursor.mouseOverDetectedElem && globalThis.innerWidth < minScreenSize && Vars.CURRENT_VIEW === VIEWS.OFFICE) {
+			document.body.style.cursor = Vars.MODAL_IS_OPEN ? "auto" : "grab";
+		}
 
-		globalThis.addEventListener("pointerup", () => {
-			if (!Cursor.mouseOverDetectedElem && Vars.CURRENT_VIEW == VIEWS.OFFICE && globalThis.innerWidth < Cursor.minScreenSize) {
-				document.body.style.cursor = "grab";
-			}
+		this.cursor.style.transform = `translate3d(calc(${ x }px - 50%), calc(${ y }px - 50%), 0)`;
+		cursorInner.style.left = `${ x }px`;
+		cursorInner.style.top = `${ y }px`;
+	}
 
-			if (Vars.MODAL_IS_OPEN) {
-				document.body.style.cursor = "auto";
-			}
+	private static handleHoverIn(): void {
+		Cursor.cursorInner.classList.add(CURSOR_CSS.CURSOR_HOVER);
+	}
 
-			Cursor.cursorInner.classList.remove(CURSOR_CSS.CURSOR_HOVER);
-			Cursor.cursorInner.classList.remove(CURSOR_CSS.CURSOR_INNER_HOVER);
-		});
+	private static handleHoverOut(): void {
+		Cursor.cursorInner.classList.remove(CURSOR_CSS.CURSOR_HOVER);
+		Cursor.mouseOverDetectedElem = false;
+	}
 
-		globalThis.addEventListener("mouseout", () => {
-			Cursor.cursorInner.classList.remove(CURSOR_CSS.CURSOR_HOVER);
-			Cursor.cursorInner.classList.remove(CURSOR_CSS.CURSOR_INNER_HOVER);
-		});
+	private static handlePointerDown(): void {
+		if (!Cursor.mouseOverDetectedElem && Vars.CURRENT_VIEW === VIEWS.OFFICE && globalThis.innerWidth < Cursor.minScreenSize) {
+			document.body.style.cursor = Vars.MODAL_IS_OPEN ? "auto" : "grabbing";
+		}
+
+		Cursor.cursorInner.classList.add(CURSOR_CSS.CURSOR_INNER_HOVER);
+	}
+
+	private static handlePointerUp(): void {
+		if (!Cursor.mouseOverDetectedElem && Vars.CURRENT_VIEW === VIEWS.OFFICE && globalThis.innerWidth < Cursor.minScreenSize) {
+			document.body.style.cursor = Vars.MODAL_IS_OPEN ? "auto" : "grab";
+		}
+
+		Cursor.cursorInner.classList.remove(CURSOR_CSS.CURSOR_INNER_HOVER);
 	}
 
 }

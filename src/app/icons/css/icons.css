@@ -1,0 +1,143 @@
+@font-face {
+    font-family: "Icons";
+    src: url("../fonts/Icons.eot?6a317728a621cc8987e1a336f7a6d007#iefix") format("embedded-opentype"),
+url("../fonts/Icons.svg?6a317728a621cc8987e1a336f7a6d007#Icons") format("svg"),
+url("../fonts/Icons.ttf?6a317728a621cc8987e1a336f7a6d007") format("truetype"),
+url("../fonts/Icons.woff?6a317728a621cc8987e1a336f7a6d007") format("woff"),
+url("../fonts/Icons.woff2?6a317728a621cc8987e1a336f7a6d007") format("woff2");
+}
+
+i[class^="icon-"]:before, i[class*=" icon-"]:before {
+    font-family: Icons !important;
+    font-style: normal;
+    font-weight: normal !important;
+    font-variant: normal;
+    text-transform: none;
+    line-height: 1;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-about-me:before {
+    content: "\f101";
+}
+.icon-arrow-down:before {
+    content: "\f102";
+}
+.icon-arrow-up-2:before {
+    content: "\f103";
+}
+.icon-arrow-up:before {
+    content: "\f104";
+}
+.icon-at:before {
+    content: "\f105";
+}
+.icon-close-circle:before {
+    content: "\f106";
+}
+.icon-contact:before {
+    content: "\f107";
+}
+.icon-discord-logo:before {
+    content: "\f108";
+}
+.icon-facebook-logo:before {
+    content: "\f109";
+}
+.icon-github-logo:before {
+    content: "\f10a";
+}
+.icon-gitlab-logo:before {
+    content: "\f10b";
+}
+.icon-globe:before {
+    content: "\f10c";
+}
+.icon-graduation-cap:before {
+    content: "\f10d";
+}
+.icon-hand:before {
+    content: "\f10e";
+}
+.icon-heart:before {
+    content: "\f10f";
+}
+.icon-help-outline:before {
+    content: "\f110";
+}
+.icon-help:before {
+    content: "\f111";
+}
+.icon-instagram-logo:before {
+    content: "\f112";
+}
+.icon-light:before {
+    content: "\f113";
+}
+.icon-linkedin-logo:before {
+    content: "\f114";
+}
+.icon-loading:before {
+    content: "\f115";
+}
+.icon-mail:before {
+    content: "\f116";
+}
+.icon-moon-outline:before {
+    content: "\f117";
+}
+.icon-moon-sharp:before {
+    content: "\f118";
+}
+.icon-music-note-off:before {
+    content: "\f119";
+}
+.icon-music-note:before {
+    content: "\f11a";
+}
+.icon-search:before {
+    content: "\f11b";
+}
+.icon-send-regular:before {
+    content: "\f11c";
+}
+.icon-settings:before {
+    content: "\f11d";
+}
+.icon-skills:before {
+    content: "\f11e";
+}
+.icon-smile:before {
+    content: "\f11f";
+}
+.icon-snapchat-logo:before {
+    content: "\f120";
+}
+.icon-telephone-fill:before {
+    content: "\f121";
+}
+.icon-user-graduate:before {
+    content: "\f122";
+}
+.icon-user:before {
+    content: "\f123";
+}
+.icon-vr-headset-solid:before {
+    content: "\f124";
+}
+.icon-vr-headset:before {
+    content: "\f125";
+}
+.icon-wave-large:before {
+    content: "\f126";
+}
+.icon-wave-small:before {
+    content: "\f127";
+}
+.icon-work-experience:before {
+    content: "\f128";
+}
+.icon-x:before {
+    content: "\f129";
+}

@@ -53,13 +53,13 @@
 }
 
 .home-start-button {
-    margin-top: 30px;
+    margin-top: 35px;
     text-align: center;
 }
 
 .home-start-button i {
-    font-size: .8em;
-    padding: 10px 5px;
+    font-size: .9em;
+    padding: 12px 6px;
     border-radius: 21px;
     transition: 0.3s ease-in-out;
     opacity: .9;

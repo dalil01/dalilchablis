@@ -49,7 +49,7 @@ export class Education extends Component {
 		const cardContainer = UDom.div({ className: EDUCATION_CSS.CARD_CONTAINER });
 
 		const separator = UDom.div({ className: EDUCATION_CSS.CARD_SEPARATOR });
-		const icon = UIcon.getIcon(Icons.DcIconGraduationCap, { className: EDUCATION_CSS.CARD_SEPARATOR_ICON });
+		const icon = UIcon.getIcon(Icons.IconGraduationCap, { className: EDUCATION_CSS.CARD_SEPARATOR_ICON });
 		UDom.AC(separator, icon);
 
 		const card = UDom.div({ className: EDUCATION_CSS.CARD });

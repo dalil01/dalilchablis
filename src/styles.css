@@ -6,10 +6,10 @@
 
 :root {
     font-family: Avenir, Verdana, sans-serif;
-    --light-mode-bg: #F7F7F7;
-    --light-mode-color: #F7F7F7;
-    --dark-mode-bg: rgb(36, 36, 36);
-    --dark-mode-color: rgb(36, 36, 36);
+    --light-mode-bg: #FAFAFA;
+    --light-mode-color: #FFFFFF;
+    --dark-mode-bg: #111111;
+    --dark-mode-color: #000000;
 }
 
 .light-mode {

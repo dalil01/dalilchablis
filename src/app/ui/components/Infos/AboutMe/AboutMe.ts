@@ -29,7 +29,7 @@ export class AboutMe extends Component {
 
 		const aboutContainer = UDom.div({ className: ABOUT_ME_CSS.TEXT_CONTAINER });
 		const hi = UDom.span({ innerText: Translator.T(Translation.HI_THERE) + ' ' });
-		const hand = UIcon.getIcon(Icons.DcIconHand, { className: ABOUT_ME_CSS.EMOJI_HAND });
+		const hand = UIcon.getIcon(Icons.IconHand, { className: ABOUT_ME_CSS.EMOJI_HAND });
 		const about = UDom.span({
 			innerText: ", " + Translator.T(Translation.ABOUT_TEXT)
 		});

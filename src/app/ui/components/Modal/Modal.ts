@@ -104,7 +104,7 @@ export class Modal extends Component {
 		
 		header.appendChild(h2);
 		
-		const closeIcon = UIcon.getIcon(Icons.DcIconCloseCircle, { className: Modal_CSS.CLOSE_BTN });
+		const closeIcon = UIcon.getIcon(Icons.IconCloseCircle, { className: Modal_CSS.CLOSE_BTN });
 		closeIcon.addEventListener("click", () => this.close());
 		Cursor.subscribeElementToDetectHover(closeIcon);
 		header.appendChild(closeIcon);

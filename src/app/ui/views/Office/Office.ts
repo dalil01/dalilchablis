@@ -310,7 +310,7 @@ export class Office extends View {
 	private addAboutMePoint(): void {
 		const pointWrapperElement = UDom.div({ className: OFFICE_CSS.POINT_WRAPPER });
 		const pointElement = UDom.div({ className: OFFICE_CSS.POINT });
-		const icon = UIcon.getIcon(Icons.DcIconAboutMe, { className: OFFICE_CSS.ICON });
+		const icon = UIcon.getIcon(Icons.IconAboutMe, { className: OFFICE_CSS.ICON });
 		const text = UDom.div({
 			className: "text text--about",
 			innerText: Translator.T(Translation.ABOUT_ME)
@@ -334,7 +334,7 @@ export class Office extends View {
 		let modal: Modal;
 		pointWrapperElement.addEventListener("pointerdown", () => {
 			if (!modal) {
-				modal = new Modal(Modal_TYPE.MEDIUM, pointWrapperElement, UIcon.getIcon(Icons.DcIconAboutMe), Translator.T(Translation.ABOUT_ME), undefined, true, true, true);
+				modal = new Modal(Modal_TYPE.MEDIUM, pointWrapperElement, UIcon.getIcon(Icons.IconAboutMe), Translator.T(Translation.ABOUT_ME), undefined, true, true, true);
 				const modalComponent = new AboutMe(modal.getMainElement(), true);
 				modal.setContent(modalComponent.getMainElement());
 				modal.onClose(() => this.moveToDefaultPosition());
@@ -360,7 +360,7 @@ export class Office extends View {
 	private addContactPoint(): void {
 		const pointWrapperElement = UDom.div({ className: OFFICE_CSS.POINT_WRAPPER });
 		const pointElement = UDom.div({ className: OFFICE_CSS.POINT });
-		const icon = UIcon.getIcon(Icons.DcIconTelephoneFill, { className: OFFICE_CSS.ICON });
+		const icon = UIcon.getIcon(Icons.IconTelephoneFill, { className: OFFICE_CSS.ICON });
 		const text = UDom.div({
 			className: "text text--contact",
 			innerText: Translator.T(Translation.CONTACT)
@@ -384,7 +384,7 @@ export class Office extends View {
 		let modal: Modal;
 		pointWrapperElement.addEventListener("pointerdown", () => {
 			if (!modal) {
-				modal = new Modal(Modal_TYPE.SMALL, pointWrapperElement, UIcon.getIcon(Icons.DcIconTelephoneFill), Translator.T(Translation.CONTACT_ME), undefined, false, true, true);
+				modal = new Modal(Modal_TYPE.SMALL, pointWrapperElement, UIcon.getIcon(Icons.IconTelephoneFill), Translator.T(Translation.CONTACT_ME), undefined, false, true, true);
 				const modalComponent = new Contact(modal.getMainElement(), true);
 				modal.setContent(modalComponent.getMainElement());
 				modal.onClose(() => this.moveToDefaultPosition());
@@ -410,7 +410,7 @@ export class Office extends View {
 	private addEducationPoint(): void {
 		const pointWrapperElement = UDom.div({ className: OFFICE_CSS.POINT_WRAPPER });
 		const pointElement = UDom.div({ className: OFFICE_CSS.POINT });
-		const icon = UIcon.getIcon(Icons.DcIconGraduationCap, { className: OFFICE_CSS.ICON });
+		const icon = UIcon.getIcon(Icons.IconGraduationCap, { className: OFFICE_CSS.ICON });
 		const text = UDom.div({
 			className: "text text--education",
 			innerText: Translator.T(Translation.EDUCATION)
@@ -434,7 +434,7 @@ export class Office extends View {
 		let modal: Modal;
 		pointWrapperElement.addEventListener("pointerdown", () => {
 			if (!modal) {
-				modal = new Modal(Modal_TYPE.MEDIUM, pointWrapperElement, UIcon.getIcon(Icons.DcIconGraduationCap), Translator.T(Translation.EDUCATION), undefined, false, true, true);
+				modal = new Modal(Modal_TYPE.MEDIUM, pointWrapperElement, UIcon.getIcon(Icons.IconGraduationCap), Translator.T(Translation.EDUCATION), undefined, false, true, true);
 				const modalComponent = new Education(modal.getMainElement(), true);
 				modal.setContent(modalComponent.getMainElement());
 				modal.onClose(() => this.moveToDefaultPosition());
@@ -460,7 +460,7 @@ export class Office extends View {
 	private addExperiencePoint(): void {
 		const pointWrapperElement = UDom.div({ className: OFFICE_CSS.POINT_WRAPPER });
 		const pointElement = UDom.div({ className: OFFICE_CSS.POINT });
-		const icon = UIcon.getIcon(Icons.DcIconUserGraduate, { className: OFFICE_CSS.ICON });
+		const icon = UIcon.getIcon(Icons.IconUserGraduate, { className: OFFICE_CSS.ICON });
 		const text = UDom.div({
 			className: "text text--experience",
 			innerText: Translator.T(Translation.EXPERIENCE)
@@ -484,7 +484,7 @@ export class Office extends View {
 		let modal: Modal;
 		pointWrapperElement.addEventListener("pointerdown", () => {
 			if (!modal) {
-				modal = new Modal(Modal_TYPE.MEDIUM, pointWrapperElement, UIcon.getIcon(Icons.DcIconUserGraduate), Translator.T(Translation.EXPERIENCE), undefined, false, true, true);
+				modal = new Modal(Modal_TYPE.MEDIUM, pointWrapperElement, UIcon.getIcon(Icons.IconUserGraduate), Translator.T(Translation.EXPERIENCE), undefined, false, true, true);
 				const modalComponent = new Experience(modal.getMainElement(), true);
 				modal.setContent(modalComponent.getMainElement());
 				modal.onClose(() => this.moveToDefaultPosition());
@@ -510,7 +510,7 @@ export class Office extends View {
 	private addProjectsPoint(): void {
 		const pointWrapperElement = UDom.div({ className: OFFICE_CSS.POINT_WRAPPER });
 		const pointElement = UDom.div({ className: OFFICE_CSS.POINT });
-		const icon = UIcon.getIcon(Icons.DcIconHeart, { className: OFFICE_CSS.ICON });
+		const icon = UIcon.getIcon(Icons.IconHeart, { className: OFFICE_CSS.ICON });
 		const text = UDom.div({
 			className: "text text--projects",
 			innerText: Translator.T(Translation.PROJECTS)
@@ -534,7 +534,7 @@ export class Office extends View {
 		let modal: Modal;
 		pointWrapperElement.addEventListener("pointerdown", () => {
 			if (!modal) {
-				modal = new Modal(Modal_TYPE.LARGE, pointWrapperElement, UIcon.getIcon(Icons.DcIconHeart), Translator.T(Translation.PROJECTS), undefined, true, true, true);
+				modal = new Modal(Modal_TYPE.LARGE, pointWrapperElement, UIcon.getIcon(Icons.IconHeart), Translator.T(Translation.PROJECTS), undefined, true, true, true);
 				const modalComponent = new Projects(modal.getMainElement());
 				modalComponent.setMenuParent(<HTMLElement>modal.getFooter());
 				modalComponent.init();
@@ -562,7 +562,7 @@ export class Office extends View {
 	private addSkillsPoint(): void {
 		const pointWrapperElement = UDom.div({ className: OFFICE_CSS.POINT_WRAPPER });
 		const pointElement = UDom.div({ className: OFFICE_CSS.POINT });
-		const icon = UIcon.getIcon(Icons.DcIconSkills, { className: OFFICE_CSS.ICON });
+		const icon = UIcon.getIcon(Icons.IconSkills, { className: OFFICE_CSS.ICON });
 		const text = UDom.div({
 			className: "text text--skills",
 			innerText: Translator.T(Translation.SKILLS)
@@ -585,7 +585,7 @@ export class Office extends View {
 		let modal: Modal;
 		pointWrapperElement.addEventListener("pointerdown", () => {
 			if (!modal) {
-				modal = new Modal(Modal_TYPE.MEDIUM, pointWrapperElement, UIcon.getIcon(Icons.DcIconSkills), Translator.T(Translation.SKILLS), undefined, true, true, true);
+				modal = new Modal(Modal_TYPE.MEDIUM, pointWrapperElement, UIcon.getIcon(Icons.IconSkills), Translator.T(Translation.SKILLS), undefined, true, true, true);
 				const modalComponent = new Skills(modal.getMainElement());
 				modalComponent.setMenuParent(<HTMLElement>modal.getFooter());
 				modalComponent.init();

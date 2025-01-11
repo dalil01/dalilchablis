@@ -1,20 +1,19 @@
 // https://github.com/tancredi/fantasticon
 
-const dcIconDir = "./src/app/icons/";
-const dcIconCssDir = dcIconDir + "css/";
-const dcIconFontsDir = dcIconDir + "fonts/";
+const iconsDir = "./src/app/icons/";
+const iconCssDir = iconsDir + "css/";
+const iconFontsDir = iconsDir + "fonts/";
 
 module.exports = {
-    name: "dcIcons",
-    inputDir: dcIconDir + "svg",
-    outputDir: dcIconDir,
+    name: "Icons",
+    inputDir: iconsDir + "svg",
+    outputDir: iconsDir,
     fontTypes: ["eot", "svg", "ttf", "woff", "woff2"],
-    assetTypes: ["css", "ts"],
+    assetTypes: ["ts", "css"],
     fontHeight: 300,
     descent : 45,
     normalize : true,
     fontsUrl: "../fonts",
-    prefix: "dcIcon",
     formatOptions: {
         ts: {
             // select what kind of types you want to generate (default `['enum', 'constant', 'literalId', 'literalKey']`)
@@ -23,16 +22,16 @@ module.exports = {
     },
     // Use a custom Handlebars template
     templates: {
-        css: dcIconCssDir + "dcIcons.css.hbs"
+        css: iconCssDir + "icons.css.hbs"
     },
     pathOptions: {
-        eot: dcIconFontsDir + "dcIcons.eot",
-        svg: dcIconFontsDir + "dcIcons.svg",
-        ttf: dcIconFontsDir + "dcIcons.ttf",
-        woff: dcIconFontsDir + "dcIcons.woff",
-        woff2: dcIconFontsDir + "dcIcons.woff2",
-        css: dcIconCssDir + "dcIcons.css",
-        ts: dcIconDir + "Icons.ts"
+        eot: iconFontsDir + "icons.eot",
+        svg: iconFontsDir + "icons.svg",
+        ttf: iconFontsDir + "icons.ttf",
+        woff: iconFontsDir + "icons.woff",
+        woff2: iconFontsDir + "icons.woff2",
+        css: iconCssDir + "icons.css",
+        ts: iconsDir + "Icons.ts"
     },
     // Customize generated icon IDs (unavailable with `.json` config file)
     getIconId: ({
@@ -41,5 +40,5 @@ module.exports = {
         absoluteFilePath, // `string` - Example: '/var/icons/sub/dir/foo.svg'
         relativeFilePath, // `string` - Example: 'foo.svg'
         index // `number` - Example: `0`
-    }) => ["dcIcon-" + basename].join('-')
+    }) => ["icon-" + basename].join('-')
 };

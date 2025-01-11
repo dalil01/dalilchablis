@@ -84,7 +84,7 @@ export class Home extends View {
 						return jobContainer;
 					},
 					endCallback: () => {
-						containerText.appendChild(UIcon.getIcon(Icons.DcIconSmile));
+						containerText.appendChild(UIcon.getIcon(Icons.IconSmile));
 						containerText.appendChild(UDom.span({
 							className: GLOBAL_CSS.BLINK,
 							innerText: '_'
@@ -103,7 +103,7 @@ export class Home extends View {
 	}
 
 	private buildLoading(): void {
-		this.loadingIcon = UIcon.getIcon(Icons.DcIconLoading, { className: HOME_CSS.LOADING });
+		this.loadingIcon = UIcon.getIcon(Icons.IconLoading, { className: HOME_CSS.LOADING });
 		this.mainElement.appendChild(this.loadingIcon);
 	}
 
@@ -122,7 +122,7 @@ export class Home extends View {
 		}
 
 		this.startBtn = UDom.div({ className: HOME_CSS.START_BTN });
-		const startIcon = UIcon.getIcon(Icons.DcIconArrowUp);
+		const startIcon = UIcon.getIcon(Icons.IconArrowUp);
 
 		Cursor.subscribeElementToDetectHover(this.startBtn);
 		this.startBtn.addEventListener("click", () => {

@@ -36,11 +36,11 @@ export class Footer extends Component {
 		}
 
 		const contactContainer = UDom.div({ className: FOOTER_CSS.CONTACT_CONTAINER });
-		const contactIcon = UIcon.getIcon(Icons.DcIconTelephoneFill);
+		const contactIcon = UIcon.getIcon(Icons.IconTelephoneFill);
 		const contactLabel = UDom.p({ innerText: Translator.T(Translation.CONTACT).toUpperCase() });
 		UDom.AC(contactContainer, contactIcon, contactLabel);
 		
-		this.buildContactModal(contactContainer, Icons.DcIconTelephoneFill, Translator.T(Translation.CONTACT_ME).toUpperCase());
+		this.buildContactModal(contactContainer, Icons.IconTelephoneFill, Translator.T(Translation.CONTACT_ME).toUpperCase());
 
 		Cursor.subscribeElementToDetectHover(contactContainer);
 		

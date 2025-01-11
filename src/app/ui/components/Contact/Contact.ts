@@ -22,8 +22,7 @@ enum CONTACT_CSS {
 enum SOCIAL_NETWORKS_LINKS {
 	FACEBOOK = "https://www.facebook.com/dalil.chablis",
 	INSTAGRAM = "https://www.instagram.com/black_thrower/",
-	SNAPCHAT = "https://www.snapchat.com/add/dalil_chbls",
-	TWITTER = "https://twitter.com/dalil_chbls",
+	X = "https://x.com/dalil_chbls",
 	GITHUB = "https://github.com/dalil01",
 	GITLAB = "https://gitlab.com/dalil01",
 	LINKEDIN = "https://www.linkedin.com/in/dalil-chablis/",
@@ -47,27 +46,25 @@ export class Contact extends Component {
 		});
 		const socialNetworks = UDom.div({ className: CONTACT_CSS.SOCIAL_NETWORKS });
 		
-		const instagramIcon = UDom.AC(UDom.div(), UIcon.getIcon(Icons.DcIconInstagramLogo, { title: "Instagram" }));
-		const snapchatIcon = UDom.AC(UDom.div(), UIcon.getIcon(Icons.DcIconSnapchatLogo, { title: "Snapchat" }));
-		const twitterIcon = UDom.AC(UDom.div(), UIcon.getIcon(Icons.DcIconTwitterLogo, { title: "Twitter" }));
-		const githubIcon = UDom.AC(UDom.div(), UIcon.getIcon(Icons.DcIconGithubLogo, { title: "Github" }));
-		const gitlabIcon = UDom.AC(UDom.div(), UIcon.getIcon(Icons.DcIconGitlabLogo, { title: "Gitlab" }));
-		const linkedinIcon = UDom.AC(UDom.div(), UIcon.getIcon(Icons.DcIconLinkedinLogo, { title: "Linkedin" }));
-		const mailIcon = UDom.AC(UDom.div(), UIcon.getIcon(Icons.DcIconMail, { title: "Mail" }));
+		const instagramIcon = UDom.AC(UDom.div(), UIcon.getIcon(Icons.IconInstagramLogo, { title: "Instagram" }));
+		const twitterIcon = UDom.AC(UDom.div(), UIcon.getIcon(Icons.IconX, { title: "X" }));
+		const githubIcon = UDom.AC(UDom.div(), UIcon.getIcon(Icons.IconGithubLogo, { title: "Github" }));
+		const gitlabIcon = UDom.AC(UDom.div(), UIcon.getIcon(Icons.IconGitlabLogo, { title: "Gitlab" }));
+		const linkedinIcon = UDom.AC(UDom.div(), UIcon.getIcon(Icons.IconLinkedinLogo, { title: "Linkedin" }));
+		const mailIcon = UDom.AC(UDom.div(), UIcon.getIcon(Icons.IconMail, { title: "Mail" }));
 
 		this.onClickSocialNetworkLink(instagramIcon, SOCIAL_NETWORKS_LINKS.INSTAGRAM);
-		this.onClickSocialNetworkLink(snapchatIcon, SOCIAL_NETWORKS_LINKS.SNAPCHAT);
-		this.onClickSocialNetworkLink(twitterIcon, SOCIAL_NETWORKS_LINKS.TWITTER);
+		this.onClickSocialNetworkLink(twitterIcon, SOCIAL_NETWORKS_LINKS.X);
 		this.onClickSocialNetworkLink(githubIcon, SOCIAL_NETWORKS_LINKS.GITHUB);
 		this.onClickSocialNetworkLink(gitlabIcon, SOCIAL_NETWORKS_LINKS.GITLAB);
 		this.onClickSocialNetworkLink(linkedinIcon, SOCIAL_NETWORKS_LINKS.LINKEDIN);
 		this.onClickSocialNetworkLink(mailIcon, "mailto: " + SOCIAL_NETWORKS_LINKS.EMAIL, false);
 
-		const icons = [instagramIcon, snapchatIcon, twitterIcon, githubIcon, gitlabIcon, linkedinIcon, mailIcon];
+		const icons = [twitterIcon, githubIcon, gitlabIcon, mailIcon, linkedinIcon, instagramIcon];
 		icons.forEach((icon) => icon.classList.add(CONTACT_CSS.SOCIAL_NETWORK));
 		Cursor.subscribeElementsToDetectHover(icons);
 
-		UDom.AC(socialNetworks, githubIcon, gitlabIcon, linkedinIcon, instagramIcon, snapchatIcon, twitterIcon, mailIcon);
+		UDom.AC(socialNetworks, githubIcon, gitlabIcon, mailIcon, linkedinIcon, twitterIcon, instagramIcon);
 		UDom.AC(socialNetworksContainer/*, socialNetworksTitle*/, socialNetworks);
 
 		/*
@@ -97,7 +94,7 @@ export class Contact extends Component {
 			}
 		];
 		
-		new form(mailFormContainer, mailFormInputs, { icon: Icons.DcIconSendRegular, rounded: true }, true);
+		new form(mailFormContainer, mailFormInputs, { icon: Icons.IconSendRegular, rounded: true }, true);
 		 */
 
 		UDom.AC(this.getMainElement(), socialNetworksContainer/*, mailFormContainer*/);
