@@ -25,11 +25,11 @@ module.exports = {
         css: iconCssDir + "icons.css.hbs"
     },
     pathOptions: {
-        eot: iconFontsDir + "icons.eot",
-        svg: iconFontsDir + "icons.svg",
-        ttf: iconFontsDir + "icons.ttf",
-        woff: iconFontsDir + "icons.woff",
-        woff2: iconFontsDir + "icons.woff2",
+        eot: iconFontsDir + "Icons.eot",
+        svg: iconFontsDir + "Icons.svg",
+        ttf: iconFontsDir + "Icons.ttf",
+        woff: iconFontsDir + "Icons.woff",
+        woff2: iconFontsDir + "Icons.woff2",
         css: iconCssDir + "icons.css",
         ts: iconsDir + "Icons.ts"
     },

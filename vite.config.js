@@ -1,11 +1,10 @@
 import gltfPlugin from "vite-plugin-gltf";
 import { VitePWA } from "vite-plugin-pwa";
-import url from "@rollup/plugin-url";
 
 const MANIFEST_ICONS_URL = "https://dalilchablis.com/manifest_icons/";
 
 export default {
-    base: "./",
+    base: "/",
     root: "src",
     publicDir: "../public/",
     server: {
@@ -19,23 +18,10 @@ export default {
         sourcemap: true,
         chunkSizeWarningLimit: 1000,
         rollupOptions: {
-            plugins: [
-                url({
-                    include: [
-                        "**/*.eot",
-                        "**/*.woff",
-                        "**/*.woff2",
-                        "**/*.ttf",
-                        "**/*.svg"
-                    ],
-                    limit: 0,
-                    fileName: 'fonts/[name][extname]'
-                })
-            ],
             output: {
                 manualChunks(id) {
-                    if (id.includes('node_modules')) {
-                        return 'vendor';
+                    if (id.includes("node_modules")) {
+                        return "vendor";
                     }
                 },
             },

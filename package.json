@@ -26,7 +26,6 @@
     "three": "^0.134.0"
   },
   "devDependencies": {
-    "@rollup/plugin-url": "^8.0.2",
     "@types/node": "^18.7.8",
     "@types/three": "^0.134.0",
     "fantasticon": "^2.0.0",
