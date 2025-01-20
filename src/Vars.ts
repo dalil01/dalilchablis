@@ -34,4 +34,6 @@ export class Vars {
 		OUTSIDE_CITY: IMAGES_DIR + "outside/outside-city.webp"
 	};
 
+	public static CODE_LAB_URL = "https://dalil01.dev/";
+
 }

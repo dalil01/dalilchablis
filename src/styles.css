@@ -1,7 +1,10 @@
+@import "app/icons/css/icons.css";
+
 *, ::before, ::after {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    user-select: none;
 }
 
 :root {

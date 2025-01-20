@@ -4,6 +4,7 @@
     align-items: center;
     justify-content: space-around;
     flex-direction: column;
+    gap: 5px;
 }
 
 .about-me-avatar {
@@ -15,11 +16,16 @@
 .about-me-text-container {
     text-align: left;
     padding: 30px;
-    font-size: .85rem;
 }
 
 .about-me-emoji-hand {
     color: #FFCA28;
+}
+
+.about-me-text {
+    margin-top: 5px;
+    font-size: .85rem;
+    line-height: 1.5;
 }
 
 @media (min-width: 768px) {

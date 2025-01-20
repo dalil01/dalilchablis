@@ -32,8 +32,8 @@ export const Translated = {
 		FR: "Je suis"
 	},
 	FULLSTACK_DEVELOPER: {
-		EN: "Fullstack Developer",
-		FR: "Développeur Fullstack"
+		EN: "Full-Stack Developer",
+		FR: "Développeur Full-Stack"
 	},
 	SOCIAL_NETWORKS: {
 		EN: "Social networks",
@@ -68,8 +68,8 @@ export const Translated = {
 		FR: "Hello"
 	},
 	ABOUT_TEXT: {
-		EN: "I'm Dalil CHABLIS, a Freelance Fullstack Developer in Paris. I'm passionate about everything related to computer science. Right now, my interests are rather in field of web, connected objects, 3D and virtual reality. I'm also passionate about sports, I go from athletics and I'm a javelin thrower!",
-		FR: "Je suis Dalil CHABLIS, un Développeur Fullstack Freelance à Paris. Je suis passionné par tout ce qui touche à l'informatique. En ce moment, mes intérêts se portent plutôt dans le domaine du web, des objets connectés, de la 3D et de la réalité virtuelle. Je suis également passionné de sport, je fais de l'athlétisme et je suis lanceur de javelot!"
+		EN: "I'm Dalil CHABLIS, a Freelance Full-Stack Developer in Paris. I'm passionate about everything related to computer science. Right now, my interests are rather in field of web, connected objects, 3D and virtual reality. I'm also passionate about sports, I go from athletics and I'm a javelin thrower!",
+		FR: "Je suis Dalil CHABLIS, un Développeur Full-Stack Freelance à Paris. Je suis passionné par tout ce qui touche à l'informatique. En ce moment, mes intérêts se portent plutôt dans le domaine du web, des objets connectés, de la 3D et de la réalité virtuelle. Je suis également passionné de sport, je fais de l'athlétisme et je suis lanceur de javelot!"
 	},
 	ME: {
 		EN: "Me",

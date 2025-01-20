@@ -11,6 +11,7 @@ enum ABOUT_ME_CSS {
 	CONTAINER = "about-me-container",
 	AVATAR = "about-me-avatar",
 	TEXT_CONTAINER = "about-me-text-container",
+	TEXT = "about-me-text",
 	EMOJI_HAND = "about-me-emoji-hand"
 }
 
@@ -24,14 +25,15 @@ export class AboutMe extends Component {
 	}
 	
 	public buildUI(): void {
-		const avatar = UDom.img({ src: "images/about/me.webp", className: ABOUT_ME_CSS.AVATAR });
+		const avatar = UDom.img({ src: "images/about/me.png", className: ABOUT_ME_CSS.AVATAR });
 		this.mainElement.appendChild(avatar);
 
 		const aboutContainer = UDom.div({ className: ABOUT_ME_CSS.TEXT_CONTAINER });
-		const hi = UDom.span({ innerText: Translator.T(Translation.HI_THERE) + ' ' });
+		const hi = UDom.span({ innerText: Translator.T(Translation.HI_THERE) + ' ', className: ABOUT_ME_CSS.TEXT });
 		const hand = UIcon.getIcon(Icons.IconHand, { className: ABOUT_ME_CSS.EMOJI_HAND });
-		const about = UDom.span({
-			innerText: ", " + Translator.T(Translation.ABOUT_TEXT)
+		const about = UDom.p({
+			innerText: Translator.T(Translation.ABOUT_TEXT),
+			className: ABOUT_ME_CSS.TEXT
 		});
 
 		UDom.AC(aboutContainer, hi, hand, about);

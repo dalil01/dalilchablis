@@ -291,9 +291,9 @@ export class Office extends View {
 	private addPoints(): void {
 		this.addAboutMePoint();
 		this.addContactPoint();
-		this.addEducationPoint();
-		this.addExperiencePoint();
-		this.addSkillsPoint();
+		//this.addEducationPoint();
+		//this.addExperiencePoint();
+		//this.addSkillsPoint();
 		this.addProjectsPoint();
 
 		this.points.forEach((point) => {
@@ -533,8 +533,11 @@ export class Office extends View {
 
 		let modal: Modal;
 		pointWrapperElement.addEventListener("pointerdown", () => {
+			window.open(Vars.CODE_LAB_URL, "_blank");
+
+			/*
 			if (!modal) {
-				modal = new Modal(Modal_TYPE.LARGE, pointWrapperElement, UIcon.getIcon(Icons.IconHeart), Translator.T(Translation.PROJECTS), undefined, true, true, true);
+				modal = new Modal(Modal_TYPE.SMALL, pointWrapperElement, UIcon.getIcon(Icons.IconHeart), Translator.T(Translation.PROJECTS), undefined, true, true, true);
 				const modalComponent = new Projects(modal.getMainElement());
 				modalComponent.setMenuParent(<HTMLElement>modal.getFooter());
 				modalComponent.init();
@@ -556,6 +559,7 @@ export class Office extends View {
 
 				modal.open();
 			}
+			 */
 		});
 	}
 
