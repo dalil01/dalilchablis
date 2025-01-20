@@ -1,3 +1,5 @@
+import "../icons/css/icons.css";
+
 import { UDom } from "./UDom";
 import { Icons } from "../icons/Icons";
 
